@@ -3,13 +3,13 @@ import path from 'path';
 import { getSortedPostsData } from '../lib/posts';
 import '../app/globals.css';
 import ReactMarkdown from 'react-markdown';
-import { useState } from 'react';
+import { useState, FC } from 'react';
+import { PostMetaData, StoriesProps } from '../types';  // Update the import path as needed
 
-export default function Stories({ allPostsData, allPostsContent }) {
-  const [expandedPostId, setExpandedPostId] = useState(null);
+const Stories: FC<StoriesProps> = ({ allPostsData, allPostsContent }) => {
+  const [expandedPostId, setExpandedPostId] = useState<string | null>(null);
 
-  // Toggle the expanded state of a post
-  const toggleReadMore = (id) => {
+  const toggleReadMore = (id: string) => {
     setExpandedPostId(expandedPostId === id ? null : id);
   };
 
@@ -29,7 +29,7 @@ export default function Stories({ allPostsData, allPostsContent }) {
               <ReactMarkdown className="prose">{content}</ReactMarkdown>
               <button onClick={() => toggleReadMore(id)} className="mt-4 inline-block bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
                 {isExpanded ? 'Show Less' : 'Read More'}
-              </button>
+              </button>      
             </div>
           );
         })}
@@ -39,19 +39,21 @@ export default function Stories({ allPostsData, allPostsContent }) {
       </div>
     </div>
   )
-}
+};
 
-export async function getStaticProps() {
-  const allPostsData = getSortedPostsData();
+export default Stories;
 
-  // Get the path of the posts directory
+
+
+import { GetStaticProps } from 'next';
+
+export const getStaticProps: GetStaticProps = async () => {
+  const allPostsData: PostMetaData[] = getSortedPostsData();
+
   const postsDirectory = path.join(process.cwd(), 'posts');
-
-  // Get the names of all markdown files in the posts directory
   const fileNames = fs.readdirSync(postsDirectory).filter(fileName => fileName.endsWith('.md'));
 
-  // Read the content of each markdown file
-  const allPostsContent = fileNames.map(fileName => {
+  const allPostsContent: string[] = fileNames.map(fileName => {
     const filePath = path.join(postsDirectory, fileName);
     const fileContent = fs.readFileSync(filePath, 'utf8');
     return fileContent;
@@ -63,4 +65,4 @@ export async function getStaticProps() {
       allPostsContent
     }
   };
-}
+};
