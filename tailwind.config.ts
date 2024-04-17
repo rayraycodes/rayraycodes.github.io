@@ -20,9 +20,9 @@ const config: Config = {
         'xl': '1280px',
       },
       animation: {
-        'color-change': 'color-change 2s infinite',
-        'fade-in': 'fade-in 2s ease-out',
-        'slide-fade-in': 'slide-fade-in 2s ease-in-out',
+        'color-change': 'color-change .5s infinite',
+        'fade-in': 'fade-in .2s ease-out',
+        'slide-fade-in': 'slide-fade-in .5s ease-in-out',
       },
       colors: {
         'nepal-blue': '#022E6C',

@@ -14,7 +14,7 @@ const Post: FC<PostProps> = ({ title, content }) => {
   return (
     <div className="min-h-screen flex flex-col justify-center items-center text-center p-4 pt-20 text-black bg-gray-100"
          style={{ fontFamily: 'Montserrat, sans-serif' }}>
-      <div className="bg-white p-6 rounded-lg shadow-lg w-4/5 mx-auto" style={{ width: '80%', height: '80%', fontFamily: 'Montserrat, sans-serif' }}>
+      <div className="bg-white p-6 rounded-lg shadow-lg w-4/5 mx-auto animate-slide-fade-in" style={{ width: '80%', height: '80%', fontFamily: 'Montserrat, sans-serif' }}>
         <h1 className="text-2xl font-bold sm:text-4xl mb-4">{title}</h1>
         <div className="p-4 text-left rounded bg-white">
           <ReactMarkdown remarkPlugins={[gfm]} rehypePlugins={[rehypeRaw]}>
