@@ -23,3 +23,10 @@ export interface PostMetaData {
     allPostsContent: string[];
   }
   
+  export interface PostProps {
+    id: string;
+    title: string;
+    content: string;
+    contentHtml: string;
+    // other properties...
+  }

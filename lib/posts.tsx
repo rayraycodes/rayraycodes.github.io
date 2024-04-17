@@ -7,6 +7,7 @@ import remarkHtml from 'remark-html';
 // import from your project's types directory
 import '../app/globals.css';
 import { PostMetaData, PostParams, PostData } from '../types';
+import { GetStaticProps } from 'next';
 
 
 const postsDirectory = path.join(process.cwd(), 'posts');
@@ -67,13 +68,14 @@ export async function getPostData(id: string): Promise<PostData> {
     id,
     title,
     content: matterResult.content,
+    contentHtml: '', // Add the missing property 'contentHtml'
     ...(matterResult.data as { [key: string]: any })  // Ensure additional properties are handled correctly
   };
 }
 
 
 export const getStaticProps: GetStaticProps = async (context) => {
-  const { id } = context.params;
+  const { id } = context.params as { id: string };
   const fullPath = path.join(postsDirectory, `${id}.md`);
   const fileContents = fs.readFileSync(fullPath, 'utf8');
 
