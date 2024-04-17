@@ -27,6 +27,7 @@ I am a creative computer scientist with a knack for innovative solutions and tea
 
 
 
+
 What truly set EPaath apart for me was witnessing its transformative impact firsthand. Leading the development team, my journey extended far beyond programming. We immersed ourselves in the communities we served, engaging with students, educators, and families across Nepal. The insights and stories we gathered were humbling and pivotal in refining EPaath, driving home the profound influence of technology in addressing real-world challenges.
 
 
