@@ -13,16 +13,16 @@ import Link from 'next/link';
 const Post: FC<PostProps> = ({ title, content }) => {
   return (
     <div className="min-h-screen flex flex-col justify-center items-center text-center p-4 pt-20 text-black bg-gray-100"
-         style={{ fontFamily: 'Montserrat, sans-serif' }}>
-      <div className="bg-white p-6 rounded-lg shadow-lg w-4/5 mx-auto" style={{ width: '80%', height: '80%', fontFamily: 'Montserrat, sans-serif' }}>
+         style={{ fontFamily: 'Montserrat, sans-serif', padding: '20px' }}>
+      <div className=" rounded-lg shadow-lg w-4/5 mx-auto" style={{ width: '80%', height: '80%', fontFamily: 'Montserrat, sans-serif', margin: '20px 0' }}>
         <h1 className="text-2xl font-bold sm:text-4xl mb-4">{title}</h1>
-        <div className="p-4 text-left rounded bg-white">
+        <div className="p-4 text-left rounded bg-white" style={{ margin: '20px 0' }}>
           <ReactMarkdown remarkPlugins={[gfm]} rehypePlugins={[rehypeRaw]}>
             {content}
           </ReactMarkdown>
         </div>
         <Link href="/stories">
-          <p className="mt-4 inline-block bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+          <p className="mt-4 inline-block bg-nepal-blue hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" style={{ margin: '20px 0' }}>
             Back to Stories
           </p>
         </Link>
@@ -30,7 +30,6 @@ const Post: FC<PostProps> = ({ title, content }) => {
     </div>
   );
 };
-
 export default Post;
 
 export const getStaticPaths: GetStaticPaths = async () => {

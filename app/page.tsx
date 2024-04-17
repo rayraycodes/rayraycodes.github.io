@@ -10,25 +10,25 @@ export default function Home() {
         <title>Know Regan</title>
       </Head>
       <h1 className="text-4xl md:text-6xl font-bold mb-4 transition-all duration-500 animate-slide-fade-in">
-        <span style={{color: '#022E6C'}}>Namaste,</span> I am Regan from <span style={{color: '#C51130'}}>Nepal.</span>
+        <span className="text-nepal-blue">Namaste</span>, I am Regan from <span className="text-nepal-red">Nepal.</span>
       </h1>
       <p className="text-xl md:text-2xl text-white mb-4 font-bold transition-all duration-500 animate-slide-fade-in">What encapsulates me?</p>
       <div className="text-white">
         <Link href="/education">
-          <button className="py-2 px-4 bg-blue-500 text-white rounded mx-2 md:mx-4 transition-all duration-500 ease-in-out hover:text-black-500 cursor-pointer animate-slide-fade-in animate-shake">Education?</button>
+          <button className="py-2 px-4 bg-nepal-blue text-white rounded mx-2 md:mx-4 transition-all duration-500 ease-in-out hover:text-black-500 cursor-pointer animate-slide-fade-in animate-shake">Education?</button>
         </Link>
         <Link href="/hobbies">
-          <button className="py-2 px-4 bg-blue-500 text-white rounded mx-2 md:mx-4 transition-all duration-500 ease-in-out hover:text-black-500 cursor-pointer animate-slide-fade-in animate-shake">Hobbies?</button>
+          <button className="py-2 px-4 bg-nepal-blue text-white rounded mx-2 md:mx-4 transition-all duration-500 ease-in-out hover:text-black-500 cursor-pointer animate-slide-fade-in animate-shake">Hobbies?</button>
         </Link>
         <Link href="/stories">
-          <button className="py-2 px-4 bg-blue-500 text-white rounded mx-2 md:mx-4 transition-all duration-500 ease-in-out hover:text-black-500 cursor-pointer animate-slide-fade-in animate-shake">Stories?</button>
+          <button className="py-2 px-4 bg-nepal-blue text-white rounded mx-2 md:mx-4 transition-all duration-500 ease-in-out hover:text-black-500 cursor-pointer animate-slide-fade-in animate-shake">Stories?</button>
         </Link>
         <Link href="/experiences">
-          <button className="py-2 px-4 bg-blue-500 text-white rounded mx-2 md:mx-4 transition-all duration-500 ease-in-out hover:text-black-500 cursor-pointer animate-slide-fade-in animate-shake">Experiences?</button>
+          <button className="py-2 px-4 bg-nepal-blue text-white rounded mx-2 md:mx-4 transition-all duration-500 ease-in-out hover:text-black-500 cursor-pointer animate-slide-fade-in animate-shake">Experiences?</button>
         </Link>
       </div>
       <Link href="/iwonder">
-          <p className="py-2 px-4 bg-blue-500 text-white rounded text-white italic mt-4 transition-all duration-500 ease-in-out hover:text-black-500 cursor-pointer animate-slide-fade-in">I thinka about...</p>
+          <p className="py-2 px-4 bg-nepal-blue text-white rounded text-white italic mt-4 transition-all duration-500 ease-in-out hover:text-black-500 cursor-pointer animate-slide-fade-in">I thinka about...</p>
       </Link>
     </div>
   );

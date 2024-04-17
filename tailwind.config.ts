@@ -24,6 +24,10 @@ const config: Config = {
         'fade-in': 'fade-in 2s ease-out',
         'slide-fade-in': 'slide-fade-in 2s ease-in-out',
       },
+      colors: {
+        'nepal-blue': '#022E6C',
+        'nepal-red': '#C51130'
+      }
     },
   },
   plugins: [
