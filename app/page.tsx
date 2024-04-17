@@ -1,10 +1,14 @@
 // pages/index.tsx
+import Head from 'next/head';
 import Link from 'next/link';
 
 export default function Home() {
   return (
     <div className="min-h-screen flex flex-col justify-start items-center text-center p-4 pt-20" 
          style={{ backgroundImage: `url(/images/ray.jpeg)`, backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat' }}>
+      <Head>
+        <title>Know Regan</title>
+      </Head>
       <h1 className="text-4xl md:text-6xl font-bold mb-4 transition-all duration-500 animate-slide-fade-in">
         <span style={{color: 'blue'}}>Namaste,</span> I am Regan from <span style={{color: 'red'}}>Nepal.</span>
       </h1>
