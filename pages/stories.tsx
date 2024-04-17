@@ -6,7 +6,6 @@ import ReactMarkdown from 'react-markdown';
 import { useState, FC } from 'react';
 import { PostMetaData, StoriesProps } from '../types';  // Update the import path as needed
 import Link from 'next/link';
-import { useRouter } from 'next/router';
 
 
 
@@ -20,7 +19,6 @@ const Stories: FC<StoriesProps> = ({ allPostsData }) => {
           {allPostsData.map(({ id, date, title, content }) => {
             // Convert the date string back to a Date object
             const dateObject = new Date(date);
-            const router = useRouter();
             // Format the date
             const formattedDate = dateObject.toLocaleDateString('en-US', {
               year: 'numeric',

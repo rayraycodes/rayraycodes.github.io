@@ -15,20 +15,20 @@ export default function Home() {
       <p className="text-xl md:text-2xl text-white mb-4 font-bold transition-all duration-500 animate-slide-fade-in">What encapsulates me?</p>
       <div className="text-white">
         <Link href="/education">
-          <button className="mx-2 md:mx-4 transition-all duration-500 ease-in-out hover:text-blue-500 cursor-pointer animate-slide-fade-in animate-shake">Education?</button>
+          <button className="py-2 px-4 bg-blue-500 text-white rounded mx-2 md:mx-4 transition-all duration-500 ease-in-out hover:text-black-500 cursor-pointer animate-slide-fade-in animate-shake">Education?</button>
         </Link>
         <Link href="/hobbies">
-          <button className="mx-2 md:mx-4 transition-all duration-500 ease-in-out hover:text-blue-500 cursor-pointer animate-slide-fade-in animate-shake">Hobbies?</button>
+          <button className="py-2 px-4 bg-blue-500 text-white rounded mx-2 md:mx-4 transition-all duration-500 ease-in-out hover:text-black-500 cursor-pointer animate-slide-fade-in animate-shake">Hobbies?</button>
         </Link>
         <Link href="/stories">
-          <button className="mx-2 md:mx-4 transition-all duration-500 ease-in-out hover:text-blue-500 cursor-pointer animate-slide-fade-in animate-shake">Stories?</button>
+          <button className="py-2 px-4 bg-blue-500 text-white rounded mx-2 md:mx-4 transition-all duration-500 ease-in-out hover:text-black-500 cursor-pointer animate-slide-fade-in animate-shake">Stories?</button>
         </Link>
         <Link href="/experiences">
-          <button className="mx-2 md:mx-4 transition-all duration-500 ease-in-out hover:text-blue-500 cursor-pointer animate-slide-fade-in animate-shake">Experiences?</button>
+          <button className="py-2 px-4 bg-blue-500 text-white rounded mx-2 md:mx-4 transition-all duration-500 ease-in-out hover:text-black-500 cursor-pointer animate-slide-fade-in animate-shake">Experiences?</button>
         </Link>
       </div>
       <Link href="/iwonder">
-          <p className="text-white italic mt-4 transition-all duration-500 ease-in-out hover:text-blue-500 cursor-pointer animate-slide-fade-in">I wonder...</p>
+          <p className="py-2 px-4 bg-blue-500 text-white rounded text-white italic mt-4 transition-all duration-500 ease-in-out hover:text-black-500 cursor-pointer animate-slide-fade-in">I thinka about...</p>
       </Link>
     </div>
   );
