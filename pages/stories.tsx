@@ -2,16 +2,18 @@ import fs from 'fs';
 import path from 'path';
 import { getSortedPostsData } from '../lib/posts';
 import '../app/globals.css';
-import ReactMarkdown from 'react-markdown';
-import { useState, FC } from 'react';
-import { PostMetaData, StoriesProps } from '../types';  // Update the import path as needed
+import { FC } from 'react';
+import { PostMetaData, StoriesProps } from '../types';  
 import Link from 'next/link';
-
+import RootLayout from '@/app/layout';
 
 const Stories: FC<StoriesProps> = ({ allPostsData }) => {
   return (
+   
     <div className="min-h-screen flex flex-col justify-center items-center text-center p-4 pt-20 text-black "
          style={{ backgroundImage: `url(/images/ray.jpeg)`, backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat' }}>
+
+    
       <div className=" p-6 rounded-lg shadow-lg w-4/5 mx-auto animate-slide-fade-in" style={{ width: '80%', height: '80%' }}>
         <h1 className="text-2xl font-bold sm:text-4xl mb-4 text-white">Stories...</h1>
         <div className="flex flex-wrap justify-center"> 
@@ -41,6 +43,7 @@ const Stories: FC<StoriesProps> = ({ allPostsData }) => {
         </a>
       </div>
     </div>
+
   );
 }
 
