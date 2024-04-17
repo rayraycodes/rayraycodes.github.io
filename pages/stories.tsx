@@ -5,34 +5,46 @@ import '../app/globals.css';
 import ReactMarkdown from 'react-markdown';
 import { useState, FC } from 'react';
 import { PostMetaData, StoriesProps } from '../types';  // Update the import path as needed
+import Link from 'next/link';
+import { useRouter } from 'next/router';
 
-const Stories: FC<StoriesProps> = ({ allPostsData, allPostsContent }) => {
-  const [expandedPostId, setExpandedPostId] = useState<string | null>(null);
 
-  const toggleReadMore = (id: string) => {
-    setExpandedPostId(expandedPostId === id ? null : id);
-  };
 
+const Stories: FC<StoriesProps> = ({ allPostsData }) => {
   return (
     <div className="min-h-screen flex flex-col justify-center items-center text-center p-4 pt-20 text-black"
          style={{ backgroundImage: `url(/images/ray.jpeg)`, backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat' }}>
-      <div className="bg-white p-6 rounded-lg shadow-lg w-4/5 mx-auto">
+      <div className="bg-white p-6 rounded-lg shadow-lg w-4/5 mx-auto" style={{ width: '80%', height: '80%' }}>
         <h1 className="text-2xl font-bold sm:text-4xl mb-4">Stories...</h1>
-        {allPostsData.map(({ id, date, title }, index) => {
-          const isExpanded = id === expandedPostId;
-          const content = isExpanded ? allPostsContent[index] : allPostsContent[index].split(/(?<=[.!?])\s/).slice(0, 2).join(' ');
+        <div className="flex flex-wrap justify-center"> 
+          {allPostsData.map(({ id, date, title, content }) => {
+            // Convert the date string back to a Date object
+            const dateObject = new Date(date);
+            const router = useRouter();
+            // Format the date
+            const formattedDate = dateObject.toLocaleDateString('en-US', {
+              year: 'numeric',
+              month: 'long',
+              day: 'numeric'
+            });
 
-          return (
-            <div key={id} className="postCard bg-white p-8 rounded-lg shadow-lg mb-6 mx-2 my-4">
-              <h2 className="text-xl font-bold mb-2">{title}</h2>
-              <p className="text-sm mb-4">{date}</p>
-              <ReactMarkdown className="prose">{content}</ReactMarkdown>
-              <button onClick={() => toggleReadMore(id)} className="mt-4 inline-block bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                {isExpanded ? 'Show Less' : 'Read More'}
-              </button>      
-            </div>
-          );
-        })}
+            return (
+              <div key={id} className="postCard bg-white p-4 rounded-lg shadow-lg mb-6 mx-2 my-4 relative overflow-hidden flex-shrink-0 flex flex-col justify-between" style={{ minWidth: '300px', maxWidth: '500px' }}>
+                <Link href={`/post/${id}`}>
+                  <div className="flex-grow">
+                    {/* Other content */}
+                  </div>
+                  <div className="bg-black bg-opacity-60 text-white p-4">
+                    <h4 className="text-xl font-bold mb-2">{title}</h4>
+                    <p className="text-sm mb-4">{formattedDate}</p>
+                  </div>
+                </Link>
+              </div>
+            );
+
+
+          })}
+        </div>  
         <a href="/" className="mt-4 inline-block bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
           Back
         </a>
@@ -41,8 +53,8 @@ const Stories: FC<StoriesProps> = ({ allPostsData, allPostsContent }) => {
   )
 };
 
-export default Stories;
 
+export default Stories;
 
 
 import { GetStaticProps } from 'next';

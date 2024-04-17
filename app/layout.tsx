@@ -6,7 +6,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Know Regan",
-  description: "A Human from Kathmandu, Nepal",
+  description: "Your Friend From Kathmandu",
 };
 
 export default function RootLayout({
@@ -16,10 +16,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>
-        <audio src="/sounds/calmmountain.mp3" autoPlay loop />
-        {children}
-      </body>
+      <body className={inter.className}>{children}</body>
     </html>
   );
 }

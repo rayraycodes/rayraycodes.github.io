@@ -1,4 +1,10 @@
-# Mulla!
+---
+title: My Intro
+date: 2024-01-01
+---
+
+
+# My Introduction!
 
 I am a creative computer scientist with a knack for innovative solutions and teamwork.
 

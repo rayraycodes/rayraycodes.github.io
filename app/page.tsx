@@ -10,7 +10,7 @@ export default function Home() {
         <title>Know Regan</title>
       </Head>
       <h1 className="text-4xl md:text-6xl font-bold mb-4 transition-all duration-500 animate-slide-fade-in">
-        <span style={{color: 'blue'}}>Namaste,</span> I am Regan from <span style={{color: 'red'}}>Nepal.</span>
+        <span style={{color: '#022E6C'}}>Namaste,</span> I am Regan from <span style={{color: '#C51130'}}>Nepal.</span>
       </h1>
       <p className="text-xl md:text-2xl text-white mb-4 font-bold transition-all duration-500 animate-slide-fade-in">What encapsulates me?</p>
       <div className="text-white">
