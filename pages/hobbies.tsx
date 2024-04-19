@@ -16,14 +16,14 @@ export default function Hobbies() {
   ];
 
   return (
-    <div className="min-h-screen flex flex-col justify-center items-center text-center p-4 pt-20 text-white" 
-         style={{ backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(/images/ray.jpeg)`, backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat' }}>
+    <div className="min-h-screen flex flex-col justify-center items-center text-center p-4 pt-20 text-white"
+      style={{ backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(/images/ray.jpeg)`, backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat' }}>
       <div className="p-6 shadow-lg w-2/5 mx-auto animate-slide-fade-in">
-        <h1 className="text-2xl font-bold sm:text-4xl mb-4">Hobbies...</h1>
         <Breadcrumb links={[
           { href: '/ ', label: 'Regan' },
           { href: '/ hobbies', label: 'Hobbies' },
         ]} />
+        <h1 className="text-2xl font-bold sm:text-4xl mb-4">Hobbies...</h1>
         <div className="grid gap-2 grid-cols-4 items-center justify-items-center">
           {hobbies.map((hobby, index) => (
             <Link href={`/hobbies/${hobby.name.toLowerCase()}`} key={index}>

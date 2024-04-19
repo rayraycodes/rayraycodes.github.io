@@ -1,4 +1,5 @@
 // pages/education.tsx
+import { Breadcrumb } from '../components/Breadcrumb';
 import '../app/globals.css';
 
 export default function Education() {
@@ -6,6 +7,10 @@ export default function Education() {
     <div className="min-h-screen flex flex-col justify-center items-center text-center p-4 pt-20 text-whie" 
          style={{ backgroundImage: `url(/images/ray.jpeg)`, backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat' }}>
       <div className=" p-6 rounded-lg shadow-lg w-4/5 mx-auto animate-slide-fade-in">
+        <Breadcrumb links={[
+            { href: '/ ', label: 'Regan' },
+            { href: '/ Education', label: 'Education' },
+          ]} />
         <h1 className="text-2xl font-bold sm:text-4xl mb-4">Education...</h1>
         <p className="text-lg sm:text-xl mb-4">Namaste!
 

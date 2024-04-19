@@ -17,14 +17,15 @@ export default function Hobbies({ imagePaths }: { imagePaths: string[] }) {
   return (
     <div className="min-h-screen flex flex-col justify-center items-center text-center p-4 pt-20 text-white" 
     style={{ backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(/images/ray.jpeg)`, backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat' }}>
-      <Head>
-        <title>Photography</title>
-      </Head>
       <Breadcrumb links={[
           { href: '/ ', label: ' Regan' },
           { href: '/hobbies', label: ' Hobbies' },
           { href: '/phtography', label: ' Photography' },
         ]} />
+      <Head>
+        <title>Photography</title>
+      </Head>
+     
       <h1 className="text-4xl mb-4">Photography</h1>
 
       <Gallery photos={images} />
@@ -39,14 +40,17 @@ export default function Hobbies({ imagePaths }: { imagePaths: string[] }) {
 }
 
 export async function getStaticProps() {
-    const directory = path.join(process.cwd(), 'public', 'images', 'photography');
-    console.log(directory); // Add this line
-    const fileNames = fs.readdirSync(directory);
-    const imagePaths = fileNames.map(fileName => `/images/photography/${fileName}`);
+  const directory = path.join(process.cwd(), 'public', 'images', 'photography');
+  let fileNames = fs.readdirSync(directory);
   
-    return {
-      props: {
-        imagePaths,
-      },
-    };
+  // Filter out hidden files
+  fileNames = fileNames.filter(fileName => !fileName.startsWith('.'));
+  
+  const imagePaths = fileNames.map(fileName => `/images/photography/${fileName}`);
+
+  return {
+    props: {
+      imagePaths,
+    },
+  };
 }
