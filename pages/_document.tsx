@@ -1,5 +1,6 @@
 import { Html, Head, Main, NextScript } from 'next/document'
 import Home from '../app/page'
+
  
 export default function Document() {
   return (

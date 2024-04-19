@@ -10,10 +10,15 @@ import rehypeRaw from 'rehype-raw';
 import Link from 'next/link';
 
 
-const Post: FC<PostProps> = ({ title, content }) => {
+const Post: FC<PostProps> = ({ id, title, content }) => {
   return (
-    <div className="min-h-screen flex flex-col justify-center items-center text-center p-4 pt-20 text-black bg-gray-100"
-         style={{ fontFamily: 'Montserrat, sans-serif' }}>
+    <div className="min-h-screen flex flex-col justify-center items-center text-center p-4 pt-20 text-black" 
+    style={{ backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(/images/ray.jpeg)`, backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat' }}>
+    <div className="w-full text-white flex justify-center p-4 animate-slide-fade-in">
+          <Link href="/"> / <span>Regan</span></Link>
+          <Link href="/stories"> / <span> Stories</span></Link>
+          <Link href="/post/[id]" as={`/post/${id}`}> / <span> {title}</span></Link>
+        </div>
       <div className="bg-white p-6 rounded-lg shadow-lg w-4/5 mx-auto animate-slide-fade-in" style={{ width: '80%', height: '80%', fontFamily: 'Montserrat, sans-serif' }}>
         <h1 className="text-2xl font-bold sm:text-4xl mb-4">{title}</h1>
         <div className="p-4 text-left rounded bg-white">
@@ -43,17 +48,12 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 
 export const getStaticProps: GetStaticProps = async (context) => {
-  const { id } = context.params as { id: string };
+  const id = context.params?.id as string;
   const postData = await getPostData(id);
-
-  if (!postData || !postData.content) {
-    return {
-      notFound: true,
-    };
-  }
-
   return {
     props: {
+      id,
+      title: postData.title,
       content: postData.content,
     },
   };

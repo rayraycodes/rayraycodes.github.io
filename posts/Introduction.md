@@ -1,5 +1,5 @@
 ---
-title: My Intro
+title: My Introduction
 date: 2024-01-01
 ---
 <!DOCTYPE html>
@@ -8,11 +8,8 @@ date: 2024-01-01
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
-  <title>My Introduction</title>
 </head>
 <body style="font-family: 'Montserrat', sans-serif; line-height: 1.6; color: #333; max-width: 800px; margin: 20px auto; padding: 20px; background-color: #f7f8fa;">
-
-  <h1 style="text-align: center; font-weight: 600; font-size: 28px; margin-top: 20px; margin-bottom: 20px;">My Introduction!</h1>
   
   <p style="font-size: 16px; text-align: center;">I am a creative computer scientist with a knack for innovative solutions and teamwork.</p>
 

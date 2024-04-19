@@ -23,6 +23,7 @@ const config: Config = {
         'color-change': 'color-change .5s infinite',
         'fade-in': 'fade-in .2s ease-out',
         'slide-fade-in': 'slide-fade-in .5s ease-in-out',
+        'animate-shake-heavy': 'shake .5s ease-in-out',
       },
       colors: {
         'nepal-blue': '#022E6C',
