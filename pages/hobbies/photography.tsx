@@ -4,16 +4,8 @@ import Head from 'next/head';
 import '../../app/globals.css';
 import Link from 'next/link';
 import { Breadcrumb } from '../../components/Breadcrumb';
-import Gallery from 'react-photo-gallery';
-
+// import Gallery from 'react-photo-gallery';
 export default function Hobbies({ imagePaths }: { imagePaths: string[] }) {
-  // Convert image paths to the format expected by Gallery
-  const images = imagePaths.map(src => ({
-    src,
-    width: 4,
-    height: 3,
-  }));
-
   return (
     <div className="min-h-screen flex flex-col justify-center items-center text-center p-4 pt-20 text-white" 
     style={{ backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(/images/ray.jpeg)`, backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat' }}>
@@ -28,7 +20,11 @@ export default function Hobbies({ imagePaths }: { imagePaths: string[] }) {
      
       <h1 className="text-4xl mb-4">Photography</h1>
 
-      <Gallery photos={images} />
+      <div className="grid grid-cols-2 gap-4">
+        {imagePaths.map((src, index) => (
+          <img key={index} src={src} alt="" className="object-cover h-64 w-full" />
+        ))}
+      </div>
 
       <Link href="/">
         <button className="mt-4 inline-block bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
