@@ -1,6 +1,5 @@
 // pages/education.tsx
 import { Breadcrumb } from '../components/Breadcrumb';
-import '../app/globals.css';
 
 export default function Education() {
   return (

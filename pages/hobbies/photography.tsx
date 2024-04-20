@@ -12,7 +12,7 @@ export default function Hobbies({ imagePaths }: { imagePaths: string[] }) {
       <Breadcrumb links={[
           { href: '/ ', label: ' Regan' },
           { href: '/hobbies', label: ' Hobbies' },
-          { href: '/phtography', label: ' Photography' },
+          { href: '/photography', label: ' Photography' },
         ]} />
       <Head>
         <title>Photography</title>
@@ -26,7 +26,7 @@ export default function Hobbies({ imagePaths }: { imagePaths: string[] }) {
         ))}
       </div>
 
-      <Link href="/">
+      <Link href="/hobbies">
         <button className="mt-4 inline-block bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
           Back
         </button>

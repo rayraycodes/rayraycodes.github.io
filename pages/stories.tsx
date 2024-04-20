@@ -1,7 +1,6 @@
 import fs from 'fs';
 import path from 'path';
 import { getSortedPostsData } from '../lib/posts';
-import '../app/globals.css';
 import { FC } from 'react';
 import { PostMetaData, StoriesProps } from '../types';
 import Link from 'next/link';

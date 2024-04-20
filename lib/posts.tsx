@@ -1,11 +1,6 @@
 import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
-import { unified } from 'unified';
-import markdown from 'remark-parse';
-import remarkHtml from 'remark-html';
-// import from your project's types directory
-import '../app/globals.css';
 import { PostMetaData, PostParams, PostData } from '../types';
 import { GetStaticProps } from 'next';
 

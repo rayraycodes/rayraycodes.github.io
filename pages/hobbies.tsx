@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import '../app/globals.css';
 import { Breadcrumb } from '../components/Breadcrumb';
 
 

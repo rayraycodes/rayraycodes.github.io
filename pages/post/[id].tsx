@@ -1,10 +1,10 @@
 // [id].tsx
 import { GetStaticPaths, GetStaticProps } from 'next';
+import PostContent from '../../components/PostContent';
 import { FC } from 'react';
 import { PostProps } from '../../types';  // Update the import path as needed
 import ReactMarkdown from 'react-markdown';
-import { getPostData, getAllPostIds } from '../../lib/posts';  // Update the import path as needed
-import '../../app/globals.css';
+import { getPostData, getAllPostIds } from '../../lib/posts'; 
 import gfm from 'remark-gfm';
 import rehypeRaw from 'rehype-raw';
 import Link from 'next/link';
@@ -20,19 +20,15 @@ const Post: FC<PostProps> = ({ id, title, content }) => {
             { href: '/stories', label: 'Stories' },
             { href: `/post/${id}`, label: title },
           ]} />
-      <div className="bg-white p-6 rounded-lg shadow-lg w-4/5 mx-auto animate-slide-fade-in" style={{ width: '80%', height: '80%', fontFamily: 'Montserrat, sans-serif' }}>
-        <h1 className="text-2xl font-bold sm:text-4xl mb-4">{title}</h1>
-        <div className="p-4 text-left rounded bg-white">
-          <ReactMarkdown remarkPlugins={[gfm]} rehypePlugins={[rehypeRaw]}>
-            {content}
-          </ReactMarkdown>
-        </div>
-        <Link href="/stories">
+      
+      <PostContent title={title} content={content} />
+
+      <Link href="/stories">
           <p className="mt-4 inline-block bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
             Back to Stories
           </p>
         </Link>
-      </div>
+
     </div>
   );
 };

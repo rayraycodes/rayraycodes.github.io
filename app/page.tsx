@@ -1,6 +1,7 @@
 import Head from 'next/head';
 import Link from 'next/link';
 import { Tags } from '../components/Tags';
+import {Breadcrumb} from '../components/Breadcrumb';
 import { Socials } from '../components/Socials';
 
 export default function Home() {
@@ -36,10 +37,10 @@ export default function Home() {
 
   return (
     <div className="min-h-screen flex flex-col justify-center items-center text-center p-4 pt-20 text-white" 
-    style={{ backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(/images/ray.jpeg)`, backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat' }}>
-        <div className="w-full text-white flex justify-center p-4 animate-slide-fade-in">
-          <Link href="/"> / <span>Regan</span></Link>
-        </div>
+    style={{ backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url(/images/ray.jpeg)`, backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat' }}>
+         <Breadcrumb links={[
+            { href: '/ ', label: '/ Regan' }
+          ]} />
         
 
         <h1 className="text-4xl md:text-6xl font-bold mb-4 transition-all duration-100 animate-slide-fade-in">
