@@ -4,10 +4,11 @@ import { Tags } from '../components/Tags';
 import { Breadcrumb } from '../components/Breadcrumb';
 import { Socials } from '../components/Socials';
 
+
 export default function Home() {
 
   const buttons = [
-    { name: 'Education', emoji: '🎓', path: '/education' },
+    { name: 'Resume', emoji: '🎓', path: '/resume' },
     { name: 'Hobbies', emoji: '🎮', path: '/hobbies' },
     { name: 'Stories', emoji: '📖', path: '/stories' },
     { name: 'Experiences', emoji: '💼', path: '/experiences' },
@@ -38,6 +39,7 @@ export default function Home() {
   return (
     <div className="min-h-screen flex flex-col justify-center items-center text-center p-4 pt-20 text-white"
       style={{ backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url(/images/ray.jpeg)`, backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat' }}>
+
       <Breadcrumb links={[
         { href: '/ ', label: '/ Regan' }
       ]} />
