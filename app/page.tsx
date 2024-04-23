@@ -21,7 +21,7 @@ export default function Home() {
   ];
 
   const pages = [
-    { path: '/education', label: 'Education' },
+    { path: '/resume', label: 'Resume' },
     { path: '/hobbies', label: 'Hobbies' },
     { path: '/stories', label: 'Stories' },
     { path: '/experiences', label: 'Experiences' },
