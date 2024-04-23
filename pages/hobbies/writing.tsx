@@ -1,23 +1,29 @@
+import Table from '../../components/Table';
 import BackButton from '../../components/BackButton';
 import {Breadcrumb} from '../../components/Breadcrumb';
-import Video from '../../components/Video'; // Import the 'Video' component using default import syntax
 
-export default function Running({ postData }: { postData: any }) {
+const items = [
+  { name: 'Poems that I wrote', link: 'https://reganmaharjan.notion.site/Poems-8a5fdbd93bb24dc6975dee89d7be68c4?pvs=4' },
+  // Add more items here...
+];
+
+export default function Writing() {
   return (
     <div className="min-h-screen flex flex-col justify-center items-center text-center p-4 pt-20 text-black" 
     style={{ backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(/images/ray.jpeg)`, backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat' }}>
+        
         <Breadcrumb links={[
             { href: '/ ', label: 'Regan' },
             { href: '/hobbies', label: 'Hobbies' },
-            { href: `/running`, label: 'Running' },
+            { href: `/writing`, label: 'Writing' },
           ]} />
-      <div className='flex flex-wrap justify-center gap-4 mt-4 animate-slide-fade-in'>
-        <Video src="https://www.youtube.com/embed/BnUoyjFkb5s" />
-        <Video src="https://www.youtube.com/embed/diMzfsqoTiQ" />
-        <Video src="https://www.youtube.com/embed/8G9Ys3vSnd0" />
-      </div>
-      <BackButton href="/hobbies" />
-    </div>
 
+        <div className="w-full sm:w-2/3 md:w-3/4 lg:w-3/4 xl:w-2/3 rounded overflow-x-auto animate-slide-fade-in">
+          <Table items={items} />
+        </div>
+
+        <BackButton href="/hobbies" />
+
+    </div>
   );
 }
