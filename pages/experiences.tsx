@@ -17,7 +17,6 @@ const Experiences: FC<StoriesProps> = ({ allPostsData }) => {
           { href: '/ ', label: 'Regan' },
           { href: '/stories', label: 'Experiences' },
         ]} />
-        <h1 className="text-2xl font-bold sm:text-4xl mb-4 text-white">Experiences...</h1>
         <div className="flex flex-wrap justify-center">
           {allPostsData.map(({ id, date, title, content }) => {
             // Convert the date string back to a Date object
