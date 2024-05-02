@@ -33,6 +33,8 @@ const config: Config = {
         'nepal-red': '#C51130',
         'nepal-blue-600': 'rgba(0, 123, 255, 0.6)', // Replace with the RGB values of your color
         'nepal-blue-900': 'rgba(0, 123, 255, 0.9)', // Replace with the RGB values of your color
+        'leaves-green': '#004225',
+        'jungle-green': '#29AB87',
       }
     },
   },

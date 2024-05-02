@@ -46,7 +46,7 @@ export default function Home() {
 
 
       <h1 className="text-4xl md:text-6xl font-bold mb-4 transition-all duration-100 animate-slide-fade-in">
-        <span className="text-light-blue-500">Namaste</span>, I am Regan from <span className="text-nepal-red">Kathmandu, Nepal.</span>
+        <span className="text-light-blue-500">Namaste</span>, I am Regan from <span className="">Kathmandu, Nepal.</span>
       </h1>
       <p className="text-xl md:text-2xl text-white mb-4 font-bold transition-all duration-100 animate-slide-fade-in">What encapsulates me?</p>
       <div className="grid grid-cols-2 gap-2 items-center justify-items-center animate-slide-fade-in">
