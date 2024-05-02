@@ -37,12 +37,12 @@ export default function Hobbies({ imagePaths }: { imagePaths: string[] }) {
       </Head>
 
       <div className="grid grid-cols-2 gap-4 animate-slide-fade-in">
-        {imagePaths.map((src, index) => (
-          <div key={index} className="max-w-sm rounded overflow-hidden shadow-lg m-2 bg-white cursor-pointer" onClick={() => openModal(src)}>
-            <img className="w-full h-full" src={src} alt="" />
-          </div>
-        ))}
-      </div>
+      {imagePaths.map((src, index) => (
+        <div key={index} className="max-w-sm rounded overflow-hidden shadow-lg m-2 bg-white cursor-pointer transform hover:scale-105" onClick={() => openModal(src)}>
+          <img className="w-full h-full object-cover" src={src} alt="" />
+        </div>
+      ))}
+    </div>
 
       <Modal
         isOpen={modalIsOpen}
