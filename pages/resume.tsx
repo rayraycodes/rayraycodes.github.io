@@ -139,11 +139,11 @@ export default function Resume() {
       </div>
       {/* resume ends */}
 
-      <a href="/pdfs/resume.pdf" download="Regan's Resume" className="mt-4 inline-block bg-nepal-blue hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+      <a href="/pdfs/resume.pdf" download="Regan's Resume" className="mt-4 inline-block bg-nepal-blue hover:bg-blue-800 text-white font-bold py-2 px-4 rounded animate-slide-fade-in transform hover:scale-105">
         Download Regan&apos;s Resume
       </a>
 
-      <a href="/" className="mt-8 inline-block bg-nepal-blue-900 hover:bg-blue-300 text-white font-bold py-2 px-4 rounded">
+      <a href="/" className="mt-4 inline-block bg-nepal-blue-900 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded animate-slide-fade-in transform hover:scale-105">
         Back
       </a>
 

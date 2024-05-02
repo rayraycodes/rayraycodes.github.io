@@ -32,7 +32,7 @@ const Stories: FC<StoriesProps> = ({ allPostsData }) => {
 
             return (
               <Link href={`/post/${id}`} key={id}>
-                <div className="postCard bg-white p-4 rounded-lg shadow-lg mb-6 mx-2 my-4 relative overflow-hidden flex-shrink-0 flex flex-col justify-center items-center" style={{ minWidth: '300px', maxWidth: '500px' }}>
+                <div className="postCard transform hover:scale-105 bg-white p-4 rounded-lg shadow-lg mb-8 mx-4 my-6 relative overflow-hidden flex-shrink-0 flex flex-col justify-center items-center" style={{ minWidth: '300px', maxWidth: '500px' }}>
                   <h4 className="text-xl font-bold mb-2">{title}</h4>
                   <p className="text-sm mb-4">{formattedDate}</p>
                 </div>
@@ -40,7 +40,7 @@ const Stories: FC<StoriesProps> = ({ allPostsData }) => {
             );
           })}
         </div>
-        <a href="/" className="mt-4 inline-block bg-nepal-blue hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+        <a href="/" className="mt-4 inline-block bg-nepal-blue hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transform hover:scale-105">
           Back
         </a>
       </div>

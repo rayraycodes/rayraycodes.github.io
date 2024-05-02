@@ -19,8 +19,8 @@ export default function Hobbies() {
       style={{ backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(/images/ray.jpeg)`, backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat' }}>
       <div className="p-6 shadow-lg w-2/5 mx-auto animate-slide-fade-in">
         <Breadcrumb links={[
-          { href: '/ ', label: 'Regan' },
-          { href: '/ hobbies', label: 'Hobbies' },
+          { href: '/', label: 'Regan' },
+          { href: '/hobbies', label: 'Hobbies' },
         ]} />
         <h1 className="text-2xl font-bold sm:text-4xl mb-4">Hobbies...</h1>
         <div className="grid gap-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 items-center justify-center">

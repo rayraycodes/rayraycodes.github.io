@@ -1,5 +1,6 @@
 // components/Breadcrumb.tsx
 import Link from 'next/link';
+import React from 'react';
 
 interface BreadcrumbProps {
   links: {
@@ -8,19 +9,19 @@ interface BreadcrumbProps {
   }[];
 }
 
-import React from 'react';
-
 export const Breadcrumb: React.FC<BreadcrumbProps> = ({ links }) => {
     return (
-        <div className="w-full text-white flex justify-center p-4 animate-slide-fade-in font-mono">
+        <div className="w-full text-white flex justify-center p-2 text-xs sm:text-sm md:text-base font-mono animate-slide-fade-in">
             {links.map((link, index) => (
                 <React.Fragment key={link.href}>
-                    <Link href={link.href}>
-                        <button className="bg-blue-800 hover:bg-blue-900 text-white font-bold py-2 px-4 rounded opacity-50 hover:opacity-100">
-                            {link.label}
-                        </button>
-                    </Link>
-                    {index < links.length - 1 && <span className="mx-2 bg-gray-500 text-white font-bold py-2 px-4 rounded opacity-50">/</span>}
+                    <div className="flex items-center">
+                        <Link href={link.href}>
+                            <p className="hover:text-blue-500 transition-all duration-100">
+                                {link.label}
+                            </p>
+                        </Link>
+                        {index < links.length - 1 && <span className="mx-1 sm:mx-2">/</span>}
+                    </div>
                 </React.Fragment>
             ))}
         </div>
