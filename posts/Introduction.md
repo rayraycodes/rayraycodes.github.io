@@ -1,6 +1,7 @@
 ---
 title: My Introduction
 date: 2024-01-01
+type: personal
 ---
 <!DOCTYPE html>
 <html lang="en">

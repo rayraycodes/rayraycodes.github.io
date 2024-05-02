@@ -7,9 +7,8 @@ import { GetStaticProps } from 'next';
 
 const postsDirectory = path.join(process.cwd(), 'posts');
 
-export function getSortedPostsData() {
+export function getSortedPostsData(type?: string) {
   // Get file names under /posts
-  const postsDirectory = path.join(process.cwd(), 'posts');
   const fileNames = fs.readdirSync(postsDirectory);
   const allPostsData = fileNames.map(fileName => {
     // Remove ".md" from file name to get id
@@ -25,13 +24,17 @@ export function getSortedPostsData() {
     // Combine the data with the id
     return {
       id,
-      ...matterResult.data,
-      date: matterResult.data.date.toISOString(),  // Convert date to string
+      ...(matterResult.data as { date: string; title: string; type: string; }),
+      // Convert date to string
+      date: new Date(matterResult.data.date).toISOString(),
     };
   });
 
+  // Filter posts by type if type is provided
+  const filteredPosts = type ? allPostsData.filter(post => post.type === type) : allPostsData;
+
   // Sort posts by date
-  return allPostsData.sort((a, b) => {
+  return filteredPosts.sort((a, b) => {
     if (a.date < b.date) {
       return 1;
     } else {
@@ -59,15 +62,18 @@ export async function getPostData(id: string): Promise<PostData> {
   // Use the title from the front matter
   const title = matterResult.data.title;
 
+  // Provide a default value for backTo
+  const backTo = matterResult.data.backTo || '/stories';
+
   return {
     id,
     title,
     content: matterResult.content,
     contentHtml: '', // Add the missing property 'contentHtml'
-    ...(matterResult.data as { [key: string]: any })  // Ensure additional properties are handled correctly
+    ...(matterResult.data as { [key: string]: any }),  // Ensure additional properties are handled correctly
+    backTo, // Use the backTo value
   };
 }
-
 
 export const getStaticProps: GetStaticProps = async (context) => {
   const { id } = context.params as { id: string };

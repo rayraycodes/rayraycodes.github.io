@@ -1,6 +1,7 @@
 ---
 title: Bridging Educational Gaps with Technology
 date: 2023-09-02
+type: professional
 ---
 <!DOCTYPE html>
 <html lang="en">

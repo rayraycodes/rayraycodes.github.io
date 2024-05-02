@@ -6,7 +6,7 @@ interface TableProps {
 
 const Table: React.FC<TableProps> = ({ items }) => {
   return (
-    <div className="overflow-x-auto">
+    <div className="overflow-x-auto animate-slide-fade-in">
       <table className="min-w-full divide-y divide-gray-200 rounded-lg shadow-sm">
         <thead className="bg-gray-50">
           <tr>

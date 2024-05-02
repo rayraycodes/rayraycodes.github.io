@@ -52,14 +52,14 @@ export default function Home() {
       <div className="grid grid-cols-2 gap-2 items-center justify-items-center animate-slide-fade-in">
         {buttons.map((button, index) => (
           <Link href={button.path} key={index}>
-            <button className="mt-4 inline-block bg-nepal-blue hover:bg-blue-700 text-white font-bold py-2 px-4 rounded w-40 h-16 flex items-center justify-center">
+            <button className="mt-4 ml-2 inline-block bg-nepal-blue hover:bg-blue-700 transform hover:scale-105 text-white font-bold rounded w-40 h-16 flex items-center justify-center">
               <span className="text-2xl">{button.emoji}</span> {button.name}
             </button>
           </Link>
         ))}
       </div>
       <Link href="/iwonder">
-        <p className="py-2 px-4 bg-nepal-blue text-white hover:bg-blue-700 rounded text-white italic mt-4 transition-all duration-100 ease-in-out hover:text-black-500 cursor-pointer animate-slide-fade-in mb-8">💭 I think about...</p>
+        <p className="py-2 px-4 bg-nepal-blue transform hover:scale-105 text-white hover:bg-blue-700 rounded text-white italic mt-4 transition-all duration-100 ease-in-out hover:text-black-500 cursor-pointer animate-slide-fade-in mb-8">💭 I think about...</p>
       </Link>
       <Tags pages={pages} />
 
