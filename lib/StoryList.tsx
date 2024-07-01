@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
-import { getAllStories } from '../lib/stories';
+import { getAllStories } from '../lib/stories'
 
 interface Story {
   id: string;
@@ -15,6 +15,8 @@ interface StoryListProps {
 
 const StoryList: React.FC<StoryListProps> = ({ storyType }) => {
   const [stories, setStories] = useState<Story[]>([]);
+  const [loading, setLoading] = useState(true); // Add loading state
+
 
   useEffect(() => {
     const fetchStories = async () => {
@@ -24,6 +26,7 @@ const StoryList: React.FC<StoryListProps> = ({ storyType }) => {
     };
 
     fetchStories();
+    setLoading(false); // Set loading to false after fetching stories
   }, []);
 
   const filteredStories = storyType 
@@ -32,17 +35,23 @@ const StoryList: React.FC<StoryListProps> = ({ storyType }) => {
 
   return (
     <div>
-      {filteredStories.map((story, index) => (
-        <Link href={`/post/${story.id}`} key={story.id}>
-          <div key={index} className="postCard transform hover:scale-105 bg-white p-4 rounded-lg shadow-lg mb-8 mx-4 my-6 relative overflow-hidden flex-shrink-0 flex flex-col justify-center items-center" style={{ minWidth: '300px', maxWidth: '500px' }}>
-            <h4 className="text-xl font-bold mb-2">{story.title}</h4>
-            <p className="text-sm mb-4">{new Date(story.created_at).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
-          </div>
-        </Link>
-      ))}
-       <a href="/" className="mt-4 inline-block bg-nepal-blue hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+ {loading ? (
+        <div className="mySpinner"></div> // Display loading spinner if loading
+      ) : (
+      
+              filteredStories.map((story, index) => (
+                <Link href={`/post/${story.id}`} key={story.id}>
+                  <div key={index} className="postCard transform hover:scale-105 bg-white p-4 rounded-lg shadow-lg mb-8 mx-4 my-6 relative overflow-hidden flex-shrink-0 flex flex-col justify-center items-center" style={{ minWidth: '300px', maxWidth: '500px' }}>
+                    <h4 className="text-xl font-bold mb-2">{story.title}</h4>
+                    <p className="text-sm mb-4">{new Date(story.created_at).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
+                  </div>
+                </Link>
+              ))
+            )}
+
+        (<a href="/" className="mt-4 inline-block bg-nepal-blue hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
           Back
-        </a>
+        </a>)
     </div>
   );
 };
