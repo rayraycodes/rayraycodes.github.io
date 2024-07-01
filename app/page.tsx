@@ -4,9 +4,6 @@ import Link from 'next/link';
 import { Tags } from '../components/Tags';
 import { Breadcrumb } from '../components/Breadcrumb';
 import { Socials } from '../components/Socials';
-import Search from '../components/Search';
-import { createClient } from '@supabase/supabase-js'
-import { cookies } from 'next/headers'
 
 export default function Home() {
 
