@@ -28,8 +28,9 @@ jobs:
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
-            NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
-            NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.ANNON_KEY }}
             github_token: ${{ secrets.GIT_TOKEN }}
             publish_dir: ./out
+            NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+            NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.ANNON_KEY }}
+            
         
