@@ -1,4 +1,3 @@
-// components/PostContent.tsx
 import { FC } from 'react';
 import ReactMarkdown from 'react-markdown';
 import gfm from 'remark-gfm';
@@ -9,9 +8,22 @@ interface PostContentProps {
   content: string;
 }
 
+interface LinkType {
+  text: string;
+  url: string;
+}
+
+interface ImageType {
+  src: string;
+  alt: string;
+  caption: string;
+}
+
 interface DetailType {
   phase: string;
   description: string;
+  image?: ImageType;
+  links?: LinkType[];
 }
 
 const PostContent: FC<PostContentProps> = ({ title, content }) => {
@@ -26,6 +38,25 @@ const PostContent: FC<PostContentProps> = ({ title, content }) => {
             <h2 className="text-lg font-semibold">{detail.phase}</h2>
             <br></br>
             <p className="text-base">{detail.description}</p>
+            {detail.image && (
+              <div>
+                <br></br>
+                <img src={detail.image.src} alt={detail.image.alt} className="rounded"/>
+                <br></br>
+                <p>Caption: {detail.image.caption}</p>
+              </div>
+            )}
+            {detail.links && detail.links.map((link: LinkType, linkIndex: number) => (
+              <a
+                key={linkIndex}
+                href={link.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-500 hover:text-blue-700 underline my-2 block"
+              >
+                {link.text}
+              </a>
+            ))}
             <br></br>
             <br></br>
           </div>

@@ -6,6 +6,7 @@ import { Breadcrumb } from '../components/Breadcrumb';
 import { Socials } from '../components/Socials';
 import { createClient } from '@supabase/supabase-js'
 import { cookies } from 'next/headers'
+import Copyright from '@/components/Copyright';
 
 export default function Home() {
 
@@ -68,6 +69,8 @@ export default function Home() {
       <Tags pages={pages} />
 
       <Socials socials={socials} />
+      <Copyright />
+
     </div>
   );
 }

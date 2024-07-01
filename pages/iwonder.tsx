@@ -5,16 +5,16 @@ import Link from 'next/link';
 export default function Iwonder() {
   const id = 'thinkingabout'; // replace with the id of the post you want to open
   const topics = [
-    { title: 'How I connect with the world?', content: 'Content for How I connect with the world?' },
-    { title: 'Education', content: 'Content for Education' },
-    { title: 'Education Technology', content: 'Content for Education Technology' },
-    { title: 'Nepal', content: 'Content for Nepal' },
-    { title: 'Developing World', content: 'Content for Developing World' },
-    { title: 'Psychology', content: 'Content for Psychology' },
-    { title: 'Fitness', content: 'Content for Fitness' },
-    { title: 'Sleep', content: 'Content for Sleep' },
-    { title: 'Relationships', content: 'Content for Relationships' },
-    { title: 'Politics in Nepal', content: 'Content for Politics in Nepal' }
+    { title: 'How I connect with the world?', content: 'Articulating, coming soon...' },
+    { title: 'Education', content: 'Articulating, coming soon...' },
+    { title: 'Education Technology', content: 'Articulating, coming soon...' },
+    { title: 'Nepal', content: 'Articulating, coming soon...' },
+    { title: 'Developing World', content: 'Articulating, coming soon...' },
+    { title: 'Psychology', content: 'Articulating, coming soon...' },
+    { title: 'Fitness', content: 'Articulating, coming soon...' },
+    { title: 'Sleep', content: 'Articulating, coming soon...' },
+    { title: 'Relationships', content: 'Articulating, coming soon...' },
+    { title: 'Politics in Nepal', content: 'Articulating, coming soon...' }
   ];
 
   const [activeTopic, setActiveTopic] = useState(topics[0]);
