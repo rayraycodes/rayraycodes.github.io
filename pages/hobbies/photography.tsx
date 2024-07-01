@@ -67,9 +67,9 @@ export default function Hobbies({ imagePaths }: { imagePaths: string[] }) {
           }
         }}
       >
-        <button onClick={closeModal} className="absolute top-0 right-0 m-4">
-          <FontAwesomeIcon icon={faTimes} /> {/* Add the FontAwesome cross icon */}
-        </button>
+      <button onClick={closeModal} className="absolute top-0 right-0 m-4">
+        <FontAwesomeIcon icon={faTimes} size="2x" /> 
+      </button>
         <img src={selectedImage} alt="" className="w-full h-full object-contain" />
       </Modal>
 

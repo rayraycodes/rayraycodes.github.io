@@ -1,75 +1,29 @@
-import fs from 'fs';
-import path from 'path';
-import { getSortedPostsData } from '../lib/posts';
-import { FC } from 'react';
-import { PostMetaData, StoriesProps } from '../types';
+"use client"; // Ensure this component runs on the client side
+
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import RootLayout from '@/app/layout';
 import { Breadcrumb } from '../components/Breadcrumb';
+import StoryList from '../lib/StoryList'; 
 
-const Stories: FC<StoriesProps> = ({ allPostsData }) => {
+const Stories = () => {
+
   return (
-
     <div className="min-h-screen flex flex-col justify-center items-center text-center p-4 pt-20 text-black"
       style={{ backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(/images/ray.jpeg)`, backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat' }}>
 
-      <div className=" p-6 rounded-lg shadow-lg w-4/5 mx-auto animate-slide-fade-in" style={{ width: '80%', height: '80%' }}>
+      <div className=" p-6 rounded-lg shadow-lg w-4/5 mx-auto animate-slide-fade-in " style={{ width: '80%', height: '80%' }}>
+
         <Breadcrumb links={[
           { href: '/ ', label: 'Regan' },
           { href: '/stories', label: 'Stories' },
         ]} />
         <div className="flex flex-wrap justify-center">
-          {allPostsData.map(({ id, date, title, content }) => {
-            // Convert the date string back to a Date object
-            const dateObject = date ? new Date(date) : new Date();
-            // Format the date
-            const formattedDate = dateObject.toLocaleDateString('en-US', {
-              year: 'numeric',
-              month: 'long',
-              day: 'numeric'
-            });
-
-            return (
-              <Link href={`/post/${id}`} key={id}>
-                <div className="postCard transform hover:scale-105 bg-white p-4 rounded-lg shadow-lg mb-8 mx-4 my-6 relative overflow-hidden flex-shrink-0 flex flex-col justify-center items-center" style={{ minWidth: '300px', maxWidth: '500px' }}>
-                  <h4 className="text-xl font-bold mb-2">{title}</h4>
-                  <p className="text-sm mb-4">{formattedDate}</p>
-                </div>
-              </Link>
-            );
-          })}
+          <StoryList  /> 
         </div>
-        <a href="/" className="mt-4 inline-block bg-nepal-blue hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transform hover:scale-105">
-          Back
-        </a>
       </div>
     </div>
-
   );
-}
-
+};
 
 export default Stories;
-
-
-import { GetStaticProps } from 'next';
-
-export const getStaticProps: GetStaticProps = async () => {
-  const allPostsData: PostMetaData[] = getSortedPostsData();
-
-  const postsDirectory = path.join(process.cwd(), 'posts');
-  const fileNames = fs.readdirSync(postsDirectory).filter(fileName => fileName.endsWith('.md'));
-
-  const allPostsContent: string[] = fileNames.map(fileName => {
-    const filePath = path.join(postsDirectory, fileName);
-    const fileContent = fs.readFileSync(filePath, 'utf8');
-    return fileContent;
-  });
-
-  return {
-    props: {
-      allPostsData,
-      allPostsContent
-    }
-  };
-};

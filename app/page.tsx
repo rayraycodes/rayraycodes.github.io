@@ -1,9 +1,12 @@
+"use client"; 
 import Head from 'next/head';
 import Link from 'next/link';
 import { Tags } from '../components/Tags';
 import { Breadcrumb } from '../components/Breadcrumb';
 import { Socials } from '../components/Socials';
-
+import Search from '../components/Search';
+import { createClient } from '@supabase/supabase-js'
+import { cookies } from 'next/headers'
 
 export default function Home() {
 
@@ -43,6 +46,8 @@ export default function Home() {
       <Breadcrumb links={[
         { href: '/ ', label: '/ Regan' }
       ]} />
+
+
 
 
       <h1 className="text-4xl md:text-6xl font-bold mb-4 transition-all duration-100 animate-slide-fade-in">

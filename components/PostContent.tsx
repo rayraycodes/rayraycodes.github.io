@@ -9,16 +9,29 @@ interface PostContentProps {
   content: string;
 }
 
+interface DetailType {
+  phase: string;
+  description: string;
+}
+
 const PostContent: FC<PostContentProps> = ({ title, content }) => {
+  const parsedContent = typeof content === 'string' ? JSON.parse(content) : content;
+
   return (
-    <div className="bg-white p-6 rounded-lg shadow-lg w-full sm:w-4/5 mx-auto animate-slide-fade-in" style={{ maxWidth: '90%', fontFamily: 'Montserrat, sans-serif' }}>
+    <article className="prose lg:prose-xl mx-auto p-6 bg-white rounded-lg shadow-lg w-full sm:w-4/5 animate-slide-fade-in" style={{ maxWidth: '90%', fontFamily: 'Montserrat, sans-serif' }}>
       <h1 className="text-2xl font-bold sm:text-4xl mb-4">{title}</h1>
       <div className="p-4 text-left rounded bg-white">
-        <ReactMarkdown remarkPlugins={[gfm]} rehypePlugins={[rehypeRaw]}>
-          {content}
-        </ReactMarkdown>
+        {parsedContent.details.map((detail: DetailType, index: number) => (
+          <div key={index} className="detail-section">
+            <h2 className="text-lg font-semibold">{detail.phase}</h2>
+            <br></br>
+            <p className="text-base">{detail.description}</p>
+            <br></br>
+            <br></br>
+          </div>
+        ))}
       </div>
-    </div>
+    </article>
   );
 };
 

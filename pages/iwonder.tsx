@@ -14,7 +14,6 @@ export default function Iwonder() {
     { title: 'Fitness', content: 'Content for Fitness' },
     { title: 'Sleep', content: 'Content for Sleep' },
     { title: 'Relationships', content: 'Content for Relationships' },
-    { title: 'Neuroscience', content: 'Content for Neuroscience' },
     { title: 'Politics in Nepal', content: 'Content for Politics in Nepal' }
   ];
 

@@ -55,8 +55,15 @@ export default function Resume() {
         <section className="mb-8">
           <h2 className="text-2xl font-bold text-gray-800 border-b-2 border-gray-200 pb-2">EXPERIENCE</h2>
           <div className="mt-2">
+
+          <h3 className="font-semibold text-gray-700">University of Michigan Information and Technology Services, Ann Arbor, MI - Developer Intern</h3>
+            <p className="text-gray-600 italic">May 2024 - Present</p>
+            <ul className="list-disc list-inside list-none text-gray-600">
+              <li style={{ marginBottom: '20px' }}> Conduct content requirement analysis, design accessible and user-centric Web UI/UX, and implement the design prototype into a PHP-based content management system (Drupal), meticulously documenting each step of the process.</li>
+            </ul>
+
             <h3 className="font-semibold text-gray-700">Open Learning Exchange (OLE), Boston, MA - Software Engineer</h3>
-            <p className="text-gray-600 italic">Jan 2024 - Present</p>
+            <p className="text-gray-600 italic">Jan 2024 - Apr 2024</p>
             <ul className="list-disc list-inside list-none text-gray-600">
               <li style={{ marginBottom: '20px' }}>Developed and tested the open-source Learning Management System (LMS), Planet, utilizing a stack of JavaScript, HTML5, CSS3, Docker, AngularJS, and Git.</li>
               <li style={{ marginBottom: '20px' }}>Enhanced educational accessibility and equity in rural areas of Guatemala, Nepal, and beyond through strategic technology implementations.</li>
