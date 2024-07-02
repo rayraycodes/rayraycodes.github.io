@@ -1,4 +1,4 @@
-"use client"; 
+"use client";
 import Head from 'next/head';
 import Link from 'next/link';
 import { Tags } from '../components/Tags';
@@ -7,6 +7,7 @@ import { Socials } from '../components/Socials';
 import { createClient } from '@supabase/supabase-js'
 import { cookies } from 'next/headers'
 import Copyright from '@/components/Copyright';
+import Search from '@/components/Search';
 
 export default function Home() {
 
@@ -40,17 +41,18 @@ export default function Home() {
   ];
 
   return (
-    <div className="min-h-screen flex flex-col justify-center items-center text-center p-4 pt-20 text-white"
+    <div className="min-h-screen flex flex-col justify-center items-center text-center p-4 text-white"
       style={{ backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url(/images/ray.jpeg)`, backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat' }}>
 
-      <Breadcrumb links={[
-        { href: '/ ', label: '/ Regan' }
-      ]} />
+        <Search />
+
+        <Breadcrumb links={[
+          { href: '/ ', label: '/ Regan' }
+        ]} />
 
 
 
-
-      <h1 className="text-4xl md:text-6xl font-bold mb-4 transition-all duration-100 animate-slide-fade-in">
+      <h1 className="text-4xl md:text-6xl font-bold mb-2 transition-all duration-100 animate-slide-fade-in">
         <span className="text-light-blue-500">Namaste</span>, I am Regan from <span className="">Kathmandu, Nepal.</span>
       </h1>
       <p className="text-xl md:text-2xl text-white mb-4 font-bold transition-all duration-100 animate-slide-fade-in">What encapsulates me?</p>
