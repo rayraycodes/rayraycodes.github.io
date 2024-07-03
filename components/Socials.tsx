@@ -7,11 +7,12 @@ interface SocialsProps {
     url: string;
     icon: string;
   }[];
+  className?: string;
 }
 
-export const Socials: React.FC<SocialsProps> = ({ socials }) => {
+export const Socials: React.FC<SocialsProps> = ({ socials, className }) => {
   return (
-    <div className="flex justify-center space-x-4 mb-8 mt-8 animate-slide-fade-in">
+    <div className={`flex justify-center space-x-4 mb-8 mt-8 animate-slide-fade-in ${className}`}>
       {socials.map((social, index) => (
         <a href={social.url} key={index} target="_blank" rel="noopener noreferrer">
           <div className="w-10 h-10 bg-nepal-blue rounded-full flex items-center justify-center">

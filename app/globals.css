@@ -83,3 +83,8 @@ body {
   90% { transform: translate(1px, 2px) rotate(0deg); }
   100% { transform: translate(1px, -2px) rotate(-1deg); }
 }
+
+/* all background overlay dark and unclickable */
+.dark-overlay {
+  /* pointer-events: none; */
+}
