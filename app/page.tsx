@@ -78,7 +78,7 @@ export default function Home() {
         <Tags pages={pages} className={` `} />
 
         <Socials socials={socials} className={` `} />
-      <ChatBot />
+        <ChatBot />
         <Copyright />
 
       </div>
