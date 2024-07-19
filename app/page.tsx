@@ -9,6 +9,7 @@ import { cookies } from 'next/headers'
 import Copyright from '@/components/Copyright';
 import Search from '@/components/Search';
 import React, { useState } from 'react';
+import ChatBot from '@/components/chatBot';
 
 export default function Home() {
 
@@ -53,31 +54,34 @@ export default function Home() {
         { href: '/ ', label: '/ Regan' }
       ]} />
 
-      <Search setIsUlDown={setIsUlDown} />
+      {/* <Search setIsUlDown={setIsUlDown} /> */}
 
 
 
+      <div className={`flex flex-col items-center justify-center animate-slide-fade-in ${isUlDown ? 'dark-overlay' : ''}`}>
+        <h1 className={`text-4xl md:text-6xl font-bold mb-2 transition-all duration-100 animate-slide-fade-in`}>
+          <span className="text-light-blue-500">Namaste</span>, I am Regan from <span className="">Kathmandu, Nepal.</span>
+        </h1>
+        <p className={`text-xl md:text-2xl text-white mb-4 font-bold transition-all duration-100 animate-slide-fade-in`}>Know more about me:</p>
+        <div className={`grid grid-cols-2 gap-2 items-center justify-items-center animate-slide-fade-in  `}>
+          {buttons.map((button, index) => (
+            <Link href={button.path} key={index}>
+              <button className="mt-4 ml-2 inline-block bg-nepal-blue hover:bg-blue-700 transform hover:scale-105 text-white font-bold rounded w-40 h-16 flex items-center justify-center">
+                <span className="text-2xl">{button.emoji}</span> {button.name}
+              </button>
+            </Link>
+          ))}
+        </div>
+        <Link href="/iwonder" className={` `}>
+          <p className="py-2 px-4 bg-nepal-blue transform hover:scale-105 text-white hover:bg-blue-700 rounded text-white italic mt-4 transition-all duration-100 ease-in-out hover:text-black-500 cursor-pointer animate-slide-fade-in mb-8">💭 I think about...</p>
+        </Link>
+        <Tags pages={pages} className={` `} />
 
-      <h1 className={`text-4xl md:text-6xl font-bold mb-2 transition-all duration-100 animate-slide-fade-in ${isUlDown ? 'dark-overlay' : ''}`}>
-        <span className="text-light-blue-500">Namaste</span>, I am Regan from <span className="">Kathmandu, Nepal.</span>
-      </h1>
-      <p className={`text-xl md:text-2xl text-white mb-4 font-bold transition-all duration-100 animate-slide-fade-in ${isUlDown ? 'dark-overlay' : ''}`}>What encapsulates me?</p>
-      <div className={`grid grid-cols-2 gap-2 items-center justify-items-center animate-slide-fade-in ${isUlDown ? 'dark-overlay' : ''}`}>
-        {buttons.map((button, index) => (
-          <Link href={button.path} key={index}>
-            <button className="mt-4 ml-2 inline-block bg-nepal-blue hover:bg-blue-700 transform hover:scale-105 text-white font-bold rounded w-40 h-16 flex items-center justify-center">
-              <span className="text-2xl">{button.emoji}</span> {button.name}
-            </button>
-          </Link>
-        ))}
+        <Socials socials={socials} className={` `} />
+      <ChatBot />
+        <Copyright />
+
       </div>
-      <Link href="/iwonder" className={`${isUlDown ? 'dark-overlay' : ''}`}>
-        <p className="py-2 px-4 bg-nepal-blue transform hover:scale-105 text-white hover:bg-blue-700 rounded text-white italic mt-4 transition-all duration-100 ease-in-out hover:text-black-500 cursor-pointer animate-slide-fade-in mb-8">💭 I think about...</p>
-      </Link>
-      <Tags pages={pages} className={`${isUlDown ? 'dark-overlay' : ''}`}/>
-
-      <Socials socials={socials} className={`${isUlDown ? 'dark-overlay' : ''}`}/>
-      <Copyright />
 
     </div>
   );

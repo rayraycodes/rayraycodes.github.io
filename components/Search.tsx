@@ -9,6 +9,9 @@ interface SearchProps {
 export default function Search({ setIsUlDown }: SearchProps) {
 
     const [results, setResults] = useState<{ title: any; tags: any; id: any; }[]>([]);
+    const [input, setInput] = useState('');
+    const [top, setTop] = useState(0);
+    const [isMouseDown, setIsMouseDown] = useState(false);
 
     const search = async (input: string) => {
         console.log('Searching for:', input);
@@ -19,14 +22,17 @@ export default function Search({ setIsUlDown }: SearchProps) {
 
         if (error) console.log("Error: ", error);
         else {
-            console.log('Search results:', data);
+            // console.log('Search results:', data);
             setResults(data as { title: any; tags: any; id: any; }[]);
         }
     };
-
-    const [input, setInput] = useState('');
-    const [top, setTop] = useState(0);
-    const [isMouseDown, setIsMouseDown] = useState(false);
+    // if (results.length > 0) {
+    //     setIsUlDown(true);
+    // }
+    // else {
+    //     console.log(results.length);
+    //     setIsUlDown(false);
+    // }
     
 
     // Call the search function whenever the input changes
@@ -41,11 +47,7 @@ export default function Search({ setIsUlDown }: SearchProps) {
         } else {
             setResults([]); // If the input is empty, clear the results
         }
-        if (results.length > 0) {
-            setIsUlDown(true);
-        if (results.length <= 0) 
-            setIsUlDown(false);
-        }
+
     }, [input]);
 
     return (
@@ -54,15 +56,21 @@ export default function Search({ setIsUlDown }: SearchProps) {
             <input
                 type="text"
                 value={input}
-                onChange={(e) => setInput(e.target.value)}
-                onBlur={() => { if (!isMouseDown) setInput('');}}
+                onChange={(e) => {
+                    setInput(e.target.value);
+                    // if (e.target.value == '') {
+                    //     setInput('');
+                    //     console.log('empty');
+                    // }
+                }}
+                onBlur={() => { if (!isMouseDown) setInput('');setIsUlDown(false);}}
                 className="text-center top-0 px-3 py-2  text-lg leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
                 placeholder="Search..."
             />
             <ul
-                onMouseDown={() => { setIsMouseDown(true); setIsUlDown(false);}}
-                onMouseUp={() => { setIsMouseDown(false); setIsUlDown(false); }}
-                onClick={() => { setInput(''); setIsMouseDown(false);}}
+                onMouseDown={() => { setIsMouseDown(true); }}
+                onMouseUp={() => { setIsMouseDown(false);}}
+                onClick={() => { setInput(''); setIsUlDown(true);}}
                 style={{ position: 'fixed', top: `${top}px`, zIndex: 99 }}
                 className="w-full max-w-md mx-auto overflow-auto max-h-screen"
             > 
