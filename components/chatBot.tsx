@@ -13,9 +13,8 @@ const ChatBot = () => {
                         }
                     `}
                 </script>
-                <script src="https://www.chatbase.co/embed.min.js" chatbotId="GTKhgKWFggU6ub6m8N_Bh" domain="www.chatbase.co" defer />
+                <script src="https://www.chatbase.co/embed.min.js" defer />
             </Helmet>
-            
         </div>
     );
 };
