@@ -34,7 +34,7 @@ export default function Resume() {
       <section className="mb-8">
         <h2 className="text-2xl font-bold text-gray-800 border-b-2 border-gray-200 pb-2">Skills & Abilities</h2>
         <p className="text-gray-600 mt-3"><strong>Programming Languages:</strong> JavaScript, TypeScript, Python, C#, C++, PHP, SQL, HTML, CSS</p>
-        <p className="text-gray-600 mt-3"><strong>Technologies and Tools:</strong> AWS, Git, Docker, React, Node.js, Angular, MongoDB, PostgreSQL</p>
+        <p className="text-gray-600 mt-3"><strong>Technologies and Tools:</strong> React, Hanldebars, jQuery, AWS, Git, Docker, Node.js, Angular, MongoDB, PostgreSQL</p>
         <p className="text-gray-600 mt-3"><strong>Development Practices:</strong> Object-Oriented Programming, Scalable application architecture, RESTful APIs, Performance Optimization, Agile/Scrum, Human-centered design, Responsive Frameworks</p>
       </section>
 
@@ -112,7 +112,7 @@ export default function Resume() {
       <section className="mb-8">
         <h2 className="text-2xl font-bold text-gray-800 border-b-2 border-gray-200 pb-2">Education</h2>
         <p className="mt-2 font-semibold text-gray-700">University of Michigan, Dearborn, MI</p>
-        <p className="text-gray-600">Master of Science in Computer and Information Science - GPA: 3.92 | Jan 2023 - Dec 2024</p>
+        <p className="text-gray-600">Master of Science in Computer and Information Science - GPA: 3.94 | Jan 2023 - Dec 2024</p>
         <p className="text-gray-600">Related Coursework: Human-Computer Interaction, Algorithm Analysis & Design, Advanced AI, Data Analytics in Software Engineering, Privacy and Security in Cloud Computing</p>
       </section>
     </div>
