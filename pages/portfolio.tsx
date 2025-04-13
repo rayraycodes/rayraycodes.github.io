@@ -143,7 +143,7 @@ const PortfolioProject = () => {
         <div className="tabs flex flex-wrap gap-4 mb-8 justify-center">
           {detailed_projects.map((project, index) => (
             <div key={index} className="flex flex-col items-center">
-              <span className="text-sm text-gray-400 mb-1">{project.label}</span>
+              {/* <span className="text-sm text-gray-400 mb-1">{project.label}</span> */}
               <button
                 className={`relative w-16 h-16 flex items-center justify-center text-lg font-bold rounded-md transition-all duration-300 transform ${
                   activeProject.title === project.title
