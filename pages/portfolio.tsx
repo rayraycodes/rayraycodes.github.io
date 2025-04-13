@@ -128,6 +128,18 @@ const PortfolioProject = () => {
           </Link>
         </div>
         <h1 className="text-5xl font-bold mb-8">Portfolio Projects</h1>
+
+        {/* Download PDF Link */}
+        <div className="mb-8">
+          <a
+            href="/pdfs/regansample.pdf" // Replace with the actual path to your PDF file
+            download
+            className="text-blue-400 hover:underline text-lg"
+          >
+            Please download in PDF format
+          </a>
+        </div>
+
         <div className="tabs flex flex-wrap gap-4 mb-8 justify-center">
           {detailed_projects.map((project, index) => (
             <div key={index} className="flex flex-col items-center">

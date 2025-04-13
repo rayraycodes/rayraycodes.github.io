@@ -1,0 +1,253 @@
+---
+title: "Regan's Work Samples"
+date: "2025-04-13"
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Regan's Work Samples</title>
+</head>
+<body style="margin:0; font-family: Arial, sans-serif; background-color: #f9f9f9; color: #333; padding: 40px; text-align: justify;">
+    <header style="text-align: center; margin-bottom: 40px;">
+        <h1 style="color: #2a7a7b;">Regan's Work Samples</h1>
+    </header>
+    <section>
+        <p>My Work Samples</p>
+
+<p>Organizational Website Design &amp; Revamp – Showcasing the Mission Through Web Storytelling</p>
+
+<p>Description:</p>
+
+<p>OLE Nepal is a nonprofit organization dedicated to expanding access to quality education through technology integration in classrooms across Nepal. The website serves as the organization’s digital front door, showcasing its mission, programs, and impact to a diverse audience including donors, educators, and policymakers.</p>
+
+<p>My Role:</p>
+
+<p>As Lead Developer, I maintained and customized the WordPress site, designing themes and implementing plugins to tell the organization’s story effectively. I advised and oversaw a full redesign and migration to Wagtail, a Python-based CMS. The revamp improved storytelling clarity and enabled easier content management for non-technical staff.</p>
+
+<p>Process &amp; Rationale:</p>
+
+<p>We wanted visitors to quickly grasp OLE Nepal’s mission and impact while making it easier for internal teams to share their ongoing work. So we focused the design on clarity, accessibility, and storytelling, creating a platform that not only invites exploration but also evolves with the organization and the communities it serves.</p>
+
+<p>Landing Page:</p>
+
+<p>Link: </p>
+
+<p>Screenshot:</p>
+
+<p>EPaath </p>
+
+<p>Description:</p>
+
+<p>E-Paath is a free, interactive digital learning platform aligned with Nepal’s national curriculum, featuring over 500 modules across grades 1 to 8. Available in Nepali, English, and Nepali Sign Language, it supports accessible learning on web and mobile devices, online and offline, through OLE Nepal’s digital library, E-Pustakalaya.</p>
+
+<p>My Role:</p>
+
+<p>As Lead Developer, I led cross-functional teams to design and build over 200 interactive learning modules, translating curriculum content into narrative-driven digital experiences using HTML, CSS, JavaScript, jQuery, and tools like Adobe XD and After Effects. I also ensured compatibility with low-cost devices like Raspberry Pi and managed technical documentation and platform maintenance.</p>
+
+<p>Process &amp; Rationale:</p>
+
+<p>The goal was to create a learning experience that truly resonated with young learners in underserved communities, meeting them where they are, both geographically and educationally. By weaving storytelling into interactive visuals, relatable elements, animations, and guided learning, we designed lessons that felt intuitive, joyful, and meaningful, helping students better understand and connect with complex concepts.</p>
+
+<p>More About Design Process: </p>
+
+<p>Link: </p>
+
+<p>Landing Page:</p>
+
+<p>Link: </p>
+
+<p>Screenshot: </p>
+
+<p>S</p>
+
+<p>Sample Modules :</p>
+
+<p>Grade3>Math>Fractions: </p>
+
+<p>Link: </p>
+
+<p>Screenshot:</p>
+
+<p>Grade6>English>Narmada:</p>
+
+<p>Link: </p>
+
+<p>Screenshot:</p>
+
+<p>Pustakalaya</p>
+
+<p>Description:</p>
+
+<p>E-Pustakalaya is a free, education-focused digital library offering books, videos, audio, and interactive content in Nepali, English, and other local languages, accessible online and offline to support equitable learning across Nepal.</p>
+
+<p>My Role:</p>
+
+<p>I led the front-end redevelopment of the platform using HTML, CSS, and Django, collaborating with UX designers, back-end engineers, and system admins to deliver a more intuitive, multilingual user experience. I also oversaw ongoing platform maintenance and performance.</p>
+
+<p>Process &amp; Rationale:</p>
+
+<p>The redesign aimed to make educational content easier to explore by visually expressing the richness of the library’s diverse resources, while ensuring fast, reliable access even in low-connectivity environments. We followed the full UX lifecycle, including user research, information architecture, wireframing, prototyping, and usability testing, to create an experience that was both intuitive and inclusive for a wide range of learners.</p>
+
+<p>More About: </p>
+
+<p>Landing Page:</p>
+
+<p>Link: </p>
+
+<p>Screenshot: </p>
+
+<p>CRM Services Webpage &amp; Internal Dashboard – UX Research and Data-Driven Design</p>
+
+<p>Description:</p>
+
+<p>This webpage was designed to help campus stakeholders easily understand who the CRM team is, what they do, and how to get support, turning scattered processes into a clear, accessible story of service.</p>
+
+<p>My Role:</p>
+
+<p>As a UX Researcher, I analyzed support data, designed Figma prototypes, and built a Power BI dashboard to uncover patterns and shape a more intuitive experience. I worked with the Web Team to ensure the final Drupal-based implementation aligned with U-M’s branding and accessibility standards.</p>
+
+<p>Process &amp; Rationale:</p>
+
+<p>By translating complex service structures into a simple, user-friendly interface, the project aimed to tell the CRM team’s story through design, making their value visible, their services understandable, and their support more approachable.</p>
+
+<p>Landing Page:</p>
+
+<p>Prototype Link: </p>
+
+<p>Screenshot:</p>
+
+<p>An Interactive Self: Designing My Web Presence with a Digital Twin (Work in Progress)</p>
+
+<p>Description:</p>
+
+<p>This is an interactive, AI-powered portfolio designed to share my work, story, and design philosophy through an engaging digital experience, where visitors can explore content traditionally or chat with my digital twin trained on my writing.</p>
+
+<p>My Role:</p>
+
+<p>I designed and developed the site end-to-end using TypeScript, Supabase, and GitHub Pages, crafting both the interface and the conversational AI experience. The site is fully responsive and UX-driven, blending design, development, and narrative to reflect my creative and technical identity.</p>
+
+<p>Process &amp; Rationale:</p>
+
+<p>I wanted visitors to not just see my work, but experience the thought, creativity, and curiosity behind it, just as they would in a conversation. So I created a portfolio that goes beyond static pages, transforming it into a dynamic space for storytelling, interaction, and self-reflection, where design and technology come together to tell my story in real time.</p>
+
+<p>Landing Page:</p>
+
+<p>Link: </p>
+
+<p>Screenshot:</p>
+
+<p>Answer from my Digital Twin:</p>
+
+<p>Game Design and Development with MIT(Massachusetts Institute of Technology)</p>
+
+<p>Description:</p>
+
+<p>These interactive Math and Science Games for grades 6–10 were created to make complex STEM concepts more accessible and engaging through gameplay. Developed by OLE Nepal in collaboration with MIT J-WEL, the games blend curriculum content with storytelling-driven mechanics to foster curiosity and critical thinking.</p>
+
+<p>My Role:</p>
+
+<p>I worked closely with MIT interns, educators, and designers to shape the game experience, from mechanics and visuals to narrative flow, ensuring each game told a clear educational story that students could connect with and learn from.</p>
+
+<p>Process &amp; Rationale:</p>
+
+<p>Students often struggled to connect with abstract STEM concepts, making it difficult for them to see the relevance and purpose behind what they were learning. To bridge this gap, we transformed those learning challenges into playable narratives, using storytelling, iterative design, and user feedback to create engaging experiences that aligned with both curriculum goals and the way students naturally explore, question, and understand the world around them.</p>
+
+<p>Learn More: </p>
+
+<p>Landing Page: </p>
+
+<p>Link: </p>
+
+<p>Screenshot:</p>
+
+<p>White Paper on Our Game Design Process: </p>
+
+<p>Sample Games:</p>
+
+<p>Simple Machine: </p>
+
+<p>Link: </p>
+
+<p>Screenshot:</p>
+
+<p>Space Explorer:</p>
+
+<p>Link: </p>
+
+<p>Screenshot: </p>
+
+<p>Hamro Ramailo Kathaharu (HRK) – Interactive Early Literacy Platform</p>
+
+<p>Description:</p>
+
+<p>HRK is a collection of animated local stories and interactive language games designed to foster early literacy, creativity, and cultural connection in young learners. Available in Nepali and adaptable to other languages, the platform blends storytelling, illustration, and playful learning to make reading and writing engaging and accessible.</p>
+
+<p>My Role:</p>
+
+<p>As Technical Lead, I oversaw the selection and implementation of technologies that transformed indigenous stories into interactive digital experiences. I collaborated with educators, designers, and illustrators to create a responsive, intuitive platform, using diverse illustration styles to match the tone and origin of each story and ensure cultural resonance.</p>
+
+<p>Process &amp; Rationale:</p>
+
+<p>The goal was to make reading a joyful, immersive experience for early learners, particularly those in underserved regions. By combining visual storytelling and interactivity, we created a platform that not only supports literacy but celebrates local voices and imagination.</p>
+
+<p>Learn More:</p>
+
+<p>Link: </p>
+
+<p>Landing Page:</p>
+
+<p>Link: </p>
+
+<p>Screenshot:</p>
+
+<p>Sample Stories:</p>
+
+<p>Charlie Chamero: </p>
+
+<p>Link: </p>
+
+<p>Meejan:</p>
+
+<p>Link: </p>
+
+<p>Sample Game:</p>
+
+<p>Shabda Banauu(Make Sentences):</p>
+
+<p>Link: </p>
+
+<p>Other Ways I use to Story Tell</p>
+
+<p>Graphic Design:</p>
+
+<p>Samples:</p>
+
+<p>Poster Design for a Workshop:</p>
+
+<p>This workshop was to keep the open collaboration spirit alive and well leveraging Wiki Group in Nepal.</p>
+
+<p>Infographic Picture:</p>
+
+<p>Results:</p>
+
+<p>This poster had a lot more participants than anticipated. </p>
+
+<p>Infographic Design for Audio-Drive Initiative:</p>
+
+<p>These posters were created to inspire collective action in producing free audio learning content for children in the most remote and underserved regions of Nepal, bringing quality education to those who need it most.</p>
+
+<p>Infographic Pictures:</p>
+
+<p>Results:</p>
+
+<p>We successfully produced 80 full-length audio books with 200+ participations, which were distributed to over 1200 schools in some of the most remote regions of Nepal, expanding access to engaging learning resources for underserved students.</p>
+
+<p>Animation: Data Storytelling For ITS using Adobe After Effects and Illustrator:</p>
+
+<p>This video was crafted to transform data into narrative.</p>
+
+    </section>
+</body>
+</html>
