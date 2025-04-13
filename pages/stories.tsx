@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
-import RootLayout from '@/app/layout';
 import { Breadcrumb } from '../components/Breadcrumb';
 import StoryList from '../lib/StoryList'; 
 
