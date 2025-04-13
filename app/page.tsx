@@ -39,6 +39,7 @@ export default function Home() {
     { path: '/hobbies/reading', label: 'Reading' },
     { path: '/hobbies/podcasts', label: 'Podcasts' },
     { path: '/hobbies/writing', label: 'Writing' },
+    { path: '/portfolio', label: 'Portfolio' },
     // Add more pages here
   ];
 

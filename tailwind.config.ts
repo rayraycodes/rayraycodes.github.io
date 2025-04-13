@@ -27,6 +27,9 @@ const config: Config = {
         'fade-in': 'fade-in .2s ease-out',
         'slide-fade-in': 'slide-fade-in .5s ease-in-out',
         'animate-shake-heavy': 'shake .5s ease-in-out',
+        'fly-in': 'fly-in 0.8s ease-out',
+        'fade-in-long': 'fade-in 1s ease-in',
+        'slide-in-right': 'slide-in-right 1s ease-out',
       },
       colors: {
         'nepal-blue': '#022E6C',
@@ -35,7 +38,21 @@ const config: Config = {
         'nepal-blue-900': 'rgba(0, 123, 255, 0.9)', // Replace with the RGB values of your color
         'leaves-green': '#004225',
         'jungle-green': '#29AB87',
-      }
+      },
+      keyframes: {
+        'fly-in': {
+          '0%': { transform: 'translateY(-50px)', opacity: '0' },
+          '100%': { transform: 'translateY(0)', opacity: '1' },
+        },
+        'fade-in': {
+          '0%': { opacity: '0' },
+          '100%': { opacity: '1' },
+        },
+        'slide-in-right': {
+          '0%': { transform: 'translateX(10%)', opacity: '0' },
+          '100%': { transform: 'translateX(0)', opacity: '1' },
+        },
+      },
     },
   },
   plugins: [
