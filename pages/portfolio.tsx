@@ -197,7 +197,7 @@ const PortfolioProject = () => {
               <h3 className="text-3xl font-semibold mb-4 animate-fly-in">Samples</h3>
               <ul className="list-disc list-inside text-lg text-gray-300">
                 {activeProject.samples.map((sample, index) => (
-                  <li key={index} className="animate-fly-in mb-4">
+                    <li key={index} className="animate-fly-in mb-4">
                     <a
                       href={sample.link}
                       target="_blank"
@@ -206,14 +206,14 @@ const PortfolioProject = () => {
                     >
                       {sample.title}
                     </a>
-                    {sample.image && (
+                    {'image' in sample && sample.image && (
                       <img
-                        src={sample.image} // Dynamically fetch sample image
-                        alt={sample.title}
-                        className="w-full max-w-2xl h-auto object-contain rounded-lg mt-2 animate-slide-in-right"
+                      src={sample.image}
+                      alt={sample.title}
+                      className="w-full max-w-2xl h-auto object-contain rounded-lg mt-2 animate-slide-in-right"
                       />
                     )}
-                  </li>
+                    </li>
                 ))}
               </ul>
             </div>
