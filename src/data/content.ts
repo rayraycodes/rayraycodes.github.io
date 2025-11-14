@@ -1,0 +1,1282 @@
+// Centralized content data for the portfolio website
+// Edit this file directly to update content across all pages
+
+const contentData = {
+  "navigation": {
+    "siteName": "Regan Maharjan",
+    "links": [
+      {
+        "path": "/",
+        "label": "Home"
+      },
+      {
+        "path": "/about",
+        "label": "About"
+      },
+      {
+        "path": "/experience",
+        "label": "Experience"
+      },
+      {
+        "path": "/projects",
+        "label": "Projects"
+      },
+      {
+        "path": "/impact",
+        "label": "Stories of Impact"
+      },
+      {
+        "path": "/accessibility",
+        "label": "Accessibility"
+      },
+      {
+        "path": "/contact",
+        "label": "Contact"
+      },
+      {
+        "path": "/photography",
+        "label": "Photography"
+      }
+    ]
+  },
+  "home": {
+    "hero": {
+      "title": "Building accessible,\nintelligent systems",
+      "subtitle": "Computer scientist and Application Systems Analyst Senior bridging technology, education, and human-centered design to advance accessibility, data equity, and academic innovation",
+      "ctaPrimary": "View My Work",
+      "ctaSecondary": "Get in Touch",
+      "scrollIndicator": "Scroll to explore"
+    },
+    "highlights": {
+      "title": "Impact across domains",
+      "subtitle": "Eight years of building platforms, tools, and experiences that matter",
+      "items": [
+        {
+          "title": "Accessibility",
+          "description": "WCAG 2.1 AA compliance, alt text automation, inclusive design",
+          "icon": "♿"
+        },
+        {
+          "title": "Education Tech",
+          "description": "Offline-first platforms, 700+ modules, rural school impact",
+          "icon": "📚"
+        },
+        {
+          "title": "AI and Autonomous Design",
+          "description": "AI systems for auditing, fixing, and improving content and design",
+          "icon": "🤖"
+        },
+        {
+          "title": "Human Impact",
+          "description": "Community leadership, global equity, and real world social impact",
+          "icon": "🌍"
+        }        
+      ]
+    },
+    "featured": {
+      "title": "Creating inclusive digital experiences",
+      "description": "Leading accessibility initiatives at University of Michigan, building AI-powered tools, and designing offline-first education platforms for digital equity.",
+      "cta": "Explore Accessibility Work"
+    }
+  },
+  "about": {
+    "hero": {
+      "title": "Meet Regan",
+      "description": [
+        "I'm a software engineer, data specialist, and accessibility-focused technologist with eight years of experience building platforms and tools for education, digital equity, AI systems, and large-scale web applications.",
+        "I blend technical engineering, UX storytelling, and research-driven thinking to create solutions that improve access, performance, and user experience.",
+        "Based in Michigan, I'm a curious engineer who also enjoys writing poems, singing, and running."
+      ]
+    },
+    "strengths": {
+      "title": "Core Strengths",
+      "subtitle": "A unique blend of technical depth and human-centered design",
+      "items": [
+        {
+          "title": "Full-Stack Engineering",
+          "description": "Backend, frontend, and data systems across modern tech stacks"
+        },
+        {
+          "title": "Digital Accessibility",
+          "description": "WCAG 2.1 AA, inclusive design, automation workflows"
+        },
+        {
+          "title": "AI-Powered Automation",
+          "description": "Agents, LLMs, content intelligence, multilingual systems"
+        },
+        {
+          "title": "Data Engineering",
+          "description": "ETL pipelines, analytics, cloud infrastructure"
+        },
+        {
+          "title": "UX Storytelling",
+          "description": "Content strategy, user-centered design thinking"
+        },
+        {
+          "title": "Systems Integration",
+          "description": "Performance optimization, offline-first architecture"
+        }
+      ]
+    },
+    "timeline": {
+      "title": "Journey",
+      "subtitle": "Building solutions that matter, one project at a time",
+      "items": [
+        {
+          "year": "Sep 2025-Present",
+          "title": "Application Systems Analyst Senior",
+          "org": "University of Michigan",
+          "description": "Leading accessibility for LSA (1600+ web systems), ensuring WCAG 2.1 AA compliance, building AI-powered tools"
+        },
+        {
+          "year": "Feb 2025-Present",
+          "title": "Business Fellow",
+          "org": "Perplexity",
+          "description": "Application-based fellowship for aspiring AI professionals driving innovation"
+        },
+        {
+          "year": "Feb 2023-Present",
+          "title": "Technology Data Analyst",
+          "org": "University of Michigan",
+          "description": "Analyzing CRM data, building dashboards with Python and Power BI, developing web solutions"
+        },
+        {
+          "year": "Mar 2017-Dec 2023",
+          "title": "Sr. Software Engineer / Advisor",
+          "org": "OLE Nepal",
+          "description": "Built learning systems reaching 300,000+ students, offline-first platforms, educational games with MIT"
+        }
+      ]
+    },
+    "values": {
+      "title": "Values & Philosophy",
+      "subtitle": "Principles that guide my work and approach",
+      "items": [
+        {
+          "title": "Digital Equity",
+          "description": "Technology should be accessible to everyone, regardless of ability or location"
+        },
+        {
+          "title": "Intentional Design",
+          "description": "Every decision matters. Build with clarity, purpose, and empathy"
+        },
+        {
+          "title": "Continuous Learning",
+          "description": "Curiosity drives innovation. Stay open, explore, and grow"
+        },
+        {
+          "title": "Collaborative Impact",
+          "description": "Great work happens when diverse minds come together"
+        }
+      ]
+    },
+    "interests": {
+      "title": "Beyond the Code",
+      "subtitle": "When I'm not engineering solutions, you'll find me exploring creative and intellectual pursuits.",
+      "items": [
+        "Poetry",
+        "Singing",
+        "Running",
+        "Photography",
+        "Videography",
+        "Fitness",
+        "Creative Writing"
+      ]
+    }
+  },
+  "experience": {
+    "hero": {
+      "title": "Experience",
+      "subtitle": "Eight years of building platforms, tools, and experiences across accessibility, education, AI, and data engineering"
+    },
+    "experiences": [
+      {
+        "company": "University of Michigan",
+        "role": "Application Systems Analyst Senior",
+        "period": "September 2025 - Present",
+        "location": "College of Literature, Science, and the Arts",
+        "description": "Leading accessibility for LSA, the largest school (1600+ web systems) at the University of Michigan, supporting teaching, research, and public-facing digital experiences.",
+        "highlights": [
+          "Ensure conformance with WCAG 2.1 AA, ADA, Section 508, and related federal and state compliance requirements",
+          "Conduct accessibility audits with manual and assistive technology testing",
+          "Integrate accessibility into the software development lifecycle through design reviews and code reviews",
+          "Develop and maintain standards, reusable components, and checklists for consistent, compliant patterns",
+          "Deliver training and office hours on semantic HTML, ARIA, keyboard navigation, and color contrast",
+          "Provide clear remediation guidance to engineering, design, and content teams",
+          "Building an accessibility-first culture and establishing institutional standards",
+          "Prioritize issues and establish release gates for digital accessibility compliance"
+        ],
+        "skills": [
+          "WCAG 2.1 AA",
+          "ADA Compliance",
+          "Section 508",
+          "ARIA",
+          "Semantic HTML",
+          "Assistive Technology",
+          "Siteimprove",
+          "TeamDynamix"
+        ],
+        "theme": "blue"
+      },
+      {
+        "company": "Open Learning Exchange Nepal",
+        "role": "Sr. Software Engineer / Advisor",
+        "period": "March 2017 - December 2023",
+        "location": "OLE Nepal",
+        "description": "Built data-driven learning systems that reached over 300,000 students in remote areas, crafting pipelines, syncing offline data, and turning real-world impact into code.",
+        "highlights": [
+          "Led development of EPaath reaching 300,000+ users, improving team productivity by 50%",
+          "Developed Unity-based learning games with MIT, presenting at MIT J-WEL Week 2019",
+          "Built E-Pustakalaya digital library with jQuery, Django, and ElasticSearch",
+          "Automated translation for 200+ e-learning modules for Guatemala using Google Translate API",
+          "Built multilingual OCR pipeline using Python and Tesseract for accessible content",
+          "Led development of Sanketik Sikai, a national digital platform for Nepalese Sign Language",
+          "Developed E-Paath mobile apps (offline-first and Play Store versions) reaching 100,000+ students during COVID-19",
+          "Led Robotics and Programming initiative empowering 300+ students across 10+ schools"
+        ],
+        "skills": [
+          "React",
+          "Django",
+          "Python",
+          "Unity",
+          "jQuery",
+          "ElasticSearch",
+          "Google Translate API",
+          "Cordova",
+          "Android",
+          "Tesseract OCR"
+        ],
+        "theme": "green"
+      },
+      {
+        "company": "University of Michigan",
+        "role": "Technology Data Analyst",
+        "period": "February 2023 - Present",
+        "location": "LSA Technology Services",
+        "description": "Analyzing CRM data, building dashboards, and developing web solutions to improve service delivery and stakeholder reporting.",
+        "highlights": [
+          "Analyzed 7,000+ TeamDynamix tickets using Python (pandas, matplotlib) to uncover service trends",
+          "Designed interactive dashboards with Python and Power BI to visualize ticket trends and resolution SLAs",
+          "Automated migration of 160+ Google Docs into accessible TeamDynamix articles",
+          "Conducted requirements analysis and designed CRM team website using Figma",
+          "Led development of 10+ Drupal web pages for the CRM Team",
+          "Primary point of contact for triaging technical issues through Team Dynamix ticketing system",
+          "Analyzed support trends to identify recurring issues and inform proactive improvements"
+        ],
+        "skills": [
+          "Python",
+          "pandas",
+          "matplotlib",
+          "Power BI",
+          "Figma",
+          "Drupal",
+          "TeamDynamix",
+          "Data Analysis"
+        ],
+        "theme": "purple"
+      },
+      {
+        "company": "Perplexity",
+        "role": "Business Fellow",
+        "period": "February 2025 - Present",
+        "location": "Remote",
+        "description": "Application-based fellowship for aspiring AI professionals looking to grow their careers, lead in the field, and drive AI innovation.",
+        "highlights": [
+          "Leading AI innovation initiatives within organizations",
+          "Growing career skills in artificial intelligence and machine learning",
+          "Driving AI adoption and best practices",
+          "Collaborating with AI professionals and industry leaders"
+        ],
+        "skills": [
+          "AI/ML",
+          "Leadership",
+          "Innovation",
+          "Strategic Planning"
+        ],
+        "theme": "indigo"
+      }
+    ],
+    "impact": {
+      "title": "Impact by the Numbers",
+      "stats": [
+        {
+          "value": "8+",
+          "label": "Years Experience"
+        },
+        {
+          "value": "700+",
+          "label": "Modules Converted"
+        },
+        {
+          "value": "WCAG 2.1",
+          "label": "AA Compliance"
+        },
+        {
+          "value": "4",
+          "label": "Major Institutions"
+        }
+      ]
+    },
+    "labels": {
+      "keyContributions": "Key Contributions",
+      "technologiesSkills": "Technologies & Skills"
+    }
+  },
+  "projects": {
+    "hero": {
+      "title": "Selected Projects",
+      "subtitle": "14 projects across education technology, accessibility, AI, and data engineering that reached 300,000+ students and transformed digital experiences"
+    },
+    "projects": [
+      {
+        "title": "EPaath: Interactive E-learning Modules",
+        "category": "Education Technology",
+        "description": "Led development of e-learning modules reaching 300,000+ users in remote Nepal, improving team productivity by 50% through mentorship and streamlined code reviews",
+        "problem": "Students in remote Nepal lacked access to quality educational content and interactive learning experiences.",
+        "approach": "Designed and implemented modular, responsive, and reactive system-wide core features using jQuery, JavaScript, HTML, CSS, JSON, XML, and Handlebars.js.",
+        "solution": "Created standardized curriculum metadata using JSON/XML schemas, enabling seamless integration with dashboards, search systems, and adaptive learning pathways.",
+        "result": "Reached 300,000+ users with improved content discoverability and team productivity increased by 50%.",
+        "metrics": [
+          "300,000+ users",
+          "50% productivity improvement",
+          "Modular architecture"
+        ],
+        "tags": [
+          "jQuery",
+          "JavaScript",
+          "HTML",
+          "CSS",
+          "JSON",
+          "XML",
+          "Handlebars.js"
+        ],
+        "impact": "Transformed education access for rural students"
+      },
+      {
+        "title": "E-Paath Phone and Tablet Deployment",
+        "category": "Education Technology",
+        "description": "Mobile transformation of E-Paath into two Android versions during COVID-19, enabling continuity of learning",
+        "problem": "COVID-19 school closures left students without access to learning resources. Internet connectivity was limited in rural areas.",
+        "approach": "Built an offline-first native app preloaded with 6GB+ of interactive content, and a lightweight wrapper version using Gradle, JavaScript, and Cordova for the Play Store.",
+        "solution": "Two distinct Android versions: offline-first for preloaded devices and Play Store version for internet-enabled devices.",
+        "result": "Extended educational access to over 100,000 students across Nepal during the pandemic crisis.",
+        "metrics": [
+          "100,000+ students",
+          "6GB+ content",
+          "Dual deployment strategy"
+        ],
+        "tags": [
+          "Android",
+          "Gradle",
+          "JavaScript",
+          "Cordova",
+          "Offline-First"
+        ],
+        "impact": "Enabled learning continuity during COVID-19"
+      },
+      {
+        "title": "Learning Games with MIT",
+        "category": "Education Technology",
+        "description": "Developed Unity-based scalable games with MIT, showcasing cutting-edge gamification techniques for STEM learning",
+        "problem": "Middle school students in underserved classrooms needed engaging tools to promote critical thinking and conceptual mastery.",
+        "approach": "Collaborated with MIT J-WEL and MIT faculty to develop game-based learning solutions using Unity, focusing on interactive STEM education.",
+        "solution": "Created scalable educational games that integrated seamlessly into classroom environments and fostered student engagement.",
+        "result": "Presented as speaker at MIT J-WEL Week 2019, pitching to educators from 33 countries.",
+        "metrics": [
+          "Unity-based",
+          "33 countries reached",
+          "STEM focused"
+        ],
+        "tags": [
+          "Unity",
+          "Game Development",
+          "Educational Design",
+          "MIT Partnership"
+        ],
+        "impact": "Global recognition for innovative learning tools"
+      },
+      {
+        "title": "E-Pustakalaya: Digital Library",
+        "category": "Education Technology",
+        "description": "Free and open digital library providing offline/online access to educational content across Nepal",
+        "problem": "Limited access to books and educational resources in rural areas, especially for low-connectivity regions.",
+        "approach": "Implemented new UI/UX designs using jQuery, Django, and ElasticSearch to create a modern, searchable digital library.",
+        "solution": "Collaborated with cross-functional teams to implement efficient, scalable, and maintainable front-end solutions with seamless back-end integration.",
+        "result": "Created accessible library system serving thousands of students and supporting the Ministry of Education mission.",
+        "metrics": [
+          "Thousands of users",
+          "Offline/online capable",
+          "Open access"
+        ],
+        "tags": [
+          "jQuery",
+          "Django",
+          "ElasticSearch",
+          "UI/UX"
+        ],
+        "impact": "Democratized access to educational content"
+      },
+      {
+        "title": "Sanketik Sikai",
+        "category": "Accessibility",
+        "description": "National-level digital platform teaching Nepalese Sign Language to hearing-impaired children aged 5-15",
+        "problem": "Hearing-impaired children in Nepal lacked accessible, self-paced learning tools for Nepalese Sign Language.",
+        "approach": "Led development with core accessibility features including gamified modules, level-wise progression, and video-based NSL dictionary.",
+        "solution": "Created inclusive, self-paced learning platform aligned with Nepal's primary education outcomes.",
+        "result": "Provided accessible language learning tool fostering independence for hearing-impaired students.",
+        "metrics": [
+          "Ages 5-15",
+          "Video-based NSL dictionary",
+          "Gamified learning"
+        ],
+        "tags": [
+          "Accessibility",
+          "Educational Design",
+          "Sign Language",
+          "Gamification"
+        ],
+        "impact": "Empowered hearing-impaired children"
+      },
+      {
+        "title": "EPaath for Guatemala",
+        "category": "Education Technology",
+        "description": "Automated translation of 200+ e-learning modules using Google Translate API to expand platform reach",
+        "problem": "Educational content was only available in Nepali/English, limiting reach to Spanish-speaking regions.",
+        "approach": "Automated translation pipeline using Google Translate API and improved CI/CD processes with GitHub Actions.",
+        "solution": "Seamless translation workflow enabling rapid localization of educational content for new markets.",
+        "result": "Successfully expanded EPaath to Guatemala, serving as key liaison between Nepal and US teams.",
+        "metrics": [
+          "200+ modules translated",
+          "Guatemala expansion",
+          "Automated pipeline"
+        ],
+        "tags": [
+          "Google Translate API",
+          "GitHub Actions",
+          "CI/CD",
+          "Localization"
+        ],
+        "impact": "International expansion of learning platform"
+      },
+      {
+        "title": "Nepali Intelligent OCR",
+        "category": "Accessibility & AI",
+        "description": "Multilingual OCR pipeline using Python and Tesseract for converting scanned Nepali/English documents into accessible formats",
+        "problem": "Historical and educational texts in Nepali were inaccessible to visually impaired users and difficult to digitize.",
+        "approach": "Built OCR pipeline with custom-trained models for Nepali script recognition, improving character accuracy for screen-reader compatibility.",
+        "solution": "Automated conversion of scanned documents into structured, accessible formats supporting assistive technologies.",
+        "result": "Improved access to historical and educational texts for visually impaired users.",
+        "metrics": [
+          "Python + Tesseract",
+          "Nepali/English support",
+          "Screen-reader compatible"
+        ],
+        "tags": [
+          "Python",
+          "Tesseract",
+          "OCR",
+          "Accessibility",
+          "Machine Learning"
+        ],
+        "impact": "Bridged accessibility gap for Nepali content"
+      },
+      {
+        "title": "Robotics and Programming Initiative",
+        "category": "Education Technology",
+        "description": "End-to-end development of robotics education framework empowering 300+ students and teachers across 10+ schools",
+        "problem": "Public schools in Nepal lacked STEM learning resources and practical programming education.",
+        "approach": "Designed STEM learning modules and scalable training systems inspired by Miyagi University collaboration, adapted for Nepal's classroom realities.",
+        "solution": "Implemented framework including visual coding, Raspberry Pi integration, and inter-school robotics challenges.",
+        "result": "Empowered 300+ students and teachers across 10+ schools with hands-on STEM education.",
+        "metrics": [
+          "300+ students/teachers",
+          "10+ schools",
+          "Raspberry Pi based"
+        ],
+        "tags": [
+          "Robotics",
+          "Raspberry Pi",
+          "Visual Coding",
+          "STEM Education"
+        ],
+        "impact": "Pioneered robotics education in Nepal"
+      },
+      {
+        "title": "Interactive Learning Stories",
+        "category": "Education Technology",
+        "description": "Free animated children's stories and language games using ReactJS for dynamic content delivery",
+        "problem": "Children in rural Nepal needed engaging, accessible storytelling resources for language development.",
+        "approach": "Developed interactive storytelling framework using ReactJS enabling dynamic, animated content delivery.",
+        "solution": "Created library of animated stories and language games that work offline and engage young learners.",
+        "result": "Provided accessible, engaging learning content for children's literacy development.",
+        "metrics": [
+          "ReactJS framework",
+          "Animated stories",
+          "Language games"
+        ],
+        "tags": [
+          "ReactJS",
+          "Animation",
+          "Educational Content",
+          "Language Learning"
+        ],
+        "impact": "Enhanced literacy for young learners"
+      },
+      {
+        "title": "Seepalaya",
+        "category": "Education Technology",
+        "description": "Personalized learning platform for concept-based math and science education for Grades 4-5",
+        "problem": "Students needed personalized, self-paced learning tools for foundational math and science concepts.",
+        "approach": "Initiated and led early-stage development, recruiting core team and guiding prototype design for progress tracking and self-paced learning.",
+        "solution": "Created foundation for scalable platform supporting concept-based education and lifelong learning goals.",
+        "result": "Established platform architecture and team for future scalability.",
+        "metrics": [
+          "Grades 4-5 focus",
+          "Concept-based",
+          "Self-paced learning"
+        ],
+        "tags": [
+          "Educational Design",
+          "Personalized Learning",
+          "Math",
+          "Science"
+        ],
+        "impact": "Foundation for personalized education"
+      },
+      {
+        "title": "CRM Team Data Analysis",
+        "category": "Data Analytics",
+        "description": "Analyzed 7,000+ TeamDynamix tickets using Python to uncover service trends and improve resolution times",
+        "problem": "CRM team lacked visibility into service trends, ticket patterns, and resolution performance.",
+        "approach": "Used Python (pandas, matplotlib) for data analysis and designed interactive dashboards with Power BI to visualize trends.",
+        "solution": "Created comprehensive analytics revealing bottlenecks, request types, and SLA performance.",
+        "result": "Reduced average ticket resolution time and improved stakeholder reporting capabilities.",
+        "metrics": [
+          "7,000+ tickets analyzed",
+          "Python + Power BI",
+          "SLA tracking"
+        ],
+        "tags": [
+          "Python",
+          "pandas",
+          "matplotlib",
+          "Power BI",
+          "Data Analysis"
+        ],
+        "impact": "Data-driven service improvements"
+      },
+      {
+        "title": "CRM Team Website",
+        "category": "Web Development",
+        "description": "Requirements analysis and design of CRM team website using Figma, providing structured access to 150+ resources",
+        "problem": "CRM team resources were scattered across 160+ Google Docs, making information difficult to find.",
+        "approach": "Conducted requirements analysis, designed website in Figma, and led development of 10+ Drupal web pages.",
+        "solution": "Centralized resource hub with user-centric design and automated migration of documentation into accessible TeamDynamix articles.",
+        "result": "Streamlined resource access projecting 25% engagement boost.",
+        "metrics": [
+          "150+ resources",
+          "10+ Drupal pages",
+          "160+ docs migrated"
+        ],
+        "tags": [
+          "Figma",
+          "Drupal",
+          "UX Design",
+          "TeamDynamix"
+        ],
+        "impact": "Improved team information architecture"
+      },
+      {
+        "title": "AI-Powered Alt Text Generator",
+        "category": "Accessibility & AI",
+        "description": "Automated alt text generation system using GPT-4 Vision for institutional digital content",
+        "problem": "Thousands of images across university websites lacked proper alt text, creating accessibility barriers.",
+        "approach": "Integrated GPT-4 Vision API with content management systems, built review workflow, and created quality assurance pipeline.",
+        "solution": "Automated generation with human review, batch processing capabilities, and WCAG 2.1 AA compliance validation.",
+        "result": "Dramatically accelerated accessibility remediation across university digital properties.",
+        "metrics": [
+          "10x faster remediation",
+          "95% approval rate",
+          "GPT-4 Vision"
+        ],
+        "tags": [
+          "OpenAI",
+          "GPT-4 Vision",
+          "Accessibility",
+          "Python",
+          "WCAG"
+        ],
+        "impact": "Scaled accessibility through AI"
+      },
+      {
+        "title": "Accessibility Rails Gem",
+        "category": "Developer Tools",
+        "description": "Rails gem providing automated accessibility testing and remediation suggestions",
+        "problem": "Developers lacked integrated tools to catch accessibility issues during development.",
+        "approach": "Created gem with automated WCAG checks, detailed remediation steps, and CI/CD integration.",
+        "solution": "Developer-friendly gem with clear error messages, actionable fixes, and comprehensive documentation.",
+        "result": "Shifted accessibility left in development process, catching issues before production.",
+        "metrics": [
+          "500+ tests included",
+          "15+ projects adopted",
+          "80% issue prevention"
+        ],
+        "tags": [
+          "Ruby on Rails",
+          "Testing",
+          "WCAG",
+          "DevOps",
+          "Open Source"
+        ],
+        "impact": "Improved developer velocity and compliance"
+      }
+    ],
+    "labels": {
+      "impact": "Impact",
+      "problem": "Problem",
+      "approach": "Approach",
+      "solution": "Solution",
+      "result": "Result",
+      "keyMetrics": "Key Metrics",
+      "technologies": "Technologies",
+      "close": "Close"
+    }
+  },
+  "impact": {
+    "hero": {
+      "title": "Stories of Impact",
+      "subtitle": "A collection of stories about building technology for learning and equity in Nepal"
+    },
+    "stories": [
+      {
+        "id": "building-technology",
+        "title": "Building Technology for Learning and Equity in Nepal",
+        "excerpt": "A personal story about impact, design, and community. When I look back at my years with OLE Nepal, I see more than software and servers.",
+        "date": "2024",
+        "icon": "Globe",
+        "theme": "blue",
+        "content": {
+          "description": "When I look back at my years with OLE Nepal, I see more than software and servers. I see classrooms that once depended on printed textbooks learning to use interactive lessons for the first time. I see children in remote mountain schools reading digital stories without needing the internet. I see teachers discovering that technology could actually make learning easier, not harder. And I see the slow, steady work required to build systems that survive real constraints, from low bandwidth to limited power. This is the story of the platforms, tools, and experiences I helped build, and the value they continue to create today.",
+          "work": [
+            "Built platforms that work in low-bandwidth, low-power environments",
+            "Designed for real-world constraints: dust, unstable electricity, limited connectivity",
+            "Created systems that continue to serve communities years later",
+            "Combined technical excellence with human-centered design"
+          ],
+          "impact": "These systems became more than products. They became pillars of Nepal's digital learning ecosystem, serving hundreds of thousands of students and continuing to evolve today.",
+          "hasStats": true,
+          "stats": [
+            {
+              "value": "300,000+",
+              "label": "Students Reached"
+            },
+            {
+              "value": "700+",
+              "label": "Modules Converted"
+            },
+            {
+              "value": "200+",
+              "label": "Schools Served"
+            },
+            {
+              "value": "7 Years",
+              "label": "Building in Nepal"
+            }
+          ]
+        }
+      },
+      {
+        "id": "rotaract-rotary-impact",
+        "title": "Community Leadership and Accessible Learning through Rotaract and Rotary",
+        "excerpt": "How a youth-led service movement shaped my approach to technology, accessibility, and impact.",
+        "date": "2024",
+        "icon": "Users",
+        "theme": "indigo",
+        "content": {
+          "description": "My years with Rotaract and Rotary grounded me in community, service, and the belief that technology should lift people from where they are. Long before I built large-scale learning platforms, I worked with volunteers, educators, and local leaders to solve real problems on the ground. This work taught me how to mobilize teams, navigate constraints, and design solutions with empathy. One of the most meaningful projects was creating accessible audiobooks for students with limited reading materials, coordinating volunteers to record, edit, and distribute free audio content to rural schools. These experiences shaped my understanding of accessibility years before I formally entered the field.",
+          "work": [
+            "Led youth-centered education and accessibility initiatives",
+            "Coordinated volunteer teams across districts to deliver community projects",
+            "Built early accessible audiobook workflows for students with limited access to reading materials",
+            "Partnered with Rotary leaders, schools, and local communities to create sustainable impact"
+          ],
+          "impact": "These efforts helped build a culture of service-focused innovation, contributing to accessible learning resources for underserved students while strengthening community networks across Nepal.",
+          "hasStats": true,
+          "stats": [
+            {
+              "value": "100+",
+              "label": "Audiobooks Produced"
+            },
+            {
+              "value": "50+",
+              "label": "Volunteer Contributors"
+            },
+            {
+              "value": "20+",
+              "label": "Community Projects Supported"
+            },
+            {
+              "value": "5 Years",
+              "label": "Rotaract and Rotary Engagement"
+            }
+          ]
+        }
+      },
+      {
+        "id": "e-pustakalaya",
+        "title": "E-Pustakalaya: National Digital Library",
+        "excerpt": "Modernized Nepal's digital library to serve learners in both Kathmandu and remote districts.",
+        "date": "2017-2020",
+        "icon": "Globe",
+        "theme": "blue",
+        "content": {
+          "description": "Modernized Nepal's digital library to serve learners in both Kathmandu and remote districts. This project transformed how educational content was distributed across the country.",
+          "work": [
+            "Reworked content architecture for offline distribution",
+            "Optimized search with Elasticsearch",
+            "Cleaned up legacy code for stability and speed",
+            "Enabled offline mirrors across the country"
+          ],
+          "impact": "Still active today, serving rural schools and ministries with offline mirrors running across the country. E-Pustakalaya continues to grow, becoming part of national digital learning strategies."
+        }
+      },
+      {
+        "id": "offline-learning",
+        "title": "Offline Learning During COVID-19",
+        "excerpt": "Led large-scale offline conversion project transforming 700+ interactive web modules into lightweight offline packages.",
+        "date": "2020-2021",
+        "icon": "BookOpen",
+        "theme": "green",
+        "content": {
+          "description": "Led large-scale offline conversion project transforming 700+ interactive web modules into lightweight offline packages. This was a critical response to school closures during the pandemic.",
+          "work": [
+            "Converted 700+ online modules to offline packages",
+            "Rethought asset loading and local data storage",
+            "Deployed to 200+ schools during lockdown",
+            "Enabled continuity of education when schools closed"
+          ],
+          "impact": "These offline modules remain the backbone of many rural learning centers in mountainous and hard-to-reach regions. They are used not only in rural schools but also in community learning centers."
+        }
+      },
+      {
+        "id": "ocr-tts",
+        "title": "OCR + TTS for Visually Impaired Students",
+        "excerpt": "Built Nepal's first OCR and text-to-speech system to give blind students access to Nepali textbooks.",
+        "date": "2018-2019",
+        "icon": "Heart",
+        "theme": "purple",
+        "content": {
+          "description": "Built Nepal's first OCR and text-to-speech system to give blind students access to Nepali textbooks. This project opened up educational opportunities for visually impaired learners.",
+          "work": [
+            "Built first Nepali OCR system with MIT intern Kartikesh",
+            "Integrated text-to-speech for audio textbooks",
+            "Converted scanned textbooks to accessible formats",
+            "Created independence for visually impaired learners"
+          ],
+          "impact": "Expanded into a larger accessible content pipeline, with NGOs and schools using it to convert textbooks and children's literature. OCR and TTS tools inspired further investment in accessible education solutions."
+        }
+      },
+      {
+        "id": "e-paath",
+        "title": "E-Paath Interactive Learning",
+        "excerpt": "Nepal's first digital learning platform for grades 1-8, teaching through animations and interactive stories.",
+        "date": "2016-2020",
+        "icon": "Laptop",
+        "theme": "indigo",
+        "content": {
+          "description": "Nepal's first digital learning platform for grades 1-8, teaching through animations and interactive stories. This platform made learning engaging and accessible for rural students.",
+          "work": [
+            "Optimized modules for low-power devices",
+            "Fixed cross-device bugs and improved game logic",
+            "Built interactive math, science, and reading activities",
+            "Made learning engaging for rural students"
+          ],
+          "impact": "Still one of the most widely used digital education tools in public schools, with new versions building on this foundation. E-Paath remains a flagship program with ongoing updates."
+        }
+      },
+      {
+        "id": "technical-infrastructure",
+        "title": "Technical Infrastructure for Rural Schools",
+        "excerpt": "Built reliable systems that work in real conditions: dust, unstable electricity, and low bandwidth.",
+        "date": "2015-2020",
+        "icon": "Zap",
+        "theme": "teal",
+        "content": {
+          "description": "Built reliable systems that work in real conditions: dust, unstable electricity, and low bandwidth. This infrastructure work ensured that technology could actually function in rural environments.",
+          "work": [
+            "Tuned school servers with Apache and Squid",
+            "Improved caching for slow networks",
+            "Created reliable system images for XO laptops",
+            "Fixed field issues from real-world usage"
+          ],
+          "impact": "Many school servers set up during those years are still running, delivering thousands of books and lessons daily. School servers and device programs continue expanding to new districts."
+        }
+      },
+      {
+        "id": "teacher-training",
+        "title": "Teacher Training & Human-Centered Design",
+        "excerpt": "Supported teacher trainings across districts, helping educators adopt digital tools effectively.",
+        "date": "2016-2021",
+        "icon": "Users",
+        "theme": "orange",
+        "content": {
+          "description": "Supported teacher trainings across districts, helping educators adopt digital tools effectively. This work ensured that technology didn't just exist but actually got used in classrooms.",
+          "work": [
+            "Led teacher trainings across rural districts",
+            "Made products more usable and intuitive",
+            "Brought field insights back to engineering",
+            "Ensured technology actually gets used"
+          ],
+          "impact": "The training model continues as core part of OLE Nepal's deployment strategy, ensuring technology doesn't just exist but gets used. This human-centered approach became foundational to all our work."
+        }
+      }
+    ],
+    "labels": {
+      "backToStories": "Back to Stories",
+      "whatIBuilt": "What I Built",
+      "impactToday": "Impact Today",
+      "impactByNumbers": "Impact by the Numbers",
+      "readMore": "Read more →"
+    }
+  },
+  "contact": {
+    "hero": {
+      "title": "Let's Connect",
+      "subtitle": "Interested in collaboration, accessibility consulting, or just want to say hi? I'd love to hear from you."
+    },
+    "form": {
+      "title": "Send a Message",
+      "fields": {
+        "name": {
+          "label": "Name",
+          "placeholder": "Your name"
+        },
+        "email": {
+          "label": "Email",
+          "placeholder": "your.email@example.com"
+        },
+        "message": {
+          "label": "Message",
+          "placeholder": "Tell me about your project or inquiry..."
+        }
+      },
+      "submit": "Send Message"
+    },
+    "social": {
+      "title": "Connect Online",
+      "subtitle": "Find me on these platforms or reach out directly via email.",
+      "links": [
+        {
+          "label": "Email",
+          "href": "mailto:reganmaharjann@gmail.com",
+          "handle": "reganmaharjann@gmail.com"
+        },
+        {
+          "label": "LinkedIn",
+          "href": "https://linkedin.com/in/reganmaharjan",
+          "handle": "linkedin.com/in/reganmaharjan"
+        },
+        {
+          "label": "GitHub",
+          "href": "https://github.com/reganmaharjan",
+          "handle": "github.com/reganmaharjan"
+        },
+        {
+          "label": "Twitter",
+          "href": "https://twitter.com/reganmaharjan",
+          "handle": "@reganmaharjan"
+        }
+      ]
+    },
+    "opportunities": {
+      "title": "What I'm Open To",
+      "items": [
+        "Accessibility consulting and audits",
+        "Full-stack development projects",
+        "AI and data engineering roles",
+        "Speaking opportunities",
+        "Open source collaboration",
+        "Educational technology initiatives"
+      ]
+    },
+    "cta": {
+      "title": "Let's build something accessible",
+      "subtitle": "Whether you're looking for an accessibility expert, a full-stack engineer, or an AI builder, I'm here to help create inclusive digital experiences.",
+      "primary": "Send an Email",
+      "secondary": "Connect on LinkedIn"
+    }
+  },
+  "accessibility": {
+    "hero": {
+      "title": "Accessibility Work",
+      "subtitle": "Building inclusive digital experiences through WCAG compliance, AI automation, and developer-friendly tools"
+    },
+    "philosophy": {
+      "title": "Accessibility Philosophy",
+      "subtitle": "Guiding principles that shape my approach to inclusive design",
+      "principles": [
+        {
+          "title": "Inclusive by Design",
+          "description": "Accessibility is not a feature—it's a fundamental right and design principle from day one."
+        },
+        {
+          "title": "Human-Centered",
+          "description": "Real people with diverse abilities deserve experiences that work for them, not despite them."
+        },
+        {
+          "title": "Developer-Friendly",
+          "description": "Accessibility should be easy to implement, test, and maintain through clear tools and workflows."
+        },
+        {
+          "title": "AI-Augmented",
+          "description": "Leverage AI to accelerate accessibility work while maintaining human judgment and quality."
+        }
+      ]
+    },
+    "wcag": {
+      "title": "WCAG 2.1 AA Expertise",
+      "subtitle": "Comprehensive knowledge across all four WCAG principles",
+      "categories": [
+        {
+          "category": "Perceivable",
+          "items": [
+            "Alt Text",
+            "Color Contrast",
+            "Text Alternatives",
+            "Captions",
+            "Adaptable Content"
+          ]
+        },
+        {
+          "category": "Operable",
+          "items": [
+            "Keyboard Navigation",
+            "Focus Management",
+            "Skip Links",
+            "Timing Controls"
+          ]
+        },
+        {
+          "category": "Understandable",
+          "items": [
+            "Clear Language",
+            "Predictable Navigation",
+            "Error Prevention",
+            "Input Assistance"
+          ]
+        },
+        {
+          "category": "Robust",
+          "items": [
+            "Semantic HTML",
+            "ARIA Labels",
+            "Screen Reader Testing",
+            "Cross-Platform Compatibility"
+          ]
+        }
+      ]
+    },
+    "tools": {
+      "title": "Tools & Systems",
+      "subtitle": "Building and deploying accessibility infrastructure",
+      "items": [
+        {
+          "name": "Siteimprove",
+          "role": "Institutional Rollout & Auditing",
+          "description": "Led comprehensive deployment, tagging strategy, and ongoing audits across university properties."
+        },
+        {
+          "name": "Alt Text Automation",
+          "role": "AI-Powered Generation",
+          "description": "GPT-4 Vision integration for automated alt text with human review workflow."
+        },
+        {
+          "name": "Developer Checklists",
+          "role": "Shift-Left Testing",
+          "description": "Created comprehensive accessibility checklists integrated into development workflows."
+        },
+        {
+          "name": "Rails A11y Gem",
+          "role": "Automated Testing",
+          "description": "Open source gem providing automated accessibility tests and remediation guidance."
+        }
+      ]
+    },
+    "transformation": {
+      "title": "Transformation Impact",
+      "subtitle": "How accessibility practices evolved through systematic improvements",
+      "beforeLabel": "Before",
+      "afterLabel": "After",
+      "items": [
+        {
+          "before": "Manual alt text for thousands of images",
+          "after": "AI-assisted generation with 95% approval rate",
+          "impact": "10x faster"
+        },
+        {
+          "before": "Accessibility issues found in production",
+          "after": "Issues caught during development",
+          "impact": "80% prevention"
+        },
+        {
+          "before": "Fragmented accessibility knowledge",
+          "after": "Centralized standards and training",
+          "impact": "Institution-wide"
+        },
+        {
+          "before": "Reactive remediation approach",
+          "after": "Proactive accessibility culture",
+          "impact": "Systemic change"
+        }
+      ]
+    },
+    "ai": {
+      "title": "AI-Powered Accessibility",
+      "description": [
+        "Combining artificial intelligence with human expertise to scale accessibility work without compromising quality.",
+        "From GPT-4 Vision for alt text generation to automated WCAG testing, AI accelerates the path to inclusive digital experiences."
+      ],
+      "technologies": [
+        "GPT-4 Vision",
+        "OCR",
+        "TTS",
+        "Automated Testing",
+        "LLM Workflows",
+        "Quality Assurance"
+      ]
+    },
+    "impact": {
+      "title": "Institutional Impact",
+      "stats": [
+        {
+          "value": "WCAG 2.1 AA",
+          "label": "Compliance Standard"
+        },
+        {
+          "value": "1600+",
+          "label": "Web Systems (LSA)"
+        },
+        {
+          "value": "300K+",
+          "label": "Students Reached"
+        },
+        {
+          "value": "100+",
+          "label": "Developers Trained"
+        }
+      ]
+    }
+  },
+  "assets": {
+    "images": {
+      "home": {
+        "hero": "https://regan.figma.site/_assets/v11/cc03d6b7b9b6c0b127b5885a899b19b8d05b9f15.png",
+        "featured": "https://images.unsplash.com/photo-1611926653670-e18689373857?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxhY2Nlc3NpYmlsaXR5JTIwaW5jbHVzaXZlJTIwZGVzaWdufGVufDF8fHx8MTc2MzAzMDU4MHww&ixlib=rb-4.1.0&q=80&w=1080"
+      },
+      "about": {
+        "profile": "https://i.ibb.co/jvxwmjwL/Screenshot-2025-11-14-at-9-54-40-AM.png"
+      },
+      "projects": [
+        "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=800",
+        "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=800",
+        "https://images.unsplash.com/photo-1511512578047-dfb367046420?w=800",
+        "https://images.unsplash.com/photo-1521587760476-6c12a4b040da?w=800",
+        "https://images.unsplash.com/photo-1589254065878-42c9da997008?w=800",
+        "https://images.unsplash.com/photo-1488190211105-8b0e65b80b4e?w=800",
+        "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800",
+        "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=800",
+        "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=800",
+        "https://images.unsplash.com/photo-1509228468518-180dd4864904?w=800",
+        "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800",
+        "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800",
+        "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800",
+        "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800"
+      ],
+      "impact": {
+        "ruralSchool": "https://regan.figma.site/_assets/v11/cc03d6b7b9b6c0b127b5885a899b19b8d05b9f15.png",
+        "mountainVillage": "https://regan.figma.site/_assets/v11/eb2091338e5a526e6c52dbe7891867bad0365a67.png"
+      },
+      "accessibility": {
+        "aiAccessibility": "https://images.unsplash.com/photo-1611926653670-e18689373857?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxhY2Nlc3NpYmlsaXR5JTIwaW5jbHVzaXZlJTIwZGVzaWdufGVufDF8fHx8MTc2MzAzMDU4MHww&ixlib=rb-4.1.0&q=80&w=1080"
+      }
+    },
+    "links": {
+      "email": "mailto:imregan@umich.edu",
+      "linkedin": "https://linkedin.com/in/reganmaharjan",
+      "github": "https://github.com/reganmaharjan",
+      "twitter": "https://twitter.com/reganmaharjan"
+    }
+  },
+  "photography": {
+    "hero": {
+      "title": "Photography",
+      "subtitle": "Capturing moments, stories, and perspectives through the lens"
+    },
+    "categories": [
+      "All",
+      "Nature",
+      "Portraits",
+      "Urban",
+      "Travel",
+      "Abstract",
+      "Nepal"
+    ],
+    "images": [
+      {
+        "id": 1,
+        "url": "src/assets/2023-10-16_04-43-42_417.jpeg",
+        "title": "Breath of Autumn",
+        "category": "Portraits",
+        "description": "A serene moment of stillness surrounded by fall colors",
+        "date": "2023",
+        "location": "Ann Arbor, Michigan",
+        "story": "This portrait captures a quiet, freeing moment in a wide open meadow framed by autumn trees. With arms stretched wide and eyes lifted, the figure reflects gratitude, presence, and connection to nature. The surrounding greens and yellows add softness to the mood, creating a peaceful emotional landscape."
+      },
+      {
+        "id": 2,
+        "url": "src/assets/2023-11-19_02-55-09_562.jpeg",
+        "title": "Lakeside Pathway",
+        "category": "Travel",
+        "description": "A wooden trail winding beside a vibrant blue lake",
+        "date": "2023",
+        "location": "Lake Tahoe, California",
+        "story": "This photograph follows a sunlit boardwalk leading toward towering mountains. The bright turquoise water contrasts beautifully with the evergreen forest, creating a scene that feels both adventurous and calm. It reflects the pull of wanderlust and the grounding simplicity of natural paths."
+      },
+      {
+        "id": 3,
+        "url": "src/assets/2023-11-19_04-58-06_481.jpeg",
+        "title": "Frozen Highway",
+        "category": "Nature",
+        "description": "A winding road cutting through tall pines and snowy cliffs",
+        "date": "2023",
+        "location": "Sierra Nevada, California",
+        "story": "Driving through the shadows of giant evergreens, this scene captures the quiet tension before winter fully sets in. The icy road bends toward a rugged mountain face lit faintly by the cold sun. It is a moment that blends isolation, beauty, and the sense of moving deeper into wilderness."
+      },
+      {
+        "id": 4,
+        "url": "src/assets/2024-06-29_00-29-58_012.jpeg",
+        "title": "Redwood Sanctuary",
+        "category": "Nature",
+        "description": "Ancient redwood trunks glowing under filtered sunlight",
+        "date": "2024",
+        "location": "Redwood National and State Parks",
+        "story": "Captured among towering giants, this photograph celebrates the quiet majesty of the redwoods. Light slips through dense branches, illuminating the trunks like pillars in a natural temple. The forest feels timeless, and standing here is a humbling reminder of how small we are compared to these ancient beings."
+      },
+      {
+        "id": 5,
+        "url": "src/assets/2024-07-06_10-46-05_797.jpeg",
+        "title": "Half Dome Sunrise",
+        "category": "Travel",
+        "description": "Golden morning light falling on Half Dome",
+        "date": "2024",
+        "location": "Yosemite National Park",
+        "story": "This scene captures the iconic curve of the road leading toward Half Dome as the first rays of sunrise paint the granite face with warm tones. The soft pastel sky and sweeping perspective give the moment a feeling of clarity and renewal, as if guiding the viewer toward something new."
+      },
+      {
+        "id": 6,
+        "url": "src/assets/macha.jpg",
+        "title": "Alpine Majesty",
+        "category": [
+          "Travel",
+          "Nepal"
+        ],
+        "description": "A lone trekker standing before towering Himalayan peaks",
+        "date": "2022",
+        "location": "Machhapuchhre Region, Nepal",
+        "story": "Clouds swirl at the foot of the massive snow covered mountains while a single person stands dwarfed by the landscape. This moment captures the awe of trekking in the Himalayas, where silence, scale, and raw natural power remind us how vast the world truly is."
+      },
+      {
+        "id": 7,
+        "url": "src/assets/taksindu.jpg",
+        "title": "Glacial Walls",
+        "category": "Nature",
+        "description": "Sheer snowy cliffs rising above a frozen valley",
+        "date": "2022",
+        "location": "Taksindu Region, Nepal",
+        "story": "The dramatic tilt of the mountain face against the open sky intensifies the feeling of being enclosed within a massive frozen world. Glacial textures, deep shadows, and untouched snow create a stark but beautiful environment that feels both challenging and sacred."
+      },
+      {
+        "id": 8,
+        "url": "src/assets/yose.jpg",
+        "title": "Valley View",
+        "category": "Nature",
+        "description": "A panoramic look across Yosemite Valley",
+        "date": "2023",
+        "location": "Yosemite National Park",
+        "story": "A clear blue sky stretches endlessly above the granite giants of Yosemite Valley. The composition highlights the contrast between rugged rock formations and the soft textures of the forest below. It is a classic view that never loses its sense of wonder, no matter how many times it is seen."
+      },
+      {
+        "id": 9,
+        "url": "src/assets/ZVE00854.jpg",
+        "title": "Autumn Reflections",
+        "category": "Nature",
+        "description": "Fall colors mirrored in a calm lake",
+        "date": "2023",
+        "location": "Michigan, USA",
+        "story": "The vibrant reds, oranges, and greens of autumn trees blend seamlessly into the still water, creating an almost painterly reflection. The quiet ducks gliding across the surface add life to the scene while keeping its peaceful energy intact. This moment feels like nature pausing to admire itself."
+      },
+      {
+        "id": 10,
+        "url": "src/assets/ZVE02104.jpg",
+        "title": "Blue Horizon",
+        "category": "Travel",
+        "description": "A lakeside scene beneath snow capped mountains",
+        "date": "2023",
+        "location": "Lake Tahoe, California",
+        "story": "Crystal blue water meets a rugged shoreline of giant boulders and evergreen trees. In the distance, snow covered peaks create a dramatic backdrop. The image captures the peaceful rhythm of the lake and the raw beauty of high altitude landscapes shaped by time and weather."
+      },
+      {
+        "id": 11,
+        "url": "src/assets/hawkhill.png",
+        "title": "Hawk Hill Horizon",
+        "category": "Nature",
+        "description": "A calm pastel sunrise above the ocean",
+        "date": "2023",
+        "location": "Hawk Hill, California",
+        "story": "The sky fades from deep blue to warm gold as the sun rises beyond the curve of the ocean. This moment captures the quiet stillness before the day begins, with the coastline silhouetted gently against the morning light. It feels like standing at the edge of a new beginning."
+      },
+      {
+        "id": 12,
+        "url": "src/assets/lantang.png",
+        "title": "Langtang Ridge",
+        "category": "Travel",
+        "description": "Sharp Himalayan ridges leading toward a massive snow peak",
+        "date": "2022",
+        "location": "Langtang Region, Nepal",
+        "story": "High in the Himalayas, ancient rock layers rise toward a towering snow covered summit. The dramatic contrast between rugged brown ridges and the bright white peak reveals the raw power of mountain formation. This landscape embodies both harshness and overwhelming beauty."
+      },
+      {
+        "id": 13,
+        "url": "src/assets/annapurna.png",
+        "title": "Annapurna Trail",
+        "category": "Travel",
+        "description": "Trekkers walking along a golden hillside beneath snowy mountains",
+        "date": "2022",
+        "location": "Annapurna Sanctuary, Nepal",
+        "story": "A group of trekkers moves steadily through golden grasses, dwarfed by the enormous silver walls of Annapurna. The vastness of the scene emphasizes the humility and determination of human exploration. This image captures the soul of Himalayan trekking: challenge, companionship, and awe."
+      },
+      {
+        "id": 14,
+        "url": "src/assets/tshorolpa.png",
+        "title": "Tsho Rolpa Glacier Lake",
+        "category": "Nature",
+        "description": "A frozen glacial lake surrounded by sharp snow covered mountains",
+        "date": "2022",
+        "location": "Tsho Rolpa, Nepal",
+        "story": "Cold air hangs still above the massive glacier lake as ridges of ice and rock stretch toward the horizon. The landscape feels untouched and imposing, sculpted by centuries of snow and wind. A boot resting in the foreground reminds us of the human presence in this high altitude world."
+      },
+      {
+        "id": 15,
+        "url": "src/assets/ZVE02111.jpg",
+        "title": "Hidden Cove",
+        "category": "Nature",
+        "description": "A peaceful blue cove framed by pines and rocky shoreline",
+        "date": "2023",
+        "location": "Lake Tahoe, California",
+        "story": "Crystal clear water washes gently into a small cove shaded by tall pines. Beyond the rocks, distant snowy mountains rise above the lake. The combination of blue, green, and granite tones makes this scene feel like a quiet escape on a perfect alpine day."
+      }
+    ]
+  }
+};
+
+export default contentData;
