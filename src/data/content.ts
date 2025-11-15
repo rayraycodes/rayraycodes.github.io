@@ -1124,7 +1124,7 @@ const contentData = {
     "images": [
       {
         "id": 1,
-        "url": "/assets/2023-10-16_04-43-42_417.jpeg",
+        "url": "src/assets/2023-10-16_04-43-42_417.jpeg",
         "title": "Breath of Autumn",
         "category": "Portraits",
         "description": "A serene moment of stillness surrounded by fall colors",
@@ -1134,7 +1134,7 @@ const contentData = {
       },
       {
         "id": 2,
-        "url": "/assets/2023-11-19_02-55-09_562.jpeg",
+        "url": "src/assets/2023-11-19_02-55-09_562.jpeg",
         "title": "Lakeside Pathway",
         "category": "Travel",
         "description": "A wooden trail winding beside a vibrant blue lake",
@@ -1144,7 +1144,7 @@ const contentData = {
       },
       {
         "id": 3,
-        "url": "/assets/2023-11-19_04-58-06_481.jpeg",
+        "url": "src/assets/2023-11-19_04-58-06_481.jpeg",
         "title": "Frozen Highway",
         "category": "Nature",
         "description": "A winding road cutting through tall pines and snowy cliffs",
@@ -1154,7 +1154,7 @@ const contentData = {
       },
       {
         "id": 4,
-        "url": "/assets/2024-06-29_00-29-58_012.jpeg",
+        "url": "src/assets/2024-06-29_00-29-58_012.jpeg",
         "title": "Redwood Sanctuary",
         "category": "Nature",
         "description": "Ancient redwood trunks glowing under filtered sunlight",
@@ -1164,7 +1164,7 @@ const contentData = {
       },
       {
         "id": 5,
-        "url": "/assets/2024-07-06_10-46-05_797.jpeg",
+        "url": "src/assets/2024-07-06_10-46-05_797.jpeg",
         "title": "Half Dome Sunrise",
         "category": "Travel",
         "description": "Golden morning light falling on Half Dome",
@@ -1174,7 +1174,7 @@ const contentData = {
       },
       {
         "id": 6,
-        "url": "/assets/macha.jpg",
+        "url": "src/assets/macha.jpg",
         "title": "Alpine Majesty",
         "category": [
           "Travel",
@@ -1187,7 +1187,7 @@ const contentData = {
       },
       {
         "id": 7,
-        "url": "/assets/taksindu.jpg",
+        "url": "src/assets/taksindu.jpg",
         "title": "Glacial Walls",
         "category": "Nature",
         "description": "Sheer snowy cliffs rising above a frozen valley",
@@ -1197,7 +1197,7 @@ const contentData = {
       },
       {
         "id": 8,
-        "url": "/assets/yose.jpg",
+        "url": "src/assets/yose.jpg",
         "title": "Valley View",
         "category": "Nature",
         "description": "A panoramic look across Yosemite Valley",
@@ -1207,7 +1207,7 @@ const contentData = {
       },
       {
         "id": 9,
-        "url": "/assets/ZVE00854.jpg",
+        "url": "src/assets/ZVE00854.jpg",
         "title": "Autumn Reflections",
         "category": "Nature",
         "description": "Fall colors mirrored in a calm lake",
@@ -1217,7 +1217,7 @@ const contentData = {
       },
       {
         "id": 10,
-        "url": "/assets/ZVE02104.jpg",
+        "url": "src/assets/ZVE02104.jpg",
         "title": "Blue Horizon",
         "category": "Travel",
         "description": "A lakeside scene beneath snow capped mountains",
@@ -1227,7 +1227,7 @@ const contentData = {
       },
       {
         "id": 11,
-        "url": "/assets/hawkhill.png",
+        "url": "src/assets/hawkhill.png",
         "title": "Hawk Hill Horizon",
         "category": "Nature",
         "description": "A calm pastel sunrise above the ocean",
@@ -1237,7 +1237,7 @@ const contentData = {
       },
       {
         "id": 12,
-        "url": "/assets/lantang.png",
+        "url": "src/assets/lantang.png",
         "title": "Langtang Ridge",
         "category": "Travel",
         "description": "Sharp Himalayan ridges leading toward a massive snow peak",
@@ -1247,7 +1247,7 @@ const contentData = {
       },
       {
         "id": 13,
-        "url": "/assets/annapurna.png",
+        "url": "src/assets/annapurna.png",
         "title": "Annapurna Trail",
         "category": "Travel",
         "description": "Trekkers walking along a golden hillside beneath snowy mountains",
@@ -1257,7 +1257,7 @@ const contentData = {
       },
       {
         "id": 14,
-        "url": "/assets/tshorolpa.png",
+        "url": "src/assets/tshorolpa.png",
         "title": "Tsho Rolpa Glacier Lake",
         "category": "Nature",
         "description": "A frozen glacial lake surrounded by sharp snow covered mountains",
@@ -1267,7 +1267,7 @@ const contentData = {
       },
       {
         "id": 15,
-        "url": "/assets/ZVE02111.jpg",
+        "url": "src/assets/ZVE02111.jpg",
         "title": "Hidden Cove",
         "category": "Nature",
         "description": "A peaceful blue cove framed by pines and rocky shoreline",

@@ -144,11 +144,6 @@ const PhotoCard = memo(function PhotoCard({ photo, onOpen, index }: PhotoCardPro
             loading={index < 12 ? 'eager' : 'lazy'}
             decoding="async"
             onLoad={handleImageLoad}
-            onError={(e) => {
-              console.error('Failed to load image:', photo.src);
-              // Fallback to placeholder
-              setIsLoaded(true);
-            }}
         />
         )}
         {/* Hover overlay with title - desktop only */}
@@ -320,11 +315,6 @@ function PhotoDetailDialog({ photo, isOpen, onClose }: PhotoDetailDialogProps) {
               className="max-w-full max-h-full object-contain rounded-lg"
               loading="eager"
               decoding="async"
-              onError={(e) => {
-                console.error('Failed to load image in dialog:', photo.src);
-                const target = e.target as HTMLImageElement;
-                target.style.display = 'none';
-              }}
             />
           </div>
 
@@ -428,36 +418,17 @@ export function Photography() {
 
   // Transform images data to Photo format - memoized to prevent recalculation
   const photos: Photo[] = useMemo(() => {
-    return images.map((img: any) => {
-      // Fix image URLs: ensure all paths are absolute and correct for production
-      let imageUrl = img.url || '';
-      
-      // Convert src/assets/ to /assets/
-      if (imageUrl.startsWith('src/assets/')) {
-        imageUrl = imageUrl.replace('src/assets/', '/assets/');
-      }
-      // Ensure /assets/ paths are correct (already correct, but double-check)
-      else if (imageUrl.startsWith('/assets/')) {
-        // Already correct, keep as is
-        imageUrl = imageUrl;
-      }
-      // If it's a relative path without leading slash, add it
-      else if (imageUrl.startsWith('assets/')) {
-        imageUrl = '/' + imageUrl;
-      }
-      
-      return {
-        id: img.id,
-        src: imageUrl,
-        alt: img.title,
-        title: img.title,
-        category: img.category,
-        date: img.date || '2024',
-        location: img.location,
-        description: img.description,
-        story: img.story || img.description, // Use story from content.ts, fallback to description
-      };
-    });
+    return images.map((img: any) => ({
+    id: img.id,
+    src: img.url,
+    alt: img.title,
+    title: img.title,
+    category: img.category,
+    date: img.date || '2024',
+    location: img.location,
+    description: img.description,
+    story: img.story || img.description, // Use story from content.ts, fallback to description
+  }));
   }, [images]);
 
   // Filter photos based on selected category - memoized for performance
