@@ -1,0 +1,48 @@
+name: Deploy Vite React App to GitHub Pages (Alternative)
+
+on:
+  push:
+    branches:
+      - master  # Change to 'main' if your default branch is 'main'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    
+    permissions:
+      contents: write
+      pages: write
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run deploy
+
+      - name: Deploy to gh-pages
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          
+          # Remove everything except what we want to deploy
+          git rm -rf --ignore-unmatch .github node_modules src public build .gitignore package.json package-lock.json tsconfig.json tsconfig.node.json vite.config.ts vite-plugin-save-content.ts README.md deploy.js 2>/dev/null || true
+          
+          # Add only the files we want to deploy
+          git add index.html assets/ .nojekyll 2>/dev/null || true
+          
+          # Commit and push to gh-pages branch
+          git commit -m "Deploy to GitHub Pages" || exit 0
+          git push origin HEAD:gh-pages --force
+
