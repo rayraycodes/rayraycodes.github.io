@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { motion } from 'motion/react';
 import { Heart, Globe, BookOpen, Laptop, Users, Zap, ArrowLeft, Calendar } from 'lucide-react';
 import contentData from '../../data/content';
+import { getPageTitleColor } from '../../utils/brandColorsConfig';
 
 const iconMap: Record<string, typeof Globe> = {
   'Globe': Globe,
@@ -177,7 +178,7 @@ export function Impact() {
             transition={{ duration: 0.8 }}
             className="text-center mb-12"
           >
-            <h1 className="text-5xl lg:text-6xl tracking-tight mb-6">
+            <h1 className="text-5xl lg:text-6xl tracking-tight mb-6" style={{ color: getPageTitleColor('impact') }}>
               {hero.title}
             </h1>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">

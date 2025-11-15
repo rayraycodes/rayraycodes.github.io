@@ -3,6 +3,7 @@ import { Eye, Code, CheckCircle2, Sparkles, Users, Zap } from 'lucide-react';
 import { Badge } from '../ui/badge';
 import { ImageWithFallback } from '../figma/ImageWithFallback';
 import contentData from '../../data/content';
+import { getPageTitleColor } from '../../utils/brandColorsConfig';
 
 const iconMap: Record<string, typeof Eye> = {
   'Eye': Eye,
@@ -35,7 +36,7 @@ export function Accessibility() {
             transition={{ duration: 0.8 }}
             className="text-center"
           >
-            <h1 className="text-5xl lg:text-6xl tracking-tight mb-6">
+            <h1 className="text-5xl lg:text-6xl tracking-tight mb-6" style={{ color: getPageTitleColor('accessibility') }}>
               {hero.title}
             </h1>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">

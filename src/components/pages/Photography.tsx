@@ -1,6 +1,8 @@
 import { useState, useEffect, useRef, useMemo, memo } from 'react';
 import { X } from 'lucide-react';
 import contentData from '../../data/content';
+import { brandColors } from '../../styles/brandColors';
+import { getPageTitleColor } from '../../utils/brandColorsConfig';
 
 // Photo type definition
 // Note: category can be a string (single category) or string[] (multiple categories)
@@ -36,14 +38,23 @@ function CategoryFilterBar({ categories, selectedCategory, onCategoryChange }: C
                 onClick={() => onCategoryChange(category)}
                 aria-pressed={isSelected}
                 aria-current={isSelected ? 'page' : undefined}
-                className={`
-                  px-4 py-2 rounded-full text-sm font-medium transition-all duration-200
-                  whitespace-nowrap focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2
-                  ${isSelected
-                    ? 'bg-blue-600 text-white shadow-md border border-blue-700'
-                    : 'bg-white text-gray-700 hover:bg-gray-100 border border-gray-200'
+                className="px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 whitespace-nowrap focus:outline-none focus:ring-2 focus:ring-offset-2 shadow-md border"
+                style={{
+                  backgroundColor: isSelected ? brandColors.blue : 'white',
+                  color: isSelected ? 'white' : brandColors.blue,
+                  borderColor: isSelected ? brandColors.blue : brandColors.white,
+                  boxShadow: isSelected ? `0 2px 4px ${brandColors.blue}40` : `0 1px 2px ${brandColors.white}60`,
+                }}
+                onMouseEnter={(e) => {
+                  if (!isSelected) {
+                    e.currentTarget.style.backgroundColor = `${brandColors.white}30`;
                   }
-                `}
+                }}
+                onMouseLeave={(e) => {
+                  if (!isSelected) {
+                    e.currentTarget.style.backgroundColor = 'white';
+                  }
+                }}
               >
                 {category}
               </button>
@@ -64,13 +75,13 @@ interface PhotoCardProps {
 
 const PhotoCard = memo(function PhotoCard({ photo, onOpen, index }: PhotoCardProps) {
   const [isLoaded, setIsLoaded] = useState(false);
-  const [isInView, setIsInView] = useState(index < 12); // Load first 12 eagerly
+  const [isInView, setIsInView] = useState(index < 6); // Load first 6 eagerly (reduced from 12)
   const imgRef = useRef<HTMLImageElement>(null);
   const containerRef = useRef<HTMLElement | null>(null);
 
-  // Intersection Observer for lazy loading
+  // Intersection Observer for lazy loading - optimized
   useEffect(() => {
-    if (isInView || index < 12) return;
+    if (isInView || index < 6) return;
 
     const observer = new IntersectionObserver(
       (entries) => {
@@ -82,7 +93,7 @@ const PhotoCard = memo(function PhotoCard({ photo, onOpen, index }: PhotoCardPro
         });
       },
       {
-        rootMargin: '50px', // Start loading 50px before image enters viewport
+        rootMargin: '100px', // Increased to start loading earlier
         threshold: 0.01,
       }
     );
@@ -94,15 +105,29 @@ const PhotoCard = memo(function PhotoCard({ photo, onOpen, index }: PhotoCardPro
     return () => observer.disconnect();
   }, [isInView, index]);
 
-  // Preload image when in view
+  // Preload image when in view - optimized
   useEffect(() => {
-    if (isInView && !isLoaded) {
-      const img = new Image();
-      img.src = photo.src;
-      img.onload = () => setIsLoaded(true);
-      img.onerror = () => setIsLoaded(true); // Still mark as loaded to prevent retries
+    if (isInView && !isLoaded && photo.src) {
+      // Use requestIdleCallback for non-critical images
+      const loadImage = () => {
+        const img = new Image();
+        img.src = photo.src;
+        img.onload = () => setIsLoaded(true);
+        img.onerror = () => setIsLoaded(true);
+      };
+      
+      if (index < 6) {
+        // Critical images load immediately
+        loadImage();
+      } else if ('requestIdleCallback' in window) {
+        // Non-critical images load when browser is idle
+        requestIdleCallback(loadImage, { timeout: 2000 });
+      } else {
+        // Fallback for browsers without requestIdleCallback
+        setTimeout(loadImage, 100);
+      }
     }
-  }, [isInView, photo.src, isLoaded]);
+  }, [isInView, photo.src, isLoaded, index]);
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === 'Enter' || e.key === ' ') {
@@ -118,7 +143,15 @@ const PhotoCard = memo(function PhotoCard({ photo, onOpen, index }: PhotoCardPro
   return (
     <article 
       ref={containerRef}
-      className="group relative w-full h-full aspect-square overflow-hidden rounded-lg bg-gray-100 cursor-pointer focus-within:ring-2 focus-within:ring-blue-500 focus-within:ring-offset-1 focus-within:outline-none transition-all duration-500 ease-out hover:-translate-y-0.5 hover:scale-[1.02] hover:shadow-xl"
+      className="group relative w-full h-full aspect-square overflow-hidden rounded-lg cursor-pointer focus-within:ring-2 focus-within:ring-offset-1 focus-within:outline-none"
+      style={{ 
+        backgroundColor: `${brandColors.white}40`,
+        willChange: 'transform', // Optimize for animations
+      }}
+      onFocus={(e) => {
+        e.currentTarget.style.outline = `2px solid ${brandColors.blue}`;
+        e.currentTarget.style.outlineOffset = '2px';
+      }}
     >
       <button
         type="button"
@@ -129,7 +162,12 @@ const PhotoCard = memo(function PhotoCard({ photo, onOpen, index }: PhotoCardPro
       >
         {/* Blur placeholder */}
         {!isLoaded && (
-          <div className="absolute inset-0 bg-gradient-to-br from-gray-200 via-gray-300 to-gray-200 animate-pulse" />
+          <div 
+            className="absolute inset-0 bg-gradient-to-br animate-pulse" 
+            style={{
+              background: `linear-gradient(to bottom right, ${brandColors.white}60, ${brandColors.white}80, ${brandColors.white}60)`
+            }}
+          />
         )}
         
         {/* Actual image */}
@@ -138,16 +176,20 @@ const PhotoCard = memo(function PhotoCard({ photo, onOpen, index }: PhotoCardPro
             ref={imgRef}
           src={photo.src}
           alt={photo.alt}
-            className={`w-full h-full object-cover transition-all duration-500 ease-out group-hover:scale-110 ${
+            className={`w-full h-full object-cover ${
               isLoaded ? 'opacity-100' : 'opacity-0'
             }`}
-            loading={index < 12 ? 'eager' : 'lazy'}
+            style={{
+              willChange: 'opacity, transform',
+              transition: isLoaded ? 'opacity 0.3s ease-out' : 'none',
+            }}
+            loading={index < 6 ? 'eager' : 'lazy'}
             decoding="async"
             onLoad={handleImageLoad}
         />
         )}
         {/* Hover overlay with title - desktop only */}
-        <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
+        <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" style={{ willChange: 'opacity' }}>
           {/* Vignette effect - darker bottom and edges */}
           <div 
             className="absolute inset-0"
@@ -156,7 +198,12 @@ const PhotoCard = memo(function PhotoCard({ photo, onOpen, index }: PhotoCardPro
             }}
           />
           {/* Text container with additional dark background for better contrast */}
-          <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/90 via-black/70 to-black/40">
+          <div 
+            className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t"
+            style={{
+              background: `linear-gradient(to top, ${brandColors.blue}E6, ${brandColors.blue}B3, ${brandColors.blue}66)`
+            }}
+          >
             <h3 className="text-white text-sm font-medium truncate drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">{photo.title}</h3>
           </div>
         </div>
@@ -171,21 +218,21 @@ interface PhotoGridProps {
   onPhotoClick: (photo: Photo) => void;
 }
 
-function PhotoGrid({ photos, onPhotoClick }: PhotoGridProps) {
+const PhotoGrid = memo(function PhotoGrid({ photos, onPhotoClick }: PhotoGridProps) {
   if (photos.length === 0) {
     return (
       <div className="text-center py-16">
-        <p className="text-gray-500">No photos found in this category.</p>
+        <p style={{ color: brandColors.blue }}>No photos found in this category.</p>
       </div>
     );
   }
 
   return (
     <div
-      className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 bg-gray-50/50 p-4 rounded-2xl"
+      className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 p-4 rounded-2xl"
+      style={{ backgroundColor: `${brandColors.white}30`, gap: '14px' }}
       role="list"
       aria-label="Photo gallery"
-      style={{ gap: '14px' }}
     >
       {photos.map((photo, index) => (
         <div key={photo.id} role="listitem" className="w-full aspect-square">
@@ -194,7 +241,7 @@ function PhotoGrid({ photos, onPhotoClick }: PhotoGridProps) {
       ))}
     </div>
   );
-}
+});
 
 // Photo Detail Dialog Component
 interface PhotoDetailDialogProps {
@@ -212,8 +259,10 @@ function PhotoDetailDialog({ photo, isOpen, onClose }: PhotoDetailDialogProps) {
   const imgRef = useRef<HTMLImageElement>(null);
   const [dialogWidth, setDialogWidth] = useState<string>('90vw');
 
-  // Set responsive dialog width
+  // Set responsive dialog width - debounced for performance
   useEffect(() => {
+    let timeoutId: NodeJS.Timeout;
+    
     const updateWidth = () => {
       if (window.innerWidth >= 1024) {
         setDialogWidth('60vw');
@@ -224,24 +273,38 @@ function PhotoDetailDialog({ photo, isOpen, onClose }: PhotoDetailDialogProps) {
       }
     };
     
+    const handleResize = () => {
+      clearTimeout(timeoutId);
+      timeoutId = setTimeout(updateWidth, 150); // Debounce resize
+    };
+    
     updateWidth();
-    window.addEventListener('resize', updateWidth);
-    return () => window.removeEventListener('resize', updateWidth);
+    window.addEventListener('resize', handleResize, { passive: true });
+    return () => {
+      window.removeEventListener('resize', handleResize);
+      clearTimeout(timeoutId);
+    };
   }, []);
 
-  // Detect image orientation when photo changes
+  // Detect image orientation when photo changes - optimized
   useEffect(() => {
-    if (photo) {
-      const img = new Image();
-      img.onload = () => {
-        const isPortrait = img.height > img.width;
+    if (photo && photo.src) {
+      // Use the image that's already in the dialog if available
+      if (imgRef.current && imgRef.current.complete) {
+        const isPortrait = imgRef.current.naturalHeight > imgRef.current.naturalWidth;
         setImageOrientation(isPortrait ? 'portrait' : 'landscape');
-      };
-      img.onerror = () => {
-        // Default to landscape if image fails to load
-        setImageOrientation('landscape');
-      };
-      img.src = photo.src;
+      } else {
+        // Only create new image if needed
+        const img = new Image();
+        img.onload = () => {
+          const isPortrait = img.height > img.width;
+          setImageOrientation(isPortrait ? 'portrait' : 'landscape');
+        };
+        img.onerror = () => {
+          setImageOrientation('landscape');
+        };
+        img.src = photo.src;
+      }
     } else {
       setImageOrientation(null);
     }
@@ -311,7 +374,8 @@ function PhotoDetailDialog({ photo, isOpen, onClose }: PhotoDetailDialogProps) {
     <>
       {/* Backdrop */}
       <div
-        className="fixed inset-0 bg-black/30 backdrop-blur-sm z-45"
+        className="fixed inset-0 backdrop-blur-sm z-45"
+        style={{ backgroundColor: `${brandColors.blue}4D` }}
         onClick={onClose}
         aria-hidden="true"
       />
@@ -335,24 +399,41 @@ function PhotoDetailDialog({ photo, isOpen, onClose }: PhotoDetailDialogProps) {
           onClick={(e) => e.stopPropagation()}
         >
           {/* Header with close button - sticky at top */}
-          <div className="flex items-center justify-between px-4 sm:px-6 py-3 sm:py-4 border-b border-gray-200 bg-white flex-shrink-0 sticky top-0 z-10">
-            <h2 id="photo-dialog-title" className="text-base sm:text-lg font-semibold text-gray-900 tracking-tight pr-4 truncate">
+          <div 
+            className="flex items-center justify-between px-4 sm:px-6 py-3 sm:py-4 border-b bg-white flex-shrink-0 sticky top-0 z-10"
+            style={{ borderBottomColor: `${brandColors.white}60` }}
+          >
+            <h2 id="photo-dialog-title" className="text-base sm:text-lg font-semibold tracking-tight pr-4 truncate" style={{ color: brandColors.blue }}>
               {photo.title}
             </h2>
             <button
               ref={closeButtonRef}
               type="button"
               onClick={onClose}
-              className="p-2 rounded-lg hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors flex-shrink-0"
+              className="p-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-offset-2 transition-colors flex-shrink-0"
+              style={{
+                color: brandColors.blue,
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.backgroundColor = `${brandColors.white}40`;
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.backgroundColor = 'transparent';
+              }}
+              onFocus={(e) => {
+                e.currentTarget.style.outline = `2px solid ${brandColors.blue}`;
+                e.currentTarget.style.outlineOffset = '2px';
+              }}
               aria-label="Close dialog"
             >
-              <X className="w-5 h-5 text-gray-600" aria-hidden="true" />
+              <X className="w-5 h-5" aria-hidden="true" />
             </button>
           </div>
 
           {/* Image container - scrollable, adapts to orientation, can shrink if needed */}
-          <div className="flex-1 overflow-auto bg-gray-50 flex items-center justify-center min-h-0"
-            style={{ padding: '5%', flexShrink: 1, minHeight: 0 }}>
+          <div 
+            className="flex-1 overflow-auto flex items-center justify-center min-h-0"
+            style={{ backgroundColor: `${brandColors.white}30`, padding: '5%', flexShrink: 1, minHeight: 0 }}>
             <img
               ref={imgRef}
               src={photo.src}
@@ -371,13 +452,16 @@ function PhotoDetailDialog({ photo, isOpen, onClose }: PhotoDetailDialogProps) {
           </div>
 
           {/* Footer with metadata - scrollable */}
-          <div className="px-4 sm:px-6 py-3 sm:py-4 border-t border-gray-200 bg-white overflow-y-auto flex-shrink-0">
+          <div 
+            className="px-4 sm:px-6 py-3 sm:py-4 border-t bg-white overflow-y-auto flex-shrink-0"
+            style={{ borderTopColor: `${brandColors.white}60` }}
+          >
             <div className="space-y-4 sm:space-y-6">
               {/* Story Section */}
               {photo.story && (
                 <div className="space-y-2 sm:space-y-3">
-                  <h3 className="text-base sm:text-lg font-semibold text-gray-900 tracking-tight">The Story</h3>
-                  <p className="text-sm sm:text-base text-gray-700 leading-relaxed whitespace-pre-line">
+                  <h3 className="text-base sm:text-lg font-semibold tracking-tight" style={{ color: brandColors.blue }}>The Story</h3>
+                  <p className="text-sm sm:text-base leading-relaxed whitespace-pre-line" style={{ color: brandColors.blue }}>
                     {photo.story}
                   </p>
                 </div>
@@ -386,26 +470,31 @@ function PhotoDetailDialog({ photo, isOpen, onClose }: PhotoDetailDialogProps) {
               {/* Description - only show if no story */}
               {photo.description && !photo.story && (
                 <div className="space-y-3">
-                  <p className="text-gray-700 leading-relaxed text-base">{photo.description}</p>
+                  <p className="leading-relaxed text-base" style={{ color: brandColors.blue }}>{photo.description}</p>
                 </div>
               )}
 
               {/* Metadata */}
-              <div className="space-y-2 sm:space-y-3 flex flex-wrap gap-4 sm:gap-6 text-xs sm:text-sm text-muted-foreground pt-4 sm:pt-6 border-t border-gray-200">
+              <div 
+                className="space-y-2 sm:space-y-3 flex flex-wrap gap-4 sm:gap-6 text-xs sm:text-sm pt-4 sm:pt-6 border-t"
+                style={{ 
+                  borderTopColor: `${brandColors.white}60`
+                }}
+              >
                 {photo.date && (
-                  <div>
-                    <span className="font-medium text-gray-900">Date:</span>{' '}
+                  <div style={{ color: brandColors.blue }}>
+                    <span className="font-medium">Date:</span>{' '}
                     <span>{photo.date}</span>
                   </div>
                 )}
                 {photo.location && (
-                  <div>
-                    <span className="font-medium text-gray-900">Location:</span>{' '}
+                  <div style={{ color: brandColors.blue }}>
+                    <span className="font-medium">Location:</span>{' '}
                     <span>{photo.location}</span>
                   </div>
                 )}
-                <div>
-                  <span className="font-medium text-gray-900">Category:</span>{' '}
+                <div style={{ color: brandColors.blue }}>
+                  <span className="font-medium">Category:</span>{' '}
                   <span>
                     {Array.isArray(photo.category)
                       ? photo.category.join(', ')
@@ -440,25 +529,28 @@ export function Photography() {
   const photographyData = cmsData || contentData.photography;
   const { categories, images } = photographyData;
 
-  // Preload critical images (first 4) for faster initial render
+  // Preload critical images (first 6) for faster initial render - optimized
   useEffect(() => {
-    const criticalImages = images.slice(0, 4);
+    const criticalImages = images.slice(0, 6);
+    const preloadLinks: HTMLLinkElement[] = [];
+    
     criticalImages.forEach((img: any) => {
       if (img.url) {
         const link = document.createElement('link');
         link.rel = 'preload';
         link.as = 'image';
         link.href = img.url;
+        link.fetchPriority = 'high';
         document.head.appendChild(link);
+        preloadLinks.push(link);
       }
     });
 
     return () => {
       // Cleanup preload links when component unmounts
-      const preloadLinks = document.querySelectorAll('link[rel="preload"][as="image"]');
       preloadLinks.forEach((link) => {
-        if (criticalImages.some((img: any) => img.url === link.getAttribute('href'))) {
-          link.remove();
+        if (link.parentNode) {
+          link.parentNode.removeChild(link);
         }
       });
     };
@@ -524,11 +616,14 @@ export function Photography() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 pt-24 lg:pt-32">
+    <div 
+      className="min-h-screen pt-24 lg:pt-32"
+      style={{ backgroundColor: `${brandColors.white}20` }}
+    >
       <main className="max-w-[1200px] mx-auto px-6 lg:px-12 pt-12 lg:pt-16 pb-32 lg:pb-40">
         {/* Header Section */}
         <header className="mb-8">
-          <h1 className="text-4xl lg:text-5xl font-semibold text-gray-900 mb-3 tracking-tight">
+          <h1 className="text-4xl lg:text-5xl font-semibold mb-3 tracking-tight" style={{ color: getPageTitleColor('photography') }}>
             Portfolio
           </h1>
         </header>

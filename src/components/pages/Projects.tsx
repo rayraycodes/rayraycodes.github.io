@@ -4,6 +4,7 @@ import { Badge } from '../ui/badge';
 import { Button } from '../ui/button';
 import { ImageWithFallback } from '../figma/ImageWithFallback';
 import contentData from '../../data/content';
+import { getPageTitleColor } from '../../utils/brandColorsConfig';
 
 export function Projects() {
   const [selectedProject, setSelectedProject] = useState<number | null>(null);
@@ -27,7 +28,7 @@ export function Projects() {
             transition={{ duration: 0.8 }}
             className="text-center"
           >
-            <h1 className="text-5xl lg:text-6xl tracking-tight mb-6">
+            <h1 className="text-5xl lg:text-6xl tracking-tight mb-6" style={{ color: getPageTitleColor('projects') }}>
               {hero.title}
             </h1>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">

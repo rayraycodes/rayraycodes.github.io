@@ -6,6 +6,7 @@ import { Input } from '../ui/input';
 import { Textarea } from '../ui/textarea';
 import { Label } from '../ui/label';
 import contentData from '../../data/content';
+import { getPageTitleColor } from '../../utils/brandColorsConfig';
 
 const iconMap: Record<string, typeof Mail> = {
   'Email': Mail,
@@ -47,7 +48,7 @@ export function Contact() {
             transition={{ duration: 0.8 }}
             className="text-center"
           >
-            <h1 className="text-5xl lg:text-6xl tracking-tight mb-6">
+            <h1 className="text-5xl lg:text-6xl tracking-tight mb-6" style={{ color: getPageTitleColor('contact') }}>
               {hero.title}
             </h1>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">

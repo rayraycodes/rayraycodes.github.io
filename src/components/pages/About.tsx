@@ -2,6 +2,7 @@ import { motion } from 'motion/react';
 import { Code2, Sparkles, Database, Heart, Accessibility, Brain } from 'lucide-react';
 import { ImageWithFallback } from '../figma/ImageWithFallback';
 import contentData from '../../data/content';
+import { getPageTitleColor } from '../../utils/brandColorsConfig';
 
 const iconMap: Record<string, typeof Code2> = {
   'Code2': Code2,
@@ -36,7 +37,7 @@ export function About() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
             >
-              <h1 className="text-5xl lg:text-6xl tracking-tight mb-6">
+              <h1 className="text-5xl lg:text-6xl tracking-tight mb-6" style={{ color: getPageTitleColor('about') }}>
                 {hero.title}
               </h1>
               <div className="space-y-4 text-lg text-muted-foreground">

@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
-import { Save, Download, Plus, Trash2, Edit2, X, Image as ImageIcon, Lock } from 'lucide-react';
+import { Save, Download, Plus, Trash2, Edit2, X, Image as ImageIcon, Lock, RotateCcw } from 'lucide-react';
+import { motion } from 'motion/react';
 import contentData from '../../data/content';
+import { brandColors, brandColorsArray } from '../../styles/brandColors';
 
 // Password protection - change this to your desired password
 const CMS_PASSWORD = 'reganmaharjan'; // You can change this to any password you want
@@ -16,7 +18,7 @@ interface Photo {
   story: string;
 }
 
-type ContentTab = 'navigation' | 'home' | 'about' | 'experience' | 'projects' | 'impact' | 'contact' | 'accessibility' | 'photography';
+type ContentTab = 'navigation' | 'home' | 'about' | 'experience' | 'projects' | 'impact' | 'contact' | 'accessibility' | 'photography' | 'brandColors';
 
 export function CMS() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -30,6 +32,32 @@ export function CMS() {
       return contentData || {};
     } catch (error) {
       console.error('Error loading contentData:', error);
+      return {};
+    }
+  });
+
+  // State for brand colors configuration
+  // Only title and navigation active hints can have custom text colors
+  const [brandColorsConfig, setBrandColorsConfig] = useState<any>(() => {
+    try {
+      const saved = localStorage.getItem('cms-brand-colors');
+      if (saved) {
+        return JSON.parse(saved);
+      }
+      // Default: all pages use blue for titles and navigation hints
+      return {
+        navigation: { titleColor: 'blue', activeHintColor: 'blue', background: 'white', border: 'white' },
+        home: { titleColor: 'blue', activeHintColor: 'blue', background: 'white', border: 'white' },
+        about: { titleColor: 'blue', activeHintColor: 'blue', background: 'white', border: 'white' },
+        experience: { titleColor: 'blue', activeHintColor: 'blue', background: 'white', border: 'white' },
+        projects: { titleColor: 'blue', activeHintColor: 'blue', background: 'white', border: 'white' },
+        impact: { titleColor: 'blue', activeHintColor: 'blue', background: 'white', border: 'white' },
+        contact: { titleColor: 'blue', activeHintColor: 'blue', background: 'white', border: 'white' },
+        accessibility: { titleColor: 'blue', activeHintColor: 'blue', background: 'white', border: 'white' },
+        photography: { titleColor: 'blue', activeHintColor: 'blue', background: 'white', border: 'white' },
+      };
+    } catch (error) {
+      console.error('Error loading brand colors config:', error);
       return {};
     }
   });
@@ -47,16 +75,53 @@ export function CMS() {
     }
   }, []);
 
-  // Load from localStorage on mount
+  // Deep merge function to merge localStorage data with content.ts
+  // Strategy: Use content.ts as base, apply localStorage overrides
+  // For arrays: If localStorage has the array, use it (preserves CMS edits)
+  // Otherwise, use content.ts array (shows new items from content.ts)
+  const deepMerge = (base: any, override: any): any => {
+    if (override === null || override === undefined) return base;
+    if (typeof base !== 'object' || typeof override !== 'object') return override;
+    
+    // For arrays: if override exists, use it (preserves CMS edits)
+    // Otherwise, use base (shows new items from content.ts)
+    if (Array.isArray(base) && Array.isArray(override)) {
+      return override.length > 0 ? override : base;
+    }
+    if (Array.isArray(base)) return base; // Keep base array if override is not an array
+    if (Array.isArray(override)) return override; // Use override array if base is not an array
+    
+    const merged = { ...base };
+    for (const key in override) {
+      if (override.hasOwnProperty(key)) {
+        // Only merge if override has a value
+        if (override[key] !== null && override[key] !== undefined) {
+          merged[key] = deepMerge(base[key], override[key]);
+        }
+      }
+    }
+    return merged;
+  };
+
+  // Load from localStorage on mount and merge with content.ts
   useEffect(() => {
     const saved = localStorage.getItem('cms-all-content');
     if (saved) {
       try {
-        setAllContent(JSON.parse(saved));
+        const savedData = JSON.parse(saved);
+        // Merge saved CMS data with fresh content.ts data
+        // This ensures content.ts updates are reflected while preserving CMS edits
+        const merged = deepMerge(contentData, savedData);
+        setAllContent(merged);
         setHasChanges(true);
       } catch (e) {
-        console.error('Failed to load saved data');
+        console.error('Failed to load saved data, using content.ts');
+        // If localStorage is corrupted, use content.ts
+        setAllContent(contentData);
       }
+    } else {
+      // No saved data, use content.ts directly
+      setAllContent(contentData);
     }
   }, []);
 
@@ -66,6 +131,13 @@ export function CMS() {
       localStorage.setItem('cms-all-content', JSON.stringify(allContent));
     }
   }, [allContent, hasChanges]);
+
+  // Save brand colors config to localStorage whenever it changes
+  useEffect(() => {
+    localStorage.setItem('cms-brand-colors', JSON.stringify(brandColorsConfig));
+    // Dispatch custom event to notify other components
+    window.dispatchEvent(new Event('brandColorsUpdated'));
+  }, [brandColorsConfig]);
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
@@ -89,10 +161,10 @@ export function CMS() {
   // Safety check - ensure contentData is loaded
   if (!allContent || Object.keys(allContent).length === 0) {
     return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4">
+      <div className="min-h-screen flex items-center justify-center p-4" style={{ backgroundColor: `${brandColors.white}20` }}>
         <div className="text-center">
-          <h1 className="text-2xl font-bold text-gray-900 mb-2">Loading CMS...</h1>
-          <p className="text-gray-600">Please wait while content loads.</p>
+          <h1 className="text-2xl font-bold mb-2" style={{ color: brandColors.blue }}>Loading CMS...</h1>
+          <p style={{ color: brandColors.blue }}>Please wait while content loads.</p>
         </div>
       </div>
     );
@@ -101,19 +173,19 @@ export function CMS() {
   // Show login screen if not authenticated
   if (!isAuthenticated) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center p-4">
+      <div className="min-h-screen flex items-center justify-center p-4" style={{ background: `linear-gradient(to bottom right, ${brandColors.white}30, ${brandColors.white}50)` }}>
         <div className="bg-white rounded-2xl shadow-xl p-8 max-w-md w-full">
           <div className="text-center mb-8">
             <div className="inline-flex items-center justify-center w-16 h-16 bg-blue-100 rounded-full mb-4">
               <Lock className="w-8 h-8 text-blue-600" />
             </div>
-            <h1 className="text-2xl font-bold text-gray-900 mb-2">Content Management</h1>
-            <p className="text-gray-600">Enter password to access CMS</p>
+            <h1 className="text-2xl font-bold mb-2" style={{ color: brandColors.blue }}>Content Management</h1>
+            <p style={{ color: brandColors.blue }}>Enter password to access CMS</p>
           </div>
 
           <form onSubmit={handleLogin} className="space-y-4">
             <div>
-              <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-2">
+              <label htmlFor="password" className="block text-sm font-medium mb-2" style={{ color: brandColors.blue }}>
                 Password
               </label>
               <input
@@ -125,7 +197,7 @@ export function CMS() {
                   setPasswordError('');
                 }}
                 className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors ${
-                  passwordError ? 'border-red-300' : 'border-gray-300'
+                  passwordError ? `border-${brandColors.red}` : `border-${brandColors.white}`
                 }`}
                 placeholder="Enter your password"
                 autoFocus
@@ -372,37 +444,69 @@ export default contentData;`;
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 pt-24 lg:pt-32">
+    <div className="min-h-screen pt-24 lg:pt-32" style={{ backgroundColor: `${brandColors.white}20` }}>
       <div className="max-w-7xl mx-auto px-6 lg:px-12 py-12">
         {/* Header */}
         <div className="mb-8 flex items-center justify-between">
           <div>
-            <h1 className="text-4xl font-bold text-gray-900 mb-2">Content Management</h1>
-            <p className="text-gray-600">Edit and manage your portfolio content</p>
+            <h1 className="text-4xl font-bold mb-2" style={{ color: brandColors.blue }}>Content Management</h1>
+            <p style={{ color: brandColors.blue }}>Edit and manage your portfolio content</p>
           </div>
           <button
             onClick={handleLogout}
-            className="px-4 py-2 text-sm text-gray-600 hover:text-gray-900 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
+            className="px-4 py-2 text-sm border rounded-lg transition-colors"
+            style={{ 
+              color: brandColors.blue,
+              borderColor: brandColors.white,
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.color = brandColors.blue;
+              e.currentTarget.style.backgroundColor = `${brandColors.white}30`;
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.color = brandColors.blue;
+              e.currentTarget.style.backgroundColor = 'transparent';
+            }}
           >
             Logout
           </button>
         </div>
 
         {/* Tabs */}
-        <div className="flex gap-2 mb-8 border-b border-gray-200 overflow-x-auto">
-          {(['navigation', 'home', 'about', 'experience', 'projects', 'impact', 'contact', 'accessibility', 'photography'] as ContentTab[]).map((tab) => (
-          <button
-              key={tab}
-              onClick={() => setActiveTab(tab)}
-              className={`px-4 py-3 font-medium transition-colors border-b-2 whitespace-nowrap ${
-                activeTab === tab
-                ? 'border-blue-600 text-blue-600'
-                : 'border-transparent text-gray-600 hover:text-gray-900'
-            }`}
-          >
-              {tab.charAt(0).toUpperCase() + tab.slice(1)}
-          </button>
-          ))}
+        <div className="flex gap-1 mb-8 overflow-x-auto">
+          {(['navigation', 'home', 'about', 'experience', 'projects', 'impact', 'contact', 'accessibility', 'photography', 'brandColors'] as ContentTab[]).map((tab, index) => {
+            const isActive = activeTab === tab;
+            // Get color for active tab - cycle through brand colors
+            const tabColor = isActive ? brandColorsArray[index % brandColorsArray.length] : brandColors.blue;
+            
+            return (
+              <button
+                key={tab}
+                onClick={() => setActiveTab(tab)}
+                className="relative px-4 py-2 transition-colors group"
+              >
+                <span className="relative z-10 text-sm">
+                  {tab.charAt(0).toUpperCase() + tab.slice(1)}
+                </span>
+                {isActive && (
+                  <motion.div
+                    layoutId="activeTab"
+                    className="absolute inset-0 rounded-lg backdrop-blur-sm"
+                    style={{ 
+                      backgroundColor: `${tabColor}20`,
+                      borderBottom: `1px solid ${tabColor}40`,
+                      boxShadow: `0 1px 2px ${tabColor}20`,
+                    }}
+                    transition={{ type: 'spring', bounce: 0.2, duration: 0.6 }}
+                  />
+                )}
+                <div 
+                  className="absolute inset-0 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity" 
+                  style={{ backgroundColor: `${brandColors.white}30` }}
+                />
+              </button>
+            );
+          })}
         </div>
 
         {/* Action Bar */}
@@ -761,7 +865,7 @@ export default contentData;`;
                     value={editingPhoto.url}
                     onChange={(e) => setEditingPhoto({ ...editingPhoto, url: e.target.value })}
                     className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                    placeholder="src/assets/image.jpg or https://..."
+                    placeholder="/assets/image.jpg or https://..."
                   />
                 </div>
 
@@ -1010,7 +1114,23 @@ export default contentData;`;
               </div>
             </div>
             <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-              <h2 className="text-2xl font-semibold text-gray-900 mb-6">Highlights</h2>
+              <div className="flex items-center justify-between mb-6">
+                <h2 className="text-2xl font-semibold text-gray-900">Highlights</h2>
+                <button
+                  onClick={() => {
+                    // Reset highlights section to content.ts
+                    const updated = { ...allContent };
+                    updated.home.highlights = { ...contentData.home.highlights };
+                    setAllContent(updated);
+                    setHasChanges(true);
+                  }}
+                  className="px-4 py-2 text-sm bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors flex items-center gap-2"
+                  title="Reset to content.ts source"
+                >
+                  <RotateCcw className="w-4 h-4" />
+                  Reset to Source
+                </button>
+              </div>
               <div className="space-y-4">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">Title</label>
@@ -1280,6 +1400,138 @@ export default contentData;`;
                     />
                   </div>
                 ))}
+              </div>
+            </div>
+            <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+              <h2 className="text-2xl font-semibold text-gray-900 mb-6">Values & Philosophy</h2>
+              <div className="space-y-4">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Title</label>
+                  <input
+                    type="text"
+                    value={allContent.about.values.title}
+                    onChange={(e) => updateContent('about', ['values', 'title'], e.target.value)}
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Subtitle</label>
+                  <input
+                    type="text"
+                    value={allContent.about.values.subtitle}
+                    onChange={(e) => updateContent('about', ['values', 'subtitle'], e.target.value)}
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  />
+                </div>
+                <div className="flex items-center justify-between mb-4">
+                  <h3 className="text-lg font-semibold text-gray-900">Items</h3>
+                  <button
+                    onClick={() => handleAddItem('about', ['values', 'items'], { title: 'New Value', description: '' })}
+                    className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors flex items-center gap-2"
+                  >
+                    <Plus className="w-4 h-4" />
+                    Add Value
+                  </button>
+                </div>
+                <div className="space-y-3">
+                  {allContent.about.values.items.map((item: any, index: number) => (
+                    <div key={index} className="p-4 border border-gray-200 rounded-lg space-y-3">
+                      <div className="flex items-center justify-between">
+                        <h4 className="font-medium text-gray-900">Value {index + 1}</h4>
+                        <button
+                          onClick={() => handleDeleteItem('about', ['values', 'items'], index)}
+                          className="p-2 text-red-600 hover:text-red-700 hover:bg-red-50 rounded-lg transition-colors"
+                        >
+                          <Trash2 className="w-4 h-4" />
+                        </button>
+                      </div>
+                      <input
+                        type="text"
+                        value={item.title}
+                        onChange={(e) => {
+                          const updated = [...allContent.about.values.items];
+                          updated[index] = { ...updated[index], title: e.target.value };
+                          updateContent('about', ['values', 'items'], updated);
+                        }}
+                        placeholder="Title"
+                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                      />
+                      <textarea
+                        value={item.description}
+                        onChange={(e) => {
+                          const updated = [...allContent.about.values.items];
+                          updated[index] = { ...updated[index], description: e.target.value };
+                          updateContent('about', ['values', 'items'], updated);
+                        }}
+                        placeholder="Description"
+                        rows={2}
+                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
+                      />
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+            <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+              <h2 className="text-2xl font-semibold text-gray-900 mb-6">Interests</h2>
+              <div className="space-y-4">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Title</label>
+                  <input
+                    type="text"
+                    value={allContent.about.interests.title}
+                    onChange={(e) => updateContent('about', ['interests', 'title'], e.target.value)}
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Subtitle</label>
+                  <input
+                    type="text"
+                    value={allContent.about.interests.subtitle}
+                    onChange={(e) => updateContent('about', ['interests', 'subtitle'], e.target.value)}
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  />
+                </div>
+                <div className="flex items-center justify-between mb-4">
+                  <h3 className="text-lg font-semibold text-gray-900">Items</h3>
+                  <button
+                    onClick={() => {
+                      const updated = [...(allContent.about.interests.items || []), 'New Interest'];
+                      updateContent('about', ['interests', 'items'], updated);
+                    }}
+                    className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors flex items-center gap-2"
+                  >
+                    <Plus className="w-4 h-4" />
+                    Add Interest
+                  </button>
+                </div>
+                <div className="space-y-2">
+                  {allContent.about.interests.items.map((interest: string, index: number) => (
+                    <div key={index} className="flex gap-2 items-center">
+                      <input
+                        type="text"
+                        value={interest}
+                        onChange={(e) => {
+                          const updated = [...allContent.about.interests.items];
+                          updated[index] = e.target.value;
+                          updateContent('about', ['interests', 'items'], updated);
+                        }}
+                        className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        placeholder="Interest"
+                      />
+                      <button
+                        onClick={() => {
+                          const updated = allContent.about.interests.items.filter((_: any, i: number) => i !== index);
+                          updateContent('about', ['interests', 'items'], updated);
+                        }}
+                        className="p-2 text-red-600 hover:text-red-700 hover:bg-red-50 rounded-lg transition-colors"
+                      >
+                        <Trash2 className="w-4 h-4" />
+                      </button>
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
@@ -1675,6 +1927,180 @@ export default contentData;`;
                     />
                   </div>
                 ))}
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Brand Colors Configuration */}
+        {activeTab === 'brandColors' && (
+          <div className="space-y-8">
+            <div className="bg-white rounded-xl shadow-sm border p-6" style={{ borderColor: `${brandColors.white}60` }}>
+              <h2 className="text-2xl font-semibold mb-6" style={{ color: brandColors.blue }}>Brand Colors Configuration</h2>
+              <p className="mb-6" style={{ color: brandColors.blue }}>
+                Select brand colors for each page. Only titles and active navigation hints can have custom text colors.
+                The "Active Tab Hint Color" sets the color that appears in the navigation bar when that page's tab is active.
+                All other text will use the default blue color.
+                <br />
+                <strong>Note:</strong> White is never used for text (except in footer) - it's automatically excluded from text color options.
+              </p>
+              
+              <div className="space-y-6">
+                {(['navigation', 'home', 'about', 'experience', 'projects', 'impact', 'contact', 'accessibility', 'photography'] as const).map((page) => (
+                  <div key={page} className="p-4 rounded-lg border" style={{ borderColor: `${brandColors.white}60`, backgroundColor: `${brandColors.white}10` }}>
+                    <h3 className="text-lg font-semibold mb-4" style={{ color: brandColors.blue }}>
+                      {page.charAt(0).toUpperCase() + page.slice(1)} Page
+                    </h3>
+                    
+                    <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+                      {/* Active Tab Hint Color (for all pages except navigation) */}
+                      {page !== 'navigation' && (
+                        <div>
+                          <label className="block text-sm font-medium mb-2" style={{ color: brandColors.blue }}>
+                            Active Tab Hint Color
+                          </label>
+                          <select
+                            value={brandColorsConfig[page]?.activeHintColor || 'blue'}
+                            onChange={(e) => {
+                              const selectedColor = e.target.value === 'white' ? 'blue' : e.target.value;
+                              setBrandColorsConfig({
+                                ...brandColorsConfig,
+                                [page]: {
+                                  ...brandColorsConfig[page],
+                                  activeHintColor: selectedColor,
+                                },
+                              });
+                            }}
+                            className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-offset-2"
+                            style={{ 
+                              borderColor: brandColors.white,
+                              color: brandColors.blue,
+                            }}
+                          >
+                            <option value="blue">Blue</option>
+                            <option value="red">Red</option>
+                            <option value="green">Green</option>
+                            <option value="yellow">Yellow</option>
+                          </select>
+                          <div 
+                            className="mt-2 h-8 rounded"
+                            style={{ backgroundColor: brandColors[(brandColorsConfig[page]?.activeHintColor || 'blue') as keyof typeof brandColors] }}
+                          />
+                        </div>
+                      )}
+
+                      {/* Title Color */}
+                      <div>
+                        <label className="block text-sm font-medium mb-2" style={{ color: brandColors.blue }}>
+                          Title Color
+                        </label>
+                        <select
+                          value={brandColorsConfig[page]?.titleColor || 'blue'}
+                          onChange={(e) => {
+                            // Enforce rule: white cannot be used for text
+                            const selectedColor = e.target.value === 'white' ? 'blue' : e.target.value;
+                            setBrandColorsConfig({
+                              ...brandColorsConfig,
+                              [page]: {
+                                ...brandColorsConfig[page],
+                                titleColor: selectedColor,
+                              },
+                            });
+                          }}
+                          className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-offset-2"
+                          style={{ 
+                            borderColor: brandColors.white,
+                            color: brandColors.blue,
+                          }}
+                        >
+                          <option value="blue">Blue</option>
+                          <option value="red">Red</option>
+                          <option value="green">Green</option>
+                          <option value="yellow">Yellow</option>
+                        </select>
+                        <div 
+                          className="mt-2 h-8 rounded"
+                          style={{ backgroundColor: brandColors[(brandColorsConfig[page]?.titleColor || 'blue') as keyof typeof brandColors] }}
+                        />
+                      </div>
+
+                      {/* Background Color */}
+                      <div>
+                        <label className="block text-sm font-medium mb-2" style={{ color: brandColors.blue }}>
+                          Background Color
+                        </label>
+                        <select
+                          value={brandColorsConfig[page]?.background || 'white'}
+                          onChange={(e) => {
+                            setBrandColorsConfig({
+                              ...brandColorsConfig,
+                              [page]: {
+                                ...brandColorsConfig[page],
+                                background: e.target.value,
+                              },
+                            });
+                          }}
+                          className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-offset-2"
+                          style={{ 
+                            borderColor: brandColors.white,
+                            color: brandColors.blue,
+                          }}
+                        >
+                          <option value="blue">Blue</option>
+                          <option value="white">White</option>
+                          <option value="red">Red</option>
+                          <option value="green">Green</option>
+                          <option value="yellow">Yellow</option>
+                        </select>
+                        <div 
+                          className="mt-2 h-8 rounded"
+                          style={{ backgroundColor: brandColors[(brandColorsConfig[page]?.background || 'white') as keyof typeof brandColors] }}
+                        />
+                      </div>
+
+                      {/* Border Color */}
+                      <div>
+                        <label className="block text-sm font-medium mb-2" style={{ color: brandColors.blue }}>
+                          Border Color
+                        </label>
+                        <select
+                          value={brandColorsConfig[page]?.border || 'white'}
+                          onChange={(e) => {
+                            setBrandColorsConfig({
+                              ...brandColorsConfig,
+                              [page]: {
+                                ...brandColorsConfig[page],
+                                border: e.target.value,
+                              },
+                            });
+                          }}
+                          className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-offset-2"
+                          style={{ 
+                            borderColor: brandColors.white,
+                            color: brandColors.blue,
+                          }}
+                        >
+                          <option value="blue">Blue</option>
+                          <option value="white">White</option>
+                          <option value="red">Red</option>
+                          <option value="green">Green</option>
+                          <option value="yellow">Yellow</option>
+                        </select>
+                        <div 
+                          className="mt-2 h-8 rounded"
+                          style={{ backgroundColor: brandColors[(brandColorsConfig[page]?.border || 'white') as keyof typeof brandColors] }}
+                        />
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              <div className="mt-6 p-4 rounded-lg" style={{ backgroundColor: `${brandColors.blue}10` }}>
+                <p className="text-sm" style={{ color: brandColors.blue }}>
+                  <strong>Note:</strong> Changes are saved automatically to localStorage. To apply these colors throughout the site, 
+                  components need to be updated to read from the brand colors configuration.
+                </p>
               </div>
             </div>
           </div>

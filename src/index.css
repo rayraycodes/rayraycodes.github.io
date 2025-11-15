@@ -67,6 +67,13 @@
 
 @layer theme {
   :root, :host {
+    /* Brand Colors - Tibetan Prayer Flag Inspired */
+    --brand-blue: #263b8f;
+    --brand-white: #c6c4c4;
+    --brand-red: #ef4444;
+    --brand-green: #22c55e;
+    --brand-yellow: #eab308;
+    
     --font-sans: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
     --color-orange-200: oklch(.901 .076 70.697);

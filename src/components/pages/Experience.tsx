@@ -2,6 +2,7 @@ import { motion } from 'motion/react';
 import { Building2, GraduationCap, Lightbulb, Cpu } from 'lucide-react';
 import { Badge } from '../ui/badge';
 import contentData from '../../data/content';
+import { getPageTitleColor } from '../../utils/brandColorsConfig';
 
 const iconMap: Record<string, typeof Building2> = {
   'Building2': Building2,
@@ -42,7 +43,7 @@ export function Experience() {
             transition={{ duration: 0.8 }}
             className="text-center"
           >
-            <h1 className="text-5xl lg:text-6xl tracking-tight mb-6">
+            <h1 className="text-5xl lg:text-6xl tracking-tight mb-6" style={{ color: getPageTitleColor('experience') }}>
               {hero.title}
             </h1>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
