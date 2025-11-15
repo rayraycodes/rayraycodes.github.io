@@ -429,11 +429,23 @@ export function Photography() {
   // Transform images data to Photo format - memoized to prevent recalculation
   const photos: Photo[] = useMemo(() => {
     return images.map((img: any) => {
-      // Fix image URLs: convert src/assets/ to /assets/ for production
-      let imageUrl = img.url;
-      if (imageUrl && imageUrl.startsWith('src/assets/')) {
+      // Fix image URLs: ensure all paths are absolute and correct for production
+      let imageUrl = img.url || '';
+      
+      // Convert src/assets/ to /assets/
+      if (imageUrl.startsWith('src/assets/')) {
         imageUrl = imageUrl.replace('src/assets/', '/assets/');
       }
+      // Ensure /assets/ paths are correct (already correct, but double-check)
+      else if (imageUrl.startsWith('/assets/')) {
+        // Already correct, keep as is
+        imageUrl = imageUrl;
+      }
+      // If it's a relative path without leading slash, add it
+      else if (imageUrl.startsWith('assets/')) {
+        imageUrl = '/' + imageUrl;
+      }
+      
       return {
         id: img.id,
         src: imageUrl,

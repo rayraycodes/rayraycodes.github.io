@@ -41,6 +41,13 @@ itemsToCopy.forEach(item => {
   }
 });
 
+// Ensure .nojekyll exists (needed for GitHub Pages to serve files correctly)
+const nojekyllPath = path.join(__dirname, '.nojekyll');
+if (!fs.existsSync(nojekyllPath)) {
+  fs.writeFileSync(nojekyllPath, '');
+  console.log('✓ Created .nojekyll file');
+}
+
 // Copy assets folder (JS/CSS from build)
 const buildAssetsDir = path.join(buildDir, 'assets');
 const rootAssetsDir = path.join(__dirname, 'assets');
