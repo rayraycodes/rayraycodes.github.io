@@ -208,6 +208,44 @@ function PhotoDetailDialog({ photo, isOpen, onClose }: PhotoDetailDialogProps) {
   const dialogRef = useRef<HTMLDivElement>(null);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
   const previousActiveElementRef = useRef<HTMLElement | null>(null);
+  const [imageOrientation, setImageOrientation] = useState<'portrait' | 'landscape' | null>(null);
+  const imgRef = useRef<HTMLImageElement>(null);
+  const [dialogWidth, setDialogWidth] = useState<string>('90vw');
+
+  // Set responsive dialog width
+  useEffect(() => {
+    const updateWidth = () => {
+      if (window.innerWidth >= 1024) {
+        setDialogWidth('60vw');
+      } else if (window.innerWidth >= 640) {
+        setDialogWidth('85vw');
+      } else {
+        setDialogWidth('90vw');
+      }
+    };
+    
+    updateWidth();
+    window.addEventListener('resize', updateWidth);
+    return () => window.removeEventListener('resize', updateWidth);
+  }, []);
+
+  // Detect image orientation when photo changes
+  useEffect(() => {
+    if (photo) {
+      const img = new Image();
+      img.onload = () => {
+        const isPortrait = img.height > img.width;
+        setImageOrientation(isPortrait ? 'portrait' : 'landscape');
+      };
+      img.onerror = () => {
+        // Default to landscape if image fails to load
+        setImageOrientation('landscape');
+      };
+      img.src = photo.src;
+    } else {
+      setImageOrientation(null);
+    }
+  }, [photo]);
 
   // Focus management and keyboard handling
   useEffect(() => {
@@ -285,47 +323,61 @@ function PhotoDetailDialog({ photo, isOpen, onClose }: PhotoDetailDialogProps) {
         aria-modal="true"
         aria-labelledby="photo-dialog-title"
         aria-hidden="true"
-        className="fixed inset-0 z-50 flex items-center justify-center py-8 px-4 pointer-events-none space-x-7"
+        className="fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 pointer-events-none"
       >
         <div
-          className="bg-white rounded-2xl shadow-2xl w-full max-w-2xl h-[80vh] overflow-hidden flex flex-col pointer-events-auto space-x-7"
+          className="bg-white rounded-xl sm:rounded-2xl shadow-2xl overflow-hidden flex flex-col pointer-events-auto h-[85vh] sm:h-[80vh] lg:h-[80vh]"
+          style={{
+            width: dialogWidth,
+            maxWidth: dialogWidth,
+            maxHeight: '90vh'
+          }}
           onClick={(e) => e.stopPropagation()}
         >
-          {/* Header with close button */}
-          <div className="flex items-center justify-between px-8 py-10 border-b border-gray-200  p-4">
-            <h2 id="photo-dialog-title" className="text-xl font-semibold text-gray-900 tracking-tight">
+          {/* Header with close button - sticky at top */}
+          <div className="flex items-center justify-between px-4 sm:px-6 py-3 sm:py-4 border-b border-gray-200 bg-white flex-shrink-0 sticky top-0 z-10">
+            <h2 id="photo-dialog-title" className="text-base sm:text-lg font-semibold text-gray-900 tracking-tight pr-4 truncate">
               {photo.title}
             </h2>
             <button
               ref={closeButtonRef}
               type="button"
               onClick={onClose}
-              className="p-2 rounded-lg hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors"
+              className="p-2 rounded-lg hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors flex-shrink-0"
               aria-label="Close dialog"
             >
               <X className="w-5 h-5 text-gray-600" aria-hidden="true" />
             </button>
           </div>
 
-          {/* Image container */}
-          <div className="flex-1 overflow-auto bg-gray-50 flex items-center justify-center p-8">
+          {/* Image container - scrollable, adapts to orientation, can shrink if needed */}
+          <div className="flex-1 overflow-auto bg-gray-50 flex items-center justify-center min-h-0"
+            style={{ padding: '5%', flexShrink: 1, minHeight: 0 }}>
             <img
+              ref={imgRef}
               src={photo.src}
               alt={photo.alt}
-              className="max-w-full max-h-full object-contain rounded-lg"
+              className="object-contain rounded-lg"
+              style={{
+                width: 'auto',
+                height: 'auto',
+                maxWidth: '100%',
+                maxHeight: '100%',
+                objectFit: 'contain'
+              }}
               loading="eager"
               decoding="async"
             />
           </div>
 
-          {/* Footer with metadata */}
-          <div className="px-8 py-8 border-t border-gray-200 bg-white overflow-y-auto flex-shrink-0">
-            <div className="space-y-8">
+          {/* Footer with metadata - scrollable */}
+          <div className="px-4 sm:px-6 py-3 sm:py-4 border-t border-gray-200 bg-white overflow-y-auto flex-shrink-0">
+            <div className="space-y-4 sm:space-y-6">
               {/* Story Section */}
               {photo.story && (
-                <div className="space-y-4">
-                  <h3 className="text-lg font-semibold text-gray-900 tracking-tight">The Story</h3>
-                  <p className="text-gray-700 leading-relaxed text-base whitespace-pre-line">
+                <div className="space-y-2 sm:space-y-3">
+                  <h3 className="text-base sm:text-lg font-semibold text-gray-900 tracking-tight">The Story</h3>
+                  <p className="text-sm sm:text-base text-gray-700 leading-relaxed whitespace-pre-line">
                     {photo.story}
                   </p>
                 </div>
@@ -339,7 +391,7 @@ function PhotoDetailDialog({ photo, isOpen, onClose }: PhotoDetailDialogProps) {
               )}
 
               {/* Metadata */}
-              <div className="space-y-3 flex flex-wrap gap-6 text-sm text-muted-foreground pt-6 border-t border-gray-200">
+              <div className="space-y-2 sm:space-y-3 flex flex-wrap gap-4 sm:gap-6 text-xs sm:text-sm text-muted-foreground pt-4 sm:pt-6 border-t border-gray-200">
                 {photo.date && (
                   <div>
                     <span className="font-medium text-gray-900">Date:</span>{' '}

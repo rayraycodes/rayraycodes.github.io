@@ -83,8 +83,8 @@
     --color-blue-50: oklch(.97 .014 254.604);
     --color-blue-100: oklch(.932 .032 255.585);
     --color-blue-200: oklch(.882 .059 254.128);
-    --color-blue-500: oklch(.623 .214 259.815);
-    --color-blue-600: oklch(.546 .245 262.881);
+    --color-blue-500: #263b8f;
+    --color-blue-600: #1e2d6f;
     --color-indigo-200: oklch(.87 .065 274.039);
     --color-indigo-500: oklch(.585 .233 277.117);
     --color-indigo-600: oklch(.511 .262 276.966);
@@ -2205,7 +2205,7 @@
   }
 
   .text-gradient-blue {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #263b8f 0%, #1e2d6f 100%);
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
