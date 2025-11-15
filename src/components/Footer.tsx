@@ -28,7 +28,7 @@ export function Footer() {
       {/* Nepal image silhouette - cropped at bottom 15% */}
       <div className="w-full relative z-10 overflow-hidden" style={{ height: '85%', minHeight: '221px' }}>
         <img 
-          src="src/assets/nepalimage.jpg" 
+          src="/assets/nepalimage.jpg" 
           alt="Layered Himalayan mountains with fog, Kathmandu skyline, prayer flags, and stupas"
           className="w-full h-full object-cover object-top"
         />

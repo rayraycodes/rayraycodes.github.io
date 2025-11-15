@@ -33,7 +33,7 @@ export function Navigation() {
           {/* Logo with Ray Logo */}
           <Link to="/" className="flex items-center group" aria-label="Home">
             <motion.img 
-              src="src/assets/raylogo.png" 
+              src="/assets/raylogo.png" 
               alt="Regan Maharjan logo"
               className="w-auto bg-transparent transition-all duration-300"
               style={{ background: 'transparent', height: '85px' }}
