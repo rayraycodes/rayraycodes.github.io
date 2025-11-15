@@ -59,6 +59,7 @@
             "dev": "vite",
             "build": "vite build",
             "deploy": "vite build && npm run copy-build",
-            "copy-build": "node deploy.js"
+            "copy-build": "node deploy.js",
+            "preview": "vite preview"
       }
 }

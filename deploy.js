@@ -26,28 +26,42 @@ function copyRecursiveSync(src, dest) {
 
 // Copy build files to root
 const buildDir = path.join(__dirname, 'build');
-const itemsToCopy = ['index.html', 'assets'];
+const itemsToCopy = ['index.html'];
 
+// Copy index.html
 itemsToCopy.forEach(item => {
   const src = path.join(buildDir, item);
   const dest = path.join(__dirname, item);
   
   if (fs.existsSync(src)) {
-    if (fs.statSync(src).isDirectory()) {
-      // Remove existing directory if it exists
-      if (fs.existsSync(dest)) {
-        fs.rmSync(dest, { recursive: true, force: true });
-      }
-      fs.mkdirSync(dest, { recursive: true });
-      copyRecursiveSync(src, dest);
-    } else {
-      fs.copyFileSync(src, dest);
-    }
+    fs.copyFileSync(src, dest);
     console.log(`✓ Copied ${item} to root`);
   } else {
     console.warn(`⚠ ${item} not found in build directory`);
   }
 });
+
+// Copy assets folder (JS/CSS from build)
+const buildAssetsDir = path.join(buildDir, 'assets');
+const rootAssetsDir = path.join(__dirname, 'assets');
+
+if (fs.existsSync(buildAssetsDir)) {
+  if (!fs.existsSync(rootAssetsDir)) {
+    fs.mkdirSync(rootAssetsDir, { recursive: true });
+  }
+  copyRecursiveSync(buildAssetsDir, rootAssetsDir);
+  console.log('✓ Copied build assets to root');
+}
+
+// Copy public assets folder (images) to root/assets
+const publicAssetsDir = path.join(__dirname, 'public', 'assets');
+if (fs.existsSync(publicAssetsDir)) {
+  if (!fs.existsSync(rootAssetsDir)) {
+    fs.mkdirSync(rootAssetsDir, { recursive: true });
+  }
+  copyRecursiveSync(publicAssetsDir, rootAssetsDir);
+  console.log('✓ Copied public assets (images) to root');
+}
 
 console.log('Deployment files copied to root successfully!');
 
