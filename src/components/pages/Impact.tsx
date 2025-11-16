@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { motion } from 'motion/react';
 import { Heart, Globe, BookOpen, Laptop, Users, Zap, ArrowLeft, Calendar } from 'lucide-react';
+import { Button } from '../ui/button';
 import contentData from '../../data/content';
-import { getPageTitleColor } from '../../utils/brandColorsConfig';
 
 const iconMap: Record<string, typeof Globe> = {
   'Globe': Globe,
@@ -178,7 +178,7 @@ export function Impact() {
             transition={{ duration: 0.8 }}
             className="text-center mb-12"
           >
-            <h1 className="text-5xl lg:text-6xl tracking-tight mb-6" style={{ color: getPageTitleColor('impact') }}>
+            <h1 className="text-5xl lg:text-6xl tracking-tight mb-6">
               {hero.title}
             </h1>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
@@ -206,7 +206,7 @@ export function Impact() {
                   <div className="relative aspect-video overflow-hidden bg-gradient-to-br from-gray-100 to-gray-200">
                     <img
                       src={story.thumbnail}
-                      alt={story.title}
+                      alt={`${story.title} - Story thumbnail`}
                       className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
@@ -234,6 +234,37 @@ export function Impact() {
               </motion.div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Connect CTA Section */}
+      <section className="py-16 lg:py-24 bg-gradient-to-b from-white to-blue-50/20">
+        <div className="max-w-4xl mx-auto px-6 lg:px-12 text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+          >
+            <h2 className="text-4xl lg:text-5xl tracking-tight mb-6">
+              Let's create impact together
+            </h2>
+            <p className="text-xl text-muted-foreground mb-8">
+              Interested in learning more about these stories or collaborating on projects that create meaningful change? Let's connect.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <a href={contentData.assets.links.email}>
+                <Button size="lg" className="rounded-full px-8">
+                  Send an Email
+                </Button>
+              </a>
+              <a href={contentData.assets.links.linkedin} target="_blank" rel="noopener noreferrer">
+                <Button size="lg" variant="outline" className="rounded-full px-8">
+                  Connect on LinkedIn
+                </Button>
+              </a>
+            </div>
+          </motion.div>
         </div>
       </section>
     </div>

@@ -3,9 +3,51 @@
   import react from '@vitejs/plugin-react-swc';
   import path from 'path';
   import { saveContentPlugin } from './vite-plugin-save-content';
+  import { copyFileSync, existsSync, mkdirSync, readdirSync, statSync } from 'fs';
+
+  // Plugin to copy assets from src/assets to public/assets during build
+  function copyAssetsPlugin() {
+    return {
+      name: 'copy-assets',
+      buildStart() {
+        const srcAssets = path.resolve(__dirname, 'src/assets');
+        const publicAssets = path.resolve(__dirname, 'public/assets');
+        
+        if (existsSync(srcAssets)) {
+          if (!existsSync(publicAssets)) {
+            mkdirSync(publicAssets, { recursive: true });
+          }
+          
+          const copyRecursive = (src: string, dest: string) => {
+            const entries = readdirSync(src, { withFileTypes: true });
+            for (const entry of entries) {
+              const srcPath = path.join(src, entry.name);
+              const destPath = path.join(dest, entry.name);
+              
+              if (entry.isDirectory()) {
+                if (!existsSync(destPath)) {
+                  mkdirSync(destPath, { recursive: true });
+                }
+                copyRecursive(srcPath, destPath);
+              } else {
+                copyFileSync(srcPath, destPath);
+              }
+            }
+          };
+          
+          try {
+            copyRecursive(srcAssets, publicAssets);
+            console.log('✓ Assets copied to public/assets');
+          } catch (error) {
+            console.warn('Warning: Could not copy assets:', error);
+          }
+        }
+      },
+    };
+  }
 
   export default defineConfig({
-    plugins: [react(), saveContentPlugin()],
+    plugins: [react(), saveContentPlugin(), copyAssetsPlugin()],
     resolve: {
       extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'],
       alias: {

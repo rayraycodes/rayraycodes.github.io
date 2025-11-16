@@ -208,7 +208,7 @@ html {
   }
   
   .text-gradient-blue {
-    background: linear-gradient(135deg, #263b8f 0%, #1e2d6f 100%);
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;

@@ -5,7 +5,6 @@ import { Button } from '../ui/button';
 import { ImageWithFallback } from '../figma/ImageWithFallback';
 import { PrayerFlags } from '../decorative/PrayerFlags';
 import contentData from '../../data/content';
-import { getPageTitleColor } from '../../utils/brandColorsConfig';
 
 export function Home() {
   const scrollToContent = () => {
@@ -36,7 +35,7 @@ export function Home() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: 'easeOut' }}
           >
-            <h1 className="text-5xl md:text-7xl lg:text-8xl tracking-tight mb-6" style={{ color: getPageTitleColor('home') }}>
+            <h1 className="text-5xl md:text-7xl lg:text-8xl tracking-tight mb-6 text-gradient-blue">
               {hero.title.split('\n').map((line, i) => (
                 <span key={i}>
                   {line}

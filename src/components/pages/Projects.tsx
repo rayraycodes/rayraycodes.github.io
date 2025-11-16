@@ -4,7 +4,6 @@ import { Badge } from '../ui/badge';
 import { Button } from '../ui/button';
 import { ImageWithFallback } from '../figma/ImageWithFallback';
 import contentData from '../../data/content';
-import { getPageTitleColor } from '../../utils/brandColorsConfig';
 
 export function Projects() {
   const [selectedProject, setSelectedProject] = useState<number | null>(null);
@@ -28,7 +27,7 @@ export function Projects() {
             transition={{ duration: 0.8 }}
             className="text-center"
           >
-            <h1 className="text-5xl lg:text-6xl tracking-tight mb-6" style={{ color: getPageTitleColor('projects') }}>
+            <h1 className="text-5xl lg:text-6xl tracking-tight mb-6">
               {hero.title}
             </h1>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
@@ -180,6 +179,37 @@ export function Projects() {
           </motion.div>
         </motion.div>
       )}
+
+      {/* Connect CTA Section */}
+      <section className="py-16 lg:py-24 bg-gradient-to-b from-white to-blue-50/20">
+        <div className="max-w-4xl mx-auto px-6 lg:px-12 text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+          >
+            <h2 className="text-4xl lg:text-5xl tracking-tight mb-6">
+              Let's build something
+            </h2>
+            <p className="text-xl text-muted-foreground mb-8">
+              Have a project in mind? I'm always interested in discussing new opportunities and collaborations.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <a href={contentData.assets.links.email}>
+                <Button size="lg" className="rounded-full px-8">
+                  Send an Email
+                </Button>
+              </a>
+              <a href={contentData.assets.links.linkedin} target="_blank" rel="noopener noreferrer">
+                <Button size="lg" variant="outline" className="rounded-full px-8">
+                  Connect on LinkedIn
+                </Button>
+              </a>
+            </div>
+          </motion.div>
+        </div>
+      </section>
     </div>
   );
 }

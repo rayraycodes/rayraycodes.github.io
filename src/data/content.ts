@@ -36,6 +36,10 @@ const contentData = {
       {
         "path": "/photography",
         "label": "Photography"
+      },
+      {
+        "path": "/storiesofadventure",
+        "label": "Stories of Adventure"
       }
     ]
   },
@@ -135,15 +139,15 @@ const contentData = {
           "description": "Application-based fellowship for aspiring AI professionals driving innovation"
         },
         {
-          "year": "Feb 2023-Sep 2025",
+          "year": "Feb 2023-Present",
           "title": "Technology Data Analyst",
           "org": "University of Michigan",
           "description": "Analyzing CRM data, building dashboards with Python and Power BI, developing web solutions"
         },
         {
-          "year": "Mar 2017-April 2024",
+          "year": "Mar 2017-Dec 2023",
           "title": "Sr. Software Engineer / Advisor",
-          "org": "OLE Nepal/ OLE International",
+          "org": "OLE Nepal",
           "description": "Built learning systems reaching 300,000+ students, offline-first platforms, educational games with MIT"
         }
       ]
@@ -223,9 +227,9 @@ const contentData = {
         "theme": "blue"
       },
       {
-        "company": "Open Learning Exchange(OLE) Nepal/  OLE International",
+        "company": "Open Learning Exchange Nepal",
         "role": "Sr. Software Engineer / Advisor",
-        "period": "March 2017 - April 2024",
+        "period": "March 2017 - December 2023",
         "location": "OLE Nepal",
         "description": "Built data-driven learning systems that reached over 300,000 students in remote areas, crafting pipelines, syncing offline data, and turning real-world impact into code.",
         "highlights": [
@@ -255,7 +259,7 @@ const contentData = {
       {
         "company": "University of Michigan",
         "role": "Technology Data Analyst",
-        "period": "February 2023 - September 2025",
+        "period": "February 2023 - Present",
         "location": "LSA Technology Services",
         "description": "Analyzing CRM data, building dashboards, and developing web solutions to improve service delivery and stakeholder reporting.",
         "highlights": [
@@ -843,6 +847,232 @@ const contentData = {
       "readMore": "Read more →"
     }
   },
+  "storiesOfAdventure": {
+    "hero": {
+      "title": "Stories of Adventure",
+      "subtitle": "A collection of stories about exploring mountains, trails, and the world beyond the screen"
+    },
+    "stories": [
+      {
+        "id": "running-reflection",
+        "title": "Running and the Rhythm of Life",
+        "excerpt": "A personal reflection on how running has shaped my perspective on challenge, resilience, and self discovery.",
+        "date": "2022",
+        "icon": "Footprints",
+        "theme": "red",
+        "content": {
+          "description": "Running has been a constant in my life. I cannot remember a time when I was not running, learning, or discovering something about myself through movement. Over the years, running has become more than a physical activity. It has evolved into a way of understanding the world, interpreting challenges, and reconnecting with my own thoughts. The lessons I have gathered on the road and in the mountains mirror many of the lessons life teaches us: the value of staying present, trusting the journey, and embracing discomfort as a path to growth.",
+          "work": [
+            "Explored the parallels between running and life’s choices",
+            "Reflected on the importance of community and companionship",
+            "Learned to let go of emotional and mental burdens",
+            "Turned moments of being lost into opportunities for discovery",
+            "Embraced running as a form of meditation and self awareness"
+          ],
+          "impact": "Running has helped me cultivate discipline, clarity, and emotional resilience. It has taught me to move forward even when the path ahead is unclear, to value the people who run beside me, and to appreciate both the struggle and the beauty of the process. These reflections influence not only my personal wellbeing but also how I show up in my work, my relationships, and my creative pursuits.",
+          "images": [
+            {
+              "url": "src/assets/rayrunning.png",
+              "alt": "A runner in motion on a trail, capturing the rhythm and flow of running",
+              "caption": "Finding rhythm in movement"
+            },
+            {
+              "url": "src/assets/rayinmountains.png",
+              "alt": "A runner standing in the mountains, surrounded by vast natural landscapes",
+              "caption": "Where the trail meets the sky"
+            }
+          ]
+        }
+      },      
+      {
+        "id": "himalayan-trek",
+        "title": "Trekking Through the Himalayas",
+        "excerpt": "A journey through the Annapurna region, where every step brought new perspectives and the mountains taught lessons in humility and perseverance.",
+        "date": "2022",
+        "icon": "Globe",
+        "theme": "blue",
+        "content": {
+          "description": "The Himalayas have always called to me. In 2022, I set out on a trek through the Annapurna region, carrying everything I needed on my back. The journey wasn't just about reaching peaks—it was about the conversations with fellow trekkers, the quiet mornings watching sunrise over snow-capped mountains, and the moments when the only sound was my own breathing at high altitude.",
+          "work": [
+            "Trekked through Annapurna Sanctuary and Langtang regions",
+            "Documented the journey through photography and writing",
+            "Connected with local guides and fellow adventurers",
+            "Experienced the raw beauty of Nepal's mountain landscapes"
+          ],
+          "impact": "This adventure reminded me why I love building technology for education—because it enables people to explore, learn, and connect, whether they're in a classroom or on a mountain trail. The discipline and focus I developed on the trail translated directly to my work back home.",
+          "images": [
+            {
+              "url": "src/assets/annapurna.png",
+              "alt": "Trekkers walking along golden hillside beneath snowy Annapurna mountains in Nepal",
+              "caption": "Golden trails beneath Annapurna"
+            },
+            {
+              "url": "src/assets/macha.jpg",
+              "alt": "A lone trekker standing before towering Himalayan peaks in Machhapuchhre region",
+              "caption": "Dwarfed by giants"
+            },
+            {
+              "url": "src/assets/lantang.png",
+              "alt": "Sharp Himalayan ridges leading toward a massive snow peak in Langtang region",
+              "caption": "Ancient rock, endless sky"
+            }
+          ]
+        }
+      },
+      {
+        "id": "yosemite-exploration",
+        "title": "Exploring Yosemite's Granite Giants",
+        "excerpt": "From Half Dome to El Capitan, discovering the magic of Yosemite Valley through photography and hiking.",
+        "date": "2023-2024",
+        "icon": "Zap",
+        "theme": "green",
+        "content": {
+          "description": "Yosemite National Park became my escape and inspiration. Over multiple trips, I explored the valley's iconic granite formations, captured the changing light on Half Dome, and hiked trails that offered new perspectives on familiar landmarks. Each visit revealed something new—whether it was the way fog settled in the valley at dawn or how the same mountain looked completely different in different seasons.",
+          "work": [
+            "Photographed iconic landmarks like Half Dome and El Capitan",
+            "Hiked trails including Yosemite Falls, Glacier Point, and Mist Trail",
+            "Captured seasonal changes from spring waterfalls to autumn colors",
+            "Documented the park's natural beauty through photography"
+          ],
+          "impact": "These trips to Yosemite taught me the importance of stepping away from screens and code to recharge. The creative problem-solving I do in nature directly fuels my work in technology and design.",
+          "images": [
+            {
+              "url": "src/assets/yose.jpg",
+              "alt": "A panoramic view across Yosemite Valley with granite formations",
+              "caption": "Valley of giants"
+            },
+            {
+              "url": "src/assets/2024-07-06_10-46-05_797.jpeg",
+              "alt": "Golden morning light falling on Half Dome in Yosemite National Park",
+              "caption": "Half Dome at sunrise"
+            }
+          ]
+        }
+      },
+      {
+        "id": "lake-tahoe-adventures",
+        "title": "Lake Tahoe: Mountains and Water",
+        "excerpt": "Discovering the crystal-clear waters and alpine beauty of Lake Tahoe through hiking, photography, and quiet reflection.",
+        "date": "2023",
+        "icon": "Heart",
+        "theme": "purple",
+        "content": {
+          "description": "Lake Tahoe's combination of alpine peaks and crystal-clear water created the perfect setting for adventure and reflection. I spent days hiking trails that offered panoramic views, photographing the lake's ever-changing moods, and simply sitting by the water to think. The contrast between the rugged mountains and the serene lake taught me about balance—in nature and in life.",
+          "work": [
+            "Hiked trails around the lake offering stunning vistas",
+            "Photographed the lake's changing colors and moods",
+            "Explored both California and Nevada sides of the lake",
+            "Captured the beauty of alpine landscapes and water"
+          ],
+          "impact": "Time at Lake Tahoe reinforced my belief that the best ideas come when we give ourselves space to think. Many of my most creative solutions to technical problems have come to me while walking trails or sitting by water.",
+          "images": [
+            {
+              "url": "src/assets/ZVE02104.jpg",
+              "alt": "A lakeside scene beneath snow capped mountains at Lake Tahoe",
+              "caption": "Blue horizon meets white peaks"
+            },
+            {
+              "url": "src/assets/ZVE02111.jpg",
+              "alt": "A peaceful blue cove framed by pines and rocky shoreline at Lake Tahoe",
+              "caption": "Hidden cove, quiet waters"
+            },
+            {
+              "url": "src/assets/2023-11-19_02-55-09_562.jpeg",
+              "alt": "A wooden trail winding beside a vibrant blue lake at Lake Tahoe",
+              "caption": "Path to turquoise"
+            }
+          ]
+        }
+      },
+      {
+        "id": "redwood-forests",
+        "title": "Walking Among Giants: Redwood Forests",
+        "excerpt": "Standing among ancient redwoods, feeling small and connected to something much larger than myself.",
+        "date": "2024",
+        "icon": "BookOpen",
+        "theme": "indigo",
+        "content": {
+          "description": "There's something humbling about standing next to a tree that's been alive for over a thousand years. In the redwood forests of California, I walked among these giants, photographing the way light filtered through their massive trunks and feeling the quiet wisdom of a forest that has seen centuries pass. These trees reminded me that the work we do today is part of a longer story.",
+          "work": [
+            "Explored Redwood National and State Parks",
+            "Photographed the interplay of light and ancient trees",
+            "Hiked trails through old-growth forests",
+            "Documented the scale and beauty of these natural wonders"
+          ],
+          "impact": "The redwoods taught me about patience and long-term thinking. Just as these trees grow slowly but steadily, meaningful work in technology and education requires the same kind of patient, persistent effort.",
+          "images": [
+            {
+              "url": "src/assets/2024-06-29_00-29-58_012.jpeg",
+              "alt": "Ancient redwood trunks glowing under filtered sunlight in Redwood National Park",
+              "caption": "Light through ancient giants"
+            }
+          ]
+        }
+      },
+      {
+        "id": "michigan-seasons",
+        "title": "Four Seasons in Michigan",
+        "excerpt": "Discovering the beauty of Michigan's changing seasons through photography, from autumn colors to winter stillness.",
+        "date": "2023-2024",
+        "icon": "Laptop",
+        "theme": "teal",
+        "content": {
+          "description": "Living in Michigan has given me the opportunity to experience and document all four seasons through photography. From the vibrant fall colors that paint the landscape in reds and golds, to the quiet stillness of winter when everything is covered in snow, each season offers its own beauty and lessons. These local adventures have become a regular practice of noticing and appreciating the world around me.",
+          "work": [
+            "Photographed seasonal changes throughout the year",
+            "Explored local parks and natural areas",
+            "Captured autumn colors, winter scenes, and spring blooms",
+            "Documented the beauty of everyday natural spaces"
+          ],
+          "impact": "These local adventures have taught me that adventure doesn't always require traveling far. Some of the most meaningful moments come from paying attention to the beauty right where you are.",
+          "images": [
+            {
+              "url": "src/assets/2023-10-16_04-43-42_417.jpeg",
+              "alt": "A serene moment of stillness surrounded by fall colors in Michigan",
+              "caption": "Breath of autumn"
+            },
+            {
+              "url": "src/assets/ZVE00854.jpg",
+              "alt": "Fall colors mirrored in a calm lake in Michigan",
+              "caption": "Autumn reflections"
+            }
+          ]
+        }
+      },
+      {
+        "id": "cycling-journeys",
+        "title": "Cycling Through Landscapes",
+        "excerpt": "Exploring new places on two wheels, where the pace is just right for noticing details and feeling connected to the landscape.",
+        "date": "2023-2024",
+        "icon": "Users",
+        "theme": "orange",
+        "content": {
+          "description": "Cycling has become one of my favorite ways to explore. There's something about the pace of a bicycle—fast enough to cover ground, slow enough to notice details—that makes it perfect for adventure. Whether it's riding through Michigan's countryside, exploring trails, or simply commuting and discovering new routes, cycling connects me to places in a way that driving never could.",
+          "work": [
+            "Explored local and regional cycling routes",
+            "Combined cycling with photography adventures",
+            "Discovered new perspectives on familiar landscapes",
+            "Used cycling as both exercise and exploration"
+          ],
+          "impact": "Cycling has taught me about sustainable exploration and the joy of the journey itself, not just the destination. This mindset has influenced how I approach both personal adventures and professional projects.",
+          "images": [
+            {
+              "url": "src/assets/cycling.png",
+              "alt": "A mountain bike inside a cable car cabin overlooking a mountainous landscape with a city in the valley",
+              "caption": "Elevated perspective"
+            }
+          ]
+        }
+      }
+    ],
+    "labels": {
+      "backToStories": "Back to Stories",
+      "whatIDid": "How I Spent the Journey",
+      "reflection": "Reflection",
+      "adventureByNumbers": "Adventure by the Numbers",
+      "readMore": "Read more →"
+    }
+  },
   "contact": {
     "hero": {
       "title": "Let's Connect",
@@ -1078,7 +1308,7 @@ const contentData = {
         "featured": "https://images.unsplash.com/photo-1611926653670-e18689373857?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxhY2Nlc3NpYmlsaXR5JTIwaW5jbHVzaXZlJTIwZGVzaWdufGVufDF8fHx8MTc2MzAzMDU4MHww&ixlib=rb-4.1.0&q=80&w=1080"
       },
       "about": {
-        "profile": "https://i.ibb.co/jvxwmjwL/Screenshot-2025-11-14-at-9-54-40-AM.png"
+        "profile": "src/assets/mitregan.png"
       },
       "projects": [
         "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=800",
@@ -1107,6 +1337,7 @@ const contentData = {
     "links": {
       "email": "mailto:imregan@umich.edu",
       "linkedin": "https://linkedin.com/in/reganmaharjan",
+      "instagram": "https://www.instagram.com/rayheyheygun/",
       "github": "https://github.com/reganmaharjan",
       "twitter": "https://twitter.com/reganmaharjan"
     }
@@ -1128,7 +1359,7 @@ const contentData = {
     "images": [
       {
         "id": 1,
-        "url": "/assets/2023-10-16_04-43-42_417.jpeg",
+        "url": "src/assets/2023-10-16_04-43-42_417.jpeg",
         "title": "Breath of Autumn",
         "category": [
           "Portraits",
@@ -1141,7 +1372,7 @@ const contentData = {
       },
       {
         "id": 2,
-        "url": "/assets/2023-11-19_02-55-09_562.jpeg",
+        "url": "src/assets/2023-11-19_02-55-09_562.jpeg",
         "title": "Lakeside Pathway",
         "category": "Travel",
         "description": "A wooden trail winding beside a vibrant blue lake",
@@ -1151,7 +1382,7 @@ const contentData = {
       },
       {
         "id": 3,
-        "url": "/assets/2023-11-19_04-58-06_481.jpeg",
+        "url": "src/assets/2023-11-19_04-58-06_481.jpeg",
         "title": "Frozen Highway",
         "category": "Nature",
         "description": "A winding road cutting through tall pines and snowy cliffs",
@@ -1161,7 +1392,7 @@ const contentData = {
       },
       {
         "id": 4,
-        "url": "/assets/2024-06-29_00-29-58_012.jpeg",
+        "url": "src/assets/2024-06-29_00-29-58_012.jpeg",
         "title": "Redwood Sanctuary",
         "category": "Nature",
         "description": "Ancient redwood trunks glowing under filtered sunlight",
@@ -1171,7 +1402,7 @@ const contentData = {
       },
       {
         "id": 5,
-        "url": "/assets/2024-07-06_10-46-05_797.jpeg",
+        "url": "src/assets/2024-07-06_10-46-05_797.jpeg",
         "title": "Half Dome Sunrise",
         "category": "Travel",
         "description": "Golden morning light falling on Half Dome",
@@ -1181,7 +1412,7 @@ const contentData = {
       },
       {
         "id": 6,
-        "url": "/assets/macha.jpg",
+        "url": "src/assets/macha.jpg",
         "title": "Alpine Majesty",
         "category": [
           "Travel",
@@ -1194,7 +1425,7 @@ const contentData = {
       },
       {
         "id": 7,
-        "url": "/assets/taksindu.jpg",
+        "url": "src/assets/taksindu.jpg",
         "title": "Glacial Walls",
         "category": "Nature",
         "description": "Sheer snowy cliffs rising above a frozen valley",
@@ -1204,7 +1435,7 @@ const contentData = {
       },
       {
         "id": 8,
-        "url": "/assets/yose.jpg",
+        "url": "src/assets/yose.jpg",
         "title": "Valley View",
         "category": "Nature",
         "description": "A panoramic look across Yosemite Valley",
@@ -1214,7 +1445,7 @@ const contentData = {
       },
       {
         "id": 9,
-        "url": "/assets/ZVE00854.jpg",
+        "url": "src/assets/ZVE00854.jpg",
         "title": "Autumn Reflections",
         "category": "Nature",
         "description": "Fall colors mirrored in a calm lake",
@@ -1224,7 +1455,7 @@ const contentData = {
       },
       {
         "id": 10,
-        "url": "/assets/ZVE02104.jpg",
+        "url": "src/assets/ZVE02104.jpg",
         "title": "Blue Horizon",
         "category": "Travel",
         "description": "A lakeside scene beneath snow capped mountains",
@@ -1234,7 +1465,7 @@ const contentData = {
       },
       {
         "id": 11,
-        "url": "/assets/hawkhill.png",
+        "url": "src/assets/hawkhill.png",
         "title": "Hawk Hill Horizon",
         "category": "Nature",
         "description": "A calm pastel sunrise above the ocean",
@@ -1244,7 +1475,7 @@ const contentData = {
       },
       {
         "id": 12,
-        "url": "/assets/lantang.png",
+        "url": "src/assets/lantang.png",
         "title": "Langtang Ridge",
         "category": "Travel",
         "description": "Sharp Himalayan ridges leading toward a massive snow peak",
@@ -1254,7 +1485,7 @@ const contentData = {
       },
       {
         "id": 13,
-        "url": "/assets/annapurna.png",
+        "url": "src/assets/annapurna.png",
         "title": "Annapurna Trail",
         "category": "Travel",
         "description": "Trekkers walking along a golden hillside beneath snowy mountains",
@@ -1264,7 +1495,7 @@ const contentData = {
       },
       {
         "id": 14,
-        "url": "/assets/tshorolpa.png",
+        "url": "src/assets/tshorolpa.png",
         "title": "Tsho Rolpa Glacier Lake",
         "category": "Nature",
         "description": "A frozen glacial lake surrounded by sharp snow covered mountains",
@@ -1274,7 +1505,7 @@ const contentData = {
       },
       {
         "id": 15,
-        "url": "/assets/ZVE02111.jpg",
+        "url": "src/assets/ZVE02111.jpg",
         "title": "Hidden Cove",
         "category": "Nature",
         "description": "A peaceful blue cove framed by pines and rocky shoreline",

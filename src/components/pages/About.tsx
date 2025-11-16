@@ -1,8 +1,9 @@
 import { motion } from 'motion/react';
 import { Code2, Sparkles, Database, Heart, Accessibility, Brain } from 'lucide-react';
+import { Button } from '../ui/button';
 import { ImageWithFallback } from '../figma/ImageWithFallback';
 import contentData from '../../data/content';
-import { getPageTitleColor } from '../../utils/brandColorsConfig';
+import { getImageUrl } from '../../utils/imageUtils';
 
 const iconMap: Record<string, typeof Code2> = {
   'Code2': Code2,
@@ -37,7 +38,7 @@ export function About() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
             >
-              <h1 className="text-5xl lg:text-6xl tracking-tight mb-6" style={{ color: getPageTitleColor('about') }}>
+              <h1 className="text-5xl lg:text-6xl tracking-tight mb-6">
                 {hero.title}
               </h1>
               <div className="space-y-4 text-lg text-muted-foreground">
@@ -55,7 +56,7 @@ export function About() {
             >
               <div className="surface-elevated rounded-3xl overflow-hidden">
                 <ImageWithFallback
-                  src={images.about.profile}
+                  src={getImageUrl(images.about.profile)}
                   alt="Professional portrait of Regan Maharjan"
                   className="w-full h-auto"
                 />
@@ -204,6 +205,37 @@ export function About() {
                   {interest}
                 </motion.span>
               ))}
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Connect CTA Section */}
+      <section className="py-16 lg:py-24 bg-gradient-to-b from-white to-blue-50/20">
+        <div className="max-w-4xl mx-auto px-6 lg:px-12 text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+          >
+            <h2 className="text-4xl lg:text-5xl tracking-tight mb-6">
+              Let's connect
+            </h2>
+            <p className="text-xl text-muted-foreground mb-8">
+              Interested in learning more about my work or collaborating on a project? I'd love to hear from you.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <a href={contentData.assets.links.email}>
+                <Button size="lg" className="rounded-full px-8">
+                  Send an Email
+                </Button>
+              </a>
+              <a href={contentData.assets.links.linkedin} target="_blank" rel="noopener noreferrer">
+                <Button size="lg" variant="outline" className="rounded-full px-8">
+                  Connect on LinkedIn
+                </Button>
+              </a>
             </div>
           </motion.div>
         </div>
