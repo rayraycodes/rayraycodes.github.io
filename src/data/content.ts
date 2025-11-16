@@ -872,12 +872,12 @@ const contentData = {
           "impact": "Running has helped me cultivate discipline, clarity, and emotional resilience. It has taught me to move forward even when the path ahead is unclear, to value the people who run beside me, and to appreciate both the struggle and the beauty of the process. These reflections influence not only my personal wellbeing but also how I show up in my work, my relationships, and my creative pursuits.",
           "images": [
             {
-              "url": "src/assets/rayrunning.png",
+              "url": "/assets/rayrunning.png",
               "alt": "A runner in motion on a trail, capturing the rhythm and flow of running",
               "caption": "Finding rhythm in movement"
             },
             {
-              "url": "src/assets/rayinmountains.png",
+              "url": "/assets/rayinmountains.png",
               "alt": "A runner standing in the mountains, surrounded by vast natural landscapes",
               "caption": "Where the trail meets the sky"
             }
@@ -902,17 +902,17 @@ const contentData = {
           "impact": "This adventure reminded me why I love building technology for education—because it enables people to explore, learn, and connect, whether they're in a classroom or on a mountain trail. The discipline and focus I developed on the trail translated directly to my work back home.",
           "images": [
             {
-              "url": "src/assets/annapurna.png",
+              "url": "/assets/annapurna.png",
               "alt": "Trekkers walking along golden hillside beneath snowy Annapurna mountains in Nepal",
               "caption": "Golden trails beneath Annapurna"
             },
             {
-              "url": "src/assets/macha.jpg",
+              "url": "/assets/macha.jpg",
               "alt": "A lone trekker standing before towering Himalayan peaks in Machhapuchhre region",
               "caption": "Dwarfed by giants"
             },
             {
-              "url": "src/assets/lantang.png",
+              "url": "/assets/lantang.png",
               "alt": "Sharp Himalayan ridges leading toward a massive snow peak in Langtang region",
               "caption": "Ancient rock, endless sky"
             }
@@ -937,12 +937,12 @@ const contentData = {
           "impact": "These trips to Yosemite taught me the importance of stepping away from screens and code to recharge. The creative problem-solving I do in nature directly fuels my work in technology and design.",
           "images": [
             {
-              "url": "src/assets/yose.jpg",
+              "url": "/assets/yose.jpg",
               "alt": "A panoramic view across Yosemite Valley with granite formations",
               "caption": "Valley of giants"
             },
             {
-              "url": "src/assets/2024-07-06_10-46-05_797.jpeg",
+              "url": "/assets/2024-07-06_10-46-05_797.jpeg",
               "alt": "Golden morning light falling on Half Dome in Yosemite National Park",
               "caption": "Half Dome at sunrise"
             }
@@ -967,17 +967,17 @@ const contentData = {
           "impact": "Time at Lake Tahoe reinforced my belief that the best ideas come when we give ourselves space to think. Many of my most creative solutions to technical problems have come to me while walking trails or sitting by water.",
           "images": [
             {
-              "url": "src/assets/ZVE02104.jpg",
+              "url": "/assets/ZVE02104.jpg",
               "alt": "A lakeside scene beneath snow capped mountains at Lake Tahoe",
               "caption": "Blue horizon meets white peaks"
             },
             {
-              "url": "src/assets/ZVE02111.jpg",
+              "url": "/assets/ZVE02111.jpg",
               "alt": "A peaceful blue cove framed by pines and rocky shoreline at Lake Tahoe",
               "caption": "Hidden cove, quiet waters"
             },
             {
-              "url": "src/assets/2023-11-19_02-55-09_562.jpeg",
+              "url": "/assets/2023-11-19_02-55-09_562.jpeg",
               "alt": "A wooden trail winding beside a vibrant blue lake at Lake Tahoe",
               "caption": "Path to turquoise"
             }
@@ -1002,7 +1002,7 @@ const contentData = {
           "impact": "The redwoods taught me about patience and long-term thinking. Just as these trees grow slowly but steadily, meaningful work in technology and education requires the same kind of patient, persistent effort.",
           "images": [
             {
-              "url": "src/assets/2024-06-29_00-29-58_012.jpeg",
+              "url": "/assets/2024-06-29_00-29-58_012.jpeg",
               "alt": "Ancient redwood trunks glowing under filtered sunlight in Redwood National Park",
               "caption": "Light through ancient giants"
             }
@@ -1027,12 +1027,12 @@ const contentData = {
           "impact": "These local adventures have taught me that adventure doesn't always require traveling far. Some of the most meaningful moments come from paying attention to the beauty right where you are.",
           "images": [
             {
-              "url": "src/assets/2023-10-16_04-43-42_417.jpeg",
+              "url": "/assets/2023-10-16_04-43-42_417.jpeg",
               "alt": "A serene moment of stillness surrounded by fall colors in Michigan",
               "caption": "Breath of autumn"
             },
             {
-              "url": "src/assets/ZVE00854.jpg",
+              "url": "/assets/ZVE00854.jpg",
               "alt": "Fall colors mirrored in a calm lake in Michigan",
               "caption": "Autumn reflections"
             }
@@ -1057,7 +1057,7 @@ const contentData = {
           "impact": "Cycling has taught me about sustainable exploration and the joy of the journey itself, not just the destination. This mindset has influenced how I approach both personal adventures and professional projects.",
           "images": [
             {
-              "url": "src/assets/cycling.png",
+              "url": "/assets/cycling.png",
               "alt": "A mountain bike inside a cable car cabin overlooking a mountainous landscape with a city in the valley",
               "caption": "Elevated perspective"
             }
@@ -1359,7 +1359,7 @@ const contentData = {
     "images": [
       {
         "id": 1,
-        "url": "src/assets/2023-10-16_04-43-42_417.jpeg",
+        "url": "/assets/2023-10-16_04-43-42_417.jpeg",
         "title": "Breath of Autumn",
         "category": [
           "Portraits",
@@ -1372,7 +1372,7 @@ const contentData = {
       },
       {
         "id": 2,
-        "url": "src/assets/2023-11-19_02-55-09_562.jpeg",
+        "url": "/assets/2023-11-19_02-55-09_562.jpeg",
         "title": "Lakeside Pathway",
         "category": "Travel",
         "description": "A wooden trail winding beside a vibrant blue lake",
@@ -1382,7 +1382,7 @@ const contentData = {
       },
       {
         "id": 3,
-        "url": "src/assets/2023-11-19_04-58-06_481.jpeg",
+        "url": "/assets/2023-11-19_04-58-06_481.jpeg",
         "title": "Frozen Highway",
         "category": "Nature",
         "description": "A winding road cutting through tall pines and snowy cliffs",
@@ -1392,7 +1392,7 @@ const contentData = {
       },
       {
         "id": 4,
-        "url": "src/assets/2024-06-29_00-29-58_012.jpeg",
+        "url": "/assets/2024-06-29_00-29-58_012.jpeg",
         "title": "Redwood Sanctuary",
         "category": "Nature",
         "description": "Ancient redwood trunks glowing under filtered sunlight",
@@ -1402,7 +1402,7 @@ const contentData = {
       },
       {
         "id": 5,
-        "url": "src/assets/2024-07-06_10-46-05_797.jpeg",
+        "url": "/assets/2024-07-06_10-46-05_797.jpeg",
         "title": "Half Dome Sunrise",
         "category": "Travel",
         "description": "Golden morning light falling on Half Dome",
@@ -1412,7 +1412,7 @@ const contentData = {
       },
       {
         "id": 6,
-        "url": "src/assets/macha.jpg",
+        "url": "/assets/macha.jpg",
         "title": "Alpine Majesty",
         "category": [
           "Travel",
@@ -1425,7 +1425,7 @@ const contentData = {
       },
       {
         "id": 7,
-        "url": "src/assets/taksindu.jpg",
+        "url": "/assets/taksindu.jpg",
         "title": "Glacial Walls",
         "category": "Nature",
         "description": "Sheer snowy cliffs rising above a frozen valley",
@@ -1435,7 +1435,7 @@ const contentData = {
       },
       {
         "id": 8,
-        "url": "src/assets/yose.jpg",
+        "url": "/assets/yose.jpg",
         "title": "Valley View",
         "category": "Nature",
         "description": "A panoramic look across Yosemite Valley",
@@ -1445,7 +1445,7 @@ const contentData = {
       },
       {
         "id": 9,
-        "url": "src/assets/ZVE00854.jpg",
+        "url": "/assets/ZVE00854.jpg",
         "title": "Autumn Reflections",
         "category": "Nature",
         "description": "Fall colors mirrored in a calm lake",
@@ -1455,7 +1455,7 @@ const contentData = {
       },
       {
         "id": 10,
-        "url": "src/assets/ZVE02104.jpg",
+        "url": "/assets/ZVE02104.jpg",
         "title": "Blue Horizon",
         "category": "Travel",
         "description": "A lakeside scene beneath snow capped mountains",
@@ -1465,7 +1465,7 @@ const contentData = {
       },
       {
         "id": 11,
-        "url": "src/assets/hawkhill.png",
+        "url": "/assets/hawkhill.png",
         "title": "Hawk Hill Horizon",
         "category": "Nature",
         "description": "A calm pastel sunrise above the ocean",
@@ -1475,7 +1475,7 @@ const contentData = {
       },
       {
         "id": 12,
-        "url": "src/assets/lantang.png",
+        "url": "/assets/lantang.png",
         "title": "Langtang Ridge",
         "category": "Travel",
         "description": "Sharp Himalayan ridges leading toward a massive snow peak",
@@ -1485,7 +1485,7 @@ const contentData = {
       },
       {
         "id": 13,
-        "url": "src/assets/annapurna.png",
+        "url": "/assets/annapurna.png",
         "title": "Annapurna Trail",
         "category": "Travel",
         "description": "Trekkers walking along a golden hillside beneath snowy mountains",
@@ -1495,7 +1495,7 @@ const contentData = {
       },
       {
         "id": 14,
-        "url": "src/assets/tshorolpa.png",
+        "url": "/assets/tshorolpa.png",
         "title": "Tsho Rolpa Glacier Lake",
         "category": "Nature",
         "description": "A frozen glacial lake surrounded by sharp snow covered mountains",
@@ -1505,7 +1505,7 @@ const contentData = {
       },
       {
         "id": 15,
-        "url": "src/assets/ZVE02111.jpg",
+        "url": "/assets/ZVE02111.jpg",
         "title": "Hidden Cove",
         "category": "Nature",
         "description": "A peaceful blue cove framed by pines and rocky shoreline",

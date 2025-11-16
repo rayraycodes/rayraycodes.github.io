@@ -46,8 +46,54 @@
     };
   }
 
+  // Plugin to ensure public/assets images are copied to build/assets
+  function copyPublicAssetsPlugin() {
+    return {
+      name: 'copy-public-assets',
+      writeBundle() {
+        const publicAssets = path.resolve(__dirname, 'public/assets');
+        const buildAssets = path.resolve(__dirname, 'build/assets');
+        
+        if (existsSync(publicAssets)) {
+          if (!existsSync(buildAssets)) {
+            mkdirSync(buildAssets, { recursive: true });
+          }
+          
+          const copyRecursive = (src: string, dest: string) => {
+            const entries = readdirSync(src, { withFileTypes: true });
+            for (const entry of entries) {
+              const srcPath = path.join(src, entry.name);
+              const destPath = path.join(dest, entry.name);
+              
+              // Skip if it's a JS or CSS file (already handled by Vite)
+              if (entry.isFile() && (entry.name.endsWith('.js') || entry.name.endsWith('.css'))) {
+                continue;
+              }
+              
+              if (entry.isDirectory()) {
+                if (!existsSync(destPath)) {
+                  mkdirSync(destPath, { recursive: true });
+                }
+                copyRecursive(srcPath, destPath);
+              } else {
+                copyFileSync(srcPath, destPath);
+              }
+            }
+          };
+          
+          try {
+            copyRecursive(publicAssets, buildAssets);
+            console.log('✓ Public assets copied to build/assets');
+          } catch (error) {
+            console.warn('Warning: Could not copy public assets:', error);
+          }
+        }
+      },
+    };
+  }
+
   export default defineConfig({
-    plugins: [react(), saveContentPlugin(), copyAssetsPlugin()],
+    plugins: [react(), saveContentPlugin(), copyAssetsPlugin(), copyPublicAssetsPlugin()],
     resolve: {
       extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'],
       alias: {
