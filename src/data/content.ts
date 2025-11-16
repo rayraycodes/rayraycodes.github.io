@@ -139,15 +139,15 @@ const contentData = {
           "description": "Application-based fellowship for aspiring AI professionals driving innovation"
         },
         {
-          "year": "Feb 2023-Present",
+          "year": "Feb 2023-September 2025",
           "title": "Technology Data Analyst",
           "org": "University of Michigan",
           "description": "Analyzing CRM data, building dashboards with Python and Power BI, developing web solutions"
         },
         {
-          "year": "Mar 2017-Dec 2023",
+          "year": "Mar 2017-April 2024",
           "title": "Sr. Software Engineer / Advisor",
-          "org": "OLE Nepal",
+          "org": "OLE Nepal/ OLE International",
           "description": "Built learning systems reaching 300,000+ students, offline-first platforms, educational games with MIT"
         }
       ]
@@ -229,8 +229,8 @@ const contentData = {
       {
         "company": "Open Learning Exchange Nepal",
         "role": "Sr. Software Engineer / Advisor",
-        "period": "March 2017 - December 2023",
-        "location": "OLE Nepal",
+        "period": "March 2017 - April 2024",
+        "location": "OLE Nepal/ International",
         "description": "Built data-driven learning systems that reached over 300,000 students in remote areas, crafting pipelines, syncing offline data, and turning real-world impact into code.",
         "highlights": [
           "Led development of EPaath reaching 300,000+ users, improving team productivity by 50%",
@@ -259,7 +259,7 @@ const contentData = {
       {
         "company": "University of Michigan",
         "role": "Technology Data Analyst",
-        "period": "February 2023 - Present",
+        "period": "February 2023 - September 2025",
         "location": "LSA Technology Services",
         "description": "Analyzing CRM data, building dashboards, and developing web solutions to improve service delivery and stakeholder reporting.",
         "highlights": [
