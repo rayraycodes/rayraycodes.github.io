@@ -1,6 +1,6 @@
-import { useState } from 'react';
 import { motion } from 'motion/react';
-import { Heart, Globe, BookOpen, Laptop, Users, Zap, ArrowLeft, Calendar } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { Heart, Globe, BookOpen, Laptop, Users, Zap, Calendar } from 'lucide-react';
 import { Button } from '../ui/button';
 import contentData from '../../data/content';
 
@@ -63,110 +63,6 @@ export function Impact() {
     orange: 'from-orange-500/10 to-orange-600/5 border-orange-200',
   };
 
-  const [selectedStory, setSelectedStory] = useState<Story | null>(null);
-
-  if (selectedStory) {
-    return (
-      <div className="min-h-screen pt-24 lg:pt-32">
-        <div className="max-w-4xl mx-auto px-6 lg:px-12">
-          {/* Back Button */}
-          <motion.button
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            onClick={() => setSelectedStory(null)}
-            className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors mb-8"
-          >
-            <ArrowLeft size={20} />
-            <span>{labels.backToStories}</span>
-          </motion.button>
-
-          {/* Story Content */}
-          <motion.article
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="space-y-8"
-          >
-            {/* Header */}
-            <header className="space-y-4">
-              <div className="flex items-center gap-3 text-sm text-muted-foreground">
-                <Calendar size={16} />
-                <span>{selectedStory.date}</span>
-              </div>
-              <h1 className="text-4xl lg:text-5xl tracking-tight">
-                {selectedStory.title}
-              </h1>
-              <p className="text-xl text-muted-foreground">
-                {selectedStory.content.description}
-              </p>
-            </header>
-
-            {/* Images */}
-            {selectedStory.content.images && selectedStory.content.images.length > 0 && (
-              <div className="grid md:grid-cols-2 gap-6">
-                {selectedStory.content.images.map((image, idx) => (
-                  <motion.div
-                    key={idx}
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ delay: 0.2 + idx * 0.1 }}
-                    className="surface-elevated rounded-2xl overflow-hidden"
-                  >
-                    <img
-                      src={image}
-                      alt={`${selectedStory.title} - Image ${idx + 1}`}
-                      className="w-full h-auto"
-                    />
-                  </motion.div>
-                ))}
-              </div>
-            )}
-
-            {/* What I Built */}
-            <section className="space-y-4">
-              <h2 className="text-2xl font-semibold">{labels.whatIBuilt}</h2>
-              <ul className="grid md:grid-cols-2 gap-3">
-                {selectedStory.content.work.map((item) => (
-                  <li key={item} className="flex items-start gap-2">
-                    <span className="text-blue-600 mt-1">•</span>
-                    <span className="text-muted-foreground">{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </section>
-
-            {/* Impact */}
-            <section className={`bg-gradient-to-br ${themeColors[selectedStory.theme as keyof typeof themeColors]} border rounded-2xl p-6 space-y-3`}>
-              <h2 className="text-2xl font-semibold">{labels.impactToday}</h2>
-              <p className="text-lg text-muted-foreground italic">
-                {selectedStory.content.impact}
-              </p>
-            </section>
-
-            {/* Impact Stats (only for main story) */}
-            {selectedStory.content.hasStats && selectedStory.content.stats && (
-              <section className="py-8 border-t">
-                <h2 className="text-2xl font-semibold mb-6">{labels.impactByNumbers}</h2>
-                <div className="grid md:grid-cols-4 gap-6">
-                  {selectedStory.content.stats.map((stat) => (
-                    <div
-                      key={stat.label}
-                      className="surface-elevated rounded-xl p-6 text-center"
-                    >
-                      <div className="text-3xl lg:text-4xl mb-2 text-gradient-blue">
-                        {stat.value}
-                      </div>
-                      <div className="text-sm text-muted-foreground">{stat.label}</div>
-                    </div>
-                  ))}
-                </div>
-              </section>
-            )}
-          </motion.article>
-        </div>
-      </div>
-    );
-  }
-
   return (
     <div className="min-h-screen pt-24 lg:pt-32">
       {/* Header */}
@@ -193,14 +89,17 @@ export function Impact() {
         <div className="max-w-7xl mx-auto px-6 lg:px-12">
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {stories.map((story, index) => (
-              <motion.div
+              <Link
                 key={story.id}
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                onClick={() => setSelectedStory(story)}
-                className="group cursor-pointer"
+                to={`/impact/${story.id}`}
+                className="group"
               >
+                <motion.div
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                  className="cursor-pointer"
+                >
                 <div className="surface-elevated rounded-2xl overflow-hidden transition-all duration-300 hover:shadow-xl hover:scale-[1.02]">
                   {/* Thumbnail */}
                   <div className="relative aspect-video overflow-hidden bg-gradient-to-br from-gray-100 to-gray-200">
@@ -231,7 +130,8 @@ export function Impact() {
                     </div>
                   </div>
                 </div>
-              </motion.div>
+                </motion.div>
+              </Link>
             ))}
           </div>
         </div>

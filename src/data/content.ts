@@ -1,6 +1,44 @@
 // Centralized content data for the portfolio website
 // Edit this file directly to update content across all pages
 
+/**
+ * Modular schema helper for Challenge → Solution → Outcome narrative structure
+ * Use this template when creating new projects with narrative-driven descriptions
+ * 
+ * @param challenge - The problem or challenge being addressed (maps to "problem" field)
+ * @param solution - The technical solution and approach (maps to both "approach" and "solution" fields)
+ * @param outcome - The result and impact achieved (maps to "result" field)
+ * 
+ * @example
+ * const narrative = createProjectNarrative(
+ *   "Accessibility is often treated as an afterthought",
+ *   "Built an interactive learning platform that reframes accessibility as creative design",
+ *   "Developers now understand the 'why' behind accessibility guidelines"
+ * );
+ */
+export const createProjectNarrative = (
+  challenge: string,
+  solution: string,
+  outcome: string
+) => ({
+  problem: challenge,
+  approach: solution, // Maps to "Solution" in Challenge → Solution → Outcome
+  solution: solution, // Technical implementation details (can be expanded separately)
+  result: outcome,
+});
+
+/**
+ * Type definition for project links (optional field)
+ * Use null for projects without links
+ */
+export type ProjectLinks = {
+  live?: string;
+  github?: string;
+  docs?: string;
+  demo?: string;
+  repo?: string;
+} | null;
+
 const contentData = {
   "navigation": {
     "siteName": "Regan Maharjan",
@@ -333,7 +371,7 @@ const contentData = {
   "projects": {
     "hero": {
       "title": "Selected Projects",
-      "subtitle": "14 projects across education technology, accessibility, AI, and data engineering that reached 300,000+ students and transformed digital experiences"
+      "subtitle": "16 projects across education technology, accessibility, AI, and data engineering that reached 300,000+ students and transformed digital experiences"
     },
     "projects": [
       {
@@ -468,7 +506,7 @@ const contentData = {
       },
       {
         "title": "Nepali Intelligent OCR",
-        "category": "Accessibility & AI",
+        "category": "Accessibility",
         "description": "Multilingual OCR pipeline using Python and Tesseract for converting scanned Nepali/English documents into accessible formats",
         "problem": "Historical and educational texts in Nepali were inaccessible to visually impaired users and difficult to digitize.",
         "approach": "Built OCR pipeline with custom-trained models for Nepali script recognition, improving character accuracy for screen-reader compatibility.",
@@ -596,7 +634,7 @@ const contentData = {
       },
       {
         "title": "AI-Powered Alt Text Generator",
-        "category": "Accessibility & AI",
+        "category": "Accessibility",
         "description": "Automated alt text generation system using GPT-4 Vision for institutional digital content",
         "problem": "Thousands of images across university websites lacked proper alt text, creating accessibility barriers.",
         "approach": "Integrated GPT-4 Vision API with content management systems, built review workflow, and created quality assurance pipeline.",
@@ -617,26 +655,89 @@ const contentData = {
         "impact": "Scaled accessibility through AI"
       },
       {
-        "title": "Accessibility Rails Gem",
-        "category": "Developer Tools",
-        "description": "Rails gem providing automated accessibility testing and remediation suggestions",
-        "problem": "Developers lacked integrated tools to catch accessibility issues during development.",
-        "approach": "Created gem with automated WCAG checks, detailed remediation steps, and CI/CD integration.",
-        "solution": "Developer-friendly gem with clear error messages, actionable fixes, and comprehensive documentation.",
-        "result": "Shifted accessibility left in development process, catching issues before production.",
+        "title": "Design for All",
+        "category": "Accessibility",
+        "description": "Interactive learning platform that reframes accessibility as a creative design constraint, teaching developers the 'why' behind accessibility guidelines",
+        "longDescription": "Design for All transforms how developers learn about accessibility. Instead of presenting WCAG guidelines as a dry checklist, the platform reframes accessibility as a creative design challenge. Through interactive 'Amateur vs. Pro' comparison cards, developers see firsthand how semantic HTML and accessible patterns don't just meet compliance—they create cleaner, more robust interfaces. The platform covers 12 comprehensive sections from Semantics to Cognitive Load, each teaching the 'why' behind the guidelines through visual examples and interactive demonstrations. This approach shifts accessibility from a compliance burden to an opportunity for better design.",
+        "problem": "Accessibility is often treated as a boring checklist or an afterthought, leading to clunky UIs that developers resist implementing.",
+        "approach": "Built an interactive learning platform that reframes accessibility as a creative design constraint. Features 'Amateur vs. Pro' comparison cards to visually demonstrate how semantic HTML and accessible patterns create cleaner, more robust interfaces.",
+        "solution": "Created a comprehensive resource covering 12 sections (from Semantics to Cognitive Load) that teaches developers the 'why' behind the guidelines through interactive examples and visual comparisons.",
+        "result": "Developers now have a comprehensive, interactive resource that transforms accessibility from a compliance burden into an opportunity for better design. The platform demonstrates that accessible patterns create cleaner, more robust interfaces.",
         "metrics": [
-          "500+ tests included",
-          "15+ projects adopted",
-          "80% issue prevention"
+          "12 comprehensive sections",
+          "Interactive learning platform",
+          "Visual comparison cards"
         ],
         "tags": [
-          "Ruby on Rails",
-          "Testing",
-          "WCAG",
-          "DevOps",
-          "Open Source"
+          "Vite",
+          "React 19",
+          "TypeScript",
+          "Tailwind CSS v4",
+          "Framer Motion",
+          "Accessibility Education"
         ],
-        "impact": "Improved developer velocity and compliance"
+        "impact": "Transformed accessibility from checklist to creative design practice",
+        "links": {
+          "live": "https://rayraycodes.github.io/designforall/",
+          "github": "https://github.com/rayraycodes/designforall"
+        }
+      },
+      {
+        "title": "Rails Accessibility Testing",
+        "category": "Developer Tools",
+        "description": "Zero-configuration Rails gem that integrates WCAG 2.1 AA checks directly into TDD workflow, catching accessibility violations in real-time",
+        "longDescription": "Rails Accessibility Testing is a zero-configuration gem that brings accessibility testing into the TDD workflow, just like RSpec for unit tests or RuboCop for code style. The gem integrates WCAG 2.1 AA checks directly into your test suite, catching violations in real-time through both static file scanning and live browser testing. Instead of discovering accessibility issues during manual audits or after deployment—when fixes are expensive and time-consuming—developers get immediate feedback during development. The gem runs alongside existing test suites without disrupting workflow, providing clear remediation guidance for each violation. Version 1.5.5 enables teams to ship accessible code from day one, shifting accessibility left in the development process.",
+        "problem": "Accessibility bugs usually aren't caught until after deployment (or during manual audits), making them expensive to fix and creating barriers for users.",
+        "approach": "Developed a 'Zero Configuration' gem that acts like the RSpec/RuboCop of accessibility. It integrates WCAG 2.1 AA checks directly into the TDD workflow, catching violations in real-time via a static file scanner and live browser scanner.",
+        "solution": "Automated accessibility testing that runs alongside existing test suites, providing immediate feedback during development without disrupting workflow. The gem includes comprehensive WCAG 2.1 AA checks and clear remediation guidance.",
+        "result": "Version 1.5.5 is now live, enabling developers to ship accessible code from day one without disrupting their testing workflow.",
+        "metrics": [
+          "Version 1.5.5",
+          "Zero configuration",
+          "Real-time violation detection"
+        ],
+        "tags": [
+          "Ruby",
+          "Rails",
+          "Selenium",
+          "Capybara",
+          "RSpec",
+          "WCAG 2.1 AA",
+          "Testing"
+        ],
+        "impact": "Shifted accessibility left, preventing issues before production",
+        "links": {
+          "docs": "https://rayraycodes.github.io/rails-accessibility-testing/",
+          "live": "https://rayraycodes.github.io/rails-accessibility-testing/"
+        }
+      },
+      {
+        "title": "Trip Planner (AI Multi-Agent System)",
+        "category": "AI & Full-Stack",
+        "description": "Multi-agent AI system that orchestrates specialized agents concurrently to gather and synthesize trip planning data, reducing research time by 70%",
+        "longDescription": "Trip Planner revolutionizes travel planning through a sophisticated multi-agent AI architecture. Instead of spending hours cross-referencing hotels, weather forecasts, and travel blogs across multiple websites, specialized AI agents (Wikipedia, Weather, Transport) work concurrently to gather information in parallel. The backend, built with FastAPI and async Python, orchestrates these agents efficiently, aggregating real-time data that an LLM then synthesizes into comprehensive trip plans. The frontend features an Apple-inspired glassmorphic UI with real-time progress tracking, handling complex state management for a production-quality experience. By executing agents concurrently rather than sequentially, the system reduces data gathering time by 70%, transforming trip planning from hours of manual research to minutes of automated synthesis.",
+        "problem": "Traditional trip planning involves hours of cross-referencing hotels, weather forecasts, and travel blogs across multiple websites and sources.",
+        "approach": "Engineered a Multi-Agent system where specialized AI agents (Wikipedia, Weather, Transport) run concurrently rather than sequentially. The backend uses Async Python to orchestrate these agents, aggregating real-time data for an LLM to synthesize into comprehensive trip plans.",
+        "solution": "Parallel execution architecture using FastAPI and async Python enables multiple agents to gather data simultaneously. The frontend features an Apple-inspired glassmorphic UI with real-time progress tracking, handling complex state management for a production-quality experience.",
+        "result": "Reduced data gathering time by 70% through parallel execution. Users can now generate comprehensive trip plans in minutes instead of hours, with all information synthesized and ready to use.",
+        "metrics": [
+          "70% time reduction",
+          "Concurrent agent execution",
+          "Production-quality UI"
+        ],
+        "tags": [
+          "FastAPI",
+          "Async Python",
+          "React",
+          "Framer Motion",
+          "LLMs",
+          "OpenAI",
+          "Ollama",
+          "AI Agents",
+          "Multi-Agent Systems"
+        ],
+        "impact": "Transformed trip planning from hours of research to minutes of automated synthesis",
+        "links": null
       }
     ],
     "labels": {
@@ -1323,8 +1424,10 @@ const contentData = {
         "https://images.unsplash.com/photo-1509228468518-180dd4864904?w=800",
         "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800",
         "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800",
-        "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800",
-        "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800"
+        "https://images.unsplash.com/photo-1611926653670-e18689373857?w=800",
+        "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800",
+        "https://images.unsplash.com/photo-1551650975-87deedd944c3?w=800",
+        "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800"
       ],
       "impact": {
         "ruralSchool": "https://regan.figma.site/_assets/v11/cc03d6b7b9b6c0b127b5885a899b19b8d05b9f15.png",

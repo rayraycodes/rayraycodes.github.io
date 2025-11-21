@@ -5,7 +5,9 @@ import { Home } from './components/pages/Home';
 import { About } from './components/pages/About';
 import { Experience } from './components/pages/Experience';
 import { Projects } from './components/pages/Projects';
+import { ProjectDetail } from './components/pages/ProjectDetail';
 import { Impact } from './components/pages/Impact';
+import { StoryDetail } from './components/pages/StoryDetail';
 import { StoriesOfAdventure } from './components/pages/StoriesOfAdventure';
 import { Accessibility } from './components/pages/Accessibility';
 import { Contact } from './components/pages/Contact';
@@ -23,7 +25,9 @@ export default function App() {
           <Route path="/about" element={<About />} />
           <Route path="/experience" element={<Experience />} />
           <Route path="/projects" element={<Projects />} />
+          <Route path="/projects/:projectId" element={<ProjectDetail />} />
           <Route path="/impact" element={<Impact />} />
+          <Route path="/impact/:storyId" element={<StoryDetail />} />
           <Route path="/storiesofadventure" element={<StoriesOfAdventure />} />
           <Route path="/accessibility" element={<Accessibility />} />
           <Route path="/contact" element={<Contact />} />

@@ -1,20 +1,88 @@
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { motion } from 'motion/react';
+import { Link } from 'react-router-dom';
 import { Badge } from '../ui/badge';
 import { Button } from '../ui/button';
 import { ImageWithFallback } from '../figma/ImageWithFallback';
 import contentData from '../../data/content';
 
+// Category Filter Bar Component
+interface CategoryFilterBarProps {
+  categories: string[];
+  selectedCategory: string;
+  onCategoryChange: (category: string) => void;
+}
+
+function CategoryFilterBar({ categories, selectedCategory, onCategoryChange }: CategoryFilterBarProps) {
+  return (
+    <nav aria-label="Project categories" className="mb-8">
+      <ul className="flex flex-wrap gap-2 overflow-x-auto pb-2 scrollbar-hide" role="list">
+        {categories.map((category) => {
+          const isSelected = category === selectedCategory;
+          return (
+            <li key={category} role="listitem">
+              <button
+                type="button"
+                onClick={() => onCategoryChange(category)}
+                aria-pressed={isSelected}
+                aria-current={isSelected ? 'page' : undefined}
+                className={`
+                  px-4 py-2 rounded-full text-sm font-medium transition-all duration-200
+                  whitespace-nowrap focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2
+                  ${isSelected
+                    ? 'bg-blue-600 text-white shadow-md border border-blue-700'
+                    : 'bg-white text-gray-700 hover:bg-gray-100 border border-gray-200'
+                  }
+                `}
+              >
+                {category}
+              </button>
+            </li>
+          );
+        })}
+      </ul>
+    </nav>
+  );
+}
+
 export function Projects() {
-  const [selectedProject, setSelectedProject] = useState<number | null>(null);
+  const [selectedCategory, setSelectedCategory] = useState('All');
 
   const { hero, projects: projectsData, labels } = contentData.projects;
   const { images } = contentData.assets;
   
-  const projects = projectsData.map((project, index) => ({
+  // Extract unique categories from projects
+  const categories = useMemo(() => {
+    const uniqueCategories = new Set(projectsData.map(project => project.category));
+    return ['All', ...Array.from(uniqueCategories).sort()];
+  }, [projectsData]);
+  
+  // Filter projects based on selected category
+  const filteredProjects = useMemo(() => {
+    if (selectedCategory === 'All') {
+      return projectsData;
+    }
+    return projectsData.filter(project => project.category === selectedCategory);
+  }, [projectsData, selectedCategory]);
+  
+  const projects = filteredProjects.map((project) => ({
     ...project,
-    imageUrl: images.projects[index] || images.projects[0],
+    imageUrl: images.projects[projectsData.indexOf(project)] || images.projects[0],
+    id: project.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, ''), // Generate ID from title
   }));
+
+  const handleCategoryChange = (category: string) => {
+    setSelectedCategory(category);
+    // Announce category change to screen readers
+    const announcement = document.createElement('div');
+    announcement.setAttribute('role', 'status');
+    announcement.setAttribute('aria-live', 'polite');
+    announcement.setAttribute('aria-atomic', 'true');
+    announcement.className = 'sr-only';
+    announcement.textContent = `Showing ${category === 'All' ? 'all' : category} projects`;
+    document.body.appendChild(announcement);
+    setTimeout(() => document.body.removeChild(announcement), 1000);
+  };
 
   return (
     <div className="min-h-screen pt-24 lg:pt-32">
@@ -40,145 +108,74 @@ export function Projects() {
       {/* Projects Grid */}
       <section className="py-16 lg:py-24">
         <div className="max-w-7xl mx-auto px-6 lg:px-12">
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {/* Category Filters */}
+          <CategoryFilterBar
+            categories={categories}
+            selectedCategory={selectedCategory}
+            onCategoryChange={handleCategoryChange}
+          />
+
+          {filteredProjects.length === 0 ? (
+            <div className="text-center py-16">
+              <p className="text-gray-500">No projects found in this category.</p>
+            </div>
+          ) : (
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {projects.map((project, index) => (
-              <motion.div
+              <Link
                 key={project.title}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.05 }}
-                whileHover={{ y: -8 }}
-                onClick={() => setSelectedProject(index)}
-                className="surface-elevated rounded-2xl overflow-hidden cursor-pointer transition-all duration-300 hover:shadow-xl"
+                to={`/projects/${project.id}`}
+                className="block"
               >
-                {/* Project Image */}
-                <div className="aspect-video overflow-hidden bg-gradient-to-br from-blue-100 to-purple-100">
-                  <ImageWithFallback
-                    src={project.imageUrl}
-                    alt={`${project.title} preview`}
-                    className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
-                  />
-                </div>
-
-                {/* Project Info */}
-                <div className="p-6">
-                  <div className="text-xs text-blue-600 mb-2">{project.category}</div>
-                  <h3 className="text-xl mb-2">{project.title}</h3>
-                  <p className="text-muted-foreground mb-4 line-clamp-2">{project.description}</p>
-                  
-                  <div className="mb-4">
-                    <div className="text-sm mb-2">{labels.impact}</div>
-                    <p className="text-sm text-muted-foreground italic">{project.impact}</p>
+                <motion.div
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: index * 0.05 }}
+                  whileHover={{ y: -8 }}
+                  className="surface-elevated rounded-2xl overflow-hidden cursor-pointer transition-all duration-300 hover:shadow-xl"
+                >
+                  {/* Project Image */}
+                  <div className="aspect-video overflow-hidden bg-gradient-to-br from-blue-100 to-purple-100">
+                    <ImageWithFallback
+                      src={project.imageUrl}
+                      alt={`${project.title} preview`}
+                      className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+                    />
                   </div>
 
-                  <div className="flex flex-wrap gap-2">
-                    {project.tags.slice(0, 3).map((tag) => (
-                      <Badge key={tag} variant="secondary" className="text-xs">
-                        {tag}
-                      </Badge>
-                    ))}
-                    {project.tags.length > 3 && (
-                      <Badge variant="secondary" className="text-xs">
-                        +{project.tags.length - 3}
-                      </Badge>
-                    )}
+                  {/* Project Info */}
+                  <div className="p-6">
+                    <div className="text-xs text-blue-600 mb-2">{project.category}</div>
+                    <h3 className="text-xl mb-2">{project.title}</h3>
+                    <p className="text-muted-foreground mb-4 line-clamp-2">{project.description}</p>
+                    
+                    <div className="mb-4">
+                      <div className="text-sm mb-2">{labels.impact}</div>
+                      <p className="text-sm text-muted-foreground italic">{project.impact}</p>
+                    </div>
+
+                    <div className="flex flex-wrap gap-2">
+                      {project.tags.slice(0, 3).map((tag) => (
+                        <Badge key={tag} variant="secondary" className="text-xs">
+                          {tag}
+                        </Badge>
+                      ))}
+                      {project.tags.length > 3 && (
+                        <Badge variant="secondary" className="text-xs">
+                          +{project.tags.length - 3}
+                        </Badge>
+                      )}
+                    </div>
                   </div>
-                </div>
-              </motion.div>
+                </motion.div>
+              </Link>
             ))}
           </div>
+          )}
         </div>
       </section>
 
-      {/* Project Detail Modal */}
-      {selectedProject !== null && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          onClick={() => setSelectedProject(null)}
-          className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4 overflow-y-auto"
-        >
-          <motion.div
-            initial={{ scale: 0.9, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            exit={{ scale: 0.9, opacity: 0 }}
-            onClick={(e) => e.stopPropagation()}
-            className="bg-white rounded-3xl max-w-4xl w-full my-8 overflow-hidden"
-          >
-            {/* Header Image */}
-            <div className="aspect-video overflow-hidden bg-gradient-to-br from-blue-100 to-purple-100">
-              <ImageWithFallback
-                src={projects[selectedProject].imageUrl}
-                alt={`${projects[selectedProject].title} detail`}
-                className="w-full h-full object-cover"
-              />
-            </div>
-
-            {/* Content */}
-            <div className="p-8 lg:p-12">
-              <div className="text-sm text-blue-600 mb-2">{projects[selectedProject].category}</div>
-              <h2 className="text-4xl tracking-tight mb-4">{projects[selectedProject].title}</h2>
-              <p className="text-xl text-muted-foreground mb-8">{projects[selectedProject].description}</p>
-
-              <div className="space-y-6 mb-8">
-                <div>
-                  <h3 className="text-xl mb-2">{labels.problem}</h3>
-                  <p className="text-muted-foreground">{projects[selectedProject].problem}</p>
-                </div>
-
-                <div>
-                  <h3 className="text-xl mb-2">{labels.approach}</h3>
-                  <p className="text-muted-foreground">{projects[selectedProject].approach}</p>
-                </div>
-
-                <div>
-                  <h3 className="text-xl mb-2">{labels.solution}</h3>
-                  <p className="text-muted-foreground">{projects[selectedProject].solution}</p>
-                </div>
-
-                <div>
-                  <h3 className="text-xl mb-2">{labels.result}</h3>
-                  <p className="text-muted-foreground">{projects[selectedProject].result}</p>
-                </div>
-              </div>
-
-              {/* Metrics */}
-              <div className="mb-8">
-                <h3 className="text-xl mb-4">{labels.keyMetrics}</h3>
-                <div className="grid md:grid-cols-3 gap-4">
-                  {projects[selectedProject].metrics.map((metric) => (
-                    <div key={metric} className="bg-blue-50 rounded-xl p-4 text-center">
-                      <div className="text-sm">{metric}</div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Tags */}
-              <div className="mb-8">
-                <h3 className="text-xl mb-4">{labels.technologies}</h3>
-                <div className="flex flex-wrap gap-2">
-                  {projects[selectedProject].tags.map((tag) => (
-                    <Badge key={tag} variant="secondary" className="px-4 py-2">
-                      {tag}
-                    </Badge>
-                  ))}
-                </div>
-              </div>
-
-              <Button
-                onClick={() => setSelectedProject(null)}
-                size="lg"
-                className="w-full rounded-full"
-              >
-                {labels.close}
-              </Button>
-            </div>
-          </motion.div>
-        </motion.div>
-      )}
 
       {/* Connect CTA Section */}
       <section className="py-16 lg:py-24 bg-gradient-to-b from-white to-blue-50/20">
@@ -210,6 +207,28 @@ export function Projects() {
           </motion.div>
         </div>
       </section>
+
+      {/* Screen reader only class for announcements */}
+      <style>{`
+        .sr-only {
+          position: absolute;
+          width: 1px;
+          height: 1px;
+          padding: 0;
+          margin: -1px;
+          overflow: hidden;
+          clip: rect(0, 0, 0, 0);
+          white-space: nowrap;
+          border-width: 0;
+        }
+        .scrollbar-hide {
+          -ms-overflow-style: none;
+          scrollbar-width: none;
+        }
+        .scrollbar-hide::-webkit-scrollbar {
+          display: none;
+        }
+      `}</style>
     </div>
   );
 }
