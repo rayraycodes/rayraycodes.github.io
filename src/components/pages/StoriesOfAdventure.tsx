@@ -1,10 +1,60 @@
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { motion } from 'motion/react';
-import { Heart, Globe, BookOpen, Laptop, Users, Zap, ArrowLeft, Calendar, Instagram } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { Heart, Globe, BookOpen, Laptop, Users, Zap, Calendar, Instagram } from 'lucide-react';
 import { Button } from '../ui/button';
-import { InstagramFrame } from '../ui/InstagramFrame';
 import contentData from '../../data/content';
 import { getImageUrl } from '../../utils/imageUtils';
+
+// Category Filter Bar Component
+interface CategoryFilterBarProps {
+  categories: string[];
+  selectedCategory: string;
+  onCategoryChange: (category: string) => void;
+}
+
+function CategoryFilterBar({ categories, selectedCategory, onCategoryChange }: CategoryFilterBarProps) {
+  const categoryLabels: Record<string, string> = {
+    'All': 'All',
+    'blue': 'Mountains',
+    'green': 'National Parks',
+    'purple': 'Lakes & Water',
+    'indigo': 'Forests',
+    'teal': 'Seasons',
+    'orange': 'Cycling',
+    'red': 'Running',
+  };
+
+  return (
+    <nav aria-label="Adventure categories" className="mb-8">
+      <ul className="flex flex-wrap gap-2 overflow-x-auto pb-2 scrollbar-hide" role="list">
+        {categories.map((category) => {
+          const isSelected = category === selectedCategory;
+          return (
+            <li key={category} role="listitem">
+              <button
+                type="button"
+                onClick={() => onCategoryChange(category)}
+                aria-pressed={isSelected}
+                aria-current={isSelected ? 'page' : undefined}
+                className={`
+                  px-4 py-2 rounded-full text-sm font-medium transition-all duration-200
+                  whitespace-nowrap focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2
+                  ${isSelected
+                    ? 'bg-blue-600 text-white shadow-md border border-blue-700'
+                    : 'bg-white text-gray-700 hover:bg-gray-100 border border-gray-200'
+                  }
+                `}
+              >
+                {categoryLabels[category] || category}
+              </button>
+            </li>
+          );
+        })}
+      </ul>
+    </nav>
+  );
+}
 
 const iconMap: Record<string, typeof Globe> = {
   'Globe': Globe,
@@ -40,11 +90,26 @@ interface Story {
 }
 
 export function StoriesOfAdventure() {
+  const [selectedCategory, setSelectedCategory] = useState('All');
   const { hero, stories: storiesData, labels } = contentData.storiesOfAdventure;
   const { images } = contentData.assets;
   
+  // Extract unique themes from stories
+  const categories = useMemo(() => {
+    const uniqueThemes = new Set(storiesData.map(story => story.theme));
+    return ['All', ...Array.from(uniqueThemes).sort()];
+  }, [storiesData]);
+
+  // Filter stories based on selected category
+  const filteredStories = useMemo(() => {
+    if (selectedCategory === 'All') {
+      return storiesData;
+    }
+    return storiesData.filter(story => story.theme === selectedCategory);
+  }, [storiesData, selectedCategory]);
+  
   // Map stories with icons and thumbnails
-  const stories: Story[] = storiesData.map((story): Story => {
+  const stories: Story[] = filteredStories.map((story): Story => {
     // Use first image as thumbnail, or fallback to impact images
     const storyImages = story.content.images || [];
     const firstImage = storyImages.length > 0 
@@ -76,133 +141,6 @@ export function StoriesOfAdventure() {
     orange: 'from-orange-500/10 to-orange-600/5 border-orange-200',
   };
 
-  const [selectedStory, setSelectedStory] = useState<Story | null>(null);
-
-  if (selectedStory) {
-    return (
-      <div className="min-h-screen pt-24 lg:pt-32">
-        <div className="max-w-4xl mx-auto px-6 lg:px-12">
-          {/* Back Button */}
-          <motion.button
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            onClick={() => setSelectedStory(null)}
-            className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors mb-8"
-          >
-            <ArrowLeft size={20} />
-            <span>{labels.backToStories}</span>
-          </motion.button>
-
-          {/* Story Content */}
-          <motion.article
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="space-y-8"
-          >
-            {/* Header */}
-            <header className="space-y-4">
-              <div className="flex items-center gap-3 text-sm text-muted-foreground">
-                <Calendar size={16} />
-                <span>{selectedStory.date}</span>
-              </div>
-              <h1 className="text-4xl lg:text-5xl tracking-tight">
-                {selectedStory.title}
-              </h1>
-              <p className="text-xl text-muted-foreground">
-                {selectedStory.content.description}
-              </p>
-            </header>
-
-            {/* Images */}
-            {selectedStory.content.images && selectedStory.content.images.length > 0 && (
-              <div className="grid md:grid-cols-2 gap-4 lg:gap-6">
-                {selectedStory.content.images.map((image, idx) => {
-                  const imageUrl = typeof image === 'string' ? image : image.url;
-                  const imageAlt = typeof image === 'string' 
-                    ? `${selectedStory.title} - Image ${idx + 1}`
-                    : image.alt;
-                  const imageCaption = typeof image === 'string' 
-                    ? ''
-                    : image.caption;
-                  
-                  return (
-                    <InstagramFrame
-                      key={idx}
-                      imageUrl={imageUrl}
-                      alt={imageAlt}
-                      caption={imageCaption}
-                      index={idx}
-                    />
-                  );
-                })}
-              </div>
-            )}
-
-            {/* What I Did */}
-            <section className="space-y-4">
-              <h2 className="text-2xl font-semibold">{labels.whatIDid}</h2>
-              <ul className="grid md:grid-cols-2 gap-3">
-                {selectedStory.content.work.map((item) => (
-                  <li key={item} className="flex items-start gap-2">
-                    <span className="text-blue-600 mt-1">•</span>
-                    <span className="text-muted-foreground">{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </section>
-
-            {/* Reflection */}
-            <section className={`bg-gradient-to-br ${themeColors[selectedStory.theme as keyof typeof themeColors]} border rounded-2xl p-6 space-y-3`}>
-              <h2 className="text-2xl font-semibold">{labels.reflection}</h2>
-              <p className="text-lg text-muted-foreground italic">
-                {selectedStory.content.impact}
-              </p>
-            </section>
-          </motion.article>
-
-          {/* Connect CTA Section */}
-          <section className="py-16 lg:py-24 bg-gradient-to-b from-white to-blue-50/20 mt-16">
-            <div className="max-w-4xl mx-auto px-6 lg:px-12 text-center">
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8 }}
-              >
-                <h2 className="text-4xl lg:text-5xl tracking-tight mb-6">
-                  Let's connect
-                </h2>
-                <p className="text-xl text-muted-foreground mb-8">
-                  Want to learn more about this story or share your own adventures? I'd love to hear from you.
-                </p>
-                <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <a href={contentData.assets.links.email}>
-                    <Button size="lg" className="rounded-full px-8">
-                      Send an Email
-                    </Button>
-                  </a>
-                  <a href={contentData.assets.links.linkedin} target="_blank" rel="noopener noreferrer">
-                    <Button size="lg" variant="outline" className="rounded-full px-8">
-                      Connect on LinkedIn
-                    </Button>
-                  </a>
-                  {contentData.assets.links.instagram && (
-                    <a href={contentData.assets.links.instagram} target="_blank" rel="noopener noreferrer">
-                      <Button size="lg" variant="outline" className="rounded-full px-8">
-                        <Instagram className="w-5 h-5 mr-2" />
-                        Follow on Instagram
-                      </Button>
-                    </a>
-                  )}
-                </div>
-              </motion.div>
-            </div>
-          </section>
-        </div>
-      </div>
-    );
-  }
-
   return (
     <div className="min-h-screen pt-24 lg:pt-32">
       {/* Header */}
@@ -227,16 +165,42 @@ export function StoriesOfAdventure() {
       {/* Stories Grid */}
       <section className="py-16 lg:py-24">
         <div className="max-w-7xl mx-auto px-6 lg:px-12">
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {/* Category Filters */}
+          <CategoryFilterBar
+            categories={categories}
+            selectedCategory={selectedCategory}
+            onCategoryChange={(category) => {
+              setSelectedCategory(category);
+              // Announce category change to screen readers
+              const announcement = document.createElement('div');
+              announcement.setAttribute('role', 'status');
+              announcement.setAttribute('aria-live', 'polite');
+              announcement.setAttribute('aria-atomic', 'true');
+              announcement.className = 'sr-only';
+              announcement.textContent = `Showing ${category === 'All' ? 'all' : category} adventures`;
+              document.body.appendChild(announcement);
+              setTimeout(() => document.body.removeChild(announcement), 1000);
+            }}
+          />
+
+          {filteredStories.length === 0 ? (
+            <div className="text-center py-16">
+              <p className="text-gray-500">No adventures found in this category.</p>
+            </div>
+          ) : (
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {stories.map((story, index) => (
-              <motion.div
+              <Link
                 key={story.id}
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                onClick={() => setSelectedStory(story)}
-                className="group cursor-pointer"
+                to={`/storiesofadventure/${story.id}`}
+                className="group"
               >
+                <motion.div
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                  className="cursor-pointer"
+                >
                 <div className="surface-elevated rounded-2xl overflow-hidden transition-all duration-300 hover:shadow-xl hover:scale-[1.02]">
                   {/* Thumbnail */}
                          <div className="relative aspect-video overflow-hidden bg-gradient-to-br from-gray-100 to-gray-200">
@@ -267,9 +231,11 @@ export function StoriesOfAdventure() {
                     </div>
                   </div>
                 </div>
-              </motion.div>
+                </motion.div>
+              </Link>
             ))}
           </div>
+          )}
         </div>
       </section>
 
@@ -303,6 +269,28 @@ export function StoriesOfAdventure() {
           </motion.div>
         </div>
       </section>
+
+      {/* Screen reader only class for announcements */}
+      <style>{`
+        .sr-only {
+          position: absolute;
+          width: 1px;
+          height: 1px;
+          padding: 0;
+          margin: -1px;
+          overflow: hidden;
+          clip: rect(0, 0, 0, 0);
+          white-space: nowrap;
+          border-width: 0;
+        }
+        .scrollbar-hide {
+          -ms-overflow-style: none;
+          scrollbar-width: none;
+        }
+        .scrollbar-hide::-webkit-scrollbar {
+          display: none;
+        }
+      `}</style>
     </div>
   );
 }

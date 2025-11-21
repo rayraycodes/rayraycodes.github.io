@@ -9,6 +9,7 @@ import { ProjectDetail } from './components/pages/ProjectDetail';
 import { Impact } from './components/pages/Impact';
 import { StoryDetail } from './components/pages/StoryDetail';
 import { StoriesOfAdventure } from './components/pages/StoriesOfAdventure';
+import { StoryOfAdventureDetail } from './components/pages/StoryOfAdventureDetail';
 import { Accessibility } from './components/pages/Accessibility';
 import { Contact } from './components/pages/Contact';
 import { Photography } from './components/pages/Photography';
@@ -29,6 +30,7 @@ export default function App() {
           <Route path="/impact" element={<Impact />} />
           <Route path="/impact/:storyId" element={<StoryDetail />} />
           <Route path="/storiesofadventure" element={<StoriesOfAdventure />} />
+          <Route path="/storiesofadventure/:storyId" element={<StoryOfAdventureDetail />} />
           <Route path="/accessibility" element={<Accessibility />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/photography" element={<Photography />} />
