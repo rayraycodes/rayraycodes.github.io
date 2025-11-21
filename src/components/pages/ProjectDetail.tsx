@@ -6,6 +6,7 @@ import { Button } from '../ui/button';
 import { ImageWithFallback } from '../figma/ImageWithFallback';
 import { ExternalLink, Github, FileText, ArrowLeft, Share2, Copy, Check } from 'lucide-react';
 import contentData from '../../data/content';
+import { useMetaTags } from '../../utils/useMetaTags';
 
 export function ProjectDetail() {
   const { projectId } = useParams<{ projectId: string }>();
@@ -27,6 +28,15 @@ export function ProjectDetail() {
       navigate('/projects');
     }
   }, [selectedProject, navigate]);
+
+  // Update meta tags for social sharing
+  useMetaTags({
+    title: selectedProject ? `${selectedProject.title} | Projects` : 'Projects',
+    description: selectedProject?.description || 'Selected Projects',
+    image: selectedProject?.imageUrl || (contentData.assets.images.projects[0] || '/assets/raylogo.png'),
+    url: selectedProject ? window.location.href : undefined,
+    type: 'article',
+  });
 
   const handleShare = async () => {
     const url = window.location.href;

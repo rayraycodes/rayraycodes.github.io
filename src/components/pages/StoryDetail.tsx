@@ -5,6 +5,8 @@ import { Heart, Globe, BookOpen, Laptop, Users, Zap, ArrowLeft, Calendar, Share2
 import { Button } from '../ui/button';
 import contentData from '../../data/content';
 import { useState } from 'react';
+import { useMetaTags } from '../../utils/useMetaTags';
+import { getImageUrl } from '../../utils/imageUtils';
 
 const iconMap: Record<string, typeof Globe> = {
   'Globe': Globe,
@@ -75,6 +77,15 @@ export function StoryDetail() {
       navigate('/impact');
     }
   }, [selectedStory, navigate]);
+
+  // Update meta tags for social sharing
+  useMetaTags({
+    title: selectedStory ? `${selectedStory.title} | Stories of Impact` : 'Stories of Impact',
+    description: selectedStory?.excerpt || 'Stories of Impact',
+    image: selectedStory ? getImageUrl(selectedStory.thumbnail) : getImageUrl(contentData.assets.images.impact.ruralSchool),
+    url: selectedStory ? window.location.href : undefined,
+    type: 'article',
+  });
 
   const handleShare = async () => {
     const url = window.location.href;

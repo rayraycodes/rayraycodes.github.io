@@ -6,6 +6,7 @@ import { Button } from '../ui/button';
 import { InstagramFrame } from '../ui/InstagramFrame';
 import contentData from '../../data/content';
 import { getImageUrl } from '../../utils/imageUtils';
+import { useMetaTags } from '../../utils/useMetaTags';
 
 const iconMap: Record<string, typeof Globe> = {
   'Globe': Globe,
@@ -87,6 +88,15 @@ export function StoryOfAdventureDetail() {
       navigate('/storiesofadventure');
     }
   }, [selectedStory, navigate]);
+
+  // Update meta tags for social sharing
+  useMetaTags({
+    title: selectedStory ? `${selectedStory.title} | Stories of Adventure` : 'Stories of Adventure',
+    description: selectedStory?.excerpt || 'Stories of Adventure',
+    image: selectedStory ? getImageUrl(selectedStory.thumbnail) : contentData.assets.images.impact.mountainVillage,
+    url: selectedStory ? window.location.href : undefined,
+    type: 'article',
+  });
 
   const handleShare = async () => {
     const url = window.location.href;
