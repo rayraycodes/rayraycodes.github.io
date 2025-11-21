@@ -35,7 +35,7 @@ export function Home() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: 'easeOut' }}
           >
-            <h1 className="text-5xl md:text-7xl lg:text-8xl tracking-tight mb-6 text-gradient-blue">
+            <h1 className="text-5xl md:text-7xl lg:text-8xl tracking-tight mb-6" style={{ color: '#3b82f6' }}>
               {hero.title.split('\n').map((line, i) => (
                 <span key={i}>
                   {line}
