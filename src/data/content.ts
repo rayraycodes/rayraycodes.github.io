@@ -1208,8 +1208,8 @@ const contentData = {
         },
         {
           "label": "LinkedIn",
-          "href": "https://linkedin.com/in/reganmaharjan",
-          "handle": "linkedin.com/in/reganmaharjan"
+          "href": "https://www.linkedin.com/in/imregan/",
+          "handle": "linkedin.com/in/imregan"
         },
         {
           "label": "GitHub",
@@ -1439,7 +1439,7 @@ const contentData = {
     },
     "links": {
       "email": "mailto:imregan@umich.edu",
-      "linkedin": "https://linkedin.com/in/reganmaharjan",
+      "linkedin": "https://www.linkedin.com/in/imregan/",
       "instagram": "https://www.instagram.com/rayheyheygun/",
       "github": "https://github.com/reganmaharjan",
       "twitter": "https://twitter.com/reganmaharjan"
