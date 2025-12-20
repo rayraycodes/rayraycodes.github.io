@@ -87,14 +87,64 @@ export function StoryOfAdventureDetail() {
   useEffect(() => {
     if (!selectedStory) {
       navigate('/storiesofadventure');
+      return;
     }
+
+    // Update meta tags immediately for better crawler support
+    const baseUrl = window.location.origin;
+    const storyImage = selectedStory.content.images && selectedStory.content.images.length > 0
+      ? getImageUrl(typeof selectedStory.content.images[0] === 'string' 
+          ? selectedStory.content.images[0] 
+          : selectedStory.content.images[0].url)
+      : getImageUrl(selectedStory.thumbnail);
+    
+    // Ensure image URL is absolute
+    const imageUrl = storyImage.startsWith('http') 
+      ? storyImage 
+      : `${baseUrl}${storyImage.startsWith('/') ? '' : '/'}${storyImage}`;
+    
+    // Update document title immediately
+    document.title = selectedStory.title;
+    
+    // Update meta tags synchronously for crawlers
+    const updateMeta = (property: string, content: string, isProperty = true) => {
+      const selector = isProperty ? `meta[property="${property}"]` : `meta[name="${property}"]`;
+      let element = document.querySelector(selector) as HTMLMetaElement;
+      if (!element) {
+        element = document.createElement('meta');
+        if (isProperty) {
+          element.setAttribute('property', property);
+        } else {
+          element.setAttribute('name', property);
+        }
+        document.head.appendChild(element);
+      }
+      element.setAttribute('content', content);
+    };
+
+    updateMeta('og:title', selectedStory.title);
+    updateMeta('og:description', selectedStory.excerpt);
+    updateMeta('og:image', imageUrl);
+    updateMeta('og:url', window.location.href);
+    updateMeta('og:type', 'article');
+    updateMeta('twitter:card', 'summary_large_image', false);
+    updateMeta('twitter:title', selectedStory.title, false);
+    updateMeta('twitter:description', selectedStory.excerpt, false);
+    updateMeta('twitter:image', imageUrl, false);
+    updateMeta('description', selectedStory.excerpt, false);
   }, [selectedStory, navigate]);
 
-  // Update meta tags for social sharing
+  // Also use the hook for React-based updates
   useMetaTags({
     title: selectedStory ? selectedStory.title : 'Stories of Adventure',
     description: selectedStory?.excerpt || 'Stories of Adventure',
-    image: selectedStory ? getImageUrl(selectedStory.thumbnail) : contentData.assets.images.impact.mountainVillage,
+    image: selectedStory 
+      ? (selectedStory.content.images && selectedStory.content.images.length > 0
+          ? getImageUrl(typeof selectedStory.content.images[0] === 'string' 
+              ? selectedStory.content.images[0] 
+              : selectedStory.content.images[0].url)
+          : getImageUrl(selectedStory.thumbnail))
+      : contentData.assets.images.impact.mountainVillage,
     url: selectedStory ? window.location.href : undefined,
     type: 'article',
   });

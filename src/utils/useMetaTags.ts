@@ -12,21 +12,32 @@ export function useMetaTags({ title, description, image, url, type = 'article' }
   useEffect(() => {
     // Get base URL
     const baseUrl = window.location.origin;
-    const currentUrl = url || window.location.href;
+    // For HashRouter, convert hash URL to query parameter for better crawler support
+    // e.g., /#/storiesofadventure/mustang-to-rockies -> /?route=/storiesofadventure/mustang-to-rockies
+    let currentUrl = url || window.location.href;
+    // Keep the hash URL as-is for now, but ensure it's absolute
+    if (!currentUrl.startsWith('http')) {
+      currentUrl = `${baseUrl}${currentUrl}`;
+    }
     
-    // Convert relative image URL to absolute
+    // Convert relative image URL to absolute - CRITICAL for social media crawlers
     let imageUrl = image;
     if (!image.startsWith('http')) {
-      // Handle relative paths
+      // Handle relative paths - ensure they're absolute
       if (image.startsWith('/')) {
         imageUrl = `${baseUrl}${image}`;
       } else if (image.startsWith('./') || image.startsWith('../')) {
         // Handle relative paths from current location
-        imageUrl = `${baseUrl}/${image}`;
+        imageUrl = `${baseUrl}/${image.replace(/^\.+\//, '')}`;
       } else {
         // Assume it's in assets folder
         imageUrl = `${baseUrl}/assets/${image}`;
       }
+    }
+    
+    // Final check - ensure image URL is always absolute
+    if (!imageUrl.startsWith('http://') && !imageUrl.startsWith('https://')) {
+      imageUrl = `${baseUrl}${imageUrl.startsWith('/') ? '' : '/'}${imageUrl}`;
     }
 
     // Update or create meta tags
