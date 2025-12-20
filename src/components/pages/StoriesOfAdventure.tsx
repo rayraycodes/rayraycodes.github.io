@@ -231,11 +231,11 @@ export function StoriesOfAdventure() {
                            <img
                              src={getImageUrl(story.thumbnail)}
                              alt={`${story.title} - Story thumbnail`}
-                             className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                             className="relative z-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                            />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent z-0" />
-                    <div className="absolute bottom-4 left-4 z-20">
-                      <div className="flex items-center gap-2 bg-black/80 backdrop-blur-sm px-4 py-2 rounded-full shadow-2xl">
+                    <div className="absolute inset-0 z-10 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
+                    <div className="absolute bottom-4 left-4 z-50 pointer-events-none">
+                      <div className="flex items-center gap-2 bg-black/90 backdrop-blur-sm px-4 py-2 rounded-full shadow-2xl pointer-events-auto">
                         <story.icon size={18} className="text-white flex-shrink-0" />
                         <span className="text-white text-sm font-bold">{story.date}</span>
                       </div>
