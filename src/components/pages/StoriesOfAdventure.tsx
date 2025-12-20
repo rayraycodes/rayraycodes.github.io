@@ -236,8 +236,8 @@ export function StoriesOfAdventure() {
                     <div className="absolute inset-0 z-10 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
                     <div className="absolute bottom-4 left-4 z-50 pointer-events-none">
                       <div className="flex items-center gap-2 bg-black/90 backdrop-blur-sm px-4 py-2 rounded-full shadow-2xl pointer-events-auto">
-                        <story.icon size={18} className="text-white flex-shrink-0" />
-                        <span className="text-white text-sm font-bold">{story.date}</span>
+                        <story.icon size={18} className="text-blue-300 flex-shrink-0" />
+                        <span className="text-blue-300 text-sm font-bold">{story.date}</span>
                       </div>
                     </div>
                   </div>
