@@ -7,6 +7,7 @@ import { InstagramFrame } from '../ui/InstagramFrame';
 import contentData from '../../data/content';
 import { getImageUrl } from '../../utils/imageUtils';
 import { useMetaTags } from '../../utils/useMetaTags';
+import { Comments } from '../Comments';
 
 const iconMap: Record<string, typeof Globe> = {
   'Globe': Globe,
@@ -278,6 +279,9 @@ export function StoryOfAdventureDetail() {
               </p>
             )}
           </section>
+
+          {/* Comments Section */}
+          <Comments storyId={storyId || ''} />
         </motion.article>
 
         {/* Connect CTA Section */}

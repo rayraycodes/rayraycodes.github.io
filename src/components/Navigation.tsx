@@ -26,7 +26,9 @@ export function Navigation() {
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? 'glassmorphism border-b border-black/5' : 'bg-transparent'
+        isScrolled 
+          ? 'bg-white border-b border-black/10 shadow-lg' 
+          : 'bg-white/90 backdrop-blur-sm shadow-md'
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
@@ -51,7 +53,7 @@ export function Navigation() {
                 to={link.path}
                 className="relative px-4 py-2 transition-colors group"
               >
-                <span className="relative z-10 text-sm">
+                <span className="relative z-10 text-sm font-medium text-gray-900">
                   {link.label}
                 </span>
                 {location.pathname === link.path && (
@@ -83,7 +85,7 @@ export function Navigation() {
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -20 }}
-          className="lg:hidden glassmorphism border-t border-black/5"
+          className="lg:hidden bg-white border-t border-black/10 shadow-lg"
         >
           <div className="max-w-7xl mx-auto px-6 py-4 space-y-1">
             {navLinks.map((link: { path: string; label: string }) => (
@@ -91,7 +93,7 @@ export function Navigation() {
                 key={link.path}
                 to={link.path}
                 onClick={() => setIsMobileMenuOpen(false)}
-                className={`block px-4 py-3 rounded-lg transition-colors ${
+                className={`block px-4 py-3 rounded-lg transition-colors font-medium text-gray-900 ${
                   location.pathname === link.path
                     ? 'bg-black/5'
                     : 'hover:bg-black/[0.02]'
