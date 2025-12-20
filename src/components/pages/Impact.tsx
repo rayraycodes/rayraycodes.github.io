@@ -133,11 +133,11 @@ export function Impact() {
                       alt={`${story.title} - Story thumbnail`}
                       className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
-                    <div className="absolute bottom-4 left-4">
-                      <div className="flex items-center gap-2 bg-black/50 backdrop-blur-md px-3 py-1.5 rounded-full shadow-lg">
-                        <story.icon size={18} className="text-white" />
-                        <span className="text-white text-sm font-semibold">{story.date}</span>
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent z-0" />
+                    <div className="absolute bottom-4 left-4 z-20">
+                      <div className="flex items-center gap-2 bg-black/80 backdrop-blur-sm px-4 py-2 rounded-full shadow-2xl">
+                        <story.icon size={18} className="text-white flex-shrink-0" />
+                        <span className="text-white text-sm font-bold">{story.date}</span>
                       </div>
                     </div>
                   </div>
