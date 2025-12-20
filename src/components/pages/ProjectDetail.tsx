@@ -31,7 +31,7 @@ export function ProjectDetail() {
 
   // Update meta tags for social sharing
   useMetaTags({
-    title: selectedProject ? `${selectedProject.title} | Projects` : 'Projects',
+    title: selectedProject ? selectedProject.title : 'Projects',
     description: selectedProject?.description || 'Selected Projects',
     image: selectedProject?.imageUrl || (contentData.assets.images.projects[0] || '/assets/raylogo.png'),
     url: selectedProject ? window.location.href : undefined,

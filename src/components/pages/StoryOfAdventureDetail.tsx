@@ -92,7 +92,7 @@ export function StoryOfAdventureDetail() {
 
   // Update meta tags for social sharing
   useMetaTags({
-    title: selectedStory ? `${selectedStory.title} | Stories of Adventure` : 'Stories of Adventure',
+    title: selectedStory ? selectedStory.title : 'Stories of Adventure',
     description: selectedStory?.excerpt || 'Stories of Adventure',
     image: selectedStory ? getImageUrl(selectedStory.thumbnail) : contentData.assets.images.impact.mountainVillage,
     url: selectedStory ? window.location.href : undefined,
