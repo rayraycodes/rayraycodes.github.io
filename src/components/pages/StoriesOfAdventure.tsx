@@ -100,12 +100,36 @@ export function StoriesOfAdventure() {
     return ['All', ...Array.from(uniqueThemes).sort()];
   }, [storiesData]);
 
+  // Helper function to extract year from date string for sorting
+  const extractYear = (dateStr: string): number => {
+    // Handle formats like "Dec 2025", "2024", "2023-2024"
+    const yearMatch = dateStr.match(/\b(20\d{2})\b/);
+    if (yearMatch) {
+      return parseInt(yearMatch[1], 10);
+    }
+    // Fallback for dates without year
+    return 0;
+  };
+
   // Filter stories based on selected category
   const filteredStories = useMemo(() => {
-    if (selectedCategory === 'All') {
-      return storiesData;
-    }
-    return storiesData.filter(story => story.theme === selectedCategory);
+    let filtered = selectedCategory === 'All' 
+      ? storiesData 
+      : storiesData.filter(story => story.theme === selectedCategory);
+    
+    // Sort by date (newest first)
+    return [...filtered].sort((a, b) => {
+      const yearA = extractYear(a.date);
+      const yearB = extractYear(b.date);
+      // If same year, check for month (Dec 2025 > 2024)
+      if (yearA === yearB) {
+        // If one has month prefix (like "Dec 2025"), prioritize it
+        if (a.date.includes('Dec') && !b.date.includes('Dec')) return -1;
+        if (!a.date.includes('Dec') && b.date.includes('Dec')) return 1;
+        return 0;
+      }
+      return yearB - yearA; // Descending order (newest first)
+    });
   }, [storiesData, selectedCategory]);
   
   // Map stories with icons and thumbnails
@@ -211,9 +235,9 @@ export function StoriesOfAdventure() {
                            />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
                     <div className="absolute bottom-4 left-4 right-4">
-                      <div className="flex items-center gap-2 text-white text-sm mb-2">
-                        <story.icon size={16} />
-                        <span>{story.date}</span>
+                      <div className="flex items-center gap-2 text-white text-sm font-medium mb-2">
+                        <story.icon size={16} className="drop-shadow-lg" />
+                        <span className="drop-shadow-lg">{story.date}</span>
                       </div>
                     </div>
                   </div>

@@ -1,3 +1,4 @@
+import { useMemo } from 'react';
 import { motion } from 'motion/react';
 import { Link } from 'react-router-dom';
 import { Heart, Globe, BookOpen, Laptop, Users, Zap, Calendar } from 'lucide-react';
@@ -35,8 +36,32 @@ export function Impact() {
   const { hero, stories: storiesData, labels } = contentData.impact;
   const { images } = contentData.assets;
   
+  // Helper function to extract year from date string for sorting
+  const extractYear = (dateStr: string): number => {
+    // Handle formats like "2024", "2017-2020", "2020-2021"
+    const yearMatch = dateStr.match(/\b(20\d{2})\b/);
+    if (yearMatch) {
+      return parseInt(yearMatch[1], 10);
+    }
+    // For ranges like "2017-2020", use the end year
+    const rangeMatch = dateStr.match(/\b(20\d{2})\s*-\s*(20\d{2})\b/);
+    if (rangeMatch) {
+      return parseInt(rangeMatch[2], 10); // Use end year
+    }
+    return 0;
+  };
+
+  // Sort stories by date (newest first)
+  const sortedStories = useMemo(() => {
+    return [...storiesData].sort((a, b) => {
+      const yearA = extractYear(a.date);
+      const yearB = extractYear(b.date);
+      return yearB - yearA; // Descending order (newest first)
+    });
+  }, [storiesData]);
+  
   // Map stories with icons and thumbnails
-  const stories: Story[] = storiesData.map((story): Story => {
+  const stories: Story[] = sortedStories.map((story): Story => {
     const thumbnail = story.id === 'building-technology' || story.id === 'e-pustakalaya' || story.id === 'ocr-tts' || story.id === 'technical-infrastructure' 
       ? images.impact.ruralSchool 
       : images.impact.mountainVillage;
@@ -110,9 +135,9 @@ export function Impact() {
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
                     <div className="absolute bottom-4 left-4 right-4">
-                      <div className="flex items-center gap-2 text-white text-sm mb-2">
-                        <story.icon size={16} />
-                        <span>{story.date}</span>
+                      <div className="flex items-center gap-2 text-white text-sm font-medium mb-2">
+                        <story.icon size={16} className="drop-shadow-lg" />
+                        <span className="drop-shadow-lg">{story.date}</span>
                       </div>
                     </div>
                   </div>
