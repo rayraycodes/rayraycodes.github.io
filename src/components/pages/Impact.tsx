@@ -134,10 +134,10 @@ export function Impact() {
                       className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
-                    <div className="absolute bottom-4 left-4 right-4">
-                      <div className="flex items-center gap-2 bg-black/40 backdrop-blur-sm px-3 py-1.5 rounded-full w-fit">
-                        <story.icon size={18} className="text-white drop-shadow-lg" />
-                        <span className="text-white text-sm font-semibold drop-shadow-lg">{story.date}</span>
+                    <div className="absolute bottom-4 left-4">
+                      <div className="flex items-center gap-2 bg-black/50 backdrop-blur-md px-3 py-1.5 rounded-full shadow-lg">
+                        <story.icon size={18} className="text-white" />
+                        <span className="text-white text-sm font-semibold">{story.date}</span>
                       </div>
                     </div>
                   </div>
