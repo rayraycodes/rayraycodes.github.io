@@ -32,9 +32,9 @@ interface Story {
   icon: typeof Globe;
   theme: 'blue' | 'green' | 'purple' | 'indigo' | 'teal' | 'orange' | string;
   content: {
-    description: string;
+    description: string | string[];
     work: string[];
-    impact: string;
+    impact: string | string[];
     images?: (string | StoryImage)[];
     hasStats?: boolean;
     stats?: Array<{ value: string; label: string }>;
@@ -181,15 +181,12 @@ export function StoryOfAdventureDetail() {
             <h1 className="text-4xl lg:text-5xl tracking-tight">
               {selectedStory.title}
             </h1>
-            <p className="text-xl text-muted-foreground">
-              {selectedStory.content.description}
-            </p>
           </header>
 
-          {/* Images */}
+          {/* First 2 Images */}
           {selectedStory.content.images && selectedStory.content.images.length > 0 && (
             <div className="grid md:grid-cols-2 gap-4 lg:gap-6">
-              {selectedStory.content.images.map((image, idx) => {
+              {selectedStory.content.images.slice(0, 2).map((image, idx) => {
                 const imageUrl = typeof image === 'string' ? image : image.url;
                 const imageAlt = typeof image === 'string' 
                   ? `${selectedStory.title} - Image ${idx + 1}`
@@ -205,6 +202,46 @@ export function StoryOfAdventureDetail() {
                     alt={imageAlt}
                     caption={imageCaption}
                     index={idx}
+                  />
+                );
+              })}
+            </div>
+          )}
+
+          {/* Description */}
+          {Array.isArray(selectedStory.content.description) ? (
+            <div className="space-y-4">
+              {selectedStory.content.description.map((paragraph, index) => (
+                <p key={index} className="text-xl text-muted-foreground leading-relaxed">
+                  {paragraph}
+                </p>
+              ))}
+            </div>
+          ) : (
+            <p className="text-xl text-muted-foreground leading-relaxed whitespace-pre-line">
+              {selectedStory.content.description}
+            </p>
+          )}
+
+          {/* Remaining Images */}
+          {selectedStory.content.images && selectedStory.content.images.length > 2 && (
+            <div className="grid md:grid-cols-2 gap-4 lg:gap-6">
+              {selectedStory.content.images.slice(2).map((image, idx) => {
+                const imageUrl = typeof image === 'string' ? image : image.url;
+                const imageAlt = typeof image === 'string' 
+                  ? `${selectedStory.title} - Image ${idx + 3}`
+                  : image.alt;
+                const imageCaption = typeof image === 'string' 
+                  ? ''
+                  : image.caption;
+                
+                return (
+                  <InstagramFrame
+                    key={idx + 2}
+                    imageUrl={getImageUrl(imageUrl)}
+                    alt={imageAlt}
+                    caption={imageCaption}
+                    index={idx + 2}
                   />
                 );
               })}
@@ -227,9 +264,19 @@ export function StoryOfAdventureDetail() {
           {/* Reflection */}
           <section className={`bg-gradient-to-br ${themeColors[selectedStory.theme as keyof typeof themeColors]} border rounded-2xl p-6 space-y-3`}>
             <h2 className="text-2xl font-semibold">{labels.reflection}</h2>
-            <p className="text-lg text-muted-foreground italic">
-              {selectedStory.content.impact}
-            </p>
+            {Array.isArray(selectedStory.content.impact) ? (
+              <div className="space-y-4">
+                {selectedStory.content.impact.map((paragraph, index) => (
+                  <p key={index} className="text-lg text-muted-foreground italic leading-relaxed">
+                    {paragraph}
+                  </p>
+                ))}
+              </div>
+            ) : (
+              <p className="text-lg text-muted-foreground italic leading-relaxed whitespace-pre-line">
+                {selectedStory.content.impact}
+              </p>
+            )}
           </section>
         </motion.article>
 

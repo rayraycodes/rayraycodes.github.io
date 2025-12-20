@@ -1164,6 +1164,148 @@ const contentData = {
             }
           ]
         }
+      },
+      {
+        "id": "mustang-to-rockies",
+        "title": "From The Himalayas to the Rocky Mountains",
+        "excerpt": "Some dreams begin quietly over conversations, borrowed imaginations, and the courage of someone who goes first.",
+        "date": "Dec 2025",
+        "icon": "Heart",
+        "theme": "yellow",
+        "content": {
+          "description": [
+            "Some dreams begin quietly over conversations. They come from borrowed imaginations and the courage of someone who goes first.",
+            "My sister Monika Maharjan came from Nepal. She carried stories of faraway places and possibilities that once felt distant to me.",
+            "Long before visas, degrees, or continents entered our lives, we shared a simple dream. We wanted to travel. We wanted to explore beautiful places. We wanted to see the world beyond what we knew.",
+            "When she visited from Japan, she took me to Mustang. She was pursuing her PhD in Tokyo at the time. Mustang is the dry, dramatic mountains of the Nepali Himalayas.",
+            "Surrounded by wind-carved cliffs and endless skies, something shifted in me. Mustang wasn't just a destination. It was a reminder that the world was vast. Dreaming was only the beginning.",
+            "That journey quietly set my compass.",
+            "Since then, I've worked on my own terms to pursue my master's degree in the United States. I was inspired by the path she was carving across borders.",
+            "Our lives moved in parallel lines. Hers moved through academia and research, first in Japan, then the UK, and eventually the US. Mine moved through persistence, patience, and belief that I could build a life shaped by curiosity and movement.",
+            "Years later, life brought us together again, this time in Denver. She had a work trip, and I flew out to meet her.",
+            "Standing together in the Rocky Mountains, I felt the same quiet awe I had felt in Mustang. Different mountains, different country, but the same shared wonder.",
+            "From the dry Himalayan landscapes of Nepal to the rugged peaks of Colorado, our journey has never really been about geography. It's been about growth, courage, and the invisible thread of shared dreams that stretches across time and continents.",
+            "Some dreams travel with you. Others wait patiently until the moment you're standing in the mountains again, realizing how far you've come."
+          ],
+          "work": [
+            "Traveled to Mustang, Nepal with my sister, experiencing the dramatic Himalayan landscapes",
+            "Pursued my master's degree in the United States, inspired by her academic journey",
+            "Met in Denver and explored the Rocky Mountains together",
+            "Documented the journey through photography and reflection",
+            "Connected across continents, celebrating shared dreams and growth"
+          ],
+          "impact": [
+            "This story is about more than geography. It's about the power of shared dreams. It's about the courage to pursue them. It's about the invisible threads that connect us across borders and time.",
+            "From Mustang to the Rockies, these mountains have been witnesses to our growth. They are reminders of how far we've come. They are symbols of the dreams that continue to guide us forward."
+          ],
+          "images": [
+            {
+              "url": "/assets/colorado/DSC00500-min.JPG",
+              "alt": "Rocky Mountain landscape with dramatic peaks and valleys",
+              "caption": "Ancient red rock formations"
+            },
+            {
+              "url": "/assets/colorado/DSC00505-min.JPG",
+              "alt": "Mountain peaks reaching toward the sky in Colorado",
+              "caption": "Mountain peaks reaching for the sky"
+            },
+            {
+              "url": "/assets/colorado/DSC00507-min.JPG",
+              "alt": "Scenic mountain view in the Rocky Mountains",
+              "caption": "Alpine reflections"
+            },
+            {
+              "url": "/assets/colorado/DSC00512-min.JPG",
+              "alt": "Beautiful Colorado mountain landscape",
+              "caption": "Towering sandstone spires"
+            },
+            {
+              "url": "/assets/colorado/DSC00537-min.JPG",
+              "alt": "Expansive mountain views in the Rockies",
+              "caption": "Ancient red rock formations"
+            },
+            {
+              "url": "/assets/colorado/DSC00563-min.JPG",
+              "alt": "Mountain trail winding through Colorado landscape",
+              "caption": "Trail through rock formations"
+            },
+            {
+              "url": "/assets/colorado/DSC00604-min.JPG",
+              "alt": "Dramatic Rocky Mountain scenery",
+              "caption": "Dramatic rock formations"
+            },
+            {
+              "url": "/assets/colorado/DSC00609-min.JPG",
+              "alt": "Stunning Colorado mountain peaks",
+              "caption": "Snow-capped peaks in the distance"
+            },
+            {
+              "url": "/assets/colorado/DSC00628-min.JPG",
+              "alt": "Panoramic view of Rocky Mountain landscape",
+              "caption": "Panoramic mountain views"
+            },
+            {
+              "url": "/assets/colorado/DSC00692-min.JPG",
+              "alt": "Mountain landscape with dramatic lighting",
+              "caption": "Light and shadow on red rocks"
+            },
+            {
+              "url": "/assets/colorado/DSC00699-min.JPG",
+              "alt": "Beautiful Colorado mountain scene",
+              "caption": "Mountain town charm"
+            },
+            {
+              "url": "/assets/colorado/DSC00720-min.JPG",
+              "alt": "Rocky Mountain peaks against the sky",
+              "caption": "Peaks mirrored in still waters"
+            },
+            {
+              "url": "/assets/colorado/DSC00725-min.JPG",
+              "alt": "Scenic Colorado mountain view",
+              "caption": "Majestic rock formations"
+            },
+            {
+              "url": "/assets/colorado/DSC00754-min.JPG",
+              "alt": "Expansive Rocky Mountain landscape",
+              "caption": "Vast mountain horizons"
+            },
+            {
+              "url": "/assets/colorado/DSC00781-min.JPG",
+              "alt": "Dramatic mountain scenery in Colorado",
+              "caption": "Dramatic alpine scenery"
+            },
+            {
+              "url": "/assets/colorado/DSC00794-min.JPG",
+              "alt": "Beautiful mountain peaks in the Rockies",
+              "caption": "Natural sculptures"
+            },
+            {
+              "url": "/assets/colorado/DSC00796-min.JPG",
+              "alt": "Stunning Colorado mountain vista",
+              "caption": "Mountain vistas from above"
+            },
+            {
+              "url": "/assets/colorado/DSC00832-min.JPG",
+              "alt": "Panoramic Rocky Mountain view",
+              "caption": "Panoramic alpine beauty"
+            },
+            {
+              "url": "/assets/colorado/DSC00863-min.JPG",
+              "alt": "Mountain landscape with dramatic formations",
+              "caption": "Wind-carved formations"
+            },
+            {
+              "url": "/assets/colorado/DSC00880-min.JPG",
+              "alt": "Beautiful Colorado mountain scenery",
+              "caption": "Mountain beauty"
+            },
+            {
+              "url": "/assets/colorado/DSC00945-min.JPG",
+              "alt": "Final view of Rocky Mountain peaks",
+              "caption": "Memories in the mountains"
+            }
+          ]
+        }
       }
     ],
     "labels": {
