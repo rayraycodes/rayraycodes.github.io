@@ -25,12 +25,18 @@ export const githubConfig = {
   gistId: 'af23f94667a5b844d5dc43b3b89321d7',
   
   // GitHub Personal Access Token (with 'gist' scope) - REQUIRED
-  // Create one at: https://github.com/settings/tokens
-  // Select 'gist' scope only
+  // Set via environment variable: VITE_GITHUB_TOKEN
+  // 
+  // For local development:
+  // 1. Copy .env.example to .env
+  // 2. Add your token: VITE_GITHUB_TOKEN=your_token_here
+  // 
+  // For production (GitHub Pages):
+  // The token is injected via GitHub Actions using the GIST_TOKEN secret
+  // Set up in: Repository Settings > Secrets and variables > Actions
+  // 
   // Note: This token will be visible in client-side code, so use a token with minimal permissions
-  // Create a dedicated token just for this purpose
-  // Add your token here after creating it
-  token: '',
+  token: import.meta.env.VITE_GITHUB_TOKEN || '',
   
   // Gist filename
   filename: 'comments.json',

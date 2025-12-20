@@ -1,52 +1,56 @@
-name: Deploy Vite React App to GitHub Pages
+name: Deploy to GitHub Pages
 
 on:
   push:
     branches:
-      - master  # Change to 'main' if your default branch is 'main'
+      - master
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
 
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
-    
-    permissions:
-      contents: write  # Changed from 'read' to 'write' for gh-pages action
-      pages: write
-      id-token: write
-    
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 0  # Fetch all history for git operations
-          persist-credentials: true  # Important for gh-pages action
-          token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Set up Node.js
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20'
           cache: 'npm'
 
-      - name: Install Dependencies
+      - name: Install dependencies
         run: npm ci
 
-      - name: Build
+      - name: Build with environment variables
+        env:
+          VITE_GITHUB_TOKEN: ${{ secrets.GIST_TOKEN }}
         run: npm run build
 
-      - name: Create .nojekyll
-        run: touch build/.nojekyll
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
 
-      - name: Configure Git
-        run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
-
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
-        if: github.ref == 'refs/heads/master'  # Only deploy from master branch
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./build
-          cname: false
+          path: './build'
 
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
