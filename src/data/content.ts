@@ -1171,7 +1171,7 @@ const contentData = {
         "excerpt": "Some dreams begin quietly over conversations, borrowed imaginations, and the courage of someone who goes first.",
         "date": "Dec 2025",
         "icon": "Heart",
-        "theme": "yellow",
+        "theme": "green",
         "content": {
           "description": [
             "Some dreams begin quietly over conversations. They come from borrowed imaginations and the courage of someone who goes first.",

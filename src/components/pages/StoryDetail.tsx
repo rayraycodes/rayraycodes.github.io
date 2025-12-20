@@ -75,8 +75,11 @@ export function StoryDetail() {
   useEffect(() => {
     if (!selectedStory) {
       navigate('/impact');
+      return;
     }
-  }, [selectedStory, navigate]);
+    // Scroll to top when story loads
+    window.scrollTo({ top: 0, behavior: 'instant' });
+  }, [selectedStory, navigate, storyId]);
 
   // Update meta tags for social sharing
   useMetaTags({
@@ -238,8 +241,83 @@ export function StoryDetail() {
           )}
         </motion.article>
 
+        {/* Other Stories Section */}
+        {stories.filter(story => story.id !== storyId).length > 0 && (
+          <section className="py-16 lg:py-24 mt-16 border-t">
+            <div className="max-w-7xl mx-auto px-6 lg:px-12">
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8 }}
+                className="mb-12"
+              >
+                <h2 className="text-3xl lg:text-4xl tracking-tight mb-4">
+                  Other Stories of Impact
+                </h2>
+                <p className="text-lg text-muted-foreground">
+                  Explore more stories of meaningful change
+                </p>
+              </motion.div>
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {stories
+                  .filter(story => story.id !== storyId)
+                  .slice(0, 3)
+                  .map((story, index) => (
+                    <Link
+                      key={story.id}
+                      to={`/impact/${story.id}`}
+                      className="group"
+                    >
+                      <motion.div
+                        initial={{ opacity: 0, y: 30 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.6, delay: index * 0.1 }}
+                        className="cursor-pointer"
+                      >
+                        <div className="surface-elevated rounded-2xl overflow-hidden transition-all duration-300 hover:shadow-xl hover:scale-[1.02]">
+                          {/* Thumbnail */}
+                          <div className="relative aspect-video bg-gradient-to-br from-gray-100 to-gray-200">
+                            <div className="absolute inset-0 overflow-hidden">
+                              <img
+                                src={story.thumbnail}
+                                alt={`${story.title} - Story thumbnail`}
+                                className="relative z-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                              />
+                              <div className="absolute inset-0 z-10 bg-gradient-to-t from-black/40 via-black/10 to-transparent pointer-events-none" />
+                            </div>
+                            <div className="absolute top-4 right-4 z-[100]" style={{ zIndex: 100 }}>
+                              <div className="flex items-center gap-2 px-3 py-2 bg-black/40 backdrop-blur-sm rounded-lg">
+                                <Calendar size={16} className="text-white" />
+                                <span className="text-sm font-normal text-white">{story.date}</span>
+                              </div>
+                            </div>
+                          </div>
+
+                          {/* Content */}
+                          <div className="p-6 space-y-3">
+                            <h3 className="text-xl font-semibold tracking-tight group-hover:text-blue-600 transition-colors">
+                              {story.title}
+                            </h3>
+                            <p className="text-muted-foreground line-clamp-3">
+                              {story.excerpt}
+                            </p>
+                            <div className="flex items-center gap-2 text-sm text-muted-foreground pt-2">
+                              <span className="group-hover:text-blue-600 transition-colors">{labels.readMore}</span>
+                            </div>
+                          </div>
+                        </div>
+                      </motion.div>
+                    </Link>
+                  ))}
+              </div>
+            </div>
+          </section>
+        )}
+
         {/* Connect CTA Section */}
-        <section className="py-16 lg:py-24 bg-gradient-to-b from-white to-blue-50/20 mt-16">
+        <section className="py-16 lg:py-24 bg-gradient-to-b from-white to-blue-50/20">
           <div className="max-w-4xl mx-auto px-6 lg:px-12 text-center">
             <motion.div
               initial={{ opacity: 0, y: 30 }}

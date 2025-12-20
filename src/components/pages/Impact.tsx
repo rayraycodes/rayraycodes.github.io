@@ -127,17 +127,19 @@ export function Impact() {
                 >
                 <div className="surface-elevated rounded-2xl overflow-hidden transition-all duration-300 hover:shadow-xl hover:scale-[1.02]">
                   {/* Thumbnail */}
-                  <div className="relative aspect-video overflow-hidden bg-gradient-to-br from-gray-100 to-gray-200">
-                    <img
-                      src={story.thumbnail}
-                      alt={`${story.title} - Story thumbnail`}
-                      className="relative z-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                    />
-                    <div className="absolute inset-0 z-10 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
-                    <div className="absolute bottom-4 left-4 z-50 pointer-events-none">
-                      <div className="flex items-center gap-2 bg-black/95 backdrop-blur-sm px-4 py-2 rounded-full shadow-2xl pointer-events-auto border border-yellow-400/40">
-                        <story.icon size={18} className="text-yellow-300 flex-shrink-0 drop-shadow-[0_0_6px_rgba(253,224,71,0.9)]" />
-                        <span className="text-yellow-300 text-sm font-bold drop-shadow-[0_0_6px_rgba(253,224,71,0.9)]">{story.date}</span>
+                  <div className="relative aspect-video bg-gradient-to-br from-gray-100 to-gray-200">
+                    <div className="absolute inset-0 overflow-hidden">
+                      <img
+                        src={story.thumbnail}
+                        alt={`${story.title} - Story thumbnail`}
+                        className="relative z-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                      />
+                      <div className="absolute inset-0 z-10 bg-gradient-to-t from-black/40 via-black/10 to-transparent pointer-events-none" />
+                    </div>
+                    <div className="absolute top-4 right-4 z-[100]" style={{ zIndex: 100 }}>
+                      <div className="flex items-center gap-2 px-3 py-2 bg-black/40 backdrop-blur-sm rounded-lg">
+                        <Calendar size={16} className="text-white" />
+                        <span className="text-sm font-normal text-white">{story.date}</span>
                       </div>
                     </div>
                   </div>
