@@ -1207,7 +1207,7 @@ const contentData = {
             {
               "url": "/assets/colorado/DSC00505-min.JPG",
               "alt": "Mountain peaks reaching toward the sky in Colorado",
-              "caption": "Mountain peaks reaching for the sky"
+              "caption": "My Sister enjoying the Red Rocks"
             },
             {
               "url": "/assets/colorado/DSC00507-min.JPG",
@@ -1222,7 +1222,7 @@ const contentData = {
             {
               "url": "/assets/colorado/DSC00537-min.JPG",
               "alt": "Expansive mountain views in the Rockies",
-              "caption": "Ancient red rock formations"
+              "caption": "Sister connecting with the nature"
             },
             {
               "url": "/assets/colorado/DSC00563-min.JPG",
@@ -1232,42 +1232,42 @@ const contentData = {
             {
               "url": "/assets/colorado/DSC00604-min.JPG",
               "alt": "Dramatic Rocky Mountain scenery",
-              "caption": "Dramatic rock formations"
+              "caption": "Boulder from the sunrise view point"
             },
             {
               "url": "/assets/colorado/DSC00609-min.JPG",
               "alt": "Stunning Colorado mountain peaks",
-              "caption": "Snow-capped peaks in the distance"
+              "caption": "Sunrise moment with my sister at Boulder"
             },
             {
               "url": "/assets/colorado/DSC00628-min.JPG",
               "alt": "Panoramic view of Rocky Mountain landscape",
-              "caption": "Panoramic mountain views"
+              "caption": "Bear Lake at the Rocky Mountains"
             },
             {
               "url": "/assets/colorado/DSC00692-min.JPG",
               "alt": "Mountain landscape with dramatic lighting",
-              "caption": "Light and shadow on red rocks"
+              "caption": "The train ride at Georgetown"
             },
             {
               "url": "/assets/colorado/DSC00699-min.JPG",
               "alt": "Beautiful Colorado mountain scene",
-              "caption": "Mountain town charm"
+              "caption": "Christmas vibes at Georgetown"
             },
             {
               "url": "/assets/colorado/DSC00720-min.JPG",
               "alt": "Rocky Mountain peaks against the sky",
-              "caption": "Peaks mirrored in still waters"
+              "caption": "Georgetown Xmas vibes"
             },
             {
               "url": "/assets/colorado/DSC00725-min.JPG",
               "alt": "Scenic Colorado mountain view",
-              "caption": "Majestic rock formations"
+              "caption": "Majestic rock formations in Golden"
             },
             {
               "url": "/assets/colorado/DSC00754-min.JPG",
               "alt": "Expansive Rocky Mountain landscape",
-              "caption": "Vast mountain horizons"
+              "caption": "Golden Mountains at Golden"
             },
             {
               "url": "/assets/colorado/DSC00781-min.JPG",
@@ -1302,7 +1302,7 @@ const contentData = {
             {
               "url": "/assets/colorado/DSC00945-min.JPG",
               "alt": "Final view of Rocky Mountain peaks",
-              "caption": "Memories in the mountains"
+              "caption": "Memories in the mountains from the Train Ride"
             }
           ]
         }
