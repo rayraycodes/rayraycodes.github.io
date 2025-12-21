@@ -1262,12 +1262,12 @@ const contentData = {
             {
               "url": "/assets/colorado/DSC00725-min.JPG",
               "alt": "Scenic Colorado mountain view",
-              "caption": "Majestic rock formations in Golden"
+              "caption": "Sister posing at Georgetown CuteShop"
             },
             {
               "url": "/assets/colorado/DSC00754-min.JPG",
               "alt": "Expansive Rocky Mountain landscape",
-              "caption": "Golden Mountains at Golden"
+              "caption": "Cute Sister at Cute Town!"
             },
             {
               "url": "/assets/colorado/DSC00781-min.JPG",
@@ -1277,7 +1277,7 @@ const contentData = {
             {
               "url": "/assets/colorado/DSC00794-min.JPG",
               "alt": "Beautiful mountain peaks in the Rockies",
-              "caption": "Natural sculptures"
+              "caption": "Golden Mountains at Golden"
             },
             {
               "url": "/assets/colorado/DSC00796-min.JPG",
@@ -1292,7 +1292,7 @@ const contentData = {
             {
               "url": "/assets/colorado/DSC00863-min.JPG",
               "alt": "Mountain landscape with dramatic formations",
-              "caption": "Wind-carved formations"
+              "caption": "Red Rocks at Amphitheater"
             },
             {
               "url": "/assets/colorado/DSC00880-min.JPG",
