@@ -27,6 +27,7 @@ interface StoryImage {
 interface Story {
   id: string;
   title: string;
+  thumbnailTitle?: string;
   excerpt: string;
   thumbnail: string;
   date: string;
@@ -401,7 +402,7 @@ export function StoryOfAdventureDetail() {
                             {/* Content */}
                             <div className="p-6 space-y-3">
                               <h3 className="text-xl font-semibold tracking-tight group-hover:text-blue-600 transition-colors">
-                                {story.title}
+                                {story.thumbnailTitle || story.title}
                               </h3>
                               <p className="text-muted-foreground line-clamp-3">
                                 {story.excerpt}

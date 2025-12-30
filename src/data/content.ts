@@ -957,6 +957,7 @@ const contentData = {
       {
         "id": "running-reflection",
         "title": "Running and the Rhythm of Life",
+        "thumbnailTitle": "Running & Life",
         "excerpt": "A personal reflection on how running has shaped my perspective on challenge, resilience, and self discovery.",
         "date": "2022",
         "icon": "Footprints",
@@ -988,6 +989,7 @@ const contentData = {
       {
         "id": "himalayan-trek",
         "title": "Trekking Through the Himalayas",
+        "thumbnailTitle": "Himalayan Trek",
         "excerpt": "A journey through the Annapurna region, where every step brought new perspectives and the mountains taught lessons in humility and perseverance.",
         "date": "2022",
         "icon": "Globe",
@@ -1023,6 +1025,7 @@ const contentData = {
       {
         "id": "yosemite-exploration",
         "title": "Exploring Yosemite's Granite Giants",
+        "thumbnailTitle": "Yosemite",
         "excerpt": "From Half Dome to El Capitan, discovering the magic of Yosemite Valley through photography and hiking.",
         "date": "2023-2024",
         "icon": "Zap",
@@ -1053,6 +1056,7 @@ const contentData = {
       {
         "id": "lake-tahoe-adventures",
         "title": "Lake Tahoe: Mountains and Water",
+        "thumbnailTitle": "Lake Tahoe",
         "excerpt": "Discovering the crystal-clear waters and alpine beauty of Lake Tahoe through hiking, photography, and quiet reflection.",
         "date": "2023",
         "icon": "Heart",
@@ -1088,6 +1092,7 @@ const contentData = {
       {
         "id": "redwood-forests",
         "title": "Walking Among Giants: Redwood Forests",
+        "thumbnailTitle": "Redwood Forests",
         "excerpt": "Standing among ancient redwoods, feeling small and connected to something much larger than myself.",
         "date": "2024",
         "icon": "BookOpen",
@@ -1113,6 +1118,7 @@ const contentData = {
       {
         "id": "michigan-seasons",
         "title": "Four Seasons in Michigan",
+        "thumbnailTitle": "Michigan Seasons",
         "excerpt": "Discovering the beauty of Michigan's changing seasons through photography, from autumn colors to winter stillness.",
         "date": "2023-2024",
         "icon": "Laptop",
@@ -1143,6 +1149,7 @@ const contentData = {
       {
         "id": "cycling-journeys",
         "title": "Cycling Through Landscapes",
+        "thumbnailTitle": "Cycling",
         "excerpt": "Exploring new places on two wheels, where the pace is just right for noticing details and feeling connected to the landscape.",
         "date": "2023-2024",
         "icon": "Users",
@@ -1168,6 +1175,7 @@ const contentData = {
       {
         "id": "mustang-to-rockies",
         "title": "From The Himalayas to the Rocky Mountains",
+        "thumbnailTitle": "Mustang to Rockies",
         "excerpt": "Some dreams begin quietly over conversations, borrowed imaginations, and the courage of someone who goes first.",
         "date": "Dec 2025",
         "icon": "Heart",
