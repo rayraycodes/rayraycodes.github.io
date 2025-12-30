@@ -107,6 +107,9 @@ export function StoryOfAdventureDetail() {
       ? storyImage 
       : `${baseUrl}${storyImage.startsWith('/') ? '' : '/'}${storyImage}`;
     
+    // Use thumbnailTitle for social previews, but keep full title for document title
+    const socialTitle = selectedStory.thumbnailTitle || selectedStory.title;
+    
     // Update document title immediately
     document.title = selectedStory.title;
     
@@ -126,13 +129,13 @@ export function StoryOfAdventureDetail() {
       element.setAttribute('content', content);
     };
 
-    updateMeta('og:title', selectedStory.title);
+    updateMeta('og:title', socialTitle);
     updateMeta('og:description', selectedStory.excerpt);
     updateMeta('og:image', imageUrl);
     updateMeta('og:url', window.location.href);
     updateMeta('og:type', 'article');
     updateMeta('twitter:card', 'summary_large_image', false);
-    updateMeta('twitter:title', selectedStory.title, false);
+    updateMeta('twitter:title', socialTitle, false);
     updateMeta('twitter:description', selectedStory.excerpt, false);
     updateMeta('twitter:image', imageUrl, false);
     updateMeta('description', selectedStory.excerpt, false);
@@ -140,7 +143,7 @@ export function StoryOfAdventureDetail() {
 
   // Also use the hook for React-based updates
   useMetaTags({
-    title: selectedStory ? selectedStory.title : 'Stories of Adventure',
+    title: selectedStory ? (selectedStory.thumbnailTitle || selectedStory.title) : 'Stories of Adventure',
     description: selectedStory?.excerpt || 'Stories of Adventure',
     image: selectedStory 
       ? (selectedStory.content.images && selectedStory.content.images.length > 0
