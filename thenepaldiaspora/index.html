@@ -1,0 +1,633 @@
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>The Nepal Discourse: Human Development, AI, and Leadership</title>
+   <script src="https://cdn.tailwindcss.com"></script>
+   <!-- Load Lucide Icons for aesthetic appeal -->
+   <script src="https://unpkg.com/lucide@latest"></script>
+   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+   <style>
+       /* Custom Font Setup */
+       body {
+           font-family: 'Inter', sans-serif; /* Corrected font stack to follow instructions */
+           background-color: #f9fafb; /* Light off-white background */
+       }
+       /* Gradient for the Header/CTA */
+       .gradient-bg {
+           background: linear-gradient(135deg, #1e3a8a 0%, #374151 100%); /* Deep Blue to Dark Gray */
+       }
+       .text-accent {
+           color: #f59e0b; /* Amber/Gold accent */
+       }
+       /* Custom size for large pillar icons */
+       .large-icon-container {
+           width: 6rem; /* 96px */
+           height: 6rem; /* 96px */
+       }
+       /* Helper class for text truncation on team bios */
+       .line-clamp-3 {
+           overflow: hidden;
+           display: -webkit-box;
+           -webkit-box-orient: vertical;
+           -webkit-line-clamp: 3;
+           text-overflow: ellipsis;
+       }
+   </style>
+</head>
+<body class="antialiased">
+
+
+   <!-- Header & Hero Section -->
+   <header class="gradient-bg text-white shadow-2xl rounded-b-2xl">
+       <!-- Top Navigation Bar -->
+       <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6">
+           <div class="flex justify-end items-center space-x-6">
+               <a href="#agenda-section" class="hover:text-amber-300 transition duration-150 font-medium">Agenda</a>
+               <a href="#team-section" class="hover:text-amber-300 transition duration-150 font-medium">Team</a>
+               <a href="#tickets-info" class="bg-amber-500 text-gray-900 py-2 px-4 rounded-lg font-bold hover:bg-amber-400 transition duration-150 shadow-lg ring-2 ring-amber-300">Tickets</a>
+           </div>
+       </nav>
+
+
+       <!-- Hero Content -->
+       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center pb-16 pt-8 sm:py-24">
+           <p class="text-xs sm:text-sm uppercase tracking-widest text-gray-300 mb-2">An initiative by Nepali at Harvard</p>
+           <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight mb-4">
+               The <span class="text-accent">Nepal Discourse</span>
+           </h1>
+           <h2 class="text-xl sm:text-3xl font-medium max-w-4xl mx-auto mb-8">
+               Human Development, Artifical Intelligence, and the Next Generation of Leadership
+           </h2>
+           <p class="text-gray-300 max-w-3xl mx-auto mb-10 text-lg">
+               Join us at Harvard University to forge a strategic foresight report defining Nepal's competitive advantage in a world shaped by Artificial Intelligence and geopolitical flux.
+           </p>
+           <!-- Removed redundant CTAs from the hero section to prioritize top navigation -->
+       </div>
+   </header>
+
+
+   <!-- Key Event Details (Date, Location, Audience) -->
+   <section class="py-12 px-4 sm:px-6 lg:px-8 bg-white border-b border-gray-100">
+       <div class="max-w-6xl mx-auto">
+           <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+              
+               <div class="p-4 rounded-xl">
+                   <div class="text-indigo-900 large-icon-container mx-auto mb-3 flex items-center justify-center w-12 h-12"><i data-lucide="calendar-check" class="w-full h-full"></i></div>
+                   <h4 class="text-lg font-bold text-gray-800">When</h4>
+                   <p class="text-gray-600">April 25-26, 2026</p>
+                   <p class="text-sm text-gray-500">2 Full Days of Deliberation</p>
+               </div>
+
+
+               <div class="p-4 rounded-xl border-x md:border-indigo-100">
+                   <div class="text-indigo-900 large-icon-container mx-auto mb-3 flex items-center justify-center w-12 h-12"><i data-lucide="map-pin" class="w-full h-full"></i></div>
+                   <h4 class="text-lg font-bold text-gray-800">Where</h4>
+                   <p class="text-gray-600">Harvard University</p>
+                   <p class="text-sm text-gray-500">Cambridge, MA, USA</p>
+               </div>
+
+
+               <div class="p-4 rounded-xl">
+                   <div class="text-indigo-900 large-icon-container mx-auto mb-3 flex items-center justify-center w-12 h-12"><i data-lucide="award" class="w-full h-full"></i></div>
+                   <h4 class="text-lg font-bold text-gray-800">Who</h4>
+                   <p class="text-gray-600">Invitation-Only</p>
+                   <p class="text-sm text-gray-500">Policymakers, Business Leaders, Tech CEOs, Academic Experts</p>
+               </div>
+           </div>
+
+
+           <!-- NEW: Knowledge Partner Information -->
+           <div class="mt-8 pt-4 border-t border-gray-200 text-center">
+               <p class="text-sm uppercase font-semibold text-gray-500 mb-1">Strategic Partner</p>
+               <p class="text-xl font-extrabold text-indigo-900">Leadership Academy Nepal</p>
+           </div>
+           <!-- END NEW -->
+       </div>
+   </section>
+   <!-- END Key Event Details -->
+  
+   <!-- NEW SECTION: Tickets Info (Linked from top nav) - Kept high for immediate participation CTA -->
+   <section id="tickets-info" class="py-16 sm:py-24 px-4 sm:px-6 lg:px-8 bg-gray-100">
+       <div class="max-w-4xl mx-auto text-center p-12 rounded-2xl shadow-xl gradient-bg text-white">
+           <h3 class="text-3xl font-extrabold mb-4">How to Participate</h3>
+           <p class="text-xl text-gray-300 font-medium mb-8">
+               The Nepal Discourse is an exclusive, invitation-only event. Please use the links below to request attendance or inquire about strategic partnership opportunities.
+           </p>
+           <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
+               <button onclick="openPartnershipModal()" class="bg-amber-500 hover:bg-amber-600 text-gray-900 font-bold py-3 px-8 rounded-xl transition duration-300 shadow-lg text-lg">
+                   Become a Strategic Partner
+               </button>
+               <a id="register" href="https://harvard.az1.qualtrics.com/jfe/form/SV_4Iu7svN4Y3gAaRo" target="_blank" class="bg-white/10 hover:bg-white/20 text-white font-bold py-3 px-8 rounded-xl transition duration-300 border border-white/30 text-lg">
+                   Request an Invitation
+               </a>
+           </div>
+       </div>
+   </section>
+   <!-- END Tickets Info Section -->
+
+
+
+
+   <!-- The Urgency / Problem Section -->
+   <section class="py-16 sm:py-24 px-4 sm:px-6 lg:px-8">
+       <div class="max-w-6xl mx-auto">
+           <h3 class="text-3xl font-bold text-gray-800 text-center mb-4">
+               The Crisis: Why We Must Convene Now
+           </h3>
+           <p class="text-xl text-gray-600 text-center max-w-4xl mx-auto mb-12">
+               Nepal's greatest asset—its people—is at a crossroads. Global forces demand immediate strategic action.
+           </p>
+
+
+           <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+               <!-- Card 1: Talent Drain -->
+               <div class="bg-white p-6 rounded-2xl shadow-lg border-t-4 border-amber-500 transform hover:scale-[1.02] transition duration-300">
+                   <div class="text-amber-500 mb-3"><i data-lucide="plane"></i></div>
+                   <h4 class="text-xl font-semibold mb-2 text-gray-800">The Human Capital Exodus</h4>
+                   <p class="text-gray-600">Over a million bright, ambitious and hardworking citizens depart Nepal annually. This "brain drain" is a failure of domestic strategic investment that threatens long-term autonomy and productivity.</p>
+               </div>
+
+
+               <!-- Card 2: AI Disruption -->
+               <div class="bg-white p-6 rounded-2xl shadow-lg border-t-4 border-indigo-900 transform hover:scale-[1.02] transition duration-300">
+                   <div class="text-indigo-900 mb-3"><i data-lucide="cpu"></i></div>
+                   <h4 class="text-xl font-semibold mb-2 text-gray-800">The AI Disruption Risk</h4>
+                   <p class="text-gray-600">Skills learned through rote instruction are rapidly becoming obsolete. Nepal's workforce is unprepared for the AI-augmented global economy, necessitating a massive, proactive reskilling effort.</p>
+               </div>
+
+
+               <!-- Card 3: Geopolitical Flux -->
+               <div class="bg-white p-6 rounded-2xl shadow-lg border-t-4 border-red-500 transform hover:scale-[1.02] transition duration-300">
+                   <div class="text-red-500 mb-3"><i data-lucide="globe"></i></div>
+                   <h4 class="text-xl font-semibold mb-2 text-gray-800">Geopolitical & Policy Vacuum</h4>
+                   <p class="text-gray-600">A changing world order requires sophisticated, ethical leadership. Without strategic policy, Nepal risks losing its competitive edge and decision-making power in the South Asian century.</p>
+               </div>
+           </div>
+       </div>
+   </section>
+
+
+   <!-- Thematic Pillars Section -->
+   <section class="py-16 sm:py-24 px-4 sm:px-6 lg:px-8 bg-gray-50">
+       <div class="max-w-6xl mx-auto">
+           <h3 class="text-3xl font-bold text-gray-800 text-center mb-12">
+               Our Strategic Framework: Three Pillars of the Discourse
+           </h3>
+
+
+           <div class="space-y-12">
+               <!-- Pillar 1 -->
+               <div class="group flex flex-col md:flex-row bg-white p-8 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 cursor-default">
+                   <div class="md:w-1/3 flex flex-col items-center justify-start mb-6 md:mb-0 md:pr-8">
+                       <!-- Custom Large Icon Container -->
+                       <div class="large-icon-container text-indigo-900 flex items-center justify-center mb-4">
+                           <i data-lucide="trending-up" class="w-full h-full"></i>
+                       </div>
+                       <!-- Visual Hint for Interaction -->
+                       <p class="text-xs text-indigo-400 font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300 hidden md:block">
+                           Hover for Sessions
+                       </p>
+                   </div>
+                   <div class="md:w-2/3">
+                       <span class="text-xs uppercase font-semibold text-gray-500">Pillar I: Investment Strategy</span>
+                       <h4 class="text-2xl font-bold text-indigo-900 mb-3">The AI Imperative & Future of Work</h4>
+                       <p class="text-gray-700 mb-3">
+                           We will move beyond generalized fear of automation to identify actionable investment areas where Nepal can gain a competitive advantage—such as ethical AI development, specialized BPO, and data services—and discuss how the private sector and government must co-invest in this transition.
+                       </p>
+                       <p class="text-sm font-semibold text-amber-500 mb-4">Target Outcome: A strategy for co-investment in a National AI-Readiness initiatives.</p>
+                      
+                       <!-- NEW: Hover Reveal Sub-section -->
+                       <div class="max-h-0 overflow-hidden group-hover:max-h-[500px] transition-all duration-500 ease-in-out opacity-0 group-hover:opacity-100 border-t border-indigo-100">
+                           <div class="pt-4 mt-2">
+                               <h5 class="text-lg font-bold text-indigo-900 mb-3 flex items-center">
+                                   <i data-lucide="mic" class="w-4 h-4 mr-2"></i> Special Speaker Dialogue: AI and the future of the Workforce
+                               </h5>
+                               <div class="space-y-3 pl-2 border-l-2 border-amber-500">
+                                   <div class="text-sm text-gray-600">
+                                       <span class="font-bold text-gray-800 block">Breakout 1: From BPO to IPO</span>
+                                       Leveraging AI for Startup Acceleration and Economic Leapfrogging <span class="italic text-gray-400">(Panellists: TBC)</span>
+                                   </div>
+                                   <div class="text-sm text-gray-600">
+                                       <span class="font-bold text-gray-800 block">Breakout 2: Future-Proofing the Curriculum</span>
+                                       Integrating AI Literacy and Soft Skills for Next-Gen Employment <span class="italic text-gray-400">(Panellists: TBC)</span>
+                                   </div>
+                                   <div class="text-sm text-gray-600">
+                                       <span class="font-bold text-gray-800 block">Breakout 3: AI, Migration, and the Remittance</span>
+                                       New Policies for Strengthening the Nepali Human Capital <span class="italic text-gray-400">(Panellists: TBC)</span>
+                                   </div>
+                               </div>
+                           </div>
+                       </div>
+                       <!-- END NEW Sub-section -->
+                   </div>
+               </div>
+
+
+               <!-- Pillar 2 -->
+               <div class="group flex flex-col md:flex-row bg-white p-8 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 cursor-default">
+                   <div class="md:w-1/3 flex flex-col items-center justify-start mb-6 md:mb-0 md:pr-8">
+                       <!-- Custom Large Icon Container -->
+                       <div class="large-icon-container text-red-500 flex items-center justify-center mb-4">
+                           <i data-lucide="briefcase" class="w-full h-full"></i>
+                       </div>
+                       <!-- Visual Hint for Interaction -->
+                       <p class="text-xs text-red-400 font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300 hidden md:block">
+                           Hover for Sessions
+                       </p>
+                   </div>
+                   <div class="md:w-2/3">
+                       <span class="text-xs uppercase font-semibold text-gray-500">Pillar II: Risk Mitigation & Autonomy</span>
+                       <h4 class="text-2xl font-bold text-red-500 mb-3">Leadership in a Changing World Order</h4>
+                       <p class="text-gray-700 mb-3">
+                           This session focuses on developing the ethical and intellectual standards required for the next generation of leaders. We will explore how to build resilience, maintain diplomatic/economic autonomy, and navigate complex geopolitical and global market shifts.
+                       </p>
+                       <p class="text-sm font-semibold text-amber-500 mb-4">Target Outcome: A framework for ethical governance and risk mitigation in foreign policy and economic decision-making.</p>
+
+
+                       <!-- NEW: Hover Reveal Sub-section -->
+                       <div class="max-h-0 overflow-hidden group-hover:max-h-[500px] transition-all duration-500 ease-in-out opacity-0 group-hover:opacity-100 border-t border-red-100">
+                           <div class="pt-4 mt-2">
+                               <h5 class="text-lg font-bold text-red-900 mb-3 flex items-center">
+                                   <i data-lucide="mic" class="w-4 h-4 mr-2"></i> Special Speaker Dialogue: Leadership in a changing world order
+                               </h5>
+                               <div class="space-y-3 pl-2 border-l-2 border-amber-500">
+                                   <div class="text-sm text-gray-600">
+                                       <span class="font-bold text-gray-800 block">Breakout 1: The Himalayan Dream</span>
+                                       Navigating Multipolarity and Strategic Autonomy <span class="italic text-gray-400">(Panellists: TBC)</span>
+                                   </div>
+                                   <div class="text-sm text-gray-600">
+                                       <span class="font-bold text-gray-800 block">Breakout 2: The Trust Deficit</span>
+                                       Leading Institutions in the Age of Digital Mobilisation and Dissent <span class="italic text-gray-400">(Panellists: TBC)</span>
+                                   </div>
+                                   <div class="text-sm text-gray-600">
+                                       <span class="font-bold text-gray-800 block">Breakout 3: Adaptive Leadership in a Multi-Dimensional World</span>
+                                       Decision-Making Under Digital Duress <span class="italic text-gray-400">(Panellists: TBC)</span>
+                                   </div>
+                               </div>
+                           </div>
+                       </div>
+                       <!-- END NEW Sub-section -->
+                   </div>
+               </div>
+
+
+               <!-- Pillar 3 -->
+               <div class="group flex flex-col md:flex-row bg-white p-8 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 cursor-default">
+                   <div class="md:w-1/3 flex flex-col items-center justify-start mb-6 md:mb-0 md:pr-8">
+                       <!-- Custom Large Icon Container -->
+                       <div class="large-icon-container text-amber-500 flex items-center justify-center mb-4">
+                           <i data-lucide="users" class="w-full h-full"></i>
+                       </div>
+                       <!-- Visual Hint for Interaction -->
+                       <p class="text-xs text-amber-500 font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300 hidden md:block">
+                           Hover for Sessions
+                       </p>
+                   </div>
+                   <div class="md:w-2/3">
+                       <span class="text-xs uppercase font-semibold text-gray-500">Pillar III: Institutional Design</span>
+                       <h4 class="text-2xl font-bold text-amber-500 mb-3">Human Development & Institutional Resilience</h4>
+                       <p class="text-gray-700 mb-3">
+                           How can we redesign Nepal’s foundational institutions (education, civil service) to produce talent that is incentivized to *stay*? The focus is on fostering critical thinkers, ethical citizens, and resilient organizational cultures that drive domestic prosperity.
+                       </p>
+                       <p class="text-sm font-semibold text-amber-500 mb-4">Target Outcome: Recommendations for building resilient institutions that minimize the incentive for talent exodus.</p>
+
+
+                       <!-- NEW: Hover Reveal Sub-section -->
+                       <div class="max-h-0 overflow-hidden group-hover:max-h-[800px] transition-all duration-500 ease-in-out opacity-0 group-hover:opacity-100 border-t border-amber-100">
+                           <div class="pt-4 mt-2">
+                               <h5 class="text-lg font-bold text-amber-600 mb-3 flex items-center">
+                                   <i data-lucide="mic" class="w-4 h-4 mr-2"></i> Special Speaker Dialogue: Human Capital Development & Institutional Resilience
+                               </h5>
+                               <div class="space-y-3 pl-2 border-l-2 border-indigo-900">
+                                   <div class="text-sm text-gray-600">
+                                       <span class="font-bold text-gray-800 block">The Human Filter</span>
+                                       Finding Truth in the Age of Algorithmic Noise <span class="italic text-gray-400">(Panellists: TBC)</span>
+                                   </div>
+                                   <div class="text-sm text-gray-600">
+                                       <span class="font-bold text-gray-800 block">The Cultural Playbook</span>
+                                       Building Community and Leadership Through Art & Sports <span class="italic text-gray-400">(Panellists: TBC)</span>
+                                   </div>
+                                   <div class="text-sm text-gray-600">
+                                       <span class="font-bold text-gray-800 block">Financing the Future</span>
+                                       Blended Capital and Policy Pathways for Climate Resilience <span class="italic text-gray-400">(Panellists: TBC)</span>
+                                   </div>
+                                   <div class="text-sm text-gray-600">
+                                       <span class="font-bold text-gray-800 block">From Rote to Resilience</span>
+                                       Reforming Curriculum for Human-Centric Development <span class="italic text-gray-400">(Panellists: TBC)</span>
+                                   </div>
+                                   <div class="text-sm text-gray-600">
+                                       <span class="font-bold text-gray-800 block">Leveraging AI and Digital Health</span>
+                                       For Universal Coverage <span class="italic text-gray-400">(Panellists: TBC)</span>
+                                   </div>
+                               </div>
+                           </div>
+                       </div>
+                       <!-- END NEW Sub-section -->
+                   </div>
+               </div>
+           </div>
+       </div>
+   </section>
+
+
+   <!-- Keynote & Deliverables Section -->
+   <section class="py-16 sm:py-24 px-4 sm:px-6 lg:px-8">
+       <div class="max-w-6xl mx-auto">
+           <h3 class="text-3xl font-bold text-gray-800 text-center mb-12">
+               Strategic Speakers & Tangible Results
+           </h3>
+
+
+           <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+               <!-- Speakers -->
+               <div class="bg-white p-8 rounded-2xl shadow-xl">
+                   <h4 class="text-2xl font-bold text-indigo-900 mb-4 flex items-center">
+                       <i data-lucide="megaphone" class="mr-3 h-6 w-6"></i> High-Level Convening
+                   </h4>
+                   <p class="text-gray-600 mb-4">
+                       This Discourse impact stems from uniting those who matter most:
+                   </p>
+                   <ul class="list-disc list-inside space-y-2 text-gray-700 ml-4">
+                       <li>Keynote Targets: Nepali Tech pioneers, and international policy leaders.</li>
+                       <li>Harvard Academics: Leading Harvard Faculty from the Harvard Graduate School of Education, Harvard Kennedy School and Mittal Institute.</li>
+                       <li>Policy Stakeholders: Current Nepali policymakers (National Planning, IT, Education).</li>
+                       <li>Business Leaders: CEOs and executives from core Nepali industries and impact funds, representing the demand for skilled talent.</li>
+                   </ul>
+               </div>
+
+
+               <!-- Deliverable -->
+               <div class="bg-indigo-900 text-white p-8 rounded-2xl shadow-xl">
+                   <h4 class="text-2xl font-bold mb-4 flex items-center text-amber-500">
+                       <i data-lucide="book-open-text" class="mr-3 h-6 w-6"></i> The Project 2035 Report
+                   </h4>
+                   <p class="mb-4 text-gray-200">
+                       The conference will culminate in the "Project 2035: Nepal's Human Capital Strategic Foresight Report."
+                   </p>
+                   <ul class="list-disc list-inside space-y-2 text-gray-200 ml-4">
+                       <li>Actionable Roadmap: Distilling Harvard-level analysis into concrete, implementable policy recommendations.</li>
+                       <li>Public Dissemination: Released globally and provided to all international development partners and government ministries.</li>
+                       <li>Lasting Legacy: A definitive reference point for securing Nepal's future prosperity and resilience.</li>
+                   </ul>
+               </div>
+           </div>
+       </div>
+   </section>
+
+
+   <!-- MOVED SECTION: Agenda Information -->
+   <section id="agenda-section" class="py-16 sm:py-24 px-4 sm:px-6 lg:px-8 bg-gray-100">
+       <div class="max-w-4xl mx-auto text-center p-12 rounded-2xl shadow-xl bg-white border-t-4 border-indigo-900">
+           <div class="text-indigo-900 mx-auto mb-6 flex items-center justify-center w-16 h-16"><i data-lucide="clock" class="w-full h-full"></i></div>
+           <h3 class="text-3xl font-extrabold text-gray-800 mb-4">Event Agenda</h3>
+           <p class="text-xl text-gray-600 font-medium">
+               Watch this space for the latest version of the agenda. The detailed schedule of speakers, panels, and strategic workshops will be released soon.
+           </p>
+       </div>
+   </section>
+   <!-- END Agenda Section -->
+
+
+   <!-- HIDING SECTION: Team Information (Moved to the end and commented out as requested) -->
+   <!--
+   <section id="team-section" class="py-16 sm:py-24 px-4 sm:px-6 lg:px-8 bg-white">
+       <div class="max-w-7xl mx-auto">
+           <h3 class="text-3xl font-bold text-gray-800 text-center mb-12">
+               Meet the Organizing Team
+           </h3>
+          
+           <div class="mb-16">
+               <h4 class="text-2xl font-bold text-indigo-900 mb-8 border-b pb-2">Steering Committee</h4>
+               <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-6">
+                   <div class="bg-gray-50 p-4 rounded-xl shadow-lg text-center border border-gray-100">
+                       <div class="w-24 h-24 mx-auto rounded-full bg-gray-300 mb-3 overflow-hidden border-4 border-amber-500">
+                           <i data-lucide="user" class="w-full h-full text-gray-500 p-4"></i>
+                       </div>
+                       <p class="font-semibold text-gray-800">Member A</p>
+                       <p class="text-xs text-gray-500">Chairperson</p>
+                       <p class="text-sm text-gray-600 mt-2 line-clamp-3">Short bio placeholder explaining their Harvard affiliation and role in the initiative.</p>
+                   </div>
+                   <div class="bg-gray-50 p-4 rounded-xl shadow-lg text-center border border-gray-100">
+                       <div class="w-24 h-24 mx-auto rounded-full bg-gray-300 mb-3 overflow-hidden border-4 border-amber-500">
+                           <i data-lucide="user" class="w-full h-full text-gray-500 p-4"></i>
+                       </div>
+                       <p class="font-semibold text-gray-800">Member B</p>
+                       <p class="text-xs text-gray-500">Logistics Lead</p>
+                       <p class="text-sm text-gray-600 mt-2 line-clamp-3">Short bio placeholder explaining their Harvard affiliation and role in the initiative.</p>
+                   </div>
+                   <div class="bg-gray-50 p-4 rounded-xl shadow-lg text-center border border-gray-100">
+                       <div class="w-24 h-24 mx-auto rounded-full bg-gray-300 mb-3 overflow-hidden border-4 border-amber-500">
+                           <i data-lucide="user" class="w-full h-full text-gray-500 p-4"></i>
+                       </div>
+                       <p class="font-semibold text-gray-800">Member C</p>
+                       <p class="text-xs text-gray-500">Sponsorship Director</p>
+                       <p class="text-sm text-gray-600 mt-2 line-clamp-3">Short bio placeholder explaining their Harvard affiliation and role in the initiative.</p>
+                   </div>
+                   <div class="bg-gray-50 p-4 rounded-xl shadow-lg text-center border border-gray-100">
+                       <div class="w-24 h-24 mx-auto rounded-full bg-gray-300 mb-3 overflow-hidden border-4 border-amber-500">
+                           <i data-lucide="user" class="w-full h-full text-gray-500 p-4"></i>
+                       </div>
+                       <p class="font-semibold text-gray-800">Member D</p>
+                       <p class="text-xs text-gray-500">Academic Liaison</p>
+                       <p class="text-sm text-gray-600 mt-2 line-clamp-3">Short bio placeholder explaining their Harvard affiliation and role in the initiative.</p>
+                   </div>
+                   <div class="bg-gray-50 p-4 rounded-xl shadow-lg text-center border border-gray-100">
+                       <div class="w-24 h-24 mx-auto rounded-full bg-gray-300 mb-3 overflow-hidden border-4 border-amber-500">
+                           <i data-lucide="user" class="w-full h-full text-gray-500 p-4"></i>
+                       </div>
+                       <p class="font-semibold text-gray-800">Member E</p>
+                       <p class="text-xs text-gray-500">Communications</p>
+                       <p class="text-sm text-gray-600 mt-2 line-clamp-3">Short bio placeholder explaining their Harvard affiliation and role in the initiative.</p>
+                   </div>
+               </div>
+           </div>
+
+
+           <div>
+               <h4 class="text-2xl font-bold text-indigo-900 mb-8 border-b pb-2">Advisory Committee</h4>
+               <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-6">
+                   <div class="bg-gray-50 p-4 rounded-xl shadow-lg text-center border border-gray-100">
+                       <div class="w-24 h-24 mx-auto rounded-full bg-gray-300 mb-3 overflow-hidden border-4 border-indigo-900">
+                           <i data-lucide="user" class="w-full h-full text-gray-500 p-4"></i>
+                       </div>
+                       <p class="font-semibold text-gray-800">Advisor F</p>
+                       <p class="text-xs text-gray-500">Harvard Faculty</p>
+                       <p class="text-sm text-gray-600 mt-2 line-clamp-3">Placeholder bio for an esteemed member providing guidance on policy and strategy.</p>
+                   </div>
+                   <div class="bg-gray-50 p-4 rounded-xl shadow-lg text-center border border-gray-100">
+                       <div class="w-24 h-24 mx-auto rounded-full bg-gray-300 mb-3 overflow-hidden border-4 border-indigo-900">
+                           <i data-lucide="user" class="w-full h-full text-gray-500 p-4"></i>
+                       </div>
+                       <p class="font-semibold text-gray-800">Advisor G</p>
+                       <p class="text-xs text-gray-500">Tech Industry</p>
+                       <p class="text-sm text-gray-600 mt-2 line-clamp-3">Placeholder bio for an esteemed member providing guidance on policy and strategy.</p>
+                   </div>
+                   <div class="bg-gray-50 p-4 rounded-xl shadow-lg text-center border border-gray-100">
+                       <div class="w-24 h-24 mx-auto rounded-full bg-gray-300 mb-3 overflow-hidden border-4 border-indigo-900">
+                           <i data-lucide="user" class="w-full h-full text-gray-500 p-4"></i>
+                       </div>
+                       <p class="font-semibold text-gray-800">Advisor H</p>
+                       <p class="text-xs text-gray-500">Policy Expert</p>
+                       <p class="text-sm text-gray-600 mt-2 line-clamp-3">Placeholder bio for an esteemed member providing guidance on policy and strategy.</p>
+                   </div>
+                   <div class="bg-gray-50 p-4 rounded-xl shadow-lg text-center border border-gray-100">
+                       <div class="w-24 h-24 mx-auto rounded-full bg-gray-300 mb-3 overflow-hidden border-4 border-indigo-900">
+                           <i data-lucide="user" class="w-full h-full text-gray-500 p-4"></i>
+                       </div>
+                       <p class="font-semibold text-gray-800">Advisor I</p>
+                       <p class="text-xs text-gray-500">Global Development</p>
+                       <p class="text-sm text-gray-600 mt-2 line-clamp-3">Placeholder bio for an esteemed member providing guidance on policy and strategy.</p>
+                   </div>
+                   <div class="bg-gray-50 p-4 rounded-xl shadow-lg text-center border border-gray-100">
+                       <div class="w-24 h-24 mx-auto rounded-full bg-gray-300 mb-3 overflow-hidden border-4 border-indigo-900">
+                           <i data-lucide="user" class="w-full h-full text-gray-500 p-4"></i>
+                       </div>
+                       <p class="font-semibold text-gray-800">Advisor J</p>
+                       <p class="text-xs text-gray-500">Public Sector</p>
+                       <p class="text-sm text-gray-600 mt-2 line-clamp-3">Placeholder bio for an esteemed member providing guidance on policy and strategy.</p>
+                   </div>
+               </div>
+           </div>
+       </div>
+   </section>
+   -->
+   <!-- END Team Section -->
+
+
+
+
+   <!-- Call to Action / Sponsorship CTA (Final Section before Footer) -->
+   <section id="sponsorship" class="py-16 sm:py-20 px-4 sm:px-6 lg:px-8 gradient-bg text-white rounded-t-2xl mt-12">
+       <div class="max-w-5xl mx-auto text-center">
+           <h3 class="text-3xl sm:text-4xl font-extrabold mb-4">
+               Invest in Nepal's Strategic Future
+           </h3>
+           <p class="text-lg text-gray-300 mb-8">
+               Your partnership positions your organization as a thought leader committed to cultivating AI-ready talent and fostering strategic resilience in South Asia.
+           </p>
+           <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
+               <button onclick="openPartnershipModal()" class="bg-amber-500 hover:bg-amber-600 text-gray-900 font-bold py-3 px-8 rounded-xl transition duration-300 shadow-xl text-lg">
+                   Request Partnership Prospectus
+               </button>
+               <a id="register" href="https://harvard.az1.qualtrics.com/jfe/form/SV_4Iu7svN4Y3gAaRo" target="_blank" class="bg-white/10 hover:bg-white/20 text-white font-bold py-3 px-8 rounded-xl transition duration-300 border border-white/30 text-lg">
+                   Apply to Attend
+               </a>
+           </div>
+           <p class="mt-8 text-sm text-gray-400">All proceeds directly fund the travel and accommodation of Nepali ecosystem partners.</p>
+       </div>
+   </section>
+
+
+   <!-- Footer -->
+   <footer class="bg-gray-900 text-gray-400 py-6 px-4 sm:px-6 lg:px-8">
+       <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center text-sm">
+           <p>&copy; 2026 Harvard Undergraduate Nepali Student Association (HUNSA)</p>
+           <p>A Registered Harvard University Student Organization</p>
+       </div>
+   </footer>
+
+
+   <!-- Partnership Modal -->
+   <div id="partnershipModal" class="fixed inset-0 z-50 hidden overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+       <!-- Background backdrop -->
+       <div class="fixed inset-0 bg-gray-900 bg-opacity-75 transition-opacity backdrop-blur-sm" onclick="closePartnershipModal()"></div>
+
+
+       <div class="flex items-center justify-center min-h-screen p-4 text-center sm:p-0">
+           <div class="relative bg-white rounded-2xl shadow-2xl text-left overflow-hidden transform transition-all sm:my-8 sm:max-w-lg w-full">
+               <!-- Modal Header -->
+               <div class="bg-indigo-900 px-4 py-5 sm:px-6 flex justify-between items-center">
+                   <h3 class="text-lg leading-6 font-bold text-white" id="modal-title">
+                       Partnership Inquiry
+                   </h3>
+                   <button type="button" onclick="closePartnershipModal()" class="text-indigo-200 hover:text-white focus:outline-none">
+                       <i data-lucide="x" class="w-6 h-6"></i>
+                   </button>
+               </div>
+
+
+               <!-- Modal Body (Form) -->
+               <div class="px-4 py-5 sm:p-6">
+                   <form id="partnershipForm" onsubmit="handlePartnershipSubmit(event)" class="space-y-4">
+                       <div>
+                           <label for="fullName" class="block text-sm font-medium text-gray-700">Full Name</label>
+                           <input type="text" name="fullName" id="fullName" required
+                               class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2 border">
+                       </div>
+                       <div>
+                           <label for="email" class="block text-sm font-medium text-gray-700">Email Address</label>
+                           <input type="email" name="email" id="email" required
+                               class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2 border">
+                       </div>
+                       <div>
+                           <label for="organisation" class="block text-sm font-medium text-gray-700">Organisation</label>
+                           <input type="text" name="organisation" id="organisation" required
+                               class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2 border">
+                       </div>
+                       <div>
+                           <label for="designation" class="block text-sm font-medium text-gray-700">Designation</label>
+                           <input type="text" name="designation" id="designation" required
+                               class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2 border">
+                       </div>
+                      
+                       <div class="pt-4">
+                           <button type="submit"
+                               class="w-full flex justify-center py-3 px-4 border border-transparent rounded-lg shadow-sm text-sm font-bold text-gray-900 bg-amber-500 hover:bg-amber-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition duration-150">
+                               Submit Inquiry
+                           </button>
+                           <p class="mt-2 text-xs text-center text-gray-500">
+                               This will open your default email client to send the request.
+                           </p>
+                       </div>
+                   </form>
+               </div>
+           </div>
+       </div>
+   </div>
+
+
+   <!-- Initialize Lucide Icons & Modal Script -->
+   <script>
+       lucide.createIcons();
+
+
+       function openPartnershipModal() {
+           document.getElementById('partnershipModal').classList.remove('hidden');
+           // Refresh icons in case they weren't loaded in the hidden modal
+           lucide.createIcons();
+       }
+
+
+       function closePartnershipModal() {
+           document.getElementById('partnershipModal').classList.add('hidden');
+       }
+
+
+       function handlePartnershipSubmit(event) {
+           event.preventDefault();
+          
+           const fullName = document.getElementById('fullName').value;
+           const email = document.getElementById('email').value;
+           const organisation = document.getElementById('organisation').value;
+           const designation = document.getElementById('designation').value;
+          
+           const subject = encodeURIComponent(`Partnership Inquiry: ${organisation}`);
+           const body = encodeURIComponent(
+               `Name: ${fullName}\n` +
+               `Email: ${email}\n` +
+               `Organisation: ${organisation}\n` +
+               `Designation: ${designation}\n\n` +
+               `I am interested in becoming a strategic partner or receiving the prospectus.`
+           );
+          
+           // Redirect to mailto
+           window.location.href = `mailto:thenepaldiscourse@gmail.com?subject=${subject}&body=${body}`;
+          
+           // Optional: Close modal after short delay
+           setTimeout(closePartnershipModal, 1000);
+       }
+   </script>
+</body>
+</html>
+
