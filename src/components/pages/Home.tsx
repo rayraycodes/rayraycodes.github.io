@@ -6,17 +6,18 @@ export function Home() {
   return (
     <div className="w-full flex flex-col items-center justify-center bg-white py-24">
       <div className="max-w-4xl mx-auto px-6 lg:px-12">
-        {/* Logo Section */}
+        {/* Person Image Section */}
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-12"
+          className="text-center mb-8"
         >
           <img 
-            src={getImageUrl("src/assets/raylogo.png")} 
-            alt="Regan Maharjan logo"
-            className="h-24 md:h-32 lg:h-40 w-auto mx-auto"
+            src={getImageUrl("src/assets/ray.png")} 
+            alt="Regan Maharjan"
+            className="!h-[20vh] w-auto mx-auto rounded-full object-contain"
+            style={{ height: '30vh' }}
           />
         </motion.div>
 
@@ -24,7 +25,7 @@ export function Home() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
+          transition={{ duration: 0.6, delay: 0.1 }}
           className="text-center"
         >
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-normal tracking-tight mb-6 text-gray-900">
