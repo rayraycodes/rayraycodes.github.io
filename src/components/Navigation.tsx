@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion } from 'motion/react';
 import { Menu, X } from 'lucide-react';
@@ -13,6 +13,9 @@ export function Navigation({ inline = false }: NavigationProps) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
+  const inlineNavContainerRef = useRef<HTMLElement>(null);
+  const topNavContainerRef = useRef<HTMLDivElement>(null);
+  const tabRefs = useRef<(HTMLAnchorElement | null)[]>([]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -23,22 +26,64 @@ export function Navigation({ inline = false }: NavigationProps) {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Center the active tab with equal tabs on both sides when possible
+  useEffect(() => {
+    const container = inline ? inlineNavContainerRef.current : topNavContainerRef.current;
+    if (!container) return;
+
+    const activeIndex = contentData.navigation.links.findIndex(
+      (link) => link.path === location.pathname
+    );
+    if (activeIndex === -1) return;
+
+    const activeTab = tabRefs.current[activeIndex];
+    if (!activeTab) return;
+
+    // Wait for layout to settle and fonts to load
+    setTimeout(() => {
+      const containerRect = container.getBoundingClientRect();
+      const containerWidth = containerRect.width;
+      const containerCenter = containerWidth / 2;
+      
+      // Get the active tab's position relative to the container's scroll position
+      const activeTabRect = activeTab.getBoundingClientRect();
+      const activeTabLeftRelative = activeTabRect.left - containerRect.left;
+      const activeTabWidth = activeTabRect.width;
+      const activeTabCenterRelative = activeTabLeftRelative + activeTabWidth / 2;
+      
+      // Calculate how much we need to scroll to center the active tab
+      const scrollOffset = activeTabCenterRelative - containerCenter;
+      const newScrollLeft = container.scrollLeft + scrollOffset;
+      
+      // Ensure we don't scroll past the boundaries
+      const maxScroll = container.scrollWidth - containerWidth;
+      const clampedScroll = Math.max(0, Math.min(newScrollLeft, maxScroll));
+      
+      container.scrollTo({
+        left: clampedScroll,
+        behavior: 'smooth'
+      });
+    }, 150);
+  }, [location.pathname, inline]);
+
   const navLinks = contentData.navigation.links;
 
   // Exact same header menu behaviour, rendered inline below content (e.g. below Namaste on Home)
   if (inline) {
     return (
       <nav
-        className="flex flex-wrap items-center justify-center gap-4"
+        ref={inlineNavContainerRef}
+        className="flex flex-nowrap items-center justify-center gap-2 sm:gap-4 overflow-x-auto scroll-smooth"
         aria-label="Main navigation"
       >
-        {navLinks.map((link: { path: string; label: string }) => {
+        {navLinks.map((link: { path: string; label: string }, index: number) => {
           const isActive = location.pathname === link.path;
           return (
             <Link
               key={link.path}
+              ref={(el) => { tabRefs.current[index] = el; }}
               to={link.path}
-              className="relative px-8 py-3 transition-colors group rounded-lg min-w-[12rem] text-center whitespace-nowrap"
+              className="relative px-3 sm:px-6 py-3 transition-colors group rounded-lg flex-shrink-0 text-center whitespace-nowrap"
             >
               {isActive && (
                 <motion.div
@@ -48,10 +93,10 @@ export function Navigation({ inline = false }: NavigationProps) {
                 />
               )}
               <span
-                className={`relative z-10 font-medium transition-all text-base ${
+                className={`relative z-10 font-medium transition-all ${
                   isActive
-                    ? 'text-gray-900 font-semibold opacity-100'
-                    : 'text-gray-600 opacity-50 group-hover:text-gray-900 group-hover:opacity-100'
+                    ? 'text-gray-900 font-semibold opacity-100 text-xl'
+                    : 'text-gray-600 opacity-50 group-hover:text-gray-900 group-hover:opacity-100 text-base'
                 }`}
               >
                 {link.label}
@@ -81,14 +126,18 @@ export function Navigation({ inline = false }: NavigationProps) {
           <div className="flex-1" aria-hidden="true" />
 
           {/* Desktop Navigation - centered, wider hit areas */}
-          <div className="hidden lg:flex items-center justify-center gap-4 flex-1">
-            {navLinks.map((link: { path: string; label: string }) => {
+          <div 
+            ref={topNavContainerRef}
+            className="hidden lg:flex items-center justify-center gap-2 xl:gap-4 flex-1 flex-nowrap overflow-x-auto scroll-smooth"
+          >
+            {navLinks.map((link: { path: string; label: string }, index: number) => {
               const isActive = location.pathname === link.path;
               return (
                 <Link
                   key={link.path}
+                  ref={(el) => { tabRefs.current[index] = el; }}
                   to={link.path}
-                  className="relative px-8 py-3 transition-colors group rounded-lg min-w-[12rem] text-center whitespace-nowrap"
+                  className="relative px-3 xl:px-6 py-3 transition-colors group rounded-lg flex-shrink-0 text-center whitespace-nowrap"
                 >
                   {isActive && (
                     <motion.div
@@ -98,10 +147,10 @@ export function Navigation({ inline = false }: NavigationProps) {
                     />
                   )}
                   <span
-                    className={`relative z-10 font-medium transition-all text-base ${
+                    className={`relative z-10 font-medium transition-all ${
                       isActive
-                        ? 'text-gray-900 font-semibold opacity-100'
-                        : 'text-gray-600 opacity-50 group-hover:text-gray-900 group-hover:opacity-100'
+                        ? 'text-gray-900 font-semibold opacity-100 text-xl'
+                        : 'text-gray-600 opacity-50 group-hover:text-gray-900 group-hover:opacity-100 text-base'
                     }`}
                   >
                     {link.label}
@@ -144,10 +193,10 @@ export function Navigation({ inline = false }: NavigationProps) {
                   key={link.path}
                   to={link.path}
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className={`block w-full py-4 px-6 rounded-xl transition-colors touch-manipulation min-h-[48px] flex items-center justify-center text-base sm:text-lg ${
+                  className={`block w-full py-4 px-6 rounded-xl transition-colors touch-manipulation min-h-[48px] flex items-center justify-center ${
                     isActive
-                      ? 'bg-gray-100/90 border border-gray-200/60 font-semibold text-gray-900'
-                      : 'font-medium text-gray-600 opacity-50 active:opacity-100 active:bg-black/5 hover:opacity-100 hover:bg-black/[0.02] hover:text-gray-900'
+                      ? 'bg-gray-100/90 border border-gray-200/60 font-semibold text-gray-900 text-xl sm:text-2xl'
+                      : 'font-medium text-gray-600 opacity-50 active:opacity-100 active:bg-black/5 hover:opacity-100 hover:bg-black/[0.02] hover:text-gray-900 text-base sm:text-lg'
                   }`}
                 >
                   {link.label}

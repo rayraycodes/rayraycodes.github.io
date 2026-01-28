@@ -45,7 +45,7 @@ function AppContent() {
       <main className="flex-1">
         <Routes>
           <Route path="/" element={
-            <div className="min-h-screen flex flex-col items-center justify-center bg-white">
+            <div className="min-h-screen flex flex-col items-center justify-center bg-background">
               <Home />
             </div>
           } />

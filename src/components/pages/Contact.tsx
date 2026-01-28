@@ -39,7 +39,7 @@ export function Contact() {
   return (
     <div className="min-h-screen pt-24 lg:pt-32">
       {/* Hero Section */}
-      <section className="py-16 lg:py-24 bg-gradient-to-b from-white to-blue-50/20">
+      <section className="py-16 lg:py-24 bg-gradient-to-b from-background to-blue-50/20">
         <div className="max-w-7xl mx-auto px-6 lg:px-12">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -172,7 +172,7 @@ export function Contact() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 lg:py-24 bg-gradient-to-b from-white to-blue-50/20">
+      <section className="py-16 lg:py-24 bg-gradient-to-b from-background to-blue-50/20">
         <div className="max-w-4xl mx-auto px-6 lg:px-12 text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}

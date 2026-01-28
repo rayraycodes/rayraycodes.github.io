@@ -2219,7 +2219,7 @@
 
 :root {
   --font-size: 16px;
-  --background: #fff;
+  --background: #f5f5f5;
   --foreground: oklch(.145 0 0);
   --card: #fff;
   --card-foreground: oklch(.145 0 0);

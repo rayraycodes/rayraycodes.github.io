@@ -4,7 +4,7 @@ import { Navigation } from '../Navigation';
 
 export function Home() {
   return (
-    <div className="w-full flex flex-col items-center justify-center bg-white py-24">
+    <div className="w-full flex flex-col items-center justify-center bg-background py-24">
       <div className="max-w-4xl mx-auto px-6 lg:px-12">
         {/* Person Image Section */}
         <motion.div
