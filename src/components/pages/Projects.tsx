@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { Badge } from '../ui/badge';
 import { Button } from '../ui/button';
 import { ImageWithFallback } from '../figma/ImageWithFallback';
+import { getImageUrl } from '../../utils/imageUtils';
 import contentData from '../../data/content';
 
 // Category Filter Bar Component
@@ -65,11 +66,14 @@ export function Projects() {
     return projectsData.filter(project => project.category === selectedCategory);
   }, [projectsData, selectedCategory]);
   
-  const projects = filteredProjects.map((project) => ({
-    ...project,
-    imageUrl: images.projects[projectsData.indexOf(project)] || images.projects[0],
-    id: project.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, ''), // Generate ID from title
-  }));
+  const projects = filteredProjects.map((project) => {
+    const rawImageUrl = images.projects[projectsData.indexOf(project)] || images.projects[0];
+    return {
+      ...project,
+      imageUrl: rawImageUrl.startsWith('http') ? rawImageUrl : getImageUrl(rawImageUrl),
+      id: project.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, ''), // Generate ID from title
+    };
+  });
 
   const handleCategoryChange = (category: string) => {
     setSelectedCategory(category);

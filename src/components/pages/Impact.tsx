@@ -3,6 +3,7 @@ import { motion } from 'motion/react';
 import { Link } from 'react-router-dom';
 import { Heart, Globe, BookOpen, Laptop, Users, Zap, Calendar } from 'lucide-react';
 import { Button } from '../ui/button';
+import { getImageUrl } from '../../utils/imageUtils';
 import contentData from '../../data/content';
 
 const iconMap: Record<string, typeof Globe> = {
@@ -130,7 +131,7 @@ export function Impact() {
                   <div className="relative aspect-video bg-gradient-to-br from-gray-100 to-gray-200">
                     <div className="absolute inset-0 overflow-hidden">
                       <img
-                        src={story.thumbnail}
+                        src={story.thumbnail.startsWith('http') ? story.thumbnail : getImageUrl(story.thumbnail)}
                         alt={`${story.title} - Story thumbnail`}
                         className="relative z-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                       />

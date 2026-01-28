@@ -5,6 +5,7 @@ import { Badge } from '../ui/badge';
 import { Button } from '../ui/button';
 import { ImageWithFallback } from '../figma/ImageWithFallback';
 import { ExternalLink, Github, FileText, ArrowLeft, Share2, Copy, Check } from 'lucide-react';
+import { getImageUrl } from '../../utils/imageUtils';
 import contentData from '../../data/content';
 import { useMetaTags } from '../../utils/useMetaTags';
 
@@ -15,11 +16,14 @@ export function ProjectDetail() {
   const { images } = contentData.assets;
   const [copied, setCopied] = useState(false);
 
-  const projects = projectsData.map((project, index) => ({
-    ...project,
-    imageUrl: images.projects[index] || images.projects[0],
-    id: project.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, ''), // Generate ID from title
-  }));
+  const projects = projectsData.map((project, index) => {
+    const rawImageUrl = images.projects[index] || images.projects[0];
+    return {
+      ...project,
+      imageUrl: rawImageUrl.startsWith('http') ? rawImageUrl : getImageUrl(rawImageUrl),
+      id: project.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, ''), // Generate ID from title
+    };
+  });
 
   const selectedProject = projects.find(project => project.id === projectId);
 
