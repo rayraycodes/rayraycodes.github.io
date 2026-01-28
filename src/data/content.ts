@@ -49,19 +49,37 @@ const contentData = {
       },
       {
         "path": "/about",
-        "label": "Meet Regan"
+        "label": "Get to Know Regan"
       },
       {
         "path": "/storiesofadventure",
-        "label": "Stories"
+        "label": "Adventure Stories"
       },
       {
         "path": "/projects",
-        "label": "Projects"
+        "label": "Cool Projects"
       },
       {
         "path": "/photography",
         "label": "Photo Stories"
+      }
+    ],
+    "homeLinks": [
+      {
+        "path": "/about",
+        "label": "get to know me"
+      },
+      {
+        "path": "/storiesofadventure",
+        "label": "dive into my stories"
+      },
+      {
+        "path": "/projects",
+        "label": "check out my projects"
+      },
+      {
+        "path": "/photography",
+        "label": "browse my photo stories"
       }
     ]
   },

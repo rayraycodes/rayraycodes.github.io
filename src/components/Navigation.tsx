@@ -66,7 +66,7 @@ export function Navigation({ inline = false }: NavigationProps) {
     }, 150);
   }, [location.pathname, inline]);
 
-  const navLinks = contentData.navigation.links;
+  const navLinks = inline ? (contentData.navigation.homeLinks || contentData.navigation.links) : contentData.navigation.links;
 
   // Exact same header menu behaviour, rendered inline below content (e.g. below Namaste on Home)
   if (inline) {
