@@ -37,7 +37,7 @@ export function Contact() {
   }));
 
   return (
-    <div className="min-h-screen pt-24 lg:pt-32">
+    <div className="min-h-screen pt-20 sm:pt-24 lg:pt-32">
       {/* Hero Section */}
       <section className="py-16 lg:py-24 bg-gradient-to-b from-background to-blue-50/20">
         <div className="max-w-7xl mx-auto px-6 lg:px-12">
