@@ -87,15 +87,20 @@ export function Projects() {
   return (
     <div className="min-h-screen pt-24 lg:pt-32">
       {/* Hero Section */}
-      <section className="py-16 lg:py-24 bg-gradient-to-b from-white to-blue-50/20">
+      <section className="pt-16 lg:pt-24 pb-20 lg:pb-24 bg-gradient-to-b from-white to-blue-50/20">
         <div className="max-w-7xl mx-auto px-6 lg:px-12">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="text-center"
+            className="text-center mb-16"
           >
-            <h1 className="text-5xl lg:text-6xl tracking-tight mb-6">
+            {hero.greeting && (
+              <p className="text-lg md:text-xl text-gray-600 mb-12 max-w-2xl mx-auto">
+                {hero.greeting}
+              </p>
+            )}
+            <h1 className="text-3xl lg:text-4xl tracking-tight mb-12">
               {hero.title}
             </h1>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
@@ -106,7 +111,7 @@ export function Projects() {
       </section>
 
       {/* Projects Grid */}
-      <section className="py-16 lg:py-24">
+      <section className="pt-20 lg:pt-24 pb-16 lg:pb-24">
         <div className="max-w-7xl mx-auto px-6 lg:px-12">
           {/* Category Filters */}
           <CategoryFilterBar

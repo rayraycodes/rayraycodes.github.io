@@ -475,13 +475,19 @@ export function Photography() {
 
   return (
     <div className="min-h-screen bg-gray-50 pt-24 lg:pt-32">
-      <main className="max-w-[1200px] mx-auto px-6 lg:px-12 pt-12 lg:pt-16 pb-32 lg:pb-40">
-        {/* Header Section */}
-        <header className="mb-8">
-          <h1 className="text-4xl lg:text-5xl font-semibold text-gray-900 mb-3 tracking-tight">
-            Portfolio
-          </h1>
-        </header>
+      <main className="max-w-7xl mx-auto px-6 lg:px-12 pt-12 lg:pt-16 pb-32 lg:pb-40">
+        {/* Welcome Message */}
+        <div className="mb-8 text-center">
+          <p className="text-lg md:text-xl text-gray-700 mb-2">
+            Hi there! 👋 Yes, I photograph things. Sometimes they turn out okay.
+          </p>
+          <p className="text-base md:text-lg text-gray-600 mb-4">
+            Click on any photo to read the story behind it. Each one has a tale to tell or at least I think it does.
+          </p>
+          <p className="text-lg md:text-xl text-gray-500 italic">
+            Why did the photographer get arrested? Because they were caught framing people! 📸
+          </p>
+        </div>
 
         {/* Category Filters */}
         <CategoryFilterBar

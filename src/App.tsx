@@ -1,4 +1,5 @@
-import { HashRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { useEffect } from 'react';
+import { HashRouter as Router, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { Navigation } from './components/Navigation';
 import { Footer } from './components/Footer';
 import { Home } from './components/pages/Home';
@@ -15,14 +16,39 @@ import { Contact } from './components/pages/Contact';
 import { Photography } from './components/pages/Photography';
 import { CMS } from './components/pages/CMS';
 
-export default function App() {
+function AppContent() {
+  const location = useLocation();
+  const isHomePage = location.pathname === '/' || location.pathname === '/#/';
+
+  // Scroll to top when opening About, Stories, Projects, etc. so the top nav "moves up" into view
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, [location.pathname]);
+
+  // Disable right-click context menu on all pages
+  useEffect(() => {
+    const handleContextMenu = (e: MouseEvent) => {
+      e.preventDefault();
+      return false;
+    };
+
+    document.addEventListener('contextmenu', handleContextMenu);
+
+    return () => {
+      document.removeEventListener('contextmenu', handleContextMenu);
+    };
+  }, []);
+
   return (
-    <Router>
-      <div className="min-h-screen bg-background flex flex-col">
-        <Navigation />
-        <main className="flex-1">
+    <div className="min-h-screen bg-background flex flex-col">
+      {!isHomePage && <Navigation />}
+      <main className="flex-1">
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={
+            <div className="min-h-screen flex flex-col items-center justify-center bg-white">
+              <Home />
+            </div>
+          } />
           <Route path="/about" element={<About />} />
           <Route path="/experience" element={<Experience />} />
           <Route path="/projects" element={<Projects />} />
@@ -38,9 +64,16 @@ export default function App() {
           <Route path="/CMS" element={<Navigate to="/cms" replace />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
-        </main>
-        <Footer />
-      </div>
+      </main>
+      {!isHomePage && <Footer />}
+    </div>
+  );
+}
+
+export default function App() {
+  return (
+    <Router>
+      <AppContent />
     </Router>
   );
 }

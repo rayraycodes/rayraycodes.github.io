@@ -462,6 +462,17 @@ export function StoryOfAdventureDetail() {
             </motion.div>
           </div>
         </section>
+
+        {/* Bottom Back to Stories Link */}
+        <div className="text-center py-8">
+          <Link
+            to="/storiesofadventure"
+            className="flex items-center justify-center gap-2 text-muted-foreground hover:text-foreground transition-colors"
+          >
+            <ArrowLeft size={20} />
+            <span>{labels.backToStories}</span>
+          </Link>
+        </div>
       </div>
     </div>
   );

@@ -3,9 +3,13 @@ import { Link, useLocation } from 'react-router-dom';
 import { motion } from 'motion/react';
 import { Menu, X } from 'lucide-react';
 import contentData from '../data/content';
-import { getImageUrl } from '../utils/imageUtils';
 
-export function Navigation() {
+interface NavigationProps {
+  /** When true, render inline below content (e.g. on Home below Namaste) instead of fixed header */
+  inline?: boolean;
+}
+
+export function Navigation({ inline = false }: NavigationProps) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
@@ -21,6 +25,47 @@ export function Navigation() {
 
   const navLinks = contentData.navigation.links;
 
+  // Exact same header menu behaviour, rendered inline below content (e.g. below Namaste on Home)
+  if (inline) {
+    return (
+      <nav
+        className="flex flex-wrap items-center justify-center gap-4"
+        aria-label="Main navigation"
+      >
+        {navLinks.map((link: { path: string; label: string }) => {
+          const isActive = location.pathname === link.path;
+          return (
+            <Link
+              key={link.path}
+              to={link.path}
+              className="relative px-8 py-3 transition-colors group rounded-lg min-w-[12rem] text-center whitespace-nowrap"
+            >
+              {isActive && (
+                <motion.div
+                  layoutId="activeTabInline"
+                  className="absolute inset-0 bg-gray-200 rounded-lg border-2 border-gray-300 shadow-sm"
+                  transition={{ type: 'spring', bounce: 0.2, duration: 0.5 }}
+                />
+              )}
+              <span
+                className={`relative z-10 font-medium transition-all text-base ${
+                  isActive
+                    ? 'text-gray-900 font-semibold opacity-100'
+                    : 'text-gray-600 opacity-50 group-hover:text-gray-900 group-hover:opacity-100'
+                }`}
+              >
+                {link.label}
+              </span>
+              {!isActive && (
+                <div className="absolute inset-0 bg-black/[0.02] rounded-lg opacity-0 group-hover:opacity-100 transition-opacity" />
+              )}
+            </Link>
+          );
+        })}
+      </nav>
+    );
+  }
+
   return (
     <motion.nav
       initial={{ y: -100 }}
@@ -31,55 +76,59 @@ export function Navigation() {
           : 'bg-white/90 backdrop-blur-sm shadow-md'
       }`}
     >
-      <div className="max-w-7xl mx-auto px-6 lg:px-12">
+      <div className="max-w-[100rem] w-full mx-auto px-4 sm:px-6 lg:px-20">
         <div className="flex items-center justify-between h-16 lg:h-20">
-          {/* Logo with Ray Logo */}
-          <Link to="/" className="flex items-center group" aria-label="Home">
-            <motion.img 
-              src={getImageUrl("src/assets/raylogo.png")} 
-              alt="Regan Maharjan logo"
-              className="w-auto bg-transparent transition-all duration-300"
-              style={{ background: 'transparent', height: '85px' }}
-              whileHover={{ scale: 1.1, opacity: 0.9 }}
-              whileTap={{ scale: 0.95 }}
-            />
-          </Link>
+          <div className="flex-1" aria-hidden="true" />
 
-          {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center gap-1">
-            {navLinks.map((link: { path: string; label: string }) => (
-              <Link
-                key={link.path}
-                to={link.path}
-                className="relative px-4 py-2 transition-colors group"
-              >
-                <span className="relative z-10 text-sm font-medium text-gray-900">
-                  {link.label}
-                </span>
-                {location.pathname === link.path && (
-                  <motion.div
-                    layoutId="activeTab"
-                    className="absolute inset-0 bg-black/5 rounded-lg"
-                    transition={{ type: 'spring', bounce: 0.2, duration: 0.6 }}
-                  />
-                )}
-                <div className="absolute inset-0 bg-black/[0.02] rounded-lg opacity-0 group-hover:opacity-100 transition-opacity" />
-              </Link>
-            ))}
+          {/* Desktop Navigation - centered, wider hit areas */}
+          <div className="hidden lg:flex items-center justify-center gap-4 flex-1">
+            {navLinks.map((link: { path: string; label: string }) => {
+              const isActive = location.pathname === link.path;
+              return (
+                <Link
+                  key={link.path}
+                  to={link.path}
+                  className="relative px-8 py-3 transition-colors group rounded-lg min-w-[12rem] text-center whitespace-nowrap"
+                >
+                  {isActive && (
+                    <motion.div
+                      layoutId="activeTab"
+                      className="absolute inset-0 bg-gray-200 rounded-lg border-2 border-gray-300 shadow-sm"
+                      transition={{ type: 'spring', bounce: 0.2, duration: 0.5 }}
+                    />
+                  )}
+                  <span
+                    className={`relative z-10 font-medium transition-all text-base ${
+                      isActive
+                        ? 'text-gray-900 font-semibold opacity-100'
+                        : 'text-gray-600 opacity-50 group-hover:text-gray-900 group-hover:opacity-100'
+                    }`}
+                  >
+                    {link.label}
+                  </span>
+                  {!isActive && (
+                    <div className="absolute inset-0 bg-black/[0.02] rounded-lg opacity-0 group-hover:opacity-100 transition-opacity" />
+                  )}
+                </Link>
+              );
+            })}
           </div>
 
-          {/* Mobile Menu Button */}
-          <button
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="lg:hidden p-2 rounded-lg hover:bg-black/5 transition-colors"
-            aria-label="Toggle menu"
-          >
-            {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
+          {/* Mobile Menu Button - touch-friendly (min 44px) */}
+          <div className="flex-1 flex justify-end lg:justify-center">
+            <button
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className="lg:hidden min-h-[44px] min-w-[44px] flex items-center justify-center rounded-lg hover:bg-black/5 active:bg-black/10 transition-colors touch-manipulation"
+              aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
+              aria-expanded={isMobileMenuOpen}
+            >
+              {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+          </div>
         </div>
       </div>
 
-      {/* Mobile Navigation */}
+      {/* Mobile Navigation - full-width, touch-friendly links */}
       {isMobileMenuOpen && (
         <motion.div
           initial={{ opacity: 0, y: -20 }}
@@ -87,21 +136,24 @@ export function Navigation() {
           exit={{ opacity: 0, y: -20 }}
           className="lg:hidden bg-white border-t border-black/10 shadow-lg"
         >
-          <div className="max-w-7xl mx-auto px-6 py-4 space-y-1">
-            {navLinks.map((link: { path: string; label: string }) => (
-              <Link
-                key={link.path}
-                to={link.path}
-                onClick={() => setIsMobileMenuOpen(false)}
-                className={`block px-4 py-3 rounded-lg transition-colors font-medium text-gray-900 ${
-                  location.pathname === link.path
-                    ? 'bg-black/5'
-                    : 'hover:bg-black/[0.02]'
-                }`}
-              >
-                {link.label}
-              </Link>
-            ))}
+          <div className="w-full max-w-[90rem] mx-auto px-4 sm:px-6 py-5 space-y-2 text-center">
+            {navLinks.map((link: { path: string; label: string }) => {
+              const isActive = location.pathname === link.path;
+              return (
+                <Link
+                  key={link.path}
+                  to={link.path}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className={`block w-full py-4 px-6 rounded-xl transition-colors touch-manipulation min-h-[48px] flex items-center justify-center text-base sm:text-lg ${
+                    isActive
+                      ? 'bg-gray-100/90 border border-gray-200/60 font-semibold text-gray-900'
+                      : 'font-medium text-gray-600 opacity-50 active:opacity-100 active:bg-black/5 hover:opacity-100 hover:bg-black/[0.02] hover:text-gray-900'
+                  }`}
+                >
+                  {link.label}
+                </Link>
+              );
+            })}
           </div>
         </motion.div>
       )}

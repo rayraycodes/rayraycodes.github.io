@@ -45,39 +45,23 @@ const contentData = {
     "links": [
       {
         "path": "/",
-        "label": "Home"
+        "label": "Welcome Here"
       },
       {
         "path": "/about",
-        "label": "About"
+        "label": "Meet Regan"
       },
       {
-        "path": "/experience",
-        "label": "Experience"
+        "path": "/storiesofadventure",
+        "label": "Stories"
       },
       {
         "path": "/projects",
         "label": "Projects"
       },
       {
-        "path": "/impact",
-        "label": "Stories of Impact"
-      },
-      {
-        "path": "/accessibility",
-        "label": "Accessibility"
-      },
-      {
-        "path": "/contact",
-        "label": "Contact"
-      },
-      {
         "path": "/photography",
-        "label": "Photography"
-      },
-      {
-        "path": "/storiesofadventure",
-        "label": "Stories of Adventure"
+        "label": "Photo Stories"
       }
     ]
   },
@@ -370,8 +354,9 @@ const contentData = {
   },
   "projects": {
     "hero": {
-      "title": "Selected Projects",
-      "subtitle": "16 projects across education technology, accessibility, AI, and data engineering that reached 300,000+ students and transformed digital experiences"
+      "title": "You are welcome to explore my work.",
+      "greeting": "I hope you're having a wonderful day! If not, here's a little something: How do you comfort a JavaScript bug? You console it. 😊",
+      "subtitle": "A collection of work spanning education technology, accessibility, AI, and data engineering, projects built with intention to serve communities, remove barriers, and create lasting impact. Each one represents a step toward more inclusive, thoughtful digital experiences."
     },
     "projects": [
       {
@@ -396,7 +381,10 @@ const contentData = {
           "XML",
           "Handlebars.js"
         ],
-        "impact": "Transformed education access for rural students"
+        "impact": "Transformed education access for rural students",
+        "links": {
+          "live": "https://epaath.olenepal.org/"
+        }
       },
       {
         "title": "E-Paath Phone and Tablet Deployment",
@@ -439,7 +427,10 @@ const contentData = {
           "Educational Design",
           "MIT Partnership"
         ],
-        "impact": "Global recognition for innovative learning tools"
+        "impact": "Global recognition for innovative learning tools",
+        "links": {
+          "live": "https://games.olenepal.org/"
+        }
       },
       {
         "title": "E-Pustakalaya: Digital Library",
@@ -460,7 +451,10 @@ const contentData = {
           "ElasticSearch",
           "UI/UX"
         ],
-        "impact": "Democratized access to educational content"
+        "impact": "Democratized access to educational content",
+        "links": {
+          "live": "https://pustakalaya.org/en/"
+        }
       },
       {
         "title": "Sanketik Sikai",
@@ -481,7 +475,10 @@ const contentData = {
           "Sign Language",
           "Gamification"
         ],
-        "impact": "Empowered hearing-impaired children"
+        "impact": "Empowered hearing-impaired children",
+        "links": {
+          "live": "https://nsl.olenepal.org/"
+        }
       },
       {
         "title": "EPaath for Guatemala",
@@ -1562,11 +1559,11 @@ const contentData = {
         "profile": "src/assets/mitregan.png"
       },
       "projects": [
-        "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=800",
-        "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=800",
-        "https://images.unsplash.com/photo-1511512578047-dfb367046420?w=800",
-        "https://images.unsplash.com/photo-1521587760476-6c12a4b040da?w=800",
-        "https://images.unsplash.com/photo-1589254065878-42c9da997008?w=800",
+        "src/assets/epaath.webp",
+        "src/assets/epaathtab.png",
+        "src/assets/learningames.png",
+        "src/assets/pustakalya.png",
+        "src/assets/sanketik_sikai_screenshot_banner.width-800.png",
         "https://images.unsplash.com/photo-1488190211105-8b0e65b80b4e?w=800",
         "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800",
         "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=800",
@@ -1576,7 +1573,7 @@ const contentData = {
         "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800",
         "https://images.unsplash.com/photo-1611926653670-e18689373857?w=800",
         "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800",
-        "https://images.unsplash.com/photo-1551650975-87deedd944c3?w=800",
+        "src/assets/railsgem.png",
         "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800"
       ],
       "impact": {

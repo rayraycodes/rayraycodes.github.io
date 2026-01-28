@@ -1,245 +1,138 @@
 import { motion } from 'motion/react';
-import { Code2, Sparkles, Database, Heart, Accessibility, Brain } from 'lucide-react';
-import { Button } from '../ui/button';
-import { ImageWithFallback } from '../figma/ImageWithFallback';
+import { Link } from 'react-router-dom';
+import { Mail, Linkedin, Instagram, FileText } from 'lucide-react';
 import contentData from '../../data/content';
-import { getImageUrl } from '../../utils/imageUtils';
-
-const iconMap: Record<string, typeof Code2> = {
-  'Code2': Code2,
-  'Accessibility': Accessibility,
-  'Sparkles': Sparkles,
-  'Database': Database,
-  'Heart': Heart,
-  'Brain': Brain,
-};
 
 export function About() {
-  const { hero, strengths, timeline, values, interests } = contentData.about;
-  const { images } = contentData.assets;
-  
-  // Map strengths with icons
-  const strengthsWithIcons = strengths.items.map((strength, index) => {
-    const iconKeys = ['Code2', 'Accessibility', 'Sparkles', 'Database', 'Heart', 'Brain'];
-    return {
-      ...strength,
-      icon: iconMap[iconKeys[index]] || Code2,
-    };
-  });
-
   return (
     <div className="min-h-screen pt-24 lg:pt-32">
-      {/* Hero Section */}
-      <section className="py-16 lg:py-24">
-        <div className="max-w-7xl mx-auto px-6 lg:px-12">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-            >
-              <h1 className="text-5xl lg:text-6xl tracking-tight mb-6">
-                {hero.title}
-              </h1>
-              <div className="space-y-4 text-lg text-muted-foreground">
-                {hero.description.map((para, i) => (
-                  <p key={i}>{para}</p>
-                ))}
+      <div className="max-w-3xl mx-auto px-6 lg:px-12 pt-8 lg:pt-12 pb-24 lg:pb-32">
+        {/* Main Content */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.1 }}
+          className="prose prose-lg max-w-none"
+        >
+          {/* Introduction */}
+          <div className="mb-16 space-y-6">
+            <p className="text-lg md:text-xl text-gray-700 leading-relaxed">
+              You and I are not that different, but different, thank you for being here to learn that different perhaps..?
+            </p>
+            <p className="text-2xl md:text-3xl font-normal text-gray-900 leading-relaxed">
+              Hi, I'm Regan 👋
+            </p>
+            <p className="text-lg md:text-xl text-gray-700 leading-relaxed">
+              Some of my friends call me Dragon, some call me Ray and some call me ray of sunshine 😉
+            </p>
+            <p className="text-lg md:text-xl text-gray-700 leading-relaxed">
+              At the core, I'm someone who wants to be of service and be of help. That's what guides everything I do.
+            </p>
+            <p className="text-lg md:text-xl text-gray-700 leading-relaxed">
+              Over the years, I've worked on many kinds of systems and projects, but the motivation has always been the same: to make things clearer, more accessible, and more humane for the people who use them. I'm drawn to work that removes friction, opens doors, and helps others do their best work without unnecessary barriers.
+            </p>
+            <p className="text-lg md:text-xl text-gray-700 leading-relaxed">
+              Much of my time is spent thinking about access, equity, and how technology shows up in people's lives. I care deeply about designing with intention, especially for those who are often overlooked by default systems. I've learned that good solutions come from listening first, understanding context, and respecting real world constraints.
+            </p>
+            <p className="text-lg md:text-xl text-gray-700 leading-relaxed">
+              I currently support large, complex web ecosystems at the University of Michigan, helping teams create digital experiences that are usable, inclusive, and sustainable over time. Before that, I worked closely with educators and communities in low connectivity environments, building tools that had to work offline, last for years, and serve learners with very different needs. Those experiences shaped how I think about responsibility, resilience, and trust in the things we build.
+            </p>
+            <p className="text-lg md:text-xl text-gray-700 leading-relaxed">
+              I'm based in Michigan and fueled by curiosity. When I'm not working, I write poems, sing, and run to clear my head. I enjoy the gym, long walks, photography, videography, and creative writing. These practices keep me grounded and remind me that creation is as much about care as it is about skill.
+            </p>
+          </div>
+
+          {/* Values Section */}
+          <div className="mb-16">
+            <h2 className="text-2xl md:text-3xl font-normal text-gray-900 mb-8">
+              What I try to live by
+            </h2>
+            <div className="space-y-8">
+              <div>
+                <h3 className="text-xl md:text-2xl font-medium text-gray-900 mb-2">
+                  Service over ego
+                </h3>
+                <p className="text-lg text-gray-700 leading-relaxed">
+                  Show up to help. Let the work speak for itself.
+                </p>
               </div>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="relative"
-            >
-              <div className="surface-elevated rounded-3xl overflow-hidden">
-                <ImageWithFallback
-                  src={getImageUrl(images.about.profile)}
-                  alt="Professional portrait of Regan Maharjan"
-                  className="w-full h-auto"
-                />
+              <div>
+                <h3 className="text-xl md:text-2xl font-medium text-gray-900 mb-2">
+                  Care and intention
+                </h3>
+                <p className="text-lg text-gray-700 leading-relaxed">
+                  Small choices compound. Build thoughtfully and with empathy.
+                </p>
               </div>
-              <div className="absolute -bottom-4 -right-4 w-32 h-32 bg-blue-500/10 rounded-full blur-3xl" />
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
-      {/* Strengths Grid */}
-      <section className="py-16 lg:py-24 bg-gradient-to-b from-white to-blue-50/20">
-        <div className="max-w-7xl mx-auto px-6 lg:px-12">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="text-center mb-12"
-          >
-            <h2 className="text-4xl lg:text-5xl tracking-tight mb-4">
-              {strengths.title}
-            </h2>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              {strengths.subtitle}
-            </p>
-          </motion.div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {strengthsWithIcons.map((strength, index) => (
-              <motion.div
-                key={strength.title}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                whileHover={{ y: -4, scale: 1.02 }}
-                className="surface-elevated rounded-2xl p-8 transition-all duration-300 hover:shadow-lg"
-              >
-                <strength.icon className="w-8 h-8 mb-4 text-blue-600" />
-                <h3 className="mb-2">{strength.title}</h3>
-                <p className="text-muted-foreground">{strength.description}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Timeline */}
-      <section className="py-16 lg:py-24">
-        <div className="max-w-4xl mx-auto px-6 lg:px-12">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="text-center mb-12"
-          >
-            <h2 className="text-4xl lg:text-5xl tracking-tight mb-4">
-              {timeline.title}
-            </h2>
-            <p className="text-xl text-muted-foreground">
-              {timeline.subtitle}
-            </p>
-          </motion.div>
-
-          <div className="space-y-8">
-            {timeline.items.map((item, index) => (
-              <motion.div
-                key={item.year}
-                initial={{ opacity: 0, x: index % 2 === 0 ? -30 : 30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="relative pl-8 border-l-2 border-blue-200"
-              >
-                <div className="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-blue-600" />
-                <div className="text-sm text-blue-600 mb-1">{item.year}</div>
-                <h3 className="mb-1">{item.title}</h3>
-                <div className="text-sm text-muted-foreground mb-2">{item.org}</div>
-                <p className="text-muted-foreground">{item.description}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Values & Philosophy */}
-      <section className="py-16 lg:py-24 bg-gradient-to-b from-white to-blue-50/20">
-        <div className="max-w-7xl mx-auto px-6 lg:px-12">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="text-center mb-12"
-          >
-            <h2 className="text-4xl lg:text-5xl tracking-tight mb-4">
-              {values.title}
-            </h2>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              {values.subtitle}
-            </p>
-          </motion.div>
-
-          <div className="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
-            {values.items.map((value, index) => (
-              <motion.div
-                key={value.title}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="surface-elevated rounded-2xl p-8"
-              >
-                <h3 className="mb-3">{value.title}</h3>
-                <p className="text-muted-foreground">{value.description}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Personal Interests */}
-      <section className="py-16 lg:py-24">
-        <div className="max-w-4xl mx-auto px-6 lg:px-12 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-          >
-            <h2 className="text-4xl lg:text-5xl tracking-tight mb-6">
-              {interests.title}
-            </h2>
-            <p className="text-xl text-muted-foreground mb-8">
-              {interests.subtitle}
-            </p>
-            <div className="flex flex-wrap justify-center gap-3">
-              {interests.items.map((interest) => (
-                <motion.span
-                  key={interest}
-                  whileHover={{ scale: 1.05 }}
-                  className="px-6 py-3 bg-blue-50 rounded-full text-sm"
-                >
-                  {interest}
-                </motion.span>
-              ))}
+              <div>
+                <h3 className="text-xl md:text-2xl font-medium text-gray-900 mb-2">
+                  Learning as a practice
+                </h3>
+                <p className="text-lg text-gray-700 leading-relaxed">
+                  Stay open, ask questions, and keep growing.
+                </p>
+              </div>
+              <div>
+                <h3 className="text-xl md:text-2xl font-medium text-gray-900 mb-2">
+                  Shared impact
+                </h3>
+                <p className="text-lg text-gray-700 leading-relaxed">
+                  The best work happens together, with trust and respect.
+                </p>
+              </div>
             </div>
-          </motion.div>
-        </div>
-      </section>
+          </div>
 
-      {/* Connect CTA Section */}
-      <section className="py-16 lg:py-24 bg-gradient-to-b from-white to-blue-50/20">
-        <div className="max-w-4xl mx-auto px-6 lg:px-12 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-          >
-            <h2 className="text-4xl lg:text-5xl tracking-tight mb-6">
-              Let's connect
-            </h2>
-            <p className="text-xl text-muted-foreground mb-8">
-              Interested in learning more about my work or collaborating on a project? I'd love to hear from you.
+          {/* Closing */}
+          <div className="pt-8 border-t border-gray-200">
+            <p className="text-lg md:text-xl text-gray-700 leading-relaxed mb-8">
+              If you're interested in thoughtful, people centered work, accessibility, or building things that genuinely help others, I'd love to connect.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a href={contentData.assets.links.email}>
-                <Button size="lg" className="rounded-full px-8">
-                  Send an Email
-                </Button>
+            <p className="text-lg md:text-xl text-gray-900 font-medium leading-relaxed mb-6">
+              Let's make things better, one small step at a time.
+            </p>
+            {/* Social Links - minimalistic icons */}
+            <div className="flex items-center gap-4 mt-6 mb-4">
+              <a
+                href={contentData.assets.links.email}
+                className="text-gray-500 hover:text-gray-900 transition-colors inline-flex items-center"
+                aria-label="Email"
+              >
+                <Mail className="w-5 h-5" />
               </a>
-              <a href={contentData.assets.links.linkedin} target="_blank" rel="noopener noreferrer">
-                <Button size="lg" variant="outline" className="rounded-full px-8">
-                  Connect on LinkedIn
-                </Button>
+              <a
+                href={contentData.assets.links.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-500 hover:text-gray-900 transition-colors inline-flex items-center"
+                aria-label="LinkedIn"
+              >
+                <Linkedin className="w-5 h-5" />
+              </a>
+              <a
+                href={contentData.assets.links.instagram}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-500 hover:text-gray-900 transition-colors inline-flex items-center"
+                aria-label="Instagram"
+              >
+                <Instagram className="w-5 h-5" />
               </a>
             </div>
-          </motion.div>
-        </div>
-      </section>
+            <p className="text-lg md:text-xl text-gray-700 leading-relaxed mt-8">
+              If you are resume kind of wanting to know, here is my{' '}
+              <Link
+                to="/experience"
+                className="inline-flex items-center gap-1.5 text-gray-900 hover:text-gray-600 underline transition-colors"
+              >
+                <FileText className="w-4 h-4 shrink-0" />
+                resume
+              </Link>
+              .
+            </p>
+          </div>
+        </motion.div>
+      </div>
     </div>
   );
 }
