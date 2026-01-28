@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion } from 'motion/react';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Hand, BookOpen, FolderKanban, Camera, Home } from 'lucide-react';
 import contentData from '../data/content';
 
 interface NavigationProps {
@@ -67,6 +67,16 @@ export function Navigation({ inline = false }: NavigationProps) {
   }, [location.pathname, inline]);
 
   const navLinks = inline ? (contentData.navigation.homeLinks || contentData.navigation.links) : contentData.navigation.links;
+
+  // Icon mapping for navigation links
+  const getIconForPath = (path: string) => {
+    if (path === '/') return Home;
+    if (path === '/about') return Hand;
+    if (path === '/storiesofadventure') return BookOpen;
+    if (path === '/projects') return FolderKanban;
+    if (path === '/photography') return Camera;
+    return null;
+  };
 
   // Exact same header menu behaviour, rendered inline below content (e.g. below Namaste on Home)
   if (inline) {
@@ -141,12 +151,13 @@ export function Navigation({ inline = false }: NavigationProps) {
           >
             {navLinks.map((link: { path: string; label: string }, index: number) => {
               const isActive = location.pathname === link.path;
+              const IconComponent = getIconForPath(link.path);
               return (
                 <Link
                   key={link.path}
                   ref={(el) => { tabRefs.current[index] = el; }}
                   to={link.path}
-                  className="relative px-3 xl:px-6 py-3 transition-colors group rounded-lg flex-shrink-0 text-center whitespace-nowrap"
+                  className="relative px-3 xl:px-6 py-3 transition-colors group rounded-lg flex-shrink-0 text-center whitespace-nowrap flex items-center justify-center gap-1.5"
                 >
                   {isActive && (
                     <motion.div
@@ -154,6 +165,13 @@ export function Navigation({ inline = false }: NavigationProps) {
                       className="absolute inset-0 bg-gray-200 rounded-lg border-2 border-gray-300 shadow-sm"
                       transition={{ type: 'spring', bounce: 0.2, duration: 0.5 }}
                     />
+                  )}
+                  {IconComponent && (
+                    <IconComponent className={`relative z-10 w-4 h-4 transition-all ${
+                      isActive
+                        ? 'text-gray-900 opacity-100'
+                        : 'text-gray-600 opacity-50 group-hover:text-gray-900 group-hover:opacity-100'
+                    }`} />
                   )}
                   <span
                     className={`relative z-10 font-medium transition-all ${
@@ -197,17 +215,25 @@ export function Navigation({ inline = false }: NavigationProps) {
           <div className="w-full max-w-[90rem] mx-auto px-4 sm:px-6 py-4 sm:py-5 space-y-2 text-center">
             {navLinks.map((link: { path: string; label: string }) => {
               const isActive = location.pathname === link.path;
+              const IconComponent = getIconForPath(link.path);
               return (
                 <Link
                   key={link.path}
                   to={link.path}
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className={`block w-full py-4 px-6 rounded-xl transition-colors touch-manipulation min-h-[48px] flex items-center justify-center ${
+                  className={`block w-full py-4 px-6 rounded-xl transition-colors touch-manipulation min-h-[48px] flex items-center justify-center gap-2 ${
                     isActive
                       ? 'bg-gray-100/90 border border-gray-200/60 font-semibold text-gray-900 text-xl sm:text-2xl'
                       : 'font-medium text-gray-600 opacity-50 active:opacity-100 active:bg-black/5 hover:opacity-100 hover:bg-black/[0.02] hover:text-gray-900 text-base sm:text-lg'
                   }`}
                 >
+                  {IconComponent && (
+                    <IconComponent className={`w-5 h-5 sm:w-6 sm:h-6 ${
+                      isActive
+                        ? 'text-gray-900'
+                        : 'text-gray-600 opacity-50'
+                    }`} />
+                  )}
                   {link.label}
                 </Link>
               );
