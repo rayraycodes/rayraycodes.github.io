@@ -199,6 +199,19 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Mobile-specific scrollbar hiding */
+@media (max-width: 768px) {
+  /* Hide scrollbars on mobile for better UX */
+  .overflow-x-auto::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .overflow-x-auto {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
 /* Apple-inspired utility classes */
 @layer utilities {
   .glassmorphism {

@@ -73,8 +73,13 @@ export function Navigation({ inline = false }: NavigationProps) {
     return (
       <nav
         ref={inlineNavContainerRef}
-        className="flex flex-nowrap items-center justify-center gap-2 sm:gap-4 overflow-x-auto scroll-smooth"
+        className="flex flex-nowrap items-center justify-center gap-2 sm:gap-3 md:gap-4 overflow-x-auto scroll-smooth pb-2 -mb-2 w-full"
         aria-label="Main navigation"
+        style={{ 
+          scrollbarWidth: 'none', 
+          msOverflowStyle: 'none',
+          WebkitOverflowScrolling: 'touch'
+        }}
       >
         {navLinks.map((link: { path: string; label: string }, index: number) => {
           const isActive = location.pathname === link.path;
@@ -83,7 +88,7 @@ export function Navigation({ inline = false }: NavigationProps) {
               key={link.path}
               ref={(el) => { tabRefs.current[index] = el; }}
               to={link.path}
-              className="relative px-3 sm:px-6 py-3 transition-colors group rounded-lg flex-shrink-0 text-center whitespace-nowrap"
+              className="relative px-3 sm:px-5 md:px-6 py-2.5 sm:py-3 transition-colors group rounded-lg flex-shrink-0 text-center whitespace-nowrap min-h-[44px] flex items-center justify-center"
             >
               {isActive && (
                 <motion.div
@@ -95,8 +100,8 @@ export function Navigation({ inline = false }: NavigationProps) {
               <span
                 className={`relative z-10 font-medium transition-all ${
                   isActive
-                    ? 'text-gray-900 font-semibold opacity-100 text-xl'
-                    : 'text-gray-600 opacity-50 group-hover:text-gray-900 group-hover:opacity-100 text-base'
+                    ? 'text-gray-900 font-semibold opacity-100 text-lg sm:text-xl'
+                    : 'text-gray-600 opacity-50 group-hover:text-gray-900 group-hover:opacity-100 text-sm sm:text-base'
                 }`}
               >
                 {link.label}
@@ -129,6 +134,10 @@ export function Navigation({ inline = false }: NavigationProps) {
           <div 
             ref={topNavContainerRef}
             className="hidden lg:flex items-center justify-center gap-2 xl:gap-4 flex-1 flex-nowrap overflow-x-auto scroll-smooth"
+            style={{ 
+              scrollbarWidth: 'none', 
+              msOverflowStyle: 'none'
+            }}
           >
             {navLinks.map((link: { path: string; label: string }, index: number) => {
               const isActive = location.pathname === link.path;
@@ -183,9 +192,9 @@ export function Navigation({ inline = false }: NavigationProps) {
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -20 }}
-          className="lg:hidden bg-white border-t border-black/10 shadow-lg"
+          className="lg:hidden bg-white border-t border-gray-200 shadow-lg"
         >
-          <div className="w-full max-w-[90rem] mx-auto px-4 sm:px-6 py-5 space-y-2 text-center">
+          <div className="w-full max-w-[90rem] mx-auto px-4 sm:px-6 py-4 sm:py-5 space-y-2 text-center">
             {navLinks.map((link: { path: string; label: string }) => {
               const isActive = location.pathname === link.path;
               return (
