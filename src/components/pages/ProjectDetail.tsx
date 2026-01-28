@@ -74,7 +74,7 @@ export function ProjectDetail() {
   }
 
   return (
-    <div className="min-h-screen pt-20 sm:pt-24 lg:pt-32">
+    <div className="min-h-screen pt-28 sm:pt-24 lg:pt-32">
       {/* Project Detail Modal */}
       <div className="max-w-6xl mx-auto px-4 lg:px-12">
         {/* Back Button and Share */}
