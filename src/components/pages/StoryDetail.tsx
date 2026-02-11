@@ -170,10 +170,10 @@ export function StoryDetail() {
               <Calendar size={16} />
               <span>{selectedStory.date}</span>
             </div>
-            <h1 className="text-4xl lg:text-5xl tracking-tight">
+            <h1 className="text-4xl lg:text-5xl tracking-tight text-gray-900">
               {selectedStory.title}
             </h1>
-            <p className="text-xl text-muted-foreground">
+            <p className="text-xl text-gray-900">
               {selectedStory.content.description}
             </p>
           </header>
@@ -201,12 +201,12 @@ export function StoryDetail() {
 
           {/* What I Built */}
           <section className="space-y-4">
-            <h2 className="text-2xl font-semibold">{labels.whatIBuilt}</h2>
+            <h2 className="text-2xl font-semibold text-gray-900">{labels.whatIBuilt}</h2>
             <ul className="grid md:grid-cols-2 gap-3">
               {selectedStory.content.work.map((item) => (
                 <li key={item} className="flex items-start gap-2">
                   <span className="text-blue-600 mt-1">•</span>
-                  <span className="text-muted-foreground">{item}</span>
+                  <span className="text-gray-900">{item}</span>
                 </li>
               ))}
             </ul>
@@ -214,8 +214,8 @@ export function StoryDetail() {
 
           {/* Impact */}
           <section className={`bg-gradient-to-br ${themeColors[selectedStory.theme as keyof typeof themeColors]} border rounded-2xl p-6 space-y-3`}>
-            <h2 className="text-2xl font-semibold">{labels.impactToday}</h2>
-            <p className="text-lg text-muted-foreground italic">
+            <h2 className="text-2xl font-semibold text-gray-900">{labels.impactToday}</h2>
+            <p className="text-lg text-gray-900 italic">
               {selectedStory.content.impact}
             </p>
           </section>
@@ -223,7 +223,7 @@ export function StoryDetail() {
           {/* Impact Stats (only for main story) */}
           {selectedStory.content.hasStats && selectedStory.content.stats && (
             <section className="py-8 border-t">
-              <h2 className="text-2xl font-semibold mb-6">{labels.impactByNumbers}</h2>
+              <h2 className="text-2xl font-semibold mb-6 text-gray-900">{labels.impactByNumbers}</h2>
               <div className="grid md:grid-cols-4 gap-6">
                 {selectedStory.content.stats.map((stat) => (
                   <div
@@ -233,7 +233,7 @@ export function StoryDetail() {
                     <div className="text-3xl lg:text-4xl mb-2 text-gradient-blue">
                       {stat.value}
                     </div>
-                    <div className="text-sm text-muted-foreground">{stat.label}</div>
+                    <div className="text-sm text-gray-900">{stat.label}</div>
                   </div>
                 ))}
               </div>
@@ -252,10 +252,10 @@ export function StoryDetail() {
                 transition={{ duration: 0.8 }}
                 className="mb-12"
               >
-                <h2 className="text-3xl lg:text-4xl tracking-tight mb-4">
+                <h2 className="text-3xl lg:text-4xl tracking-tight mb-4 text-gray-900">
                   Other Stories of Impact
                 </h2>
-                <p className="text-lg text-muted-foreground">
+                <p className="text-lg text-gray-900">
                   Explore more stories of meaningful change
                 </p>
               </motion.div>
@@ -325,10 +325,10 @@ export function StoryDetail() {
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
             >
-              <h2 className="text-4xl lg:text-5xl tracking-tight mb-6">
+              <h2 className="text-4xl lg:text-5xl tracking-tight mb-6 text-gray-900">
                 Let's create impact together
               </h2>
-              <p className="text-xl text-muted-foreground mb-8">
+              <p className="text-xl text-gray-900 mb-8">
                 Interested in learning more about this story or collaborating on projects that create meaningful change? Let's connect.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">

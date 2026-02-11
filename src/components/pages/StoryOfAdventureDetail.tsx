@@ -236,7 +236,7 @@ export function StoryOfAdventureDetail() {
               <Calendar size={16} />
               <span>{selectedStory.date}</span>
             </div>
-            <h1 className="text-4xl lg:text-5xl tracking-tight">
+            <h1 className="text-4xl lg:text-5xl tracking-tight text-gray-900">
               {selectedStory.title}
             </h1>
           </header>
@@ -288,7 +288,7 @@ export function StoryOfAdventureDetail() {
                   // Handle list objects
                   if (item.type === 'list' && Array.isArray(item.items)) {
                     return (
-                      <ul key={index} className="list-disc list-outside space-y-3 text-xl text-muted-foreground leading-relaxed ml-6 marker:text-gray-400">
+                      <ul key={index} className="list-disc list-outside space-y-3 text-xl text-gray-900 leading-relaxed ml-6 marker:text-gray-600">
                         {item.items.map((listItem: string, listIndex: number) => (
                           <li key={listIndex} className="pl-2">{listItem}</li>
                         ))}
@@ -299,7 +299,7 @@ export function StoryOfAdventureDetail() {
                 // Handle regular text paragraphs
                 if (typeof item === 'string') {
                   return (
-                    <p key={index} className="text-xl text-muted-foreground leading-relaxed">
+                    <p key={index} className="text-xl text-gray-900 leading-relaxed">
                       {item}
                     </p>
                   );
@@ -308,7 +308,7 @@ export function StoryOfAdventureDetail() {
               })}
             </div>
           ) : (
-            <p className="text-xl text-muted-foreground leading-relaxed whitespace-pre-line">
+            <p className="text-xl text-gray-900 leading-relaxed whitespace-pre-line">
               {selectedStory.content.description}
             </p>
           )}
@@ -340,12 +340,12 @@ export function StoryOfAdventureDetail() {
 
           {/* What I Did */}
           <section className="space-y-4">
-            <h2 className="text-2xl font-semibold">{labels.whatIDid}</h2>
+            <h2 className="text-2xl font-semibold text-gray-900">{labels.whatIDid}</h2>
             <ul className="grid md:grid-cols-2 gap-3">
               {selectedStory.content.work.map((item) => (
                 <li key={item} className="flex items-start gap-2">
                   <span className="text-blue-600 mt-1">•</span>
-                  <span className="text-muted-foreground">{item}</span>
+                  <span className="text-gray-900">{item}</span>
                 </li>
               ))}
             </ul>
@@ -353,17 +353,17 @@ export function StoryOfAdventureDetail() {
 
           {/* Reflection */}
           <section className={`bg-gradient-to-br ${themeColors[selectedStory.theme as keyof typeof themeColors]} border rounded-2xl p-6 space-y-3`}>
-            <h2 className="text-2xl font-semibold">{labels.reflection}</h2>
+            <h2 className="text-2xl font-semibold text-gray-900">{labels.reflection}</h2>
             {Array.isArray(selectedStory.content.impact) ? (
               <div className="space-y-4">
                 {selectedStory.content.impact.map((paragraph, index) => (
-                  <p key={index} className="text-lg text-muted-foreground italic leading-relaxed">
+                  <p key={index} className="text-lg text-gray-900 italic leading-relaxed">
                     {paragraph}
                   </p>
                 ))}
               </div>
             ) : (
-              <p className="text-lg text-muted-foreground italic leading-relaxed whitespace-pre-line">
+              <p className="text-lg text-gray-900 italic leading-relaxed whitespace-pre-line">
                 {selectedStory.content.impact}
               </p>
             )}
@@ -384,10 +384,10 @@ export function StoryOfAdventureDetail() {
                 transition={{ duration: 0.8 }}
                 className="mb-12"
               >
-                <h2 className="text-3xl lg:text-4xl tracking-tight mb-4">
+                <h2 className="text-3xl lg:text-4xl tracking-tight mb-4 text-gray-900">
                   Other Stories of Adventure
                 </h2>
-                <p className="text-lg text-muted-foreground">
+                <p className="text-lg text-gray-900">
                   Explore more adventures and stories
                 </p>
               </motion.div>
@@ -465,10 +465,10 @@ export function StoryOfAdventureDetail() {
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
             >
-              <h2 className="text-4xl lg:text-5xl tracking-tight mb-6">
+              <h2 className="text-4xl lg:text-5xl tracking-tight mb-6 text-gray-900">
                 Let's connect
               </h2>
-              <p className="text-xl text-muted-foreground mb-8">
+              <p className="text-xl text-gray-900 mb-8">
                 Want to learn more about this story or share your own adventures? I'd love to hear from you.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
