@@ -7,6 +7,7 @@ import contentData from '../../data/content';
 import { getImageUrl } from '../../utils/imageUtils';
 import { useMetaTags } from '../../utils/useMetaTags';
 import { Comments } from '../Comments';
+import { preloadStoryImages } from '../../utils/preloadImages';
 
 const iconMap: Record<string, typeof Globe> = {
   'Globe': Globe,
@@ -88,6 +89,11 @@ export function StoryOfAdventureDetail() {
     if (!selectedStory) {
       navigate('/storiesofadventure');
       return;
+    }
+
+    // Preload story images for smoother experience
+    if (storyId) {
+      preloadStoryImages(storyId);
     }
 
     // Scroll to top when story loads
@@ -290,9 +296,12 @@ export function StoryOfAdventureDetail() {
                   // Handle list objects
                   if (item.type === 'list' && Array.isArray(item.items)) {
                     return (
-                      <ul key={index} className="list-disc list-outside space-y-3 text-xl text-gray-900 leading-relaxed ml-6 marker:text-gray-600">
+                      <ul key={index} className="space-y-3 text-xl text-gray-900 leading-relaxed ml-6 list-none">
                         {item.items.map((listItem: string, listIndex: number) => (
-                          <li key={listIndex} className="pl-2">{listItem}</li>
+                          <li key={listIndex} className="pl-2 flex items-start">
+                            <span className="text-yellow-500 mr-3 mt-1 flex-shrink-0">★</span>
+                            <span>{listItem}</span>
+                          </li>
                         ))}
                       </ul>
                     );
@@ -322,7 +331,7 @@ export function StoryOfAdventureDetail() {
             <ul className="grid md:grid-cols-2 gap-3">
               {selectedStory.content.work.map((item) => (
                 <li key={item} className="flex items-start gap-2">
-                  <span className="text-blue-600 mt-1">•</span>
+                  <span className="text-yellow-500 mt-1 flex-shrink-0">★</span>
                   <span className="text-gray-900">{item}</span>
                 </li>
               ))}

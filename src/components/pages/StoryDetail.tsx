@@ -7,6 +7,7 @@ import contentData from '../../data/content';
 import { useState } from 'react';
 import { useMetaTags } from '../../utils/useMetaTags';
 import { getImageUrl } from '../../utils/imageUtils';
+import { preloadStoryImages } from '../../utils/preloadImages';
 
 const iconMap: Record<string, typeof Globe> = {
   'Globe': Globe,
@@ -77,6 +78,12 @@ export function StoryDetail() {
       navigate('/impact');
       return;
     }
+    
+    // Preload story images for smoother experience
+    if (storyId) {
+      preloadStoryImages(storyId);
+    }
+    
     // Scroll to top when story loads
     window.scrollTo({ top: 0, behavior: 'instant' });
   }, [selectedStory, navigate, storyId]);
@@ -205,7 +212,7 @@ export function StoryDetail() {
             <ul className="grid md:grid-cols-2 gap-3">
               {selectedStory.content.work.map((item) => (
                 <li key={item} className="flex items-start gap-2">
-                  <span className="text-blue-600 mt-1">•</span>
+                  <span className="text-yellow-500 mt-1 flex-shrink-0">★</span>
                   <span className="text-gray-900">{item}</span>
                 </li>
               ))}

@@ -91,7 +91,7 @@ export function Experience() {
                     <ul className="grid md:grid-cols-2 gap-3">
                       {exp.highlights.map((highlight) => (
                         <li key={highlight} className="flex items-start gap-2">
-                          <span className="text-blue-600 mt-1">•</span>
+                          <span className="text-yellow-500 mt-1 flex-shrink-0">★</span>
                           <span className="text-muted-foreground">{highlight}</span>
                         </li>
                       ))}

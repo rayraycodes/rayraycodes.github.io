@@ -15,6 +15,7 @@ import { Accessibility } from './components/pages/Accessibility';
 import { Contact } from './components/pages/Contact';
 import { Photography } from './components/pages/Photography';
 import { CMS } from './components/pages/CMS';
+import { preloadCriticalImages } from './utils/preloadImages';
 
 function AppContent() {
   const location = useLocation();
@@ -37,6 +38,11 @@ function AppContent() {
     return () => {
       document.removeEventListener('contextmenu', handleContextMenu);
     };
+  }, []);
+
+  // Preload critical images on app mount
+  useEffect(() => {
+    preloadCriticalImages();
   }, []);
 
   return (

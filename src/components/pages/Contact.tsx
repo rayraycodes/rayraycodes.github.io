@@ -160,7 +160,7 @@ export function Contact() {
                 <ul className="space-y-3">
                   {opportunities.items.map((item) => (
                     <li key={item} className="flex items-start gap-2">
-                      <span className="text-blue-600 mt-1">•</span>
+                      <span className="text-yellow-500 mt-1 flex-shrink-0">★</span>
                       <span className="text-muted-foreground">{item}</span>
                     </li>
                   ))}

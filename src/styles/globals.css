@@ -199,8 +199,9 @@ html {
   scroll-behavior: smooth;
 }
 
-/* Mobile-specific scrollbar hiding */
-@media (max-width: 768px) {
+/* Mobile-specific scrollbar hiding and navigation spacing */
+/* Using max-width: 639px to match Tailwind's sm breakpoint (640px) */
+@media (max-width: 639px) {
   /* Hide scrollbars on mobile for better UX */
   .overflow-x-auto::-webkit-scrollbar {
     display: none;
@@ -211,11 +212,29 @@ html {
     scrollbar-width: none;
   }
   
-  /* Ensure content starts below fixed navigation on mobile */
-  /* Navigation bar is h-16 (64px) + safe area inset + buffer */
-  /* Apply dynamic padding that accounts for safe area */
-  .min-h-screen {
-    padding-top: calc(4rem + env(safe-area-inset-top, 0px) + 2rem) !important;
+  /* CRITICAL: Ensure content starts below fixed navigation on mobile */
+  /* Navigation bar total height = env(safe-area-inset-top) + 64px (h-16) */
+  /* Using EXTREMELY generous padding: minimum 18rem (288px) to ensure content is NEVER covered */
+  /* With safe area: safe-area + 64px + 160px buffer = safe-area + 224px */
+  /* This MUST override all Tailwind padding classes with maximum specificity */
+  div.min-h-screen.pt-48,
+  div.min-h-screen[class*="pt-"],
+  .min-h-screen.pt-48,
+  .min-h-screen[class*="pt-"],
+  div[class*="min-h-screen"][class*="pt-"],
+  [class*="min-h-screen"][class*="pt-"] {
+    padding-top: max(18rem, calc(env(safe-area-inset-top, 0px) + 4rem + 10rem)) !important;
+  }
+  
+  /* Fallback for any min-h-screen without explicit padding classes */
+  .min-h-screen:not([class*="pt-"]) {
+    padding-top: max(18rem, calc(env(safe-area-inset-top, 0px) + 4rem + 10rem)) !important;
+  }
+  
+  /* Extra safety: target story detail pages specifically */
+  div.min-h-screen > div.max-w-4xl,
+  div.min-h-screen > div.max-w-3xl {
+    margin-top: 0 !important;
   }
 }
 
