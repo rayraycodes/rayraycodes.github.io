@@ -30,7 +30,16 @@ export function ProjectDetail() {
   useEffect(() => {
     if (!selectedProject) {
       navigate('/projects');
+      return;
     }
+
+    // Scroll to top when project detail loads
+    // Use double RAF to ensure it happens after App.tsx scroll handler
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        window.scrollTo({ top: 0, behavior: 'instant' });
+      });
+    });
   }, [selectedProject, navigate]);
 
   // Update meta tags for social sharing

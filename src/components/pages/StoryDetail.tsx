@@ -84,7 +84,12 @@ export function StoryDetail() {
     }
     
     // Scroll to top when story loads
-    window.scrollTo({ top: 0, behavior: 'instant' });
+    // Use double RAF to ensure it happens after App.tsx scroll handler
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        window.scrollTo({ top: 0, behavior: 'instant' });
+      });
+    });
   }, [selectedStory, navigate, storyId]);
 
   // Update meta tags for social sharing

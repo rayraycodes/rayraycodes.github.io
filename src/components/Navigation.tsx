@@ -19,12 +19,22 @@ export function Navigation({ inline = false }: NavigationProps) {
   const tabRefs = useRef<(HTMLAnchorElement | null)[]>([]);
 
   useEffect(() => {
+    let rafId: number | null = null;
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
+      // Use requestAnimationFrame to throttle scroll updates
+      if (rafId === null) {
+        rafId = requestAnimationFrame(() => {
+          setIsScrolled(window.scrollY > 20);
+          rafId = null;
+        });
+      }
     };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      if (rafId !== null) cancelAnimationFrame(rafId);
+    };
   }, []);
 
   // Center the active tab with equal tabs on both sides when possible
@@ -185,34 +195,34 @@ export function Navigation({ inline = false }: NavigationProps) {
       });
     }
     
-    // Update immediately and after layout
+    // Debounced update function to prevent excessive calls
+    let updateTimeout: NodeJS.Timeout | null = null;
+    const debouncedUpdateNavHeight = () => {
+      if (updateTimeout) clearTimeout(updateTimeout);
+      updateTimeout = setTimeout(() => {
+        updateNavHeight();
+        updateTimeout = null;
+      }, 16); // ~60fps throttling
+    };
+    
+    // Update immediately
     updateNavHeight();
-    requestAnimationFrame(() => {
-      updateNavHeight();
-      requestAnimationFrame(updateNavHeight);
-    });
     
-    // Update after delays to catch all render states
-    const timeouts = [
-      setTimeout(updateNavHeight, 0),
-      setTimeout(updateNavHeight, 10),
-      setTimeout(updateNavHeight, 50),
-      setTimeout(updateNavHeight, 100),
-      setTimeout(updateNavHeight, 200),
-      setTimeout(updateNavHeight, 500)
-    ];
+    // Single delayed check after layout settles
+    const initialTimeout = setTimeout(updateNavHeight, 100);
     
-    window.addEventListener('resize', updateNavHeight);
-    window.addEventListener('orientationchange', updateNavHeight);
+    window.addEventListener('resize', debouncedUpdateNavHeight, { passive: true });
+    window.addEventListener('orientationchange', debouncedUpdateNavHeight);
     
     return () => {
       resizeObserver.disconnect();
       mutationObserver.disconnect();
-      window.removeEventListener('resize', updateNavHeight);
-      window.removeEventListener('orientationchange', updateNavHeight);
-      timeouts.forEach(clearTimeout);
+      window.removeEventListener('resize', debouncedUpdateNavHeight);
+      window.removeEventListener('orientationchange', debouncedUpdateNavHeight);
+      if (updateTimeout) clearTimeout(updateTimeout);
+      clearTimeout(initialTimeout);
     };
-  }, [isScrolled, inline, isMobileMenuOpen]); // CRITICAL: Include isMobileMenuOpen
+  }, [inline, isMobileMenuOpen]); // Removed isScrolled - it was causing layout shifts during scroll
 
   return (
     <motion.nav

@@ -97,7 +97,12 @@ export function StoryOfAdventureDetail() {
     }
 
     // Scroll to top when story loads
-    window.scrollTo({ top: 0, behavior: 'instant' });
+    // Use double RAF to ensure it happens after App.tsx scroll handler
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        window.scrollTo({ top: 0, behavior: 'instant' });
+      });
+    });
 
     // Update meta tags immediately for better crawler support
     const baseUrl = window.location.origin;

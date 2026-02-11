@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { HashRouter as Router, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { Navigation } from './components/Navigation';
 import { Footer } from './components/Footer';
@@ -21,11 +21,40 @@ import './utils/navHeight';
 function AppContent() {
   const location = useLocation();
   const isHomePage = location.pathname === '/' || location.pathname === '/#/';
+  const prevPathnameRef = useRef<string>(location.pathname);
+  const scrollTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
-  // Scroll to top when opening About, Stories, Projects, etc. so the top nav "moves up" into view
+  // Check if current route is a detail page (project or story detail)
+  const isDetailPage = /^\/(projects|impact|storiesofadventure)\/[^/]+$/.test(location.pathname);
+
+  // Scroll to top on route changes - simplified, no interference with user scrolling
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }, [location.pathname]);
+    const pathnameChanged = prevPathnameRef.current !== location.pathname;
+    
+    if (pathnameChanged) {
+      // Clear any pending scroll timeouts
+      if (scrollTimeoutRef.current) {
+        clearTimeout(scrollTimeoutRef.current);
+      }
+      
+      // Always scroll to top for detail pages, otherwise only if not already scrolled
+      if (isDetailPage || window.scrollY === 0) {
+        // Use a small delay to ensure DOM is ready
+        scrollTimeoutRef.current = setTimeout(() => {
+          window.scrollTo({ top: 0, behavior: 'instant' });
+          scrollTimeoutRef.current = null;
+        }, 0);
+      }
+      
+      prevPathnameRef.current = location.pathname;
+    }
+
+    return () => {
+      if (scrollTimeoutRef.current) {
+        clearTimeout(scrollTimeoutRef.current);
+      }
+    };
+  }, [location.pathname, isDetailPage]);
 
   // Disable right-click context menu on all pages
   useEffect(() => {

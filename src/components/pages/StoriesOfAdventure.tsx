@@ -215,7 +215,7 @@ export function StoriesOfAdventure() {
   return (
     <div className="min-h-screen" ref={contentRef} data-content-wrapper="true">
       {/* Header */}
-      <section className="pt-4 sm:pt-16 lg:pt-24 pb-20 lg:pb-24 bg-gradient-to-b from-background to-blue-50/20">
+      <section className="pb-20 lg:pb-24 bg-gradient-to-b from-background to-blue-50/20">
         <div className="max-w-7xl mx-auto px-6 lg:px-12">
           <motion.div
             initial={{ opacity: 0, y: 30 }}

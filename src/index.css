@@ -2297,7 +2297,9 @@
 
 html {
   font-size: var(--font-size);
-  scroll-behavior: smooth;
+  /* Smooth scrolling disabled to prevent double-scroll issue */
+  /* scroll-behavior: smooth; - Disabled to fix double-scroll */
+  -webkit-overflow-scrolling: touch;
 }
 
 @property --tw-translate-x {

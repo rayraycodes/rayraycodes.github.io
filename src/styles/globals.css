@@ -133,6 +133,11 @@
     font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'SF Pro Display', 'Inter', system-ui, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    /* Smooth scrolling disabled to prevent double-scroll issue */
+    /* scroll-behavior: smooth; - Disabled to fix double-scroll */
+    -webkit-overflow-scrolling: touch;
+    /* Better scroll performance */
+    will-change: scroll-position;
   }
 }
 
@@ -198,7 +203,25 @@
 
 html {
   font-size: var(--font-size);
-  scroll-behavior: smooth;
+  /* Smooth scrolling disabled to prevent double-scroll issue */
+  /* scroll-behavior: smooth; - Disabled to fix double-scroll */
+  /* Improve scroll performance and smoothness */
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Additional scroll optimizations for scrollable containers */
+.overflow-x-auto,
+.overflow-y-auto,
+.overflow-auto {
+  -webkit-overflow-scrolling: touch;
+  /* scroll-behavior: smooth; - Disabled to prevent double-scroll */
+}
+
+/* Smooth scrolling for horizontal navigation containers */
+nav[aria-label] ul,
+nav[aria-label] div {
+  /* scroll-behavior: smooth; - Disabled to prevent double-scroll */
+  -webkit-overflow-scrolling: touch;
 }
 
 /* Mobile-specific scrollbar hiding */
