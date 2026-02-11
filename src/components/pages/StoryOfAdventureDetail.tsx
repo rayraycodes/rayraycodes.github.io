@@ -34,7 +34,7 @@ interface Story {
   icon: typeof Globe;
   theme: 'blue' | 'green' | 'purple' | 'indigo' | 'teal' | 'orange' | string;
   content: {
-    description: string | string[];
+    description: string | (string | { type: 'heading'; level: 2 | 3; text: string } | { type: 'list'; items: string[] })[];
     work: string[];
     impact: string | string[];
     images?: (string | StoryImage)[];
@@ -268,12 +268,44 @@ export function StoryOfAdventureDetail() {
 
           {/* Description */}
           {Array.isArray(selectedStory.content.description) ? (
-            <div className="space-y-4">
-              {selectedStory.content.description.map((paragraph, index) => (
-                <p key={index} className="text-xl text-muted-foreground leading-relaxed">
-                  {paragraph}
-                </p>
-              ))}
+            <div className="space-y-6">
+              {selectedStory.content.description.map((item, index) => {
+                // Handle heading objects
+                if (typeof item === 'object' && item !== null && 'type' in item) {
+                  if (item.type === 'heading') {
+                    const HeadingTag = item.level === 2 ? 'h2' : item.level === 3 ? 'h3' : 'h2';
+                    return (
+                      <HeadingTag 
+                        key={index} 
+                        className={`font-semibold text-gray-900 mt-8 mb-4 first:mt-0 ${
+                          item.level === 2 ? 'text-3xl lg:text-4xl' : 'text-2xl lg:text-3xl'
+                        }`}
+                      >
+                        {item.text}
+                      </HeadingTag>
+                    );
+                  }
+                  // Handle list objects
+                  if (item.type === 'list' && Array.isArray(item.items)) {
+                    return (
+                      <ul key={index} className="list-disc list-outside space-y-3 text-xl text-muted-foreground leading-relaxed ml-6 marker:text-gray-400">
+                        {item.items.map((listItem: string, listIndex: number) => (
+                          <li key={listIndex} className="pl-2">{listItem}</li>
+                        ))}
+                      </ul>
+                    );
+                  }
+                }
+                // Handle regular text paragraphs
+                if (typeof item === 'string') {
+                  return (
+                    <p key={index} className="text-xl text-muted-foreground leading-relaxed">
+                      {item}
+                    </p>
+                  );
+                }
+                return null;
+              })}
             </div>
           ) : (
             <p className="text-xl text-muted-foreground leading-relaxed whitespace-pre-line">
