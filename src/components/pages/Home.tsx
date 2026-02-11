@@ -15,6 +15,9 @@ export function Home() {
           transition={{ duration: 0.6 }}
           className="text-center mb-8"
         >
+          <p className="text-sm sm:text-base md:text-lg text-gray-600 mb-3 sm:mb-4 font-medium">
+            रेगन
+          </p>
           <img 
             src={getImageUrl("src/assets/ray.png")} 
             alt="Regan Maharjan"
