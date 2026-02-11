@@ -2,6 +2,7 @@ import { motion } from 'motion/react';
 import { Link } from 'react-router-dom';
 import { Hand, BookOpen, FolderKanban, Camera } from 'lucide-react';
 import { getImageUrl } from '../../utils/imageUtils';
+import { ImageWithFallback } from '../figma/ImageWithFallback';
 import contentData from '../../data/content';
 
 export function Home() {
@@ -18,11 +19,12 @@ export function Home() {
           <p className="text-sm sm:text-base md:text-lg text-gray-600 mb-3 sm:mb-4 font-medium">
             रेगन
           </p>
-          <img 
+          <ImageWithFallback
             src={getImageUrl("src/assets/ray.png")} 
             alt="Regan Maharjan"
             className="w-auto mx-auto rounded-full object-contain"
             style={{ height: 'clamp(200px, 30vh, 400px)' }}
+            loading="eager"
           />
         </motion.div>
 
