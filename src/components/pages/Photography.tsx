@@ -474,7 +474,7 @@ export function Photography() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 pt-36 sm:pt-24 lg:pt-32">
+    <div className="min-h-screen bg-gray-50 pt-48 sm:pt-24 lg:pt-32">
       <main className="max-w-7xl mx-auto px-6 lg:px-12 pt-12 lg:pt-16 pb-32 lg:pb-40">
         {/* Welcome Message */}
         <div className="mb-8 text-center">

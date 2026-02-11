@@ -89,7 +89,7 @@ export function Projects() {
   };
 
   return (
-    <div className="min-h-screen pt-36 sm:pt-24 lg:pt-32">
+    <div className="min-h-screen pt-48 sm:pt-24 lg:pt-32">
       {/* Hero Section */}
       <section className="pt-16 lg:pt-24 pb-20 lg:pb-24 bg-gradient-to-b from-background to-blue-50/20">
         <div className="max-w-7xl mx-auto px-6 lg:px-12">

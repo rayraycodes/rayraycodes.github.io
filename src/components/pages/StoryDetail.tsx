@@ -126,7 +126,7 @@ export function StoryDetail() {
   }
 
   return (
-    <div className="min-h-screen pt-36 sm:pt-24 lg:pt-32">
+    <div className="min-h-screen pt-48 sm:pt-24 lg:pt-32">
       <div className="max-w-4xl mx-auto px-6 lg:px-12">
         {/* Back Button and Share */}
         <div className="flex items-center justify-between mb-8">
