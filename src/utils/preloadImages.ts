@@ -21,6 +21,9 @@ export function preloadCriticalImages() {
     getImageUrl("/assets/yose.jpg"),
     // Profile image
     getImageUrl("src/assets/mitregan.png"),
+    // Photography: Lakeside Pathway and other early gallery images (helps live page load)
+    getImageUrl("/assets/2023-11-19_02-55-09_562.jpeg"),
+    getImageUrl("/assets/ZVE02104.jpg"),
   ];
 
   criticalImages.forEach((imageUrl) => {

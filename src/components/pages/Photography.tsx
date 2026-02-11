@@ -4,6 +4,7 @@ import { Button } from '../ui/button';
 import { motion } from 'motion/react';
 import contentData from '../../data/content';
 import { useMobilePadding } from '../../utils/useMobilePadding';
+import { getImageUrl } from '../../utils/imageUtils';
 
 // Photo type definition
 // Note: category can be a string (single category) or string[] (multiple categories)
@@ -67,6 +68,7 @@ interface PhotoCardProps {
 
 const PhotoCard = memo(function PhotoCard({ photo, onOpen, index }: PhotoCardProps) {
   const [isLoaded, setIsLoaded] = useState(false);
+  const [imgError, setImgError] = useState(false);
   const [isInView, setIsInView] = useState(index < 12); // Load first 12 eagerly
   const imgRef = useRef<HTMLImageElement>(null);
   const containerRef = useRef<HTMLElement | null>(null);
@@ -131,15 +133,15 @@ const PhotoCard = memo(function PhotoCard({ photo, onOpen, index }: PhotoCardPro
         aria-label={`View ${photo.title}`}
       >
         {/* Blur placeholder */}
-        {!isLoaded && (
+        {(!isLoaded || imgError) && (
           <div className="absolute inset-0 bg-gradient-to-br from-gray-200 via-gray-300 to-gray-200 animate-pulse" />
         )}
         
         {/* Actual image */}
-        {isInView && (
+        {isInView && !imgError && (
         <img
             ref={imgRef}
-          src={photo.src}
+          src={getImageUrl(photo.src)}
           alt={photo.alt}
             className={`w-full h-full object-cover transition-all duration-500 ease-out group-hover:scale-110 ${
               isLoaded ? 'opacity-100' : 'opacity-0'
@@ -147,6 +149,7 @@ const PhotoCard = memo(function PhotoCard({ photo, onOpen, index }: PhotoCardPro
             loading={index < 12 ? 'eager' : 'lazy'}
             decoding="async"
             onLoad={handleImageLoad}
+            onError={() => setImgError(true)}
         />
         )}
         {/* Hover overlay with title - desktop only */}
@@ -211,6 +214,7 @@ function PhotoDetailDialog({ photo, isOpen, onClose }: PhotoDetailDialogProps) {
   const dialogRef = useRef<HTMLDivElement>(null);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
   const previousActiveElementRef = useRef<HTMLElement | null>(null);
+  const [imgError, setImgError] = useState(false);
 
   // Focus management and keyboard handling
   useEffect(() => {
@@ -258,6 +262,7 @@ function PhotoDetailDialog({ photo, isOpen, onClose }: PhotoDetailDialogProps) {
 
       // Prevent body scroll when dialog is open
       document.body.style.overflow = 'hidden';
+      setImgError(false);
 
       return () => {
         document.removeEventListener('keydown', handleEscape);
@@ -310,15 +315,24 @@ function PhotoDetailDialog({ photo, isOpen, onClose }: PhotoDetailDialogProps) {
             </button>
           </div>
 
-          {/* Image container */}
-          <div className="flex-1 overflow-auto bg-gray-50 flex items-center justify-center p-8">
-            <img
-              src={photo.src}
-              alt={photo.alt}
-              className="max-w-full max-h-full object-contain rounded-lg"
-              loading="eager"
-              decoding="async"
-            />
+          {/* Fixed div: image inside with auto width/height so it never stretches */}
+          <div className="flex-1 min-h-0 flex items-center justify-center p-3 sm:p-6 md:p-8 bg-gray-50">
+            <div className="photo-dialog-fixed flex items-center justify-center rounded-lg overflow-hidden">
+              {imgError ? (
+                <div className="w-full h-full min-h-[200px] flex items-center justify-center bg-gray-200 text-gray-500 text-center p-8 rounded-lg">
+                  <p>Image could not be loaded.</p>
+                </div>
+              ) : (
+                <img
+                  src={getImageUrl(photo.src)}
+                  alt={photo.alt}
+                  className="max-w-full max-h-full w-auto h-auto object-contain rounded-lg"
+                  loading="eager"
+                  decoding="async"
+                  onError={() => setImgError(true)}
+                />
+              )}
+            </div>
           </div>
 
           {/* Footer with metadata */}
@@ -392,26 +406,27 @@ export function Photography() {
   const photographyData = cmsData || contentData.photography;
   const { categories, images } = photographyData;
 
-  // Preload critical images (first 4) for faster initial render
+  // Preload critical images (first 6 including Lakeside Pathway) with correct base URL for live
   useEffect(() => {
-    const criticalImages = images.slice(0, 4);
-    criticalImages.forEach((img: any) => {
-      if (img.url) {
+    const criticalImages = images.slice(0, 6);
+    const preloadedUrls = criticalImages
+      .filter((img: any) => img?.url)
+      .map((img: any) => getImageUrl(img.url));
+    preloadedUrls.forEach((href) => {
+      if (href && !href.startsWith('data:')) {
         const link = document.createElement('link');
         link.rel = 'preload';
         link.as = 'image';
-        link.href = img.url;
+        link.href = href;
         document.head.appendChild(link);
       }
     });
 
     return () => {
-      // Cleanup preload links when component unmounts
       const preloadLinks = document.querySelectorAll('link[rel="preload"][as="image"]');
       preloadLinks.forEach((link) => {
-        if (criticalImages.some((img: any) => img.url === link.getAttribute('href'))) {
-          link.remove();
-        }
+        const h = link.getAttribute('href');
+        if (h && preloadedUrls.includes(h)) link.remove();
       });
     };
   }, [images]);
@@ -546,8 +561,17 @@ export function Photography() {
         </div>
       </section>
 
-      {/* Screen reader only class for announcements */}
       <style>{`
+        /* Fixed-size div; image inside uses w-auto h-auto so it never stretches */
+        .photo-dialog-fixed {
+          width: min(96vw, 1280px);
+          height: min(60vh, 800px);
+        }
+        @media (min-width: 640px) {
+          .photo-dialog-fixed {
+            height: min(70vh, 900px);
+          }
+        }
         .sr-only {
           position: absolute;
           width: 1px;

@@ -1,12 +1,15 @@
 /**
- * Utility function to convert asset paths to URLs that work in both dev and production
- * Handles paths like "src/assets/image.png" and converts them to proper URLs
- * 
- * For Vite:
- * - Assets in src/assets/ need to be imported or placed in public/
- * - This function converts src/assets/ paths to /assets/ for public folder access
- * - Public assets in public/assets/ are preferred and used directly
- * - Full URLs and data URLs are returned as-is
+ * Base URL for assets (e.g. '' for dev, '/rayraycodes.github.io' for GitHub Pages project site).
+ * Vite sets import.meta.env.BASE_URL - use it so assets load on live.
+ */
+const BASE_URL = typeof import.meta !== 'undefined' && import.meta.env?.BASE_URL
+  ? import.meta.env.BASE_URL.replace(/\/$/, '') // strip trailing slash
+  : '';
+
+/**
+ * Utility function to convert asset paths to URLs that work in both dev and production.
+ * Handles paths like "src/assets/image.png" and converts them to proper URLs.
+ * Uses BASE_URL so images load on GitHub Pages and other hosted environments.
  */
 export function getImageUrl(path: string): string {
   // If it's already a full URL (http/https), return as is
@@ -19,28 +22,21 @@ export function getImageUrl(path: string): string {
     return path;
   }
 
-  // If path already starts with /assets/, it's already a public asset path
+  // Normalize to a path that starts with /
+  let normalized = path;
   if (path.startsWith('/assets/')) {
-    return path;
+    normalized = path;
+  } else if (path.startsWith('src/assets/')) {
+    normalized = path.replace('src/assets/', '/assets/');
+  } else if (path.startsWith('public/assets/')) {
+    normalized = path.replace('public/assets/', '/assets/');
+  } else if (path.startsWith('/')) {
+    normalized = path;
+  } else {
+    normalized = `/assets/${path}`;
   }
 
-  // Convert src/assets/ paths to /assets/ for Vite public folder access
-  // This works in both dev and production builds
-  if (path.startsWith('src/assets/')) {
-    return path.replace('src/assets/', '/assets/');
-  }
-
-  // Convert public/assets/ paths to /assets/
-  if (path.startsWith('public/assets/')) {
-    return path.replace('public/assets/', '/assets/');
-  }
-
-  // If path already starts with /, return as is
-  if (path.startsWith('/')) {
-    return path;
-  }
-
-  // For other paths, assume they're in public/assets/ and add leading slash
-  return `/assets/${path}`;
+  // Prepend base URL so assets load on live (e.g. GitHub Pages)
+  return BASE_URL + normalized;
 }
 
