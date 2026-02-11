@@ -6,6 +6,7 @@ import { Input } from '../ui/input';
 import { Textarea } from '../ui/textarea';
 import { Label } from '../ui/label';
 import contentData from '../../data/content';
+import { useMobilePadding } from '../../utils/useMobilePadding';
 
 const iconMap: Record<string, typeof Mail> = {
   'Email': Mail,
@@ -15,6 +16,7 @@ const iconMap: Record<string, typeof Mail> = {
 };
 
 export function Contact() {
+  const contentRef = useMobilePadding();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -37,7 +39,7 @@ export function Contact() {
   }));
 
   return (
-    <div className="min-h-screen pt-48 sm:pt-24 lg:pt-32">
+    <div className="min-h-screen" ref={contentRef} data-content-wrapper="true">
       {/* Hero Section */}
       <section className="py-16 lg:py-24 bg-gradient-to-b from-background to-blue-50/20">
         <div className="max-w-7xl mx-auto px-6 lg:px-12">

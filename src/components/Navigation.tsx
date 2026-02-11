@@ -15,6 +15,7 @@ export function Navigation({ inline = false }: NavigationProps) {
   const location = useLocation();
   const inlineNavContainerRef = useRef<HTMLElement>(null);
   const topNavContainerRef = useRef<HTMLDivElement>(null);
+  const navRef = useRef<HTMLElement>(null);
   const tabRefs = useRef<(HTMLAnchorElement | null)[]>([]);
 
   useEffect(() => {
@@ -126,9 +127,97 @@ export function Navigation({ inline = false }: NavigationProps) {
     );
   }
 
+  // Calculate and set nav height as CSS variable for proper content spacing
+  // CRITICAL: Must watch isMobileMenuOpen to recalculate when menu opens/closes
+  useEffect(() => {
+    if (inline) return; // Don't calculate for inline nav
+    
+    const updateNavHeight = () => {
+      if (!navRef.current) return;
+      
+      const rect = navRef.current.getBoundingClientRect();
+      const height = rect.height;
+      
+      if (height > 0) {
+        const isMobile = window.innerWidth < 640;
+        const safeAreaTop = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('env(safe-area-inset-top)') || '0');
+        
+        // Calculate total height: nav height + safe area + buffer
+        // Mobile menu open adds significant height, so we need to account for it
+        const baseNavHeight = isMobileMenuOpen && isMobile 
+          ? Math.max(height, 300) // Mobile menu open: ensure at least 300px
+          : height;
+        
+        const totalHeight = isMobile 
+          ? Math.max(200, baseNavHeight + safeAreaTop + 20) // Mobile: nav + safe area + 20px buffer
+          : baseNavHeight + safeAreaTop + 16; // Desktop: nav + safe area + 16px buffer
+        
+        document.documentElement.style.setProperty('--nav-height', `${totalHeight}px`);
+        document.documentElement.setAttribute('data-nav-height', `${totalHeight}`);
+      }
+    };
+    
+    // Set fallback immediately
+    const isMobile = window.innerWidth < 640;
+    const fallbackHeight = isMobile ? 200 : 96;
+    document.documentElement.style.setProperty('--nav-height', `${fallbackHeight}px`);
+    document.documentElement.setAttribute('data-nav-height', `${fallbackHeight}`);
+    
+    // Use ResizeObserver for reliable height tracking (better than MutationObserver for size changes)
+    const resizeObserver = new ResizeObserver(() => {
+      updateNavHeight();
+    });
+    
+    // Also use MutationObserver to watch for mobile menu being added/removed
+    const mutationObserver = new MutationObserver(() => {
+      // Debounce to avoid excessive calls
+      requestAnimationFrame(updateNavHeight);
+    });
+    
+    if (navRef.current) {
+      resizeObserver.observe(navRef.current);
+      
+      mutationObserver.observe(navRef.current, {
+        attributes: false,
+        childList: true, // Watch for mobile menu being added/removed
+        subtree: true, // Watch children (mobile menu is nested)
+        characterData: false
+      });
+    }
+    
+    // Update immediately and after layout
+    updateNavHeight();
+    requestAnimationFrame(() => {
+      updateNavHeight();
+      requestAnimationFrame(updateNavHeight);
+    });
+    
+    // Update after delays to catch all render states
+    const timeouts = [
+      setTimeout(updateNavHeight, 0),
+      setTimeout(updateNavHeight, 10),
+      setTimeout(updateNavHeight, 50),
+      setTimeout(updateNavHeight, 100),
+      setTimeout(updateNavHeight, 200),
+      setTimeout(updateNavHeight, 500)
+    ];
+    
+    window.addEventListener('resize', updateNavHeight);
+    window.addEventListener('orientationchange', updateNavHeight);
+    
+    return () => {
+      resizeObserver.disconnect();
+      mutationObserver.disconnect();
+      window.removeEventListener('resize', updateNavHeight);
+      window.removeEventListener('orientationchange', updateNavHeight);
+      timeouts.forEach(clearTimeout);
+    };
+  }, [isScrolled, inline, isMobileMenuOpen]); // CRITICAL: Include isMobileMenuOpen
+
   return (
     <motion.nav
-      initial={{ y: -100 }}
+      ref={navRef}
+      initial={false}
       animate={{ y: 0 }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled 

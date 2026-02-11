@@ -372,7 +372,7 @@ export default contentData;`;
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 pt-24 lg:pt-32">
+    <div className="min-h-screen bg-gray-50" data-content-wrapper="true" style={{ paddingTop: 'var(--nav-height, 96px)' }}>
       <div className="max-w-7xl mx-auto px-6 lg:px-12 py-12">
         {/* Header */}
         <div className="mb-8 flex items-center justify-between">

@@ -1,10 +1,9 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { motion } from 'motion/react';
 import { Heart, Globe, BookOpen, Laptop, Users, Zap, ArrowLeft, Calendar, Share2, Copy, Check } from 'lucide-react';
 import { Button } from '../ui/button';
 import contentData from '../../data/content';
-import { useState } from 'react';
 import { useMetaTags } from '../../utils/useMetaTags';
 import { getImageUrl } from '../../utils/imageUtils';
 import { preloadStoryImages } from '../../utils/preloadImages';
@@ -133,7 +132,7 @@ export function StoryDetail() {
   }
 
   return (
-    <div className="min-h-screen pt-48 sm:pt-24 lg:pt-32">
+    <div className="min-h-screen" data-content-wrapper="true" style={{ paddingTop: 'var(--nav-height, 200px)' }}>
       <div className="max-w-4xl mx-auto px-6 lg:px-12">
         {/* Back Button and Share */}
         <div className="flex items-center justify-between mb-8">

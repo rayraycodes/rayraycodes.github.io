@@ -4,6 +4,7 @@ import { Badge } from '../ui/badge';
 import { Button } from '../ui/button';
 import { ImageWithFallback } from '../figma/ImageWithFallback';
 import contentData from '../../data/content';
+import { useMobilePadding } from '../../utils/useMobilePadding';
 
 const iconMap: Record<string, typeof Eye> = {
   'Eye': Eye,
@@ -13,6 +14,7 @@ const iconMap: Record<string, typeof Eye> = {
 };
 
 export function Accessibility() {
+  const contentRef = useMobilePadding();
   const { hero, philosophy, wcag, tools, transformation, ai, impact } = contentData.accessibility;
   const { images } = contentData.assets;
   
@@ -26,7 +28,7 @@ export function Accessibility() {
   });
 
   return (
-    <div className="min-h-screen pt-48 sm:pt-24 lg:pt-32">
+    <div className="min-h-screen" ref={contentRef} data-content-wrapper="true">
       {/* Hero Section */}
       <section className="py-16 lg:py-24 bg-gradient-to-b from-blue-50/30 via-white to-white">
         <div className="max-w-7xl mx-auto px-6 lg:px-12">

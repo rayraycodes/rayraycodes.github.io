@@ -5,7 +5,7 @@ import contentData from '../../data/content';
 
 export function About() {
   return (
-    <div className="min-h-screen pt-48 sm:pt-24 lg:pt-32">
+    <div className="min-h-screen" data-content-wrapper="true" style={{ paddingTop: 'var(--nav-height, 200px)' }}>
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-12 pt-6 sm:pt-8 lg:pt-12 pb-16 sm:pb-24 lg:pb-32">
         {/* Main Content */}
         <motion.div

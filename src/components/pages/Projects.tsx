@@ -6,6 +6,7 @@ import { Button } from '../ui/button';
 import { ImageWithFallback } from '../figma/ImageWithFallback';
 import { getImageUrl } from '../../utils/imageUtils';
 import contentData from '../../data/content';
+import { useMobilePadding } from '../../utils/useMobilePadding';
 
 // Category Filter Bar Component
 interface CategoryFilterBarProps {
@@ -47,6 +48,7 @@ function CategoryFilterBar({ categories, selectedCategory, onCategoryChange }: C
 }
 
 export function Projects() {
+  const contentRef = useMobilePadding();
   const [selectedCategory, setSelectedCategory] = useState('All');
 
   const { hero, projects: projectsData, labels } = contentData.projects;
@@ -89,7 +91,7 @@ export function Projects() {
   };
 
   return (
-    <div className="min-h-screen pt-48 sm:pt-24 lg:pt-32">
+    <div className="min-h-screen" ref={contentRef} data-content-wrapper="true">
       {/* Hero Section */}
       <section className="pt-16 lg:pt-24 pb-20 lg:pb-24 bg-gradient-to-b from-background to-blue-50/20">
         <div className="max-w-7xl mx-auto px-6 lg:px-12">

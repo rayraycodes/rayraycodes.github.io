@@ -16,6 +16,7 @@ import { Contact } from './components/pages/Contact';
 import { Photography } from './components/pages/Photography';
 import { CMS } from './components/pages/CMS';
 import { preloadCriticalImages } from './utils/preloadImages';
+import './utils/navHeight';
 
 function AppContent() {
   const location = useLocation();

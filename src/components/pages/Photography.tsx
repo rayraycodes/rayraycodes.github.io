@@ -3,6 +3,7 @@ import { X, Instagram } from 'lucide-react';
 import { Button } from '../ui/button';
 import { motion } from 'motion/react';
 import contentData from '../../data/content';
+import { useMobilePadding } from '../../utils/useMobilePadding';
 
 // Photo type definition
 // Note: category can be a string (single category) or string[] (multiple categories)
@@ -373,6 +374,7 @@ function PhotoDetailDialog({ photo, isOpen, onClose }: PhotoDetailDialogProps) {
 
 // Main Photo Gallery Component
 export function Photography() {
+  const contentRef = useMobilePadding();
   // Check for CMS data in localStorage first, fallback to content.ts
   const [cmsData, setCmsData] = useState<any>(null);
   
@@ -474,7 +476,7 @@ export function Photography() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 pt-48 sm:pt-24 lg:pt-32">
+    <div className="min-h-screen bg-gray-50" ref={contentRef} data-content-wrapper="true">
       <main className="max-w-7xl mx-auto px-6 lg:px-12 pt-12 lg:pt-16 pb-32 lg:pb-40">
         {/* Welcome Message */}
         <div className="mb-8 text-center">

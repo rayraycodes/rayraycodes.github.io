@@ -5,6 +5,7 @@ import { Heart, Globe, BookOpen, Laptop, Users, Zap, Calendar, Instagram } from 
 import { Button } from '../ui/button';
 import contentData from '../../data/content';
 import { getImageUrl } from '../../utils/imageUtils';
+import { useMobilePadding } from '../../utils/useMobilePadding';
 
 // Category Filter Bar Component
 interface CategoryFilterBarProps {
@@ -94,6 +95,7 @@ interface Story {
 }
 
 export function StoriesOfAdventure() {
+  const contentRef = useMobilePadding();
   const [selectedCategory, setSelectedCategory] = useState('All');
   const { hero, stories: adventureStories, labels } = contentData.storiesOfAdventure;
   const { stories: impactStories } = contentData.impact;
@@ -211,9 +213,9 @@ export function StoriesOfAdventure() {
   };
 
   return (
-    <div className="min-h-screen pt-48 sm:pt-24 lg:pt-32">
+    <div className="min-h-screen" ref={contentRef} data-content-wrapper="true">
       {/* Header */}
-      <section className="pt-16 lg:pt-24 pb-20 lg:pb-24 bg-gradient-to-b from-background to-blue-50/20">
+      <section className="pt-4 sm:pt-16 lg:pt-24 pb-20 lg:pb-24 bg-gradient-to-b from-background to-blue-50/20">
         <div className="max-w-7xl mx-auto px-6 lg:px-12">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
