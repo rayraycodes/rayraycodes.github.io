@@ -3,7 +3,6 @@ import { useParams, useNavigate, Link } from 'react-router-dom';
 import { motion } from 'motion/react';
 import { Heart, Globe, BookOpen, Laptop, Users, Zap, ArrowLeft, Calendar, Share2, Copy, Check, Instagram } from 'lucide-react';
 import { Button } from '../ui/button';
-import { InstagramFrame } from '../ui/InstagramFrame';
 import contentData from '../../data/content';
 import { getImageUrl } from '../../utils/imageUtils';
 import { useMetaTags } from '../../utils/useMetaTags';
@@ -241,26 +240,29 @@ export function StoryOfAdventureDetail() {
             </h1>
           </header>
 
-          {/* First 2 Images */}
+          {/* Images */}
           {selectedStory.content.images && selectedStory.content.images.length > 0 && (
-            <div className="grid md:grid-cols-2 gap-4 lg:gap-6">
-              {selectedStory.content.images.slice(0, 2).map((image, idx) => {
+            <div className="space-y-6">
+              {selectedStory.content.images.map((image, idx) => {
                 const imageUrl = typeof image === 'string' ? image : image.url;
                 const imageAlt = typeof image === 'string' 
                   ? `${selectedStory.title} - Image ${idx + 1}`
                   : image.alt;
-                const imageCaption = typeof image === 'string' 
-                  ? ''
-                  : image.caption;
                 
                 return (
-                  <InstagramFrame
+                  <motion.div
                     key={idx}
-                    imageUrl={getImageUrl(imageUrl)}
-                    alt={imageAlt}
-                    caption={imageCaption}
-                    index={idx}
-                  />
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ delay: 0.2 + idx * 0.1 }}
+                    className="w-full"
+                  >
+                    <img
+                      src={getImageUrl(imageUrl)}
+                      alt={imageAlt}
+                      className="w-full h-auto rounded-lg border border-gray-200"
+                    />
+                  </motion.div>
                 );
               })}
             </div>
@@ -313,30 +315,6 @@ export function StoryOfAdventureDetail() {
             </p>
           )}
 
-          {/* Remaining Images */}
-          {selectedStory.content.images && selectedStory.content.images.length > 2 && (
-            <div className="grid md:grid-cols-2 gap-4 lg:gap-6">
-              {selectedStory.content.images.slice(2).map((image, idx) => {
-                const imageUrl = typeof image === 'string' ? image : image.url;
-                const imageAlt = typeof image === 'string' 
-                  ? `${selectedStory.title} - Image ${idx + 3}`
-                  : image.alt;
-                const imageCaption = typeof image === 'string' 
-                  ? ''
-                  : image.caption;
-                
-                return (
-                  <InstagramFrame
-                    key={idx + 2}
-                    imageUrl={getImageUrl(imageUrl)}
-                    alt={imageAlt}
-                    caption={imageCaption}
-                    index={idx + 2}
-                  />
-                );
-              })}
-            </div>
-          )}
 
           {/* What I Did */}
           <section className="space-y-4">

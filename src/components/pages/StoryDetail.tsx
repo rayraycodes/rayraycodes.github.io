@@ -180,19 +180,19 @@ export function StoryDetail() {
 
           {/* Images */}
           {selectedStory.content.images && selectedStory.content.images.length > 0 && (
-            <div className="grid md:grid-cols-2 gap-6">
+            <div className="space-y-6">
               {selectedStory.content.images.map((image, idx) => (
                 <motion.div
                   key={idx}
                   initial={{ opacity: 0, scale: 0.95 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ delay: 0.2 + idx * 0.1 }}
-                  className="surface-elevated rounded-2xl overflow-hidden"
+                  className="w-full"
                 >
                   <img
                     src={image}
                     alt={`${selectedStory.title} - Image ${idx + 1}`}
-                    className="w-full h-auto"
+                    className="w-full h-auto rounded-lg border border-gray-200"
                   />
                 </motion.div>
               ))}
