@@ -53,7 +53,7 @@ const contentData = {
       },
       {
         "path": "/storiesofadventure",
-        "label": "Adventure Stories"
+        "label": "Stories"
       },
       {
         "path": "/projects",
@@ -965,8 +965,8 @@ const contentData = {
   },
   "storiesOfAdventure": {
     "hero": {
-      "title": "Stories of Adventure",
-      "subtitle": "A collection of stories about exploring mountains, trails, and the world beyond the screen"
+      "title": "Stories",
+      "subtitle": "A collection of stories about exploring mountains, trails, technology, and the world beyond the screen"
     },
     "stories": [
       {
@@ -1328,6 +1328,103 @@ const contentData = {
               "caption": "Memories in the mountains from the Train Ride"
             }
           ]
+        }
+      },
+      {
+        "id": "ai-shift",
+        "title": "The AI Shift Is Already Here. Most People Just Haven't Noticed Yet.",
+        "thumbnailTitle": "The AI Shift",
+        "excerpt": "This Feels Like Early 2020 Again - we're in a similar moment with AI. It still feels optional. Overhyped. Easy to ignore. It isn't.",
+        "date": "2026",
+        "icon": "Zap",
+        "theme": "purple",
+        "storyType": "adventure",
+        "content": {
+          "description": [
+            "This Feels Like Early 2020 Again",
+            "In early 2020, most people saw news about a virus overseas and assumed it was overblown. Life felt normal. Then within weeks, everything changed.",
+            "The argument here is that we're in a similar moment with AI. It still feels optional. Overhyped. Easy to ignore.",
+            "It isn't.",
+            "Why This Feels Different",
+            "The people inside the AI industry are not speculating about the future. They're reacting to what has already happened in their own jobs.",
+            "For years, AI improved steadily. Then in 2025, progress accelerated dramatically. New models weren't just slightly better. They were significantly better, and they arrived faster and faster.",
+            "Some developers now describe their work in plain English and return hours later to find a completed, polished product. Not a draft. Not something half working. The finished result.",
+            "The shift has been from:",
+            "AI as assistant",
+            "to",
+            "AI as autonomous worker",
+            "That change happened fast.",
+            "Why Coding Came First",
+            "AI labs focused heavily on coding for a strategic reason: better code means better AI.",
+            "If AI can help build the next version of itself, improvement speeds up. This creates a feedback loop where each generation helps build a stronger one.",
+            "That loop is now real. Companies have publicly stated that their latest models were used to help build and refine themselves.",
+            "This is not hypothetical. It is happening.",
+            "The Speed of Progress",
+            "The improvement curve has been steep:",
+            "2022: Struggled with simple math",
+            "2023: Passed professional exams",
+            "2024: Wrote functional software",
+            "2025: Automated major portions of technical jobs",
+            "2026: Began operating with what feels like judgment and taste",
+            "Research organizations that measure task completion show the length of tasks AI can do independently has been doubling every few months.",
+            "If that trend continues, AI will handle multi-day and multi-week projects soon.",
+            "What This Means for Jobs",
+            "This wave is different from past automation because it affects general cognitive work, not just one skill.",
+            "Fields already seeing strong impact:",
+            "Law",
+            "Finance",
+            "Writing and content",
+            "Software engineering",
+            "Customer service",
+            "Medical analysis",
+            "If your job mainly involves reading, writing, analyzing, or making decisions on a computer, AI will likely affect it.",
+            "The timeline is not decades away. Industry leaders estimate one to five years. Some believe it could be faster.",
+            "Why Many People Still Don't See It",
+            "Most people try free AI tools and conclude they are limited.",
+            "The highest-performing models are typically behind paid tiers and are far more capable. The gap between public perception and current reality is wide.",
+            "Those experimenting seriously are often surprised by how much AI can already handle.",
+            "What To Do Now",
+            "This is not about panic. It is about positioning.",
+            "Use AI seriously.",
+            "Not as a search engine. Integrate it into real work.",
+            "Automate parts of your job before someone else does.",
+            "The person who learns to produce results faster becomes more valuable immediately.",
+            "Build financial flexibility.",
+            "Disruption favors those with options.",
+            "Lean into what is hardest to replace.",
+            "Trust, long-term relationships, regulatory responsibility, physical presence. These may buy time.",
+            "Develop adaptability.",
+            "The most durable skill now is learning new tools quickly.",
+            "Even one hour a day of active experimentation puts someone ahead of most professionals.",
+            "The Upside",
+            "This is not only a threat.",
+            "AI dramatically lowers barriers:",
+            "Build software without deep technical skills",
+            "Learn new subjects quickly",
+            "Prototype business ideas cheaply",
+            "Create content and products faster",
+            "Ambition is cheaper now. Knowledge is cheaper now. Building is easier now.",
+            "For people who adapt early, the opportunity is enormous.",
+            "The Bigger Picture",
+            "AI could accelerate medical research, scientific discovery, and problem solving on a global scale.",
+            "It also introduces serious risks: economic disruption, misuse, concentration of power.",
+            "The technology is powerful. It is improving rapidly. It is not slowing down.",
+            "The Core Message",
+            "This is not a distant future discussion.",
+            "AI is already reshaping technical fields. Other industries are next.",
+            "The advantage right now is simply awareness and early action.",
+            "Ignore it, and change may feel sudden.",
+            "Engage with it, and you may shape how it changes your life."
+          ],
+          "work": [
+            "Analyzed the rapid acceleration of AI capabilities from 2022-2026",
+            "Examined the shift from AI as assistant to AI as autonomous worker",
+            "Researched the impact of AI on various professional fields",
+            "Explored the feedback loop where AI helps build better AI",
+            "Documented the gap between public perception and current AI reality"
+          ],
+          "impact": "This reflection on the AI shift serves as a wake-up call for professionals across industries. It's not about fear, but about awareness and positioning. The people who understand this shift early and adapt accordingly will have significant advantages. Those who ignore it may find themselves caught off guard by rapid changes in their fields. The message is clear: engage with AI now, integrate it into your work, and position yourself to thrive in an AI-augmented world.",
+          "images": []
         }
       }
     ],
