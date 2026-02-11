@@ -135,6 +135,7 @@ export function Navigation({ inline = false }: NavigationProps) {
           ? 'bg-white border-b border-black/10 shadow-lg' 
           : 'bg-white/90 backdrop-blur-sm shadow-md'
       }`}
+      style={{ paddingTop: 'env(safe-area-inset-top, 0px)' }}
     >
       <div className="max-w-[100rem] w-full mx-auto px-4 sm:px-6 lg:px-20">
         <div className="flex items-center justify-between h-16 lg:h-20">

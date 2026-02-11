@@ -210,6 +210,12 @@ html {
     -ms-overflow-style: none;
     scrollbar-width: none;
   }
+  
+  /* Ensure content starts below fixed navigation on mobile */
+  /* Navigation bar is h-16 (64px), so we need at least that plus safe area */
+  body {
+    padding-top: env(safe-area-inset-top, 0px);
+  }
 }
 
 /* Apple-inspired utility classes */

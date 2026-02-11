@@ -1425,7 +1425,13 @@ const contentData = {
             "Documented the gap between public perception and current AI reality"
           ],
           "impact": "This reflection on the AI shift serves as a wake-up call for professionals across industries. It's not about fear, but about awareness and positioning. The people who understand this shift early and adapt accordingly will have significant advantages. Those who ignore it may find themselves caught off guard by rapid changes in their fields. The message is clear: engage with AI now, integrate it into your work, and position yourself to thrive in an AI-augmented world.",
-          "images": []
+          "images": [
+            {
+              "url": "/assets/aishift.png",
+              "alt": "Visual representation of the AI shift and technological transformation",
+              "caption": "The AI Shift Is Already Here"
+            }
+          ]
         }
       }
     ],
