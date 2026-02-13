@@ -124,6 +124,7 @@ export function Navigation({ inline = false }: NavigationProps) {
                     ? 'text-gray-900 font-semibold opacity-100 text-lg sm:text-xl'
                     : 'text-gray-600 opacity-50 group-hover:text-gray-900 group-hover:opacity-100 text-sm sm:text-base'
                 }`}
+                style={{ fontFamily: "'Merriweather', Georgia, 'Times New Roman', serif", lineHeight: '1.54' }}
               >
                 {link.label}
               </span>
@@ -279,6 +280,7 @@ export function Navigation({ inline = false }: NavigationProps) {
                         ? 'text-gray-900 font-semibold opacity-100 text-xl'
                         : 'text-gray-600 opacity-50 group-hover:text-gray-900 group-hover:opacity-100 text-base'
                     }`}
+                    style={{ fontFamily: "'Merriweather', Georgia, 'Times New Roman', serif", lineHeight: '1.54' }}
                   >
                     {link.label}
                   </span>
@@ -326,6 +328,7 @@ export function Navigation({ inline = false }: NavigationProps) {
                       ? 'bg-gray-100/90 border border-gray-200/60 font-semibold text-gray-900 text-xl sm:text-2xl'
                       : 'font-medium text-gray-600 opacity-50 active:opacity-100 active:bg-black/5 hover:opacity-100 hover:bg-black/[0.02] hover:text-gray-900 text-base sm:text-lg'
                   }`}
+                  style={{ fontFamily: "'Merriweather', Georgia, 'Times New Roman', serif", lineHeight: '1.54' }}
                 >
                   {IconComponent && (
                     <IconComponent className={`w-5 h-5 sm:w-6 sm:h-6 ${
