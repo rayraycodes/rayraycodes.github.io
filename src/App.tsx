@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react';
+import { MotionConfig } from 'motion/react';
 import { HashRouter as Router, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { Navigation } from './components/Navigation';
 import { Footer } from './components/Footer';
@@ -56,11 +57,13 @@ function AppContent() {
     };
   }, [location.pathname, isDetailPage]);
 
-  // Disable right-click context menu on all pages
+  // Scoped context menu prevention: only on images to avoid interfering with assistive tech
   useEffect(() => {
     const handleContextMenu = (e: MouseEvent) => {
-      e.preventDefault();
-      return false;
+      const target = e.target as HTMLElement;
+      if (target.closest('img')) {
+        e.preventDefault();
+      }
     };
 
     document.addEventListener('contextmenu', handleContextMenu);
@@ -75,10 +78,49 @@ function AppContent() {
     preloadCriticalImages();
   }, []);
 
+  // Page-specific document titles for screen reader users
+  const titleMap: Record<string, string> = {
+    '/': 'Regan Maharjan Portfolio',
+    '/about': 'About | Regan Maharjan',
+    '/experience': 'Experience | Regan Maharjan',
+    '/projects': 'Projects | Regan Maharjan',
+    '/impact': 'Stories of Impact | Regan Maharjan',
+    '/storiesofadventure': 'Stories of Adventure | Regan Maharjan',
+    '/accessibility': 'Accessibility | Regan Maharjan',
+    '/contact': 'Contact | Regan Maharjan',
+    '/photography': 'Photography | Regan Maharjan',
+    '/cms': 'Content Management | Regan Maharjan',
+  };
+  useEffect(() => {
+    const segments = location.pathname.split('/').filter(Boolean);
+    const basePath = segments[0] ? `/${segments[0]}` : '/';
+    const title = titleMap[basePath] ?? titleMap[location.pathname] ?? 'Regan Maharjan Portfolio';
+    document.title = title;
+  }, [location.pathname]);
+
+  // Focus main content on route change (helps keyboard/screen reader users)
+  useEffect(() => {
+    const main = document.getElementById('main-content');
+    main?.focus();
+  }, [location.pathname]);
+
   return (
-    <div className="min-h-screen bg-background flex flex-col">
+    <div className="min-h-screen bg-background flex flex-col relative">
+      {/* Skip link: first focusable element for keyboard users */}
+      <a
+        href="#main-content"
+        className="skip-link"
+        onClick={(e) => {
+          e.preventDefault();
+          const main = document.getElementById('main-content');
+          main?.focus();
+          main?.scrollIntoView();
+        }}
+      >
+        Skip to main content
+      </a>
       {!isHomePage && <Navigation />}
-      <main className="flex-1">
+      <main id="main-content" className="flex-1" tabIndex={-1}>
         <Routes>
           <Route path="/" element={
             <div className="min-h-screen flex flex-col items-center justify-center bg-background">
@@ -108,8 +150,10 @@ function AppContent() {
 
 export default function App() {
   return (
-    <Router>
-      <AppContent />
-    </Router>
+    <MotionConfig reducedMotion="user">
+      <Router>
+        <AppContent />
+      </Router>
+    </MotionConfig>
   );
 }

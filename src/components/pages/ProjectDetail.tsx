@@ -151,6 +151,7 @@ export function ProjectDetail() {
                     href={selectedProject.links.live}
                     target="_blank"
                     rel="noopener noreferrer"
+                    aria-label="View live site (opens in new window)"
                     className="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-colors text-sm"
                   >
                     <ExternalLink size={16} />
@@ -162,6 +163,7 @@ export function ProjectDetail() {
                     href={selectedProject.links.github}
                     target="_blank"
                     rel="noopener noreferrer"
+                    aria-label="View on GitHub (opens in new window)"
                     className="inline-flex items-center gap-2 px-4 py-2 bg-gray-900 text-white rounded-full hover:bg-gray-800 transition-colors text-sm"
                   >
                     <Github size={16} />
@@ -173,6 +175,7 @@ export function ProjectDetail() {
                     href={selectedProject.links.docs}
                     target="_blank"
                     rel="noopener noreferrer"
+                    aria-label="View documentation (opens in new window)"
                     className="inline-flex items-center gap-2 px-4 py-2 bg-purple-600 text-white rounded-full hover:bg-purple-700 transition-colors text-sm"
                   >
                     <FileText size={16} />
@@ -184,6 +187,7 @@ export function ProjectDetail() {
                     href={(selectedProject.links as any).demo as string}
                     target="_blank"
                     rel="noopener noreferrer"
+                    aria-label="View demo (opens in new window)"
                     className="inline-flex items-center gap-2 px-4 py-2 bg-green-600 text-white rounded-full hover:bg-green-700 transition-colors text-sm"
                   >
                     <ExternalLink size={16} />
@@ -195,6 +199,7 @@ export function ProjectDetail() {
                     href={(selectedProject.links as any).repo as string}
                     target="_blank"
                     rel="noopener noreferrer"
+                    aria-label="View repository (opens in new window)"
                     className="inline-flex items-center gap-2 px-4 py-2 bg-gray-900 text-white rounded-full hover:bg-gray-800 transition-colors text-sm"
                   >
                     <Github size={16} />
@@ -282,7 +287,7 @@ export function ProjectDetail() {
                   Send an Email
                 </Button>
               </a>
-              <a href={contentData.assets.links.linkedin} target="_blank" rel="noopener noreferrer">
+              <a href={contentData.assets.links.linkedin} target="_blank" rel="noopener noreferrer" aria-label="Connect on LinkedIn (opens in new window)">
                 <Button size="lg" variant="outline" className="rounded-full px-8">
                   Connect on LinkedIn
                 </Button>

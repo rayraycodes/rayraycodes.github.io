@@ -44,33 +44,33 @@ export function Home() {
               Feel free to explore!{' '}
               <Link 
                 to="/about" 
-                className="inline-flex items-center gap-1.5 px-3 sm:px-4 py-2 sm:py-2.5 rounded-lg bg-gray-200 hover:bg-gray-300 border-2 border-gray-300 hover:border-gray-400 transition-all font-semibold text-gray-900 shadow-sm hover:shadow-md my-1 sm:my-0"
+                className="inline-flex items-center gap-1.5 px-3 sm:px-4 py-2 sm:py-2.5 rounded-lg bg-gray-200 hover:bg-gray-300 border-2 border-gray-300 hover:border-gray-400 transition-all font-semibold text-gray-900 shadow-sm hover:shadow-md my-1 sm:my-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
               >
-                <Hand className="w-4 h-4 sm:w-5 sm:h-5" />
+                <Hand className="w-4 h-4 sm:w-5 sm:h-5" aria-hidden />
                 Get to know me
               </Link>
               {' '}better,{' '}
               <Link 
                 to="/storiesofadventure" 
-                className="inline-flex items-center gap-1.5 px-3 sm:px-4 py-2 sm:py-2.5 rounded-lg bg-gray-200 hover:bg-gray-300 border-2 border-gray-300 hover:border-gray-400 transition-all font-semibold text-gray-900 shadow-sm hover:shadow-md my-1 sm:my-0"
+                className="inline-flex items-center gap-1.5 px-3 sm:px-4 py-2 sm:py-2.5 rounded-lg bg-gray-200 hover:bg-gray-300 border-2 border-gray-300 hover:border-gray-400 transition-all font-semibold text-gray-900 shadow-sm hover:shadow-md my-1 sm:my-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
               >
-                <BookOpen className="w-4 h-4 sm:w-5 sm:h-5" />
+                <BookOpen className="w-4 h-4 sm:w-5 sm:h-5" aria-hidden />
                 dive into my stories
               </Link>
               ,{' '}
               <Link 
                 to="/projects" 
-                className="inline-flex items-center gap-1.5 px-3 sm:px-4 py-2 sm:py-2.5 rounded-lg bg-gray-200 hover:bg-gray-300 border-2 border-gray-300 hover:border-gray-400 transition-all font-semibold text-gray-900 shadow-sm hover:shadow-md my-1 sm:my-0"
+                className="inline-flex items-center gap-1.5 px-3 sm:px-4 py-2 sm:py-2.5 rounded-lg bg-gray-200 hover:bg-gray-300 border-2 border-gray-300 hover:border-gray-400 transition-all font-semibold text-gray-900 shadow-sm hover:shadow-md my-1 sm:my-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
               >
-                <FolderKanban className="w-4 h-4 sm:w-5 sm:h-5" />
+                <FolderKanban className="w-4 h-4 sm:w-5 sm:h-5" aria-hidden />
                 check out my projects
               </Link>
               , and{' '}
               <Link 
                 to="/photography" 
-                className="inline-flex items-center gap-1.5 px-3 sm:px-4 py-2 sm:py-2.5 rounded-lg bg-gray-200 hover:bg-gray-300 border-2 border-gray-300 hover:border-gray-400 transition-all font-semibold text-gray-900 shadow-sm hover:shadow-md my-1 sm:my-0"
+                className="inline-flex items-center gap-1.5 px-3 sm:px-4 py-2 sm:py-2.5 rounded-lg bg-gray-200 hover:bg-gray-300 border-2 border-gray-300 hover:border-gray-400 transition-all font-semibold text-gray-900 shadow-sm hover:shadow-md my-1 sm:my-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
               >
-                <Camera className="w-4 h-4 sm:w-5 sm:h-5" />
+                <Camera className="w-4 h-4 sm:w-5 sm:h-5" aria-hidden />
                 browse my photo stories
               </Link>
               .

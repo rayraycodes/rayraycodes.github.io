@@ -77,7 +77,7 @@ export function Accessibility() {
                 whileHover={{ y: -4 }}
                 className="bg-gradient-to-b from-blue-50/50 to-white border border-blue-100 rounded-2xl p-8 transition-all duration-300 hover:shadow-lg"
               >
-                <principle.icon className="w-8 h-8 mb-4 text-blue-600" />
+                <principle.icon className="w-8 h-8 mb-4 text-blue-600" aria-hidden />
                 <h3 className="mb-2">{principle.title}</h3>
                 <p className="text-muted-foreground text-sm">{principle.description}</p>
               </motion.div>
@@ -118,7 +118,7 @@ export function Accessibility() {
                 <ul className="space-y-2">
                   {category.items.map((item) => (
                     <li key={item} className="flex items-start gap-2 text-sm">
-                      <CheckCircle2 className="w-4 h-4 text-green-600 flex-shrink-0 mt-0.5" />
+                      <CheckCircle2 className="w-4 h-4 text-green-600 flex-shrink-0 mt-0.5" aria-hidden />
                       <span className="text-muted-foreground">{item}</span>
                     </li>
                   ))}
@@ -159,7 +159,7 @@ export function Accessibility() {
               >
                 <div className="flex items-start gap-4">
                   <div className="w-12 h-12 rounded-xl bg-blue-100 flex items-center justify-center flex-shrink-0">
-                    <Zap className="w-6 h-6 text-blue-600" />
+                    <Zap className="w-6 h-6 text-blue-600" aria-hidden />
                   </div>
                   <div className="flex-1">
                     <h3 className="text-xl mb-1">{tool.name}</h3>
@@ -322,7 +322,7 @@ export function Accessibility() {
                   Send an Email
                 </Button>
               </a>
-              <a href={contentData.assets.links.linkedin} target="_blank" rel="noopener noreferrer">
+              <a href={contentData.assets.links.linkedin} target="_blank" rel="noopener noreferrer" aria-label="Connect on LinkedIn (opens in new window)">
                 <Button size="lg" variant="outline" className="rounded-full px-8">
                   Connect on LinkedIn
                 </Button>

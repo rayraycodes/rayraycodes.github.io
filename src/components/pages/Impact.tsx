@@ -186,7 +186,7 @@ export function Impact() {
                   Send an Email
                 </Button>
               </a>
-              <a href={contentData.assets.links.linkedin} target="_blank" rel="noopener noreferrer">
+              <a href={contentData.assets.links.linkedin} target="_blank" rel="noopener noreferrer" aria-label="Connect on LinkedIn (opens in new window)">
                 <Button size="lg" variant="outline" className="rounded-full px-8">
                   Connect on LinkedIn
                 </Button>

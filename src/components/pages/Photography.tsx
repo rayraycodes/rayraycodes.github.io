@@ -286,13 +286,12 @@ function PhotoDetailDialog({ photo, isOpen, onClose }: PhotoDetailDialogProps) {
         aria-hidden="true"
       />
       
-      {/* Dialog */}
+      {/* Dialog - do NOT use aria-hidden on the dialog; only backdrop is hidden from screen readers */}
       <div
         ref={dialogRef}
         role="dialog"
         aria-modal="true"
         aria-labelledby="photo-dialog-title"
-        aria-hidden="true"
         className="fixed inset-0 z-50 flex items-center justify-center py-8 px-4 pointer-events-none space-x-7"
       >
         <div
@@ -545,12 +544,12 @@ export function Photography() {
                   Send an Email
                 </Button>
               </a>
-              <a href={contentData.assets.links.linkedin} target="_blank" rel="noopener noreferrer">
+              <a href={contentData.assets.links.linkedin} target="_blank" rel="noopener noreferrer" aria-label="Connect on LinkedIn (opens in new window)">
                 <Button size="lg" variant="outline" className="rounded-full px-8">
                   Connect on LinkedIn
                 </Button>
               </a>
-              <a href={contentData.assets.links.instagram} target="_blank" rel="noopener noreferrer">
+              <a href={contentData.assets.links.instagram} target="_blank" rel="noopener noreferrer" aria-label="Follow on Instagram (opens in new window)">
                 <Button size="lg" variant="outline" className="rounded-full px-8">
                   <Instagram className="w-5 h-5 mr-2" />
                   Follow on Instagram

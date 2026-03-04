@@ -113,7 +113,7 @@ export function Contact() {
 
                   <Button type="submit" size="lg" className="w-full rounded-full group">
                     {form.submit}
-                    <Send className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                    <Send className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" aria-hidden />
                   </Button>
                 </form>
               </div>
@@ -139,6 +139,7 @@ export function Contact() {
                       href={link.href}
                       target="_blank"
                       rel="noopener noreferrer"
+                      aria-label={`${link.label} (opens in new window)`}
                       initial={{ opacity: 0, x: 30 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ duration: 0.6, delay: 0.6 + index * 0.1 }}
@@ -146,7 +147,7 @@ export function Contact() {
                       className="flex items-center gap-4 p-4 surface-elevated rounded-xl transition-all duration-300 hover:shadow-md group"
                     >
                       <div className="w-12 h-12 rounded-xl bg-blue-100 flex items-center justify-center group-hover:bg-blue-200 transition-colors">
-                        <link.icon className="w-6 h-6 text-blue-600" />
+                        <link.icon className="w-6 h-6 text-blue-600" aria-hidden />
                       </div>
                       <div>
                         <div className="mb-1">{link.label}</div>
@@ -194,7 +195,7 @@ export function Contact() {
                   {cta.primary}
                 </Button>
               </a>
-              <a href={links.linkedin} target="_blank" rel="noopener noreferrer">
+              <a href={links.linkedin} target="_blank" rel="noopener noreferrer" aria-label="Connect on LinkedIn (opens in new window)">
                 <Button size="lg" variant="outline" className="rounded-full px-8">
                   {cta.secondary}
                 </Button>

@@ -26,11 +26,12 @@ export const PhotoGrid: React.FC<PhotoGridProps> = ({
   const gridRef = useRef<HTMLDivElement>(null);
   const focusedRef = useRef<HTMLDivElement>(null);
 
-  // Scroll focused photo into view
+  // Scroll focused photo into view (respect reduced motion preference)
   useEffect(() => {
     if (focusedPhotoId && focusedRef.current) {
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       focusedRef.current.scrollIntoView({
-        behavior: 'smooth',
+        behavior: prefersReducedMotion ? 'auto' : 'smooth',
         block: 'center',
         inline: 'center'
       });

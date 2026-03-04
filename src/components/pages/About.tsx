@@ -98,25 +98,25 @@ export function About() {
                 className="text-gray-500 hover:text-gray-900 transition-colors inline-flex items-center"
                 aria-label="Email"
               >
-                <Mail className="w-5 h-5" />
+                <Mail className="w-5 h-5" aria-hidden />
               </a>
               <a
                 href={contentData.assets.links.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-gray-500 hover:text-gray-900 transition-colors inline-flex items-center"
-                aria-label="LinkedIn"
+                aria-label="LinkedIn (opens in new window)"
               >
-                <Linkedin className="w-5 h-5" />
+                <Linkedin className="w-5 h-5" aria-hidden />
               </a>
               <a
                 href={contentData.assets.links.instagram}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-gray-500 hover:text-gray-900 transition-colors inline-flex items-center"
-                aria-label="Instagram"
+                aria-label="Instagram (opens in new window)"
               >
-                <Instagram className="w-5 h-5" />
+                <Instagram className="w-5 h-5" aria-hidden />
               </a>
             </div>
             <p className="text-lg md:text-xl text-gray-700 leading-relaxed mt-8">
@@ -125,7 +125,7 @@ export function About() {
                 to="/experience"
                 className="inline-flex items-center gap-1.5 text-gray-900 hover:text-gray-600 underline transition-colors"
               >
-                <FileText className="w-4 h-4 shrink-0" />
+                <FileText className="w-4 h-4 shrink-0" aria-hidden />
                 resume
               </Link>
               .

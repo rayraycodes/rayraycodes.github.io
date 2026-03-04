@@ -17,6 +17,8 @@ export function Navigation({ inline = false }: NavigationProps) {
   const topNavContainerRef = useRef<HTMLDivElement>(null);
   const navRef = useRef<HTMLElement>(null);
   const tabRefs = useRef<(HTMLAnchorElement | null)[]>([]);
+  const mobileMenuButtonRef = useRef<HTMLButtonElement>(null);
+  const firstMobileLinkRef = useRef<HTMLAnchorElement>(null);
 
   useEffect(() => {
     let rafId: number | null = null;
@@ -76,6 +78,22 @@ export function Navigation({ inline = false }: NavigationProps) {
       });
     }, 150);
   }, [location.pathname, inline]);
+
+  // Mobile menu focus management: focus first link when opening, return focus to button when closing
+  const prevMobileMenuOpenRef = useRef(isMobileMenuOpen);
+  useEffect(() => {
+    if (inline) return;
+    if (isMobileMenuOpen) {
+      const timer = setTimeout(() => {
+        firstMobileLinkRef.current?.focus();
+      }, 100);
+      prevMobileMenuOpenRef.current = true;
+      return () => clearTimeout(timer);
+    } else if (prevMobileMenuOpenRef.current) {
+      prevMobileMenuOpenRef.current = false;
+      mobileMenuButtonRef.current?.focus();
+    }
+  }, [isMobileMenuOpen, inline]);
 
   const navLinks = inline ? (contentData.navigation.homeLinks || contentData.navigation.links) : contentData.navigation.links;
 
@@ -295,6 +313,7 @@ export function Navigation({ inline = false }: NavigationProps) {
           {/* Mobile Menu Button - touch-friendly (min 44px) */}
           <div className="flex-1 flex justify-end lg:justify-center">
             <button
+              ref={mobileMenuButtonRef}
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               className="lg:hidden min-h-[44px] min-w-[44px] flex items-center justify-center rounded-lg hover:bg-black/5 active:bg-black/10 transition-colors touch-manipulation"
               aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
@@ -315,12 +334,13 @@ export function Navigation({ inline = false }: NavigationProps) {
           className="lg:hidden bg-white border-t border-gray-200 shadow-lg"
         >
           <div className="w-full max-w-[90rem] mx-auto px-4 sm:px-6 py-4 sm:py-5 space-y-2 text-center">
-            {navLinks.map((link: { path: string; label: string }) => {
+            {navLinks.map((link: { path: string; label: string }, index: number) => {
               const isActive = location.pathname === link.path;
               const IconComponent = getIconForPath(link.path);
               return (
                 <Link
                   key={link.path}
+                  ref={index === 0 ? firstMobileLinkRef : undefined}
                   to={link.path}
                   onClick={() => setIsMobileMenuOpen(false)}
                   className={`block w-full py-4 px-6 rounded-xl transition-colors touch-manipulation min-h-[48px] flex items-center justify-center gap-2 ${
