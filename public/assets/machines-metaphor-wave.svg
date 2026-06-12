@@ -1,0 +1,49 @@
+<svg width="100%" viewBox="0 -48 680 440" role="img" xmlns="http://www.w3.org/2000/svg" font-family="Inter, system-ui, -apple-system, sans-serif">
+<title>Emotions matter, meaning matters: computing's metaphor cycle reaching AI today, then a dotted path toward a new system</title>
+<desc>A wavy line with three orange peaks, each a reductive metaphor the industry built: worker as machine, mind as black box, human as calculator. Each is followed by a teal recovery where the full human returns: Hawthorne, the cognitive turn, Kahneman and Jacobs. A green line rises to AI, today, and a dotted line drops from it to a new system, a new kind of knowledge that includes emotion, body, context, relationship, and meaning.</desc>
+<text x="340" y="-18" text-anchor="middle" fill="#111827" font-size="18" font-weight="600">emotions matter, meaning matters</text>
+<defs><marker id="mwa" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="#1D9E75" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker></defs>
+
+<line x1="110" y1="64" x2="110" y2="160" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="4 4"/>
+<line x1="230" y1="64" x2="230" y2="160" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="4 4"/>
+<line x1="350" y1="64" x2="350" y2="160" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="4 4"/>
+<text x="110" y="46" text-anchor="middle" fill="#6b7280" font-size="13">worker as machine</text>
+<text x="230" y="46" text-anchor="middle" fill="#6b7280" font-size="13">mind as black box</text>
+<text x="350" y="46" text-anchor="middle" fill="#6b7280" font-size="13">human as calculator</text>
+
+<path d="M55 300 C90 300 90 170 110 170 C150 170 150 300 170 300 C205 300 205 170 230 170 C270 170 270 300 290 300 C325 300 325 170 350 170 C390 170 390 290 408 285" fill="none" stroke="#D85A30" stroke-width="2.5" stroke-linecap="round"/>
+<path d="M408 285 C450 285 505 158 560 110" fill="none" stroke="#1D9E75" stroke-width="2.5" stroke-linecap="round" marker-end="url(#mwa)"/>
+
+<circle cx="110" cy="170" r="6" fill="#D85A30"/>
+<circle cx="230" cy="170" r="6" fill="#D85A30"/>
+<circle cx="350" cy="170" r="6" fill="#D85A30"/>
+<circle cx="142" cy="262" r="6" fill="#1D9E75"/>
+<circle cx="262" cy="262" r="6" fill="#1D9E75"/>
+<circle cx="388" cy="272" r="6" fill="#1D9E75"/>
+
+<line x1="142" y1="272" x2="142" y2="336" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="4 4"/>
+<line x1="262" y1="272" x2="262" y2="336" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="4 4"/>
+<line x1="388" y1="282" x2="388" y2="336" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="4 4"/>
+<text x="142" y="352" text-anchor="middle" fill="#6b7280" font-size="13">Hawthorne</text>
+<text x="262" y="352" text-anchor="middle" fill="#6b7280" font-size="13">cognitive turn</text>
+<text x="388" y="352" text-anchor="middle" fill="#6b7280" font-size="13">Kahneman, Jacobs</text>
+
+<text x="562" y="92" text-anchor="middle" fill="#111827" font-size="14" font-weight="500">AI, today</text>
+<path d="M562 110 L562 156" fill="none" stroke="#1D9E75" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="1 9" marker-end="url(#mwa)"/>
+
+<rect x="484" y="158" width="156" height="224" rx="14" fill="#f9fafb" stroke="#e5e7eb" stroke-width="1"/>
+<text x="562" y="184" text-anchor="middle" fill="#111827" font-size="14" font-weight="500">a new system</text>
+<text x="562" y="202" text-anchor="middle" fill="#6b7280" font-size="11">a new kind of knowledge</text>
+<g>
+<rect x="496" y="214" width="132" height="26" rx="6" fill="#E1F5EE" stroke="#5DCAA5" stroke-width="0.5"/>
+<text x="562" y="227" text-anchor="middle" dominant-baseline="central" fill="#0F6E56" font-size="14">emotion</text>
+<rect x="496" y="244" width="132" height="26" rx="6" fill="#E1F5EE" stroke="#5DCAA5" stroke-width="0.5"/>
+<text x="562" y="257" text-anchor="middle" dominant-baseline="central" fill="#0F6E56" font-size="14">body</text>
+<rect x="496" y="274" width="132" height="26" rx="6" fill="#E1F5EE" stroke="#5DCAA5" stroke-width="0.5"/>
+<text x="562" y="287" text-anchor="middle" dominant-baseline="central" fill="#0F6E56" font-size="14">context</text>
+<rect x="496" y="304" width="132" height="26" rx="6" fill="#E1F5EE" stroke="#5DCAA5" stroke-width="0.5"/>
+<text x="562" y="317" text-anchor="middle" dominant-baseline="central" fill="#0F6E56" font-size="14">relationship</text>
+<rect x="496" y="334" width="132" height="26" rx="6" fill="#E1F5EE" stroke="#5DCAA5" stroke-width="0.5"/>
+<text x="562" y="347" text-anchor="middle" dominant-baseline="central" fill="#0F6E56" font-size="14">meaning</text>
+</g>
+</svg>

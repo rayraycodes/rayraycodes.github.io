@@ -34,7 +34,7 @@ interface Story {
   icon: typeof Globe;
   theme: 'blue' | 'green' | 'purple' | 'indigo' | 'teal' | 'orange' | string;
   content: {
-    description: string | (string | { type: 'heading'; level: 2 | 3; text: string } | { type: 'list'; items: string[] })[];
+    description: string | (string | { type: 'heading'; level: 2 | 3; text: string } | { type: 'list'; items: string[] } | { type: 'figure'; url: string; alt: string; caption?: string } | { type: 'quote'; text: string })[];
     work: string[];
     impact: string | string[];
     images?: (string | StoryImage)[];
@@ -298,6 +298,35 @@ export function StoryOfAdventureDetail() {
                       </HeadingTag>
                     );
                   }
+                  // Handle pull-quote objects (punch lines)
+                  if (item.type === 'quote' && 'text' in item) {
+                    return (
+                      <blockquote
+                        key={index}
+                        className="my-10 border-l-4 border-teal-500 pl-6 text-2xl lg:text-3xl font-medium italic text-gray-900 leading-snug"
+                      >
+                        &ldquo;{item.text}&rdquo;
+                      </blockquote>
+                    );
+                  }
+                  // Handle figure objects (inline diagrams / images)
+                  if (item.type === 'figure' && 'url' in item) {
+                    return (
+                      <figure key={index} className="my-2">
+                        <img
+                          src={getImageUrl(item.url)}
+                          alt={item.alt}
+                          loading="lazy"
+                          className="w-full h-auto rounded-lg border border-gray-200 bg-white"
+                        />
+                        {item.caption && (
+                          <figcaption className="mt-3 text-center text-sm text-muted-foreground">
+                            {item.caption}
+                          </figcaption>
+                        )}
+                      </figure>
+                    );
+                  }
                   // Handle list objects
                   if (item.type === 'list' && Array.isArray(item.items)) {
                     return (
@@ -331,6 +360,7 @@ export function StoryOfAdventureDetail() {
 
 
           {/* What I Did */}
+          {selectedStory.content.work.length > 0 && (
           <section className="space-y-4">
             <h2 className="text-2xl font-semibold text-gray-900">{labels.whatIDid}</h2>
             <ul className="grid md:grid-cols-2 gap-3">
@@ -342,8 +372,12 @@ export function StoryOfAdventureDetail() {
               ))}
             </ul>
           </section>
+          )}
 
           {/* Reflection */}
+          {(Array.isArray(selectedStory.content.impact)
+            ? selectedStory.content.impact.length > 0
+            : Boolean(selectedStory.content.impact)) && (
           <section className={`bg-gradient-to-br ${themeColors[selectedStory.theme as keyof typeof themeColors]} border rounded-2xl p-6 space-y-3`}>
             <h2 className="text-2xl font-semibold text-gray-900">{labels.reflection}</h2>
             {Array.isArray(selectedStory.content.impact) ? (
@@ -360,6 +394,7 @@ export function StoryOfAdventureDetail() {
               </p>
             )}
           </section>
+          )}
 
           {/* Comments Section */}
           <Comments storyId={storyId || ''} />

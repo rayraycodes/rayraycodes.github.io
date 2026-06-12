@@ -85,9 +85,9 @@ interface Story {
   theme: 'blue' | 'green' | 'purple' | 'indigo' | 'teal' | 'orange' | string;
   storyType: 'impact' | 'adventure';
   content: {
-    description: string;
+    description: string | (string | { type: 'heading'; level: 2 | 3; text: string } | { type: 'list'; items: string[] } | { type: 'figure'; url: string; alt: string; caption?: string } | { type: 'quote'; text: string })[];
     work: string[];
-    impact: string;
+    impact: string | string[];
     images?: (string | StoryImage)[];
     hasStats?: boolean;
     stats?: Array<{ value: string; label: string }>;
