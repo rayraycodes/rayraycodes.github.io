@@ -475,13 +475,31 @@ export function StoryOfAdventureDetail() {
                                   <span className="text-sm font-medium text-white">{story.date}</span>
                                 </div>
                               </div>
+                              {/* Title overlaid on the thumbnail. Inline styles because the
+                                  project ships a static CSS without bottom-0/z-20/gradient utils. */}
+                              <div
+                                style={{
+                                  position: 'absolute',
+                                  bottom: 0,
+                                  left: 0,
+                                  right: 0,
+                                  zIndex: 20,
+                                  padding: '2rem 1rem 0.9rem',
+                                  background: 'linear-gradient(to top, rgba(0,0,0,0.72), rgba(0,0,0,0.35) 60%, transparent)',
+                                  pointerEvents: 'none',
+                                }}
+                              >
+                                <h3
+                                  className="text-xl font-semibold tracking-tight text-white"
+                                  style={{ textShadow: '0 1px 3px rgba(0,0,0,0.6)' }}
+                                >
+                                  {story.thumbnailTitle || story.title}
+                                </h3>
+                              </div>
                             </div>
 
                             {/* Content */}
                             <div className="p-6 space-y-3">
-                              <h3 className="text-xl font-semibold tracking-tight group-hover:text-blue-600 transition-colors">
-                                {story.thumbnailTitle || story.title}
-                              </h3>
                               <p className="text-muted-foreground line-clamp-3">
                                 {story.excerpt}
                               </p>
