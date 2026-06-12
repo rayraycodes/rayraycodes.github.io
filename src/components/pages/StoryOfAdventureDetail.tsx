@@ -179,9 +179,13 @@ export function StoryOfAdventureDetail() {
     type: 'article',
   });
 
+  // Share the clean (non-hash) URL: a static share page exists at this
+  // path with the story's og tags, so link previews unfurl correctly.
+  const shareUrl = `${window.location.origin}/storiesofadventure/${storyId}`;
+
   const handleShare = async () => {
-    const url = window.location.href;
-    
+    const url = shareUrl;
+
     if (navigator.share) {
       try {
         await navigator.share({
@@ -203,7 +207,7 @@ export function StoryOfAdventureDetail() {
   };
 
   const handleCopyLink = () => {
-    const url = window.location.href;
+    const url = shareUrl;
     navigator.clipboard.writeText(url).then(() => {
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);

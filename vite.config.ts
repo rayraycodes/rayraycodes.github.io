@@ -3,7 +3,8 @@
   import react from '@vitejs/plugin-react-swc';
   import path from 'path';
   import { saveContentPlugin } from './vite-plugin-save-content';
-  import { copyFileSync, existsSync, mkdirSync, readdirSync, statSync } from 'fs';
+  import { copyFileSync, existsSync, mkdirSync, readdirSync, statSync, writeFileSync } from 'fs';
+  import contentData from './src/data/content';
 
   // Plugin to copy assets from src/assets to public/assets during build
   function copyAssetsPlugin() {
@@ -92,8 +93,86 @@
     };
   }
 
+  // Plugin to generate static share pages per story so link previews
+  // (Slack, WhatsApp, Facebook, X) show the story title/image. Crawlers
+  // never see hash routes, so each story gets a real path containing the
+  // right meta tags and an instant redirect into the SPA hash route.
+  function generateSharePagesPlugin() {
+    const SITE_ORIGIN = 'https://reganmaharjan.com.np';
+
+    const escapeHtml = (s: string) =>
+      s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+
+    const firstImage = (story: any): string => {
+      const imgs = story.content?.images || [];
+      let url = imgs.length > 0 ? (typeof imgs[0] === 'string' ? imgs[0] : imgs[0].url) : '/assets/raylogo.png';
+      // Crawlers don't render SVG og:images; use a PNG twin when available.
+      if (url.endsWith('.svg')) {
+        const pngTwin = url.replace(/\.svg$/, '.png');
+        if (existsSync(path.resolve(__dirname, 'public' + pngTwin))) {
+          url = pngTwin;
+        } else {
+          url = '/assets/raylogo.png';
+        }
+      }
+      return SITE_ORIGIN + url;
+    };
+
+    const sharePage = (story: any, routeBase: string) => {
+      const title = escapeHtml(story.thumbnailTitle || story.title);
+      const fullTitle = escapeHtml(story.title);
+      const desc = escapeHtml(story.excerpt || '');
+      const img = firstImage(story);
+      const cleanUrl = `${SITE_ORIGIN}/${routeBase}/${story.id}`;
+      const hashRoute = `/#/${routeBase}/${story.id}`;
+      return `<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>${fullTitle}</title>
+<meta name="description" content="${desc}" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="${title}" />
+<meta property="og:description" content="${desc}" />
+<meta property="og:image" content="${img}" />
+<meta property="og:url" content="${cleanUrl}" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="${title}" />
+<meta name="twitter:description" content="${desc}" />
+<meta name="twitter:image" content="${img}" />
+<link rel="canonical" href="${cleanUrl}" />
+<meta http-equiv="refresh" content="0;url=${hashRoute}" />
+<script>window.location.replace('${hashRoute}');</script>
+</head>
+<body>
+<p>Redirecting to <a href="${hashRoute}">${fullTitle}</a>…</p>
+</body>
+</html>
+`;
+    };
+
+    return {
+      name: 'generate-share-pages',
+      writeBundle() {
+        const out = path.resolve(__dirname, 'build');
+        const emit = (story: any, routeBase: string) => {
+          const dir = path.join(out, routeBase, story.id);
+          mkdirSync(dir, { recursive: true });
+          writeFileSync(path.join(dir, 'index.html'), sharePage(story, routeBase));
+        };
+        try {
+          (contentData as any).storiesOfAdventure.stories.forEach((s: any) => emit(s, 'storiesofadventure'));
+          (contentData as any).impact.stories.forEach((s: any) => emit(s, 'impact'));
+          console.log('✓ Share pages generated for stories');
+        } catch (error) {
+          console.warn('Warning: Could not generate share pages:', error);
+        }
+      },
+    };
+  }
+
   export default defineConfig({
-    plugins: [react(), saveContentPlugin(), copyAssetsPlugin(), copyPublicAssetsPlugin()],
+    plugins: [react(), saveContentPlugin(), copyAssetsPlugin(), copyPublicAssetsPlugin(), generateSharePagesPlugin()],
     resolve: {
       extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'],
       alias: {
