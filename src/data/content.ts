@@ -984,7 +984,7 @@ const contentData = {
             "I want to be honest about where the fault sits, because we almost always get this wrong. We say the machine did it. The algorithm radicalized him. The app made her anxious. The feed is addictive. But the machine wants nothing. A tool, on its own, does nothing at all. It is a medium, the way a pen is a medium, and it carries whatever we were already thinking. Every cold, flattening, human-shrinking system I am about to describe was not done to us by our tools. We did it to ourselves, through our tools, because of how we had decided to think.",
             {
               "type": "quote",
-              "text": "Technology aafai le kehi pani gardaina. The technology, on its own, does nothing. We do."
+              "text": "Technology, on its own, does nothing. We do."
             },
             "So look at how often we have done this to ourselves.",
             "We decided the human should be a programmer. When we first built computers, we forced people to meet the machine on its terms: memorize the syntax, type the incantation exactly, no typo forgiven. We built a priesthood and called everyone else unqualified. Then enough of us got frustrated to fix it, and we made the graphical interface. Notice what we actually did. The desktop, the trash can, the folder were not technical breakthroughs. They were apologies. We taught the machine to speak in metaphors we already felt at home with, because we finally admitted we were never going to bend ourselves into its shape.",
