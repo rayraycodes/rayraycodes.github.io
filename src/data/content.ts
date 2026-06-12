@@ -970,7 +970,7 @@ const contentData = {
     },
     "stories": [
       {
-        "id": "machines-forget-what-we-are",
+        "id": "we-forget-what-we-are",
         "title": "We Keep Forgetting What We Are",
         "thumbnailTitle": "What We Are",
         "excerpt": "I build software for a person who does not exist, and so do most of us. The problem was never the machine. It is how we keep choosing to think about what a human is.",
