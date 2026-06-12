@@ -212,6 +212,19 @@ export function StoriesOfAdventure() {
     orange: 'from-orange-500/10 to-orange-600/5 border-orange-200',
   };
 
+  // Solid, theme-tinted background for the date badge so it stays readable
+  // over light hero images (the translucent black pill washed out). Inline
+  // hex avoids depending on Tailwind generating dynamic bg-{theme}-600 classes.
+  const dateBadgeColors: Record<string, string> = {
+    blue: '#2563eb',
+    green: '#16a34a',
+    purple: '#9333ea',
+    indigo: '#4f46e5',
+    teal: '#0d9488',
+    orange: '#ea580c',
+    red: '#dc2626',
+  };
+
   return (
     <div className="min-h-screen" ref={contentRef} data-content-wrapper="true">
       {/* Header */}
@@ -289,9 +302,12 @@ export function StoriesOfAdventure() {
                       <div className="absolute inset-0 z-10 bg-gradient-to-t from-black/40 via-black/10 to-transparent pointer-events-none" />
                     </div>
                     <div className="absolute top-4 right-4 z-[100]" style={{ zIndex: 100 }}>
-                      <div className="flex items-center gap-2 px-3 py-2 bg-black/40 backdrop-blur-sm rounded-lg">
+                      <div
+                        className="flex items-center gap-2 px-3 py-2 rounded-lg shadow-md text-white"
+                        style={{ backgroundColor: dateBadgeColors[story.theme] || '#111827', border: '1px solid rgba(255,255,255,0.25)' }}
+                      >
                         <Calendar size={16} className="text-white" />
-                        <span className="text-sm font-normal text-white">{story.date}</span>
+                        <span className="text-sm font-medium text-white">{story.date}</span>
                       </div>
                     </div>
                   </div>
