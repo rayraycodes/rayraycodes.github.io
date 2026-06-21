@@ -25,6 +25,26 @@ interface CommentsProps {
   storyId: string;
 }
 
+// Module-level cache for the gist payload. Loading comments hits the
+// GitHub API, which is rate-limited to 60 req/hr per IP when unauthenticated.
+// Caching the parsed gist means navigating between stories reuses one fetch
+// instead of refetching the whole gist every time.
+let gistCache: { data: CommentsData; ts: number } | null = null;
+const GIST_CACHE_TTL = 60_000; // 1 minute
+
+// Send the token on reads too when we have one: authenticated requests get
+// 5,000 req/hr instead of 60. The token is already shipped to the client for
+// posting, so using it for reads adds no extra exposure.
+const githubHeaders = (): Record<string, string> => {
+  const headers: Record<string, string> = {
+    Accept: 'application/vnd.github.v3+json',
+  };
+  if (githubConfig.token) {
+    headers.Authorization = `token ${githubConfig.token}`;
+  }
+  return headers;
+};
+
 /**
  * Comments component using GitHub Gists API
  * Comments are stored in a GitHub Gist, organized by story ID
@@ -54,34 +74,39 @@ export function Comments({ storyId }: CommentsProps) {
     try {
       setIsLoading(true);
       setError(null);
-      
+
+      // Serve from cache when fresh to avoid hammering the rate-limited API.
+      if (gistCache && Date.now() - gistCache.ts < GIST_CACHE_TTL) {
+        setComments(gistCache.data[storyId] || []);
+        setIsLoading(false);
+        return;
+      }
+
       const response = await fetch(
         `https://api.github.com/gists/${githubConfig.gistId}`,
-        {
-          headers: {
-            'Accept': 'application/vnd.github.v3+json',
-          },
-        }
+        { headers: githubHeaders() }
       );
 
       if (!response.ok) {
-        throw new Error('Failed to load comments');
+        const rateLimited =
+          response.status === 403 && response.headers.get('x-ratelimit-remaining') === '0';
+        throw new Error(rateLimited ? 'rate-limited' : 'Failed to load comments');
       }
 
       const gist = await response.json();
       const file = gist.files[githubConfig.filename];
-      
-      if (file && file.content) {
-        const commentsData: CommentsData = JSON.parse(file.content);
-        // Filter comments for this specific story
-        const storyComments = commentsData[storyId] || [];
-        setComments(storyComments);
-      } else {
-        setComments([]);
-      }
-    } catch (err) {
+      const commentsData: CommentsData = file?.content ? JSON.parse(file.content) : {};
+      gistCache = { data: commentsData, ts: Date.now() };
+      setComments(commentsData[storyId] || []);
+    } catch (err: any) {
       console.error('Error loading comments:', err);
-      setError('Failed to load comments. Please check your configuration.');
+      // Don't show a scary config error to visitors — most load failures are
+      // transient (rate limit / network). Show the form with an empty state.
+      setError(
+        err?.message === 'rate-limited'
+          ? 'Comments are temporarily unavailable (too many requests). Please try again in a little while.'
+          : null
+      );
       setComments([]);
     } finally {
       setIsLoading(false);
@@ -100,12 +125,7 @@ export function Comments({ storyId }: CommentsProps) {
     // Load current gist content
     const gistResponse = await fetch(
       `https://api.github.com/gists/${githubConfig.gistId}`,
-      {
-        headers: {
-          'Accept': 'application/vnd.github.v3+json',
-          'Authorization': `token ${githubConfig.token}`,
-        },
-      }
+      { headers: githubHeaders() }
     );
 
     if (!gistResponse.ok) {
@@ -114,8 +134,8 @@ export function Comments({ storyId }: CommentsProps) {
 
     const gist = await gistResponse.json();
     const file = gist.files[githubConfig.filename];
-    const commentsData: CommentsData = file?.content 
-      ? JSON.parse(file.content) 
+    const commentsData: CommentsData = file?.content
+      ? JSON.parse(file.content)
       : {};
 
     // Update comments for this story
@@ -127,8 +147,7 @@ export function Comments({ storyId }: CommentsProps) {
       {
         method: 'PATCH',
         headers: {
-          'Accept': 'application/vnd.github.v3+json',
-          'Authorization': `token ${githubConfig.token}`,
+          ...githubHeaders(),
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
@@ -145,6 +164,9 @@ export function Comments({ storyId }: CommentsProps) {
       const errorData = await updateResponse.json();
       throw new Error(errorData.message || 'Failed to save comment');
     }
+
+    // Keep the cache in sync so the new comment shows immediately on re-read.
+    gistCache = { data: commentsData, ts: Date.now() };
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
