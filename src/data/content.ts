@@ -378,6 +378,32 @@ const contentData = {
     },
     "projects": [
       {
+        "title": "Axcess: AI-Augmented Accessibility Auditor",
+        "category": "Accessibility",
+        "description": "A local-first accessibility auditor that crawls a site, renders every page in a real browser, and runs five detection pipelines, including two local AI models, to catch the WCAG failures rule engines miss.",
+        "problem": "Automated accessibility checkers lean on rule engines that only catch deterministic failures. They miss the WCAG criteria that need judgment, like whether an image is really text or whether a link makes sense out of context, and many tools send page content to the cloud to do it.",
+        "approach": "Built an auditor that crawls a site and renders every page in a real browser, then runs five detection pipelines over the rendered DOM: an axe-core rule engine, deterministic Playwright probes for keyboard traps and responsive/zoom reflow, and two local AI models via Ollama, a vision model with OCR for images-of-text and a per-criterion text LLM for link-purpose semantics.",
+        "solution": "Everything runs on the user's machine, with no cloud and no telemetry. It runs with zero AI on just a browser, or adds a local Ollama model for the judgment calls, so content never leaves the device. It is honest about coverage and never claims criteria it does not actually test.",
+        "result": "A privacy-preserving WCAG 2.2 auditor that surfaces the accessibility failures rule engines miss, pairing deterministic browser checks with local AI judgment.",
+        "metrics": [
+          "5 detection pipelines",
+          "WCAG 2.2 AAA",
+          "Runs 100% locally"
+        ],
+        "tags": [
+          "Playwright",
+          "axe-core",
+          "Ollama",
+          "Local AI",
+          "Tesseract OCR",
+          "WCAG 2.2"
+        ],
+        "impact": "Catches accessibility failures rule engines miss, with zero cloud",
+        "links": {
+          "live": "https://reganmaharjan.com.np/axcess/"
+        }
+      },
+      {
         "title": "EPaath: Interactive E-learning Modules",
         "category": "Education Technology",
         "description": "Led development of e-learning modules reaching 300,000+ users in remote Nepal, improving team productivity by 50% through mentorship and streamlined code reviews",
@@ -1737,6 +1763,7 @@ const contentData = {
         "profile": "src/assets/mitregan.png"
       },
       "projects": [
+        "/assets/axcess.png",
         "src/assets/epaath.webp",
         "src/assets/epaathtab.png",
         "src/assets/learningames.png",
