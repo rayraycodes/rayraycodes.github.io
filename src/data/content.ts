@@ -378,6 +378,31 @@ const contentData = {
     },
     "projects": [
       {
+        "title": "Anubhuti: Youth Opportunity Platform",
+        "category": "Education Technology",
+        "description": "A marketing and explorer site for Anubhuti (अनुभूति, to feel deeply), a youth opportunity platform for Nepal, surfacing real scholarships, fellowships, mentorship, and projects matched to where you are and where you want to go.",
+        "problem": "Opportunities for Nepali youth, scholarships, fellowships, mentorships, are scattered across dozens of sources, hard to discover, and often found too late to apply.",
+        "approach": "Built a real React app from the Anubhuti design system, rendering five accessible pages, Landing, an Opportunities explorer, a Projects marketplace, About, and Circle, with live text search, region and category filters, and deadline-aware listings.",
+        "solution": "Seeded with around 22 real, source-linked programs (Teach For Nepal, Fulbright/USEF, Chevening, Hult Prize Nepal, and more) whose days-left are computed at runtime from real dates; honest stats derived from the data; and post-an-opportunity and post-a-project flows that persist locally with no backend.",
+        "result": "A production, accessibility-first front for Anubhuti, live at reganmaharjan.com.np/anubhuti.",
+        "metrics": [
+          "5 accessible pages",
+          "~22 real opportunities",
+          "No backend required"
+        ],
+        "tags": [
+          "React",
+          "TypeScript",
+          "Vite",
+          "Tailwind CSS",
+          "Accessibility"
+        ],
+        "impact": "Helps Nepali youth find scholarships, fellowships, and projects",
+        "links": {
+          "live": "https://reganmaharjan.com.np/anubhuti/"
+        }
+      },
+      {
         "title": "Axcess: AI-Augmented Accessibility Auditor",
         "category": "Accessibility",
         "description": "A local-first accessibility auditor that crawls a site, renders every page in a real browser, and runs five detection pipelines, including two local AI models, to catch the WCAG failures rule engines miss.",
@@ -1763,6 +1788,7 @@ const contentData = {
         "profile": "src/assets/mitregan.png"
       },
       "projects": [
+        "/assets/anubhuti.png",
         "/assets/axcess.png",
         "src/assets/epaath.webp",
         "src/assets/epaathtab.png",
