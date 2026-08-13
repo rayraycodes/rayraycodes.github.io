@@ -1,310 +1,563 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Axcess — local-first, AI-augmented accessibility auditor</title>
-<meta name="description" content="Axcess crawls a site, renders every page, and runs 7 detection pipelines — a rule engine, behavioural probes, and local AI models — covering 28 of 55 WCAG 2.2 A/AA criteria. Runs entirely on your machine.">
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%2300274C'/%3E%3Ctext x='16' y='22' text-anchor='middle' fill='%23FFCB05' font-family='Arial' font-size='18' font-weight='800'%3EAx%3C/text%3E%3C/svg%3E">
-<style>
-  :root {
-    --blue: #00274C; --maize: #FFCB05;
-    --ink: #14181f; --muted: #4a5568; --line: #e2e8f0;
-    --bg: #ffffff; --bg-soft: #f6f8fb;
-    --ai: #6b3a00; --rule: #0f5132;
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Axcess — accessibility evidence to expert-ready reports</title>
+  <meta name="description" content="Axcess is a local-first accessibility expert workbench that combines axe-core, Siteimprove Alfa, browser probes, OCR, and optional local AI into traceable WCAG 2.2 AA evidence and reports.">
+  <meta name="theme-color" content="#00274c">
+  <meta property="og:title" content="Axcess — accessibility evidence to expert-ready reports">
+  <meta property="og:description" content="Scan public or authorized login sites, follow live progress, review exact evidence, and export a defensible accessibility report.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://reganmaharjan.com.np/axcess/">
+  <link rel="canonical" href="https://reganmaharjan.com.np/axcess/">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%2300274C'/%3E%3Ctext x='16' y='22' text-anchor='middle' fill='%23FFCB05' font-family='Arial' font-size='18' font-weight='800'%3EAx%3C/text%3E%3C/svg%3E">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Axcess",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "macOS, Linux",
+    "description": "A local-first accessibility expert workbench for collecting evidence, reviewing issues, planning remediation, and verifying fixes.",
+    "url": "https://reganmaharjan.com.np/axcess/",
+    "codeRepository": "https://github.com/rayraycodes/Axcess",
+    "license": "https://opensource.org/license/mit"
   }
-  * { box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
-  body {
-    margin: 0; background: var(--bg); color: var(--ink);
-    font: 17px/1.65 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    -webkit-font-smoothing: antialiased;
-  }
-  a { color: #003f75; }
-  .skip { position: absolute; left: -999px; top: 0; background: var(--blue); color: #fff; padding: .6rem 1rem; z-index: 100; }
-  .skip:focus { left: .5rem; top: .5rem; }
-  .wrap { max-width: 1040px; margin: 0 auto; padding: 0 1.25rem; }
+  </script>
+  <style>
+    :root {
+      color-scheme: light;
+      --navy: #00274c;
+      --navy-2: #001b35;
+      --blue: #07548b;
+      --maize: #ffcb05;
+      --ink: #172033;
+      --muted: #526071;
+      --line: #d6dde5;
+      --soft: #f4f7fa;
+      --white: #fff;
+      --success: #17663a;
+      --warning-bg: #fff8dc;
+      --warning-ink: #4c3a00;
+      --radius: 18px;
+      --shadow: 0 16px 40px rgba(0, 39, 76, .1);
+    }
 
-  header.site { border-bottom: 1px solid var(--line); position: sticky; top: 0; background: rgba(255,255,255,.92); backdrop-filter: blur(8px); z-index: 50; }
-  header.site .wrap { display: flex; align-items: center; gap: .75rem; height: 64px; }
-  .brand { display: flex; align-items: center; gap: .6rem; font-weight: 800; font-size: 1.15rem; letter-spacing: -.01em; color: var(--ink); text-decoration: none; }
-  header nav { margin-left: auto; display: flex; gap: 1.25rem; align-items: center; }
-  header nav a { text-decoration: none; font-weight: 600; font-size: .95rem; }
-  .btn { display: inline-block; padding: .6rem 1.1rem; border-radius: 8px; font-weight: 700; text-decoration: none; }
-  .btn-primary { background: var(--blue); color: #fff; }
-  .btn-primary:hover { background: #013a6b; }
-  .btn-ghost { border: 1.5px solid var(--blue); color: var(--blue); }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--white);
+      color: var(--ink);
+      font: 17px/1.62 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+    img, svg { max-width: 100%; }
+    a { color: var(--blue); text-underline-offset: .18em; }
+    a:hover { text-decoration-thickness: .15em; }
+    a:focus-visible, button:focus-visible {
+      outline: 3px solid var(--maize);
+      outline-offset: 4px;
+      border-radius: 4px;
+    }
+    .skip-link {
+      position: fixed;
+      z-index: 1000;
+      top: .75rem;
+      left: .75rem;
+      transform: translateY(-180%);
+      padding: .7rem 1rem;
+      background: var(--white);
+      color: var(--navy);
+      border: 2px solid var(--navy);
+      border-radius: 8px;
+      font-weight: 800;
+    }
+    .skip-link:focus { transform: translateY(0); }
+    .wrap { width: min(1120px, calc(100% - 2.5rem)); margin-inline: auto; }
+    .eyebrow {
+      margin: 0 0 .65rem;
+      color: var(--blue);
+      font-size: .78rem;
+      font-weight: 850;
+      letter-spacing: .11em;
+      text-transform: uppercase;
+    }
 
-  .hero { background: var(--blue); color: #fff; padding: 4.5rem 0 4rem; }
-  .hero .tag { display: inline-block; color: var(--blue); background: var(--maize); font-weight: 800; font-size: .78rem; letter-spacing: .04em; text-transform: uppercase; padding: .25rem .6rem; border-radius: 999px; }
-  .hero h1 { font-size: clamp(2.1rem, 5vw, 3.2rem); line-height: 1.08; margin: 1rem 0 .75rem; letter-spacing: -.02em; max-width: 16ch; }
-  .hero h1 .hl { color: var(--maize); }
-  .hero p.lede { font-size: 1.2rem; color: #d7e3f0; max-width: 60ch; margin: 0 0 1.75rem; }
-  .hero .cta { display: flex; gap: .75rem; flex-wrap: wrap; }
-  .hero .cta .btn-primary { background: var(--maize); color: var(--blue); }
-  .hero .cta .btn-primary:hover { background: #ffd633; }
-  .hero .cta .btn-ghost { border-color: #6f8aa6; color: #fff; }
-  .hero .meta { margin-top: 1.5rem; color: #aebfd2; font-size: .9rem; }
-  .hero .meta strong { color: #fff; }
+    .site-header {
+      position: sticky;
+      z-index: 100;
+      top: 0;
+      border-bottom: 1px solid rgba(214, 221, 229, .9);
+      background: rgba(255, 255, 255, .96);
+      backdrop-filter: blur(12px);
+    }
+    .header-inner {
+      display: flex;
+      min-height: 68px;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+    .brand {
+      display: inline-flex;
+      min-height: 44px;
+      align-items: center;
+      gap: .6rem;
+      color: var(--ink);
+      font-size: 1.08rem;
+      font-weight: 850;
+      text-decoration: none;
+    }
+    .brand-mark { width: 34px; height: 34px; flex: 0 0 auto; }
+    .primary-nav ul, .footer-nav ul {
+      display: flex;
+      align-items: center;
+      gap: .3rem;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    .primary-nav a {
+      display: inline-flex;
+      min-height: 44px;
+      align-items: center;
+      padding: .55rem .75rem;
+      color: var(--ink);
+      border-radius: 8px;
+      font-size: .91rem;
+      font-weight: 700;
+      text-decoration: none;
+    }
+    .primary-nav a:hover { background: var(--soft); }
+    .primary-nav .portfolio-link { color: var(--navy); border: 1px solid var(--line); }
 
-  section { padding: 3.75rem 0; border-bottom: 1px solid var(--line); }
-  section.soft { background: var(--bg-soft); }
-  h2 { font-size: 1.9rem; letter-spacing: -.02em; margin: 0 0 .4rem; }
-  .sub { color: var(--muted); max-width: 62ch; margin: 0 0 2rem; font-size: 1.05rem; }
+    .hero {
+      overflow: hidden;
+      padding: clamp(4.5rem, 9vw, 7.5rem) 0 clamp(4rem, 8vw, 6.5rem);
+      background:
+        radial-gradient(circle at 90% 10%, rgba(255, 203, 5, .2), transparent 31rem),
+        linear-gradient(145deg, var(--navy-2), var(--navy));
+      color: var(--white);
+    }
+    .hero-grid { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(280px, .75fr); gap: 3rem; align-items: center; }
+    .hero .eyebrow { color: var(--maize); }
+    h1, h2, h3 { line-height: 1.16; letter-spacing: -.025em; }
+    h1 { max-width: 13ch; margin: 0 0 1rem; font-size: clamp(2.55rem, 6vw, 5rem); }
+    h2 { margin: 0 0 .7rem; font-size: clamp(2rem, 4vw, 3rem); }
+    h3 { margin: 0 0 .55rem; font-size: 1.2rem; }
+    .lede { max-width: 64ch; margin: 0; color: #dbe8f4; font-size: clamp(1.08rem, 2vw, 1.3rem); }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 1.8rem; }
+    .button {
+      display: inline-flex;
+      min-height: 48px;
+      align-items: center;
+      justify-content: center;
+      padding: .72rem 1.1rem;
+      border: 2px solid transparent;
+      border-radius: 10px;
+      font-weight: 800;
+      text-decoration: none;
+    }
+    .button-primary { background: var(--maize); color: var(--navy-2); }
+    .button-primary:hover { background: #ffdc55; }
+    .button-secondary { border-color: #91abc4; color: var(--white); }
+    .button-secondary:hover { background: rgba(255, 255, 255, .1); }
+    .truth-card {
+      padding: 1.5rem;
+      border: 1px solid rgba(255, 255, 255, .23);
+      border-radius: var(--radius);
+      background: rgba(255, 255, 255, .09);
+      box-shadow: var(--shadow);
+    }
+    .truth-card h2 { margin-bottom: 1rem; color: var(--maize); font-size: 1.1rem; }
+    .truth-card dl { display: grid; gap: 1rem; margin: 0; }
+    .truth-card dt { color: #aecaDF; font-size: .78rem; font-weight: 800; letter-spacing: .07em; text-transform: uppercase; }
+    .truth-card dd { margin: .12rem 0 0; font-weight: 700; }
 
-  ul.cards { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; }
-  .card { background: var(--bg); border: 1px solid var(--line); border-radius: 12px; padding: 1.2rem 1.25rem; }
-  .card-top { display: flex; align-items: center; gap: .55rem; margin-bottom: .5rem; }
-  .card-top h3 { margin: 0; font-size: 1.1rem; flex: 1; }
-  .dot { width: 10px; height: 10px; border-radius: 50%; flex: none; }
-  .dot.ai { background: var(--ai); } .dot.rule { background: var(--rule); }
-  .dot.automated { background: var(--rule); } .dot.partial { background: #0b4f6c; }
-  .dot.ai-assisted { background: var(--ai); }
-  .cov-title { margin: 2rem 0 .25rem; font-size: 1.15rem; }
-  .cov-h { display: flex; align-items: center; gap: .5rem; margin: 1.25rem 0 .25rem; font-size: 1rem; }
-  .cov-h .dot { width: 10px; height: 10px; border-radius: 50%; }
-  .cov-n { background: var(--blue); color: #fff; border-radius: 999px; font-size: .72rem; font-weight: 800; padding: .05rem .5rem; }
-  .badge { font-size: .68rem; font-weight: 800; letter-spacing: .03em; padding: .12rem .45rem; border-radius: 5px; color: #fff; }
-  .badge-ai { background: var(--ai); } .badge-rule { background: var(--rule); }
-  .engine { color: var(--muted); margin: 0 0 .55rem; font-size: .95rem; }
-  .scs { margin: 0; font-size: .92rem; }
-  .legend { display: flex; gap: 1.25rem; margin-top: 1.25rem; color: var(--muted); font-size: .9rem; flex-wrap: wrap; }
-  .legend span { display: inline-flex; align-items: center; gap: .4rem; }
+    section { padding: clamp(4rem, 7vw, 6rem) 0; scroll-margin-top: 82px; }
+    section.soft { background: var(--soft); }
+    .section-intro { max-width: 70ch; margin: 0 0 2rem; color: var(--muted); font-size: 1.08rem; }
+    .callout {
+      margin: 1.5rem 0 0;
+      padding: 1rem 1.15rem;
+      border-left: 5px solid var(--maize);
+      background: var(--warning-bg);
+      color: var(--warning-ink);
+    }
+    .callout strong { color: var(--navy-2); }
 
-  .stats { display: flex; gap: 2.5rem; flex-wrap: wrap; margin: 0 0 1.5rem; }
-  .stat b { display: block; font-size: 2.4rem; line-height: 1; color: var(--blue); letter-spacing: -.02em; }
-  .stat span { color: var(--muted); font-size: .92rem; }
-  ul.chips { list-style: none; margin: 1rem 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: .5rem; }
-  ul.chips li { background: var(--bg); border: 1px solid var(--line); border-radius: 999px; padding: .35rem .8rem; font-size: .9rem; }
-  .chips .wcag { font-family: ui-monospace, Menlo, monospace; font-size: .82rem; color: var(--blue); font-weight: 700; }
+    .desktop-panel {
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(280px, .85fr);
+      gap: 1.5rem;
+      align-items: start;
+      padding: clamp(1.4rem, 4vw, 2.25rem);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--white);
+      box-shadow: var(--shadow);
+    }
+    .desktop-actions { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 1.25rem; }
+    .desktop-actions .button-primary { background: var(--navy); color: var(--white); }
+    .desktop-actions .button-primary:hover { background: var(--navy-2); }
+    .desktop-actions .button-secondary { border-color: var(--navy); color: var(--navy); }
+    .install-note {
+      padding: 1.25rem;
+      border: 2px solid #a57b00;
+      border-radius: 14px;
+      background: var(--warning-bg);
+      color: var(--warning-ink);
+    }
+    .install-note h3 { color: var(--navy-2); }
+    .install-note ol { margin: .75rem 0 0; padding-left: 1.25rem; }
+    .install-note li + li { margin-top: .5rem; }
 
-  pre { background: #0d1b2a; color: #e6edf3; padding: 1.25rem 1.4rem; border-radius: 12px; overflow-x: auto; font: .92rem/1.6 ui-monospace, Menlo, monospace; }
-  pre .c { color: #b8c6d8; } pre .m { color: var(--maize); }  /* comment colour at ~9.7:1 on the dark block — clears AAA */
+    .workflow { counter-reset: workflow; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1rem; margin: 2rem 0 0; padding: 0; list-style: none; }
+    .workflow li {
+      counter-increment: workflow;
+      position: relative;
+      min-height: 235px;
+      padding: 1.35rem;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--white);
+      box-shadow: 0 8px 25px rgba(0, 39, 76, .06);
+    }
+    .workflow li::before {
+      content: counter(workflow, decimal-leading-zero);
+      display: block;
+      width: fit-content;
+      margin-bottom: 2rem;
+      padding: .2rem .55rem;
+      border-radius: 999px;
+      background: var(--navy);
+      color: var(--white);
+      font: 800 .78rem/1.4 ui-monospace, SFMono-Regular, Menlo, monospace;
+    }
+    .workflow p, .method-card p, .feature p { margin: 0; color: var(--muted); }
+    .status-line { display: flex; flex-wrap: wrap; gap: .45rem; margin-top: 1rem; }
+    .status {
+      display: inline-flex;
+      align-items: center;
+      padding: .22rem .55rem;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: var(--soft);
+      color: var(--ink);
+      font-size: .78rem;
+      font-weight: 750;
+    }
 
-  .pillars { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px,1fr)); gap: 1.5rem; }
-  .pillar h3 { margin: 0 0 .35rem; font-size: 1.1rem; }
-  .pillar p { margin: 0; color: var(--muted); font-size: .98rem; }
+    .modes, .features { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+    .feature {
+      padding: 1.5rem;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--white);
+    }
+    .feature-kicker { display: inline-block; margin-bottom: .8rem; color: var(--blue); font-size: .78rem; font-weight: 850; letter-spacing: .08em; text-transform: uppercase; }
+    .feature ul { margin: .9rem 0 0; padding-left: 1.25rem; }
 
-  footer { padding: 2.5rem 0; color: var(--muted); font-size: .92rem; }
-  footer .wrap { display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; align-items: center; }
-  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
-</style>
+    .method-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+    .method-card {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 1rem;
+      padding: 1.25rem;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: var(--white);
+    }
+    .method-number {
+      display: grid;
+      width: 2.3rem;
+      height: 2.3rem;
+      place-items: center;
+      border-radius: 10px;
+      background: var(--navy);
+      color: var(--white);
+      font-size: .82rem;
+      font-weight: 850;
+    }
+    .method-card h3 { margin-top: .1rem; }
+    .source { margin-top: .7rem !important; color: var(--blue) !important; font-size: .86rem; font-weight: 750; }
+
+    .table-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: var(--radius); background: var(--white); }
+    table { width: 100%; min-width: 820px; border-collapse: collapse; }
+    caption { padding: 1rem 1.1rem; color: var(--muted); text-align: left; font-size: .92rem; }
+    th, td { padding: .9rem 1rem; border-top: 1px solid var(--line); text-align: left; vertical-align: top; }
+    th { background: var(--navy); color: var(--white); font-size: .86rem; letter-spacing: .02em; }
+    td { font-size: .92rem; }
+    code { padding: .12rem .3rem; border-radius: 4px; background: #e8eef4; color: var(--navy-2); font-size: .86em; }
+
+    .report-grid { display: grid; grid-template-columns: 1.1fr .9fr; gap: 2rem; align-items: start; }
+    .report-list { display: grid; gap: .75rem; margin: 0; padding: 0; list-style: none; }
+    .report-list li { padding: 1rem 1.1rem; border: 1px solid var(--line); border-radius: 12px; background: var(--white); }
+    .report-list strong { display: block; margin-bottom: .18rem; color: var(--navy); }
+    .report-list span { color: var(--muted); }
+    .issue-example { padding: 1.4rem; border-radius: var(--radius); background: var(--navy-2); color: var(--white); box-shadow: var(--shadow); }
+    .issue-example .eyebrow { color: var(--maize); }
+    .issue-example dl { display: grid; grid-template-columns: 8rem 1fr; gap: .75rem 1rem; margin: 1.2rem 0 0; }
+    .issue-example dt { color: #acc2d8; font-weight: 750; }
+    .issue-example dd { margin: 0; }
+    .issue-example code { background: rgba(255,255,255,.12); color: var(--white); overflow-wrap: anywhere; }
+
+    .site-footer { padding: 2.5rem 0; border-top: 1px solid var(--line); }
+    .footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; }
+    .footer-inner p { margin: 0; color: var(--muted); }
+    .footer-nav a { display: inline-flex; min-height: 44px; align-items: center; padding: .4rem .55rem; font-weight: 700; }
+
+    @media (max-width: 920px) {
+      .header-inner { align-items: flex-start; flex-direction: column; padding-block: .65rem; }
+      .primary-nav { width: 100%; overflow-x: auto; }
+      .primary-nav ul { width: max-content; }
+      .hero-grid, .report-grid, .desktop-panel { grid-template-columns: 1fr; }
+      .workflow { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media (max-width: 620px) {
+      .wrap { width: min(100% - 1.5rem, 1120px); }
+      body { font-size: 16px; }
+      .hero { padding-top: 3.4rem; }
+      .workflow, .modes, .features, .method-grid { grid-template-columns: 1fr; }
+      .workflow li { min-height: 0; }
+      .workflow li::before { margin-bottom: 1rem; }
+      .issue-example dl { grid-template-columns: 1fr; gap: .15rem; }
+      .issue-example dd { margin-bottom: .75rem; }
+      .footer-inner { align-items: flex-start; flex-direction: column; }
+      .footer-nav { width: 100%; }
+      .footer-nav ul { width: 100%; align-items: flex-start; flex-direction: column; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+    }
+    @media (forced-colors: active) {
+      .button, .workflow li, .feature, .method-card, .table-wrap { border: 2px solid CanvasText; }
+    }
+  </style>
 </head>
 <body>
-<a class="skip" href="#main">Skip to content</a>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
 
-<header class="site">
-  <div class="wrap">
-    <a class="brand" href="#top"><svg viewBox="0 0 32 32" width="36" height="36" role="img" aria-label="Axcess logo" focusable="false"><rect width="32" height="32" rx="7" fill="#00274C"/><text x="16" y="22" text-anchor="middle" fill="#FFCB05" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="800">Ax</text></svg> Axcess</a>
-    <nav aria-label="Primary">
-      <a href="#pipelines">What it checks</a>
-      <a href="#start">How it works</a>
-      <a class="btn btn-primary" href="https://reganmaharjan.com.np/">← Portfolio</a>
-    </nav>
-  </div>
-</header>
-
-<main id="main">
-<section class="hero" id="top" style="border:0">
-  <div class="wrap">
-    <span class="tag">Local-first · WCAG 2.2 AAA · MIT</span>
-    <h1>Find the accessibility failures rule engines <span class="hl">miss</span>.</h1>
-    <p class="lede">Axcess crawls your site, renders every page in a real browser, and runs
-      <strong>7 detection pipelines</strong> — a rule engine, behavioural probes,
-      and local AI models — covering <strong>28 of 55</strong> WCAG 2.2 A/AA
-      success criteria. It all runs on your machine. No cloud, no telemetry.</p>
-    <div class="cta">
-      <a class="btn btn-primary" href="#pipelines">See what it checks ↓</a>
-      <a class="btn btn-ghost" href="https://reganmaharjan.com.np/">← Back to portfolio</a>
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="brand" href="#top" aria-label="Axcess project page home">
+        <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true" focusable="false">
+          <rect width="32" height="32" rx="7" fill="#00274c"/>
+          <text x="16" y="22" text-anchor="middle" fill="#ffcb05" font-family="Arial, sans-serif" font-size="18" font-weight="800">Ax</text>
+        </svg>
+        Axcess
+      </a>
+      <nav class="primary-nav" aria-label="Axcess project sections">
+        <ul>
+          <li><a href="#workflow">Workflow</a></li>
+          <li><a href="#desktop">Desktop preview</a></li>
+          <li><a href="#methods">Evidence methods</a></li>
+          <li><a href="#reports">Report output</a></li>
+          <li><a href="https://github.com/rayraycodes/Axcess">Source code</a></li>
+          <li><a class="portfolio-link" href="https://reganmaharjan.com.np/">Portfolio</a></li>
+        </ul>
+      </nav>
     </div>
-    <p class="meta">Runs with <strong>zero AI</strong> on just a browser, or add a local
-      <strong>Ollama</strong> model for the judgment calls — your content never leaves the machine.</p>
-  </div>
-</section>
+  </header>
 
-<section id="pipelines">
-  <div class="wrap">
-    <h2>7 pipelines, one crawl</h2>
-    <p class="sub">4 pipelines need only a browser. 3 add a local AI
-      model for the criteria a rule engine can't decide — <em>is this image really text?</em>,
-      <em>does this link make sense out of context?</em>, <em>does the reading order match the
-      visual layout?</em></p>
-    <ul class="cards">
-        <li class="card">
-          <div class="card-top">
-            <span class="dot rule" aria-hidden="true"></span>
-            <h3>axe-core</h3>
-            <span class="badge badge-rule">rule</span>
+  <main id="main-content">
+    <section class="hero" id="top" aria-labelledby="page-title">
+      <div class="wrap hero-grid">
+        <div>
+          <p class="eyebrow">Local-first accessibility expert workbench</p>
+          <h1 id="page-title">From site scan to evidence you can defend.</h1>
+          <p class="lede">Axcess renders public or authorized login-protected pages in a real browser, shows exactly what is being tested, groups the evidence into actionable issues, and produces a WCAG 2.2 AA report for expert review.</p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#workflow">Explore the workflow</a>
+            <a class="button button-secondary" href="#desktop">Try the desktop preview</a>
+            <a class="button button-secondary" href="https://github.com/rayraycodes/Axcess">View Axcess on GitHub</a>
           </div>
-          <p class="engine">axe dev API, injected into the rendered DOM</p>
-          <p class="scs"><strong>Covers:</strong> dozens (1.1.1 presence, 1.3.1, 1.4.3, 2.4.x, 4.1.2, meta-viewport, …)</p>
-        </li>
-        <li class="card">
-          <div class="card-top">
-            <span class="dot rule" aria-hidden="true"></span>
-            <h3>Keyboard-trap probe</h3>
-            <span class="badge badge-rule">rule</span>
+        </div>
+        <aside class="truth-card" aria-labelledby="truth-title">
+          <h2 id="truth-title">What the result means</h2>
+          <dl>
+            <div><dt>Target</dt><dd>WCAG 2.2 Level AA</dd></div>
+            <div><dt>Output</dt><dd>Traceable evidence and remediation guidance</dd></div>
+            <div><dt>Human role</dt><dd>Expert confirmation remains essential</dd></div>
+            <div><dt>Privacy</dt><dd>Local processing by default; local AI is optional</dd></div>
+          </dl>
+        </aside>
+      </div>
+    </section>
+
+    <section class="soft" id="workflow" aria-labelledby="workflow-title">
+      <div class="wrap">
+        <p class="eyebrow">One focused flow</p>
+        <h2 id="workflow-title">Scan → progress → issues → report</h2>
+        <p class="section-intro">The interface is organized around the work an accessibility professional is doing, not around internal crawler terminology.</p>
+        <ol class="workflow">
+          <li>
+            <h3>Choose the scope</h3>
+            <p>Enter a seed URL, set a page limit, choose axe-core, Alfa, or both, and decide whether optional OCR or local-model analysis belongs in this evaluation.</p>
+          </li>
+          <li>
+            <h3>Watch the crawl</h3>
+            <p>See the current page, discovered and completed totals, which method is running, and an ETA range without the view refreshing or stealing scroll position.</p>
+          </li>
+          <li>
+            <h3>Understand the evidence</h3>
+            <p>Read one table showing what the issue is, why it matters, the expected fix, and the exact page, element, selector, or image where it was detected.</p>
+          </li>
+          <li>
+            <h3>Deliver and verify</h3>
+            <p>Export a linked workbook or stakeholder report with scope and limitations, then rescan to compare new, resolved, and still-open barriers.</p>
+          </li>
+        </ol>
+        <p class="callout"><strong>No hidden pass:</strong> “Selected” means a method was requested. Axcess separately reports whether it actually ran, how many pages it checked, and why it was skipped or unavailable.</p>
+      </div>
+    </section>
+
+    <section id="desktop" aria-labelledby="desktop-title">
+      <div class="wrap">
+        <div class="desktop-panel">
+          <div>
+            <p class="eyebrow">Experimental macOS build</p>
+            <h2 id="desktop-title">Try Axcess as a desktop app</h2>
+            <p class="section-intro">Download the current desktop preview from Google Drive. It packages the local Axcess service and workbench into one app so you can start an audit without separately launching the web server.</p>
+            <div class="desktop-actions">
+              <a class="button button-primary" href="https://drive.google.com/file/d/1VPfy__RTQaWjmq-PXr-l9qKN-46EJ-mR/view?usp=sharing">Download the macOS preview</a>
+              <a class="button button-secondary" href="mailto:imregan@umich.edu?subject=Axcess%20desktop%20preview%20feedback">Email feedback to Regan</a>
+            </div>
+            <p class="callout"><strong>Preview software:</strong> this build is for evaluation and feedback. It is not yet notarized by Apple, so macOS may prevent it from opening the first time.</p>
           </div>
-          <p class="engine">Deterministic Playwright (Tab-walk, Esc, iframe checks)</p>
-          <p class="scs"><strong>Covers:</strong> 2.1.2 No Keyboard Trap</p>
-        </li>
-        <li class="card">
-          <div class="card-top">
-            <span class="dot rule" aria-hidden="true"></span>
-            <h3>Responsive / zoom probe</h3>
-            <span class="badge badge-rule">rule</span>
-          </div>
-          <p class="engine">Deterministic Playwright (viewport mutation + CSS inject)</p>
-          <p class="scs"><strong>Covers:</strong> 1.4.4 Resize Text, 1.4.10 Reflow, 1.4.12 Text Spacing</p>
-        </li>
-        <li class="card">
-          <div class="card-top">
-            <span class="dot rule" aria-hidden="true"></span>
-            <h3>Focus probe</h3>
-            <span class="badge badge-rule">rule</span>
-          </div>
-          <p class="engine">Deterministic Playwright (focus geometry + tabindex)</p>
-          <p class="scs"><strong>Covers:</strong> 2.4.11 Focus Not Obscured, 2.4.3 Focus Order (positive tabindex)</p>
-        </li>
-        <li class="card">
-          <div class="card-top">
-            <span class="dot ai" aria-hidden="true"></span>
-            <h3>Image-of-text (VLM)</h3>
-            <span class="badge badge-ai">AI</span>
-          </div>
-          <p class="engine">OCR (Tesseract) + VLM via Ollama</p>
-          <p class="scs"><strong>Covers:</strong> 1.4.5 Images of Text</p>
-        </li>
-        <li class="card">
-          <div class="card-top">
-            <span class="dot ai" aria-hidden="true"></span>
-            <h3>Visual probe</h3>
-            <span class="badge badge-ai">AI</span>
-          </div>
-          <p class="engine">Live-page screenshot + vision model (1.3.2); deterministic DOM (2.2.2)</p>
-          <p class="scs"><strong>Covers:</strong> 1.3.2 Meaningful Sequence, 2.2.2 Pause/Stop/Hide</p>
-        </li>
-        <li class="card">
-          <div class="card-top">
-            <span class="dot ai" aria-hidden="true"></span>
-            <h3>Semantic analyzer</h3>
-            <span class="badge badge-ai">AI</span>
-          </div>
-          <p class="engine">Per-SC Text-LLM via Ollama</p>
-          <p class="scs"><strong>Covers:</strong> 2.4.4 Link Purpose (In Context)</p>
-        </li>
-    </ul>
-    <div class="legend">
-      <span><span class="dot rule" aria-hidden="true"></span> deterministic — browser only, no model</span>
-      <span><span class="dot ai" aria-hidden="true"></span> AI — local Ollama model</span>
+          <aside class="install-note" aria-labelledby="install-title">
+            <h3 id="install-title">If macOS says “Axcess Not Opened”</h3>
+            <ol>
+              <li>Try to open Axcess once, then dismiss the warning.</li>
+              <li>Open <strong>System Settings → Privacy &amp; Security</strong>.</li>
+              <li>In the Security section, choose <strong>Open Anyway</strong> for Axcess and confirm only if you trust this download.</li>
+            </ol>
+            <p><a href="https://support.apple.com/en-la/102445">Read Apple’s official instructions for safely opening an unnotarized app</a>.</p>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="soft" aria-labelledby="scope-title">
+      <div class="wrap">
+        <p class="eyebrow">Public and authenticated scope</p>
+        <h2 id="scope-title">The same evaluation choices for both scan modes</h2>
+        <p class="section-intro">A login page changes how the browser session is established; it should not hide the engine, page-limit, OCR, or local-AI controls that define the evaluation.</p>
+        <div class="modes">
+          <article class="feature">
+            <span class="feature-kicker">Public website</span>
+            <h3>Start immediately</h3>
+            <p>Axcess follows the approved URL scope and tests the rendered experience. Browser mode handles JavaScript applications and sites that block plain HTTP crawlers.</p>
+          </article>
+          <article class="feature">
+            <span class="feature-kicker">Login or 2FA website</span>
+            <h3>You sign in; Axcess scans after</h3>
+            <p>A visible browser opens for an authorized auditor to complete password, passkey, SSO, or 2FA directly with the site. Credentials and second factors are not requested by Axcess.</p>
+            <ul>
+              <li>Confirm the approved post-login page before scanning.</li>
+              <li>Use a least-privilege test account and owner-approved scope.</li>
+              <li>Authentication accessibility still requires a manual check.</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="methods" aria-labelledby="methods-title">
+      <div class="wrap">
+        <p class="eyebrow">Complementary evidence</p>
+        <h2 id="methods-title">What checks what</h2>
+        <p class="section-intro">No single engine can evaluate accessibility. Axcess keeps every result tied to its source layer so an expert can judge its confidence and limitations.</p>
+        <div class="method-grid">
+          <article class="method-card"><span class="method-number" aria-hidden="true">01</span><div><h3>Browser rendering</h3><p>Loads client-side JavaScript and creates the page state the other browser-based methods inspect. Rendering alone is not a pass.</p><p class="source">Source layer: browser</p></div></article>
+          <article class="method-card"><span class="method-number" aria-hidden="true">02</span><div><h3>axe-core</h3><p>Runs deterministic rules against the rendered DOM for automatically testable accessibility conditions.</p><p class="source">Source layer: axe</p></div></article>
+          <article class="method-card"><span class="method-number" aria-hidden="true">03</span><div><h3>Siteimprove Alfa</h3><p>Runs an independent set of ACT rules. ACT means Accessibility Conformance Testing: each rule defines a precise condition and can return passed, failed, or cannot tell.</p><p class="source">Source layer: Alfa / ACT</p></div></article>
+          <article class="method-card"><span class="method-number" aria-hidden="true">04</span><div><h3>Keyboard and focus probes</h3><p>Walk focus forward and backward, attempt Escape behavior, inspect frames, and record conservative review leads for traps or obscured focus.</p><p class="source">Source layer: browser behavior</p></div></article>
+          <article class="method-card"><span class="method-number" aria-hidden="true">05</span><div><h3>Responsive and zoom probes</h3><p>Check 320 CSS-pixel reflow, enlarged text, and text-spacing overrides for clipping, lost content, and two-dimensional scrolling.</p><p class="source">Source layer: browser behavior</p></div></article>
+          <article class="method-card"><span class="method-number" aria-hidden="true">06</span><div><h3>Image-of-text analysis</h3><p>Tesseract OCR finds visible text candidates; an optional local vision model classifies whether the text is meaningful and needs expert attention.</p><p class="source">Source layer: OCR + local vision model</p></div></article>
+          <article class="method-card"><span class="method-number" aria-hidden="true">07</span><div><h3>Semantic review</h3><p>An optional local language model evaluates contextual questions such as link purpose. Its output is a review lead, never a conformance verdict.</p><p class="source">Source layer: local language model</p></div></article>
+          <article class="method-card"><span class="method-number" aria-hidden="true">08</span><div><h3>Visual and motion probes</h3><p>Combine live-page screenshots, DOM evidence, and runtime media behavior to flag reading-order or uncontrolled-motion questions.</p><p class="source">Source layer: visual + browser behavior</p></div></article>
+        </div>
+        <div class="status-line" aria-label="Method status vocabulary">
+          <span class="status">Checked</span><span class="status">Did not run</span><span class="status">Not selected</span><span class="status">Needs expert confirmation</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="soft" aria-labelledby="transparency-title">
+      <div class="wrap">
+        <p class="eyebrow">Traceable by design</p>
+        <h2 id="transparency-title">Every issue explains its origin and location</h2>
+        <p class="section-intro">Repeated occurrences are grouped into an actionable issue, while the underlying evidence remains available for page-by-page verification.</p>
+        <div class="table-wrap" tabindex="0" role="region" aria-label="Example Axcess issue table; scroll horizontally on smaller screens">
+          <table>
+            <caption>Example of the information preserved for one issue group. This is an illustrative row, not a scan result.</caption>
+            <thead><tr><th scope="col">Issue</th><th scope="col">Why it matters</th><th scope="col">Expected fix</th><th scope="col">Exact location</th><th scope="col">Source</th><th scope="col">Review state</th></tr></thead>
+            <tbody><tr><td>Form field has no accessible name</td><td>Screen-reader users may not know what information the field expects.</td><td>Associate a visible label using <code>for</code> and <code>id</code>, or provide an equivalent programmatic name.</td><td><code>/apply/</code><br><code>form#application input[name="email"]</code></td><td>axe-core · <code>label</code></td><td>Expert review required</td></tr></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section id="reports" aria-labelledby="reports-title">
+      <div class="wrap report-grid">
+        <div>
+          <p class="eyebrow">Structured handoff</p>
+          <h2 id="reports-title">A report that preserves the evaluation context</h2>
+          <p class="section-intro">The export is not a prettier issue dump. It carries the scope, method, limitations, expert decisions, remediation ownership, and verification instructions needed to interpret the findings.</p>
+          <ul class="report-list">
+            <li><strong>Overview and scope</strong><span>Target, included pages, crawl coverage, exclusions, methods selected, and methods actually completed.</span></li>
+            <li><strong>Issue and owner worklists</strong><span>Grouped barriers, exact linked locations, source layer, priority, expected fix, owner, and verification steps.</span></li>
+            <li><strong>Manual evaluation record</strong><span>WCAG 2.2 AA criteria, outcomes, rationale, and page-specific evidence remain additive across the report lifecycle.</span></li>
+            <li><strong>Markdown and Excel outputs</strong><span>Clickable source URLs and evidence links, filterable workbook sheets, and a visible draft notice until review is complete.</span></li>
+            <li><strong>Rescan comparison</strong><span>New, resolved, and still-open evidence without mixing records from unrelated scan scopes.</span></li>
+          </ul>
+        </div>
+        <aside class="issue-example" aria-labelledby="evidence-example-title">
+          <p class="eyebrow">Evidence receipt</p>
+          <h3 id="evidence-example-title">What travels with a finding</h3>
+          <dl>
+            <dt>Method</dt><dd>Engine or probe that produced it</dd>
+            <dt>Confidence</dt><dd>Deterministic violation, behavioral lead, AI-assisted lead, or cannot tell</dd>
+            <dt>Standard</dt><dd>WCAG criterion and report target</dd>
+            <dt>Users</dt><dd>Who may be affected and how</dd>
+            <dt>Location</dt><dd>Page URL, selector, element, image, or evidence note</dd>
+            <dt>Action</dt><dd>Remediation and a concrete verification procedure</dd>
+          </dl>
+        </aside>
+      </div>
+    </section>
+
+    <section class="soft" aria-labelledby="expert-title">
+      <div class="wrap">
+        <p class="eyebrow">Designed for accessibility professionals</p>
+        <h2 id="expert-title">Automation proposes evidence. The expert decides.</h2>
+        <p class="section-intro">Axcess was shaped around an accessibility specialist’s reporting workflow: reduce duplicated evidence, make false-positive decisions auditable, and keep uncertainty visible to the stakeholder receiving the report.</p>
+        <div class="features">
+          <article class="feature"><h3>Lower-noise behavioral leads</h3><p>The keyboard-trap probe requires repeated, bidirectional evidence and suppresses ordinary focus wrapping, small cycles, modal containment, and opaque focus contexts. A lead still requires manual confirmation.</p></article>
+          <article class="feature"><h3>Draft and final mean different things</h3><p>A draft can preserve unresolved evidence. A final handoff requires explicit expert disposition of actionable groups, while confirmed open barriers remain visible in the remediation worklist.</p></article>
+          <article class="feature"><h3>Local model use is optional</h3><p>Browser rules and probes work without a model. OCR and Ollama-powered review can be skipped; method coverage clearly states what did and did not run.</p></article>
+          <article class="feature"><h3>Desktop and web workflows</h3><p>The web application is the primary expert workbench. An experimental Electron package brings the local service and interface together for a simpler desktop launch.</p></article>
+        </div>
+        <p class="callout"><strong>Important limitation:</strong> Axcess supports an evaluation; it does not certify legal compliance or prove whole-site WCAG conformance. Manual testing with assistive technologies and experienced judgment remains necessary.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-inner">
+      <p><strong>Axcess</strong> · An open-source project by Regan Maharjan.</p>
+      <nav class="footer-nav" aria-label="Axcess project links">
+        <ul>
+          <li><a href="https://github.com/rayraycodes/Axcess">GitHub repository</a></li>
+          <li><a href="mailto:imregan@umich.edu?subject=Axcess%20feedback">Comment or email feedback</a></li>
+          <li><a href="https://reganmaharjan.com.np/">Regan Maharjan’s portfolio</a></li>
+        </ul>
+      </nav>
     </div>
-  </div>
-</section>
-
-<section class="soft" id="coverage">
-  <div class="wrap">
-    <h2>Honest about coverage</h2>
-    <p class="sub">Axcess never claims coverage it doesn't have. Of all 55 WCAG 2.2
-      Level A/AA success criteria, it's upfront about exactly which ones it checks for you and
-      which still need a human — and tells you what to test for each. These numbers come straight
-      from the code, so this page, the in-app Tracking view, and the docs can't drift apart.</p>
-    <div class="stats">
-      <div class="stat"><b>28/55</b><span>A/AA criteria with<br>automated or AI coverage</span></div>
-      <div class="stat"><b>27</b><span>criteria flagged for<br>manual testing (with guidance)</span></div>
-      <div class="stat"><b>7</b><span>detection pipelines<br>(4 browser · 3 AI)</span></div>
-      <div class="stat"><b>AAA</b><span>the tool audits itself at<br>WCAG 2.2 AAA</span></div>
-    </div>
-    <h3 class="cov-title">What Axcess checks for you</h3>
-    <p class="sub">The 28 criteria with automated or AI coverage today, grouped by how
-      Axcess detects them. Generated straight from the code.</p>
-      <h3 class="cov-h"><span class="dot automated"></span>Automated <span class="cov-n">6</span></h3>
-      <ul class="chips">
-          <li><span class="wcag">1.4.4</span> Resize Text</li>
-          <li><span class="wcag">1.4.10</span> Reflow</li>
-          <li><span class="wcag">1.4.12</span> Text Spacing</li>
-          <li><span class="wcag">2.1.2</span> No Keyboard Trap</li>
-          <li><span class="wcag">2.4.2</span> Page Titled</li>
-          <li><span class="wcag">3.1.1</span> Language of Page</li>
-      </ul>
-      <h3 class="cov-h"><span class="dot partial"></span>Partly automated <span class="cov-n">16</span></h3>
-      <ul class="chips">
-          <li><span class="wcag">1.1.1</span> Non-text Content</li>
-          <li><span class="wcag">1.3.1</span> Info and Relationships</li>
-          <li><span class="wcag">1.3.5</span> Identify Input Purpose</li>
-          <li><span class="wcag">1.4.1</span> Use of Color</li>
-          <li><span class="wcag">1.4.3</span> Contrast (Minimum)</li>
-          <li><span class="wcag">2.1.1</span> Keyboard</li>
-          <li><span class="wcag">2.2.2</span> Pause, Stop, Hide</li>
-          <li><span class="wcag">2.4.1</span> Bypass Blocks</li>
-          <li><span class="wcag">2.4.3</span> Focus Order</li>
-          <li><span class="wcag">2.4.7</span> Focus Visible</li>
-          <li><span class="wcag">2.4.11</span> Focus Not Obscured (Minimum)</li>
-          <li><span class="wcag">2.5.3</span> Label in Name</li>
-          <li><span class="wcag">2.5.8</span> Target Size (Minimum)</li>
-          <li><span class="wcag">3.1.2</span> Language of Parts</li>
-          <li><span class="wcag">4.1.2</span> Name, Role, Value</li>
-          <li><span class="wcag">4.1.3</span> Status Messages</li>
-      </ul>
-      <h3 class="cov-h"><span class="dot ai-assisted"></span>AI-assisted <span class="cov-n">6</span></h3>
-      <ul class="chips">
-          <li><span class="wcag">1.2.1</span> Audio-only and Video-only (Prerecorded)</li>
-          <li><span class="wcag">1.3.2</span> Meaningful Sequence</li>
-          <li><span class="wcag">1.4.5</span> Images of Text</li>
-          <li><span class="wcag">2.4.4</span> Link Purpose (In Context)</li>
-          <li><span class="wcag">2.4.6</span> Headings and Labels</li>
-          <li><span class="wcag">3.3.2</span> Labels or Instructions</li>
-      </ul>
-
-    <h3 class="cov-title">Next up — on the roadmap</h3>
-    <ul class="chips">
-          <li><span class="wcag">3.2.3</span> Consistent Navigation</li>
-          <li><span class="wcag">1.2.4</span> Captions (prerecorded video)</li>
-          <li><span class="wcag">3.2.4</span> Consistent Identification</li>
-          <li><span class="wcag">3.2.6</span> Consistent Help</li>
-    </ul>
-    <p style="margin-top:1.25rem; color:var(--muted); font-size:.95rem;">Every surface — this page, the in-app Tracking view, and the docs — is generated from one source of truth, so the coverage above always matches the code.</p>
-  </div>
-</section>
-
-<section id="start">
-  <div class="wrap">
-    <h2>Up and running in three commands</h2>
-    <p class="sub">macOS or Linux · Python 3.11+ · a browser. Ollama is optional — skip it and
-      the browser-only pipelines still run.</p>
-    <pre><span class="c"># install (uv + chromium + data dirs), then the DB schema</span>
-make setup &amp;&amp; make migrate
-
-<span class="c"># crawl a site — renders every page, runs axe + keyboard + responsive</span>
-uv run audit crawl <span class="m">https://example.com</span> --max-pages 50
-
-<span class="c"># open the review UI (React SPA, audits itself at AAA)</span>
-make frontend-build &amp;&amp; uv run audit serve   <span class="c"># → /app/</span></pre>
-  </div>
-</section>
-
-<section class="soft" id="why">
-  <div class="wrap">
-    <h2>Built for trust</h2>
-    <div class="pillars">
-      <div class="pillar"><h3>Private by design</h3><p>Everything runs locally — the crawler, the
-        browser probes, and the AI models via a loopback Ollama daemon. Your pages and findings
-        never leave the machine.</p></div>
-      <div class="pillar"><h3>Eats its own dog food</h3><p>The review UI is held to WCAG 2.2 AAA,
-        with axe-core tests in the AAA tag pack that fail the build on any violation.</p></div>
-      <div class="pillar"><h3>Resumable &amp; deterministic</h3><p>A queue-driven crawl resumes after
-        a crash. Exports are pinned by golden-file tests, so every change is explicit.</p></div>
-      <div class="pillar"><h3>Team-ready</h3><p>Host it on an always-on machine over your LAN or
-        Tailscale behind an opt-in shared-token gate — without giving up local-first.</p></div>
-    </div>
-  </div>
-</section>
-</main>
-
-<footer>
-  <div class="wrap">
-    <span><svg viewBox="0 0 32 32" width="36" height="36" role="img" aria-label="Axcess logo" focusable="false"><rect width="32" height="32" rx="7" fill="#00274C"/><text x="16" y="22" text-anchor="middle" fill="#FFCB05" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="800">Ax</text></svg> <strong>Axcess</strong> · MIT licensed · built at the University of Michigan 〽️</span>
-    <span>A project by <a href="https://reganmaharjan.com.np/">Regan Maharjan</a></span>
-  </div>
-</footer>
+  </footer>
 </body>
 </html>

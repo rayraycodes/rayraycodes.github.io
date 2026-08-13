@@ -405,27 +405,31 @@ const contentData = {
       {
         "title": "Axcess: AI-Augmented Accessibility Auditor",
         "category": "Accessibility",
-        "description": "A local-first accessibility auditor that crawls a site, renders every page in a real browser, and runs five detection pipelines, including two local AI models, to catch the WCAG failures rule engines miss.",
-        "problem": "Automated accessibility checkers lean on rule engines that only catch deterministic failures. They miss the WCAG criteria that need judgment, like whether an image is really text or whether a link makes sense out of context, and many tools send page content to the cloud to do it.",
-        "approach": "Built an auditor that crawls a site and renders every page in a real browser, then runs five detection pipelines over the rendered DOM: an axe-core rule engine, deterministic Playwright probes for keyboard traps and responsive/zoom reflow, and two local AI models via Ollama, a vision model with OCR for images-of-text and a per-criterion text LLM for link-purpose semantics.",
-        "solution": "Everything runs on the user's machine, with no cloud and no telemetry. It runs with zero AI on just a browser, or adds a local Ollama model for the judgment calls, so content never leaves the device. It is honest about coverage and never claims criteria it does not actually test.",
-        "result": "A privacy-preserving WCAG 2.2 auditor that surfaces the accessibility failures rule engines miss, pairing deterministic browser checks with local AI judgment.",
+        "description": "A local-first accessibility expert workbench that turns a scoped crawl into traceable evidence, an issue-by-issue remediation table, manual review records, and defensible WCAG 2.2 AA reports.",
+        "problem": "A scan result is not a conformance decision. Rule engines find deterministic failures, but experts still need context, exact locations, method provenance, manual checks, false-positive decisions, and a report that stakeholders can act on.",
+        "approach": "Designed a scan-to-report workflow around rendered browser evidence. Axcess combines axe-core with optional Siteimprove Alfa ACT rules, conservative keyboard/focus/responsive probes, OCR and local vision analysis for images of text, and semantic review leads. Each method is reported as selected, completed, skipped, or unavailable instead of being presented as an automatic pass.",
+        "solution": "The workbench groups repeated occurrences into actionable issues and keeps the source layer, WCAG criterion, affected users, exact page and selector, reason, expected fix, and verification steps together. It supports public sites and an authorized manual login/2FA browser workflow, keeps model use optional and local, and exports linked Markdown and Excel handoff artifacts with explicit draft/final readiness.",
+        "result": "A transparent evidence-to-remediation system for accessibility professionals: live crawl progress, lower-noise review leads, additive expert decisions, rescan comparison, and stakeholder reports that preserve limitations rather than claiming automated conformance.",
         "metrics": [
-          "5 detection pipelines",
-          "WCAG 2.2 AAA",
-          "Runs 100% locally"
+          "8 complementary evidence methods",
+          "WCAG 2.2 AA report target",
+          "Local-first by default"
         ],
         "tags": [
           "Playwright",
           "axe-core",
+          "Siteimprove Alfa",
           "Ollama",
-          "Local AI",
           "Tesseract OCR",
-          "WCAG 2.2"
+          "FastAPI",
+          "React",
+          "Electron",
+          "WCAG-EM"
         ],
-        "impact": "Catches accessibility failures rule engines miss, with zero cloud",
+        "impact": "Turns automated evidence into a transparent, expert-reviewed remediation workflow",
         "links": {
-          "live": "https://reganmaharjan.com.np/axcess/"
+          "live": "https://reganmaharjan.com.np/axcess/",
+          "github": "https://github.com/rayraycodes/Axcess"
         }
       },
       {

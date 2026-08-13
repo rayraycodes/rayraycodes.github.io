@@ -1,20 +1,12 @@
-import { motion } from 'motion/react';
-import { Link } from 'react-router-dom';
-import { Hand, BookOpen, FolderKanban, Camera } from 'lucide-react';
 import { getImageUrl } from '../../utils/imageUtils';
-import contentData from '../../data/content';
+import { Navigation } from '../Navigation';
 
 export function Home() {
   return (
     <div className="w-full flex flex-col items-center justify-center bg-background py-12 sm:py-16 md:py-24">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-12">
+      <div className="w-full min-w-0 max-w-4xl mx-auto px-4 sm:px-6 lg:px-12">
         {/* Person Image Section */}
-        <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-8"
-        >
+        <div className="text-center mb-8">
           <p className="text-sm sm:text-base md:text-lg text-gray-600 mb-3 sm:mb-4 font-medium">
             रेगन
           </p>
@@ -24,62 +16,24 @@ export function Home() {
             className="w-auto mx-auto rounded-full object-contain"
             style={{ height: 'clamp(200px, 30vh, 400px)' }}
           />
-        </motion.div>
+        </div>
 
         {/* Welcome Text Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.1 }}
-          className="text-center"
-        >
+        <div className="text-center">
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-normal tracking-tight mb-4 sm:mb-6 text-gray-900">
             Hello, welcome here,
           </h1>
           <p className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-normal text-gray-700 mb-6 sm:mb-8 md:mb-10">
             Namaste (Greetings!)
           </p>
-          <div className="text-base sm:text-lg md:text-xl text-gray-700 mb-6 sm:mb-8 md:mb-10 max-w-2xl mx-auto leading-loose">
-            <p className="mb-4 text-left sm:text-center leading-relaxed">
-              Feel free to explore!{' '}
-              <Link 
-                to="/about" 
-                className="inline-flex items-center gap-1.5 px-3 sm:px-4 py-2 sm:py-2.5 rounded-lg bg-gray-200 hover:bg-gray-300 border-2 border-gray-300 hover:border-gray-400 transition-all font-semibold text-gray-900 shadow-sm hover:shadow-md my-1 sm:my-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
-              >
-                <Hand className="w-4 h-4 sm:w-5 sm:h-5" aria-hidden />
-                Get to know me
-              </Link>
-              {' '}better,{' '}
-              <Link 
-                to="/storiesofadventure" 
-                className="inline-flex items-center gap-1.5 px-3 sm:px-4 py-2 sm:py-2.5 rounded-lg bg-gray-200 hover:bg-gray-300 border-2 border-gray-300 hover:border-gray-400 transition-all font-semibold text-gray-900 shadow-sm hover:shadow-md my-1 sm:my-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
-              >
-                <BookOpen className="w-4 h-4 sm:w-5 sm:h-5" aria-hidden />
-                dive into my stories
-              </Link>
-              ,{' '}
-              <Link 
-                to="/projects" 
-                className="inline-flex items-center gap-1.5 px-3 sm:px-4 py-2 sm:py-2.5 rounded-lg bg-gray-200 hover:bg-gray-300 border-2 border-gray-300 hover:border-gray-400 transition-all font-semibold text-gray-900 shadow-sm hover:shadow-md my-1 sm:my-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
-              >
-                <FolderKanban className="w-4 h-4 sm:w-5 sm:h-5" aria-hidden />
-                check out my projects
-              </Link>
-              , and{' '}
-              <Link 
-                to="/photography" 
-                className="inline-flex items-center gap-1.5 px-3 sm:px-4 py-2 sm:py-2.5 rounded-lg bg-gray-200 hover:bg-gray-300 border-2 border-gray-300 hover:border-gray-400 transition-all font-semibold text-gray-900 shadow-sm hover:shadow-md my-1 sm:my-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
-              >
-                <Camera className="w-4 h-4 sm:w-5 sm:h-5" aria-hidden />
-                browse my photo stories
-              </Link>
-              .
-            </p>
-            <p className="text-gray-600 text-left sm:text-center">
-              Seriously, go ahead and click around - I promise it's worth it! 😄
-            </p>
+          <p className="text-base sm:text-lg md:text-xl text-gray-700 mb-5 max-w-2xl mx-auto leading-relaxed">
+            Choose a place to start. This menu is marked up as site navigation so
+            keyboard, screen-reader, voice-control, and agent users can understand it.
+          </p>
+          <div className="w-full min-w-0 max-w-4xl mx-auto">
+            <Navigation inline />
           </div>
-        </motion.div>
+        </div>
       </div>
     </div>
   );
