@@ -112,46 +112,52 @@ export function Navigation({ inline = false }: NavigationProps) {
     return (
       <nav
         ref={inlineNavContainerRef}
-        className="flex flex-nowrap items-center justify-center gap-2 sm:gap-3 md:gap-4 overflow-x-auto scroll-smooth pb-2 -mb-2 w-full"
-        aria-label="Main navigation"
+        className="w-full overflow-x-auto scroll-smooth pb-2 -mb-2"
+        aria-label="Explore the portfolio"
         style={{ 
+          width: '100%',
+          maxWidth: '100%',
+          overflowX: 'auto',
           scrollbarWidth: 'none', 
           msOverflowStyle: 'none',
           WebkitOverflowScrolling: 'touch'
         }}
       >
-        {navLinks.map((link: { path: string; label: string }, index: number) => {
-          const isActive = location.pathname === link.path;
-          return (
-            <Link
-              key={link.path}
-              ref={(el) => { tabRefs.current[index] = el; }}
-              to={link.path}
-              className="relative px-3 sm:px-5 md:px-6 py-2.5 sm:py-3 transition-colors group rounded-lg flex-shrink-0 text-center whitespace-nowrap min-h-[44px] flex items-center justify-center"
-            >
-              {isActive && (
-                <motion.div
-                  layoutId="activeTabInline"
-                  className="absolute inset-0 bg-gray-200 rounded-lg border-2 border-gray-300 shadow-sm"
-                  transition={{ type: 'spring', bounce: 0.2, duration: 0.5 }}
-                />
-              )}
-              <span
-                className={`relative z-10 font-medium transition-all ${
-                  isActive
-                    ? 'text-gray-900 font-semibold opacity-100 text-lg sm:text-xl'
-                    : 'text-gray-600 opacity-50 group-hover:text-gray-900 group-hover:opacity-100 text-sm sm:text-base'
-                }`}
-                style={{ fontFamily: "'Merriweather', Georgia, 'Times New Roman', serif", lineHeight: '1.54' }}
-              >
-                {link.label}
-              </span>
-              {!isActive && (
-                <div className="absolute inset-0 bg-black/[0.02] rounded-lg opacity-0 group-hover:opacity-100 transition-opacity" />
-              )}
-            </Link>
-          );
-        })}
+        <ul
+          className="flex flex-nowrap items-stretch justify-start sm:justify-center gap-2 sm:gap-3 md:gap-4 m-0 p-0 list-none sm:min-w-0"
+          style={{ minWidth: 'max-content' }}
+        >
+          {navLinks.map((link: { path: string; label: string }, index: number) => {
+            const isActive = location.pathname === link.path;
+            const IconComponent = getIconForPath(link.path);
+            return (
+              <li key={link.path} className="flex">
+                <Link
+                  ref={(el) => { tabRefs.current[index] = el; }}
+                  to={link.path}
+                  aria-current={isActive ? 'page' : undefined}
+                  className="relative px-3 sm:px-5 md:px-6 py-3 transition-colors group rounded-xl flex-shrink-0 text-center whitespace-nowrap min-h-[48px] flex items-center justify-center gap-2 border-2 border-gray-300 bg-gray-100 text-gray-800 hover:bg-gray-200 hover:border-gray-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-700 focus-visible:ring-offset-2"
+                >
+                  {isActive && (
+                    <motion.span
+                      aria-hidden="true"
+                      layoutId="activeTabInline"
+                      className="absolute inset-0 bg-gray-200 rounded-[10px]"
+                      transition={{ type: 'spring', bounce: 0.2, duration: 0.5 }}
+                    />
+                  )}
+                  {IconComponent && <IconComponent className="relative z-10 w-5 h-5" aria-hidden="true" />}
+                  <span
+                    className="relative z-10 font-semibold text-sm sm:text-base"
+                    style={{ fontFamily: "'Merriweather', Georgia, 'Times New Roman', serif", lineHeight: '1.54' }}
+                  >
+                    {link.label}
+                  </span>
+                </Link>
+              </li>
+            );
+          })}
+        </ul>
       </nav>
     );
   }
@@ -246,6 +252,7 @@ export function Navigation({ inline = false }: NavigationProps) {
   return (
     <motion.nav
       ref={navRef}
+      aria-label="Primary navigation"
       initial={false}
       animate={{ y: 0 }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
@@ -276,6 +283,7 @@ export function Navigation({ inline = false }: NavigationProps) {
                   key={link.path}
                   ref={(el) => { tabRefs.current[index] = el; }}
                   to={link.path}
+                  aria-current={isActive ? 'page' : undefined}
                   className="relative px-3 xl:px-6 py-3 transition-colors group rounded-lg flex-shrink-0 text-center whitespace-nowrap flex items-center justify-center gap-1.5"
                 >
                   {isActive && (
@@ -342,6 +350,7 @@ export function Navigation({ inline = false }: NavigationProps) {
                   key={link.path}
                   ref={index === 0 ? firstMobileLinkRef : undefined}
                   to={link.path}
+                  aria-current={isActive ? 'page' : undefined}
                   onClick={() => setIsMobileMenuOpen(false)}
                   className={`block w-full py-4 px-6 rounded-xl transition-colors touch-manipulation min-h-[48px] flex items-center justify-center gap-2 ${
                     isActive
