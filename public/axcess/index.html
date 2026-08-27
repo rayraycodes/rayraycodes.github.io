@@ -425,7 +425,7 @@
         <div>
           <p class="eyebrow">Local-first accessibility expert workbench</p>
           <h1 id="page-title">From site scan to evidence you can defend.</h1>
-          <p class="lede">Axcess renders public or authorized login-protected pages in a real browser, shows exactly what is being tested, groups the evidence into actionable issues, and produces a WCAG 2.2 AA report for expert review.</p>
+          <p class="lede">Axcess renders public or authorized login-protected pages in a real browser, shows exactly what is being tested, groups the evidence into actionable issues, and exports a structured Excel workbook for expert review.</p>
           <div class="hero-actions">
             <a class="button button-primary" href="#workflow">Explore the workflow</a>
             <a class="button button-secondary" href="#desktop">Try the desktop preview</a>
@@ -436,7 +436,7 @@
           <h2 id="truth-title">What the result means</h2>
           <dl>
             <div><dt>Target</dt><dd>WCAG 2.2 Level AA</dd></div>
-            <div><dt>Output</dt><dd>Traceable evidence and remediation guidance</dd></div>
+            <div><dt>Primary output</dt><dd>Excel workbook with traceable evidence and remediation guidance</dd></div>
             <div><dt>Human role</dt><dd>Expert confirmation remains essential</dd></div>
             <div><dt>Privacy</dt><dd>Local processing by default; local AI is optional</dd></div>
           </dl>
@@ -447,7 +447,7 @@
     <section class="soft" id="workflow" aria-labelledby="workflow-title">
       <div class="wrap">
         <p class="eyebrow">One focused flow</p>
-        <h2 id="workflow-title">Scan → progress → issues → report</h2>
+        <h2 id="workflow-title">Scan → progress → issues → Excel workbook</h2>
         <p class="section-intro">The interface is organized around the work an accessibility professional is doing, not around internal crawler terminology.</p>
         <ol class="workflow">
           <li>
@@ -464,7 +464,7 @@
           </li>
           <li>
             <h3>Deliver and verify</h3>
-            <p>Export a linked workbook or stakeholder report with scope and limitations, then rescan to compare new, resolved, and still-open barriers.</p>
+            <p>Export a linked Excel workbook that summarizes scope, limitations, priorities, evidence, remediation, and verification steps, then rescan to compare new, resolved, and still-open barriers.</p>
           </li>
         </ol>
         <p class="callout"><strong>No hidden pass:</strong> “Selected” means a method was requested. Axcess separately reports whether it actually ran, how many pages it checked, and why it was skipped or unavailable.</p>
@@ -592,14 +592,14 @@
     <section id="reports" aria-labelledby="reports-title">
       <div class="wrap report-grid">
         <div>
-          <p class="eyebrow">Structured handoff</p>
-          <h2 id="reports-title">A report that preserves the evaluation context</h2>
-          <p class="section-intro">The export is not a prettier issue dump. It carries the scope, methods, limitations, user impact, linked evidence, and verification instructions needed to interpret the findings.</p>
+          <p class="eyebrow">Excel workbook output</p>
+          <h2 id="reports-title">Understand the report at a glance, then trace every detail</h2>
+          <p class="section-intro">The Excel workbook opens with a concise summary, then carries the scope, methods, limitations, user impact, linked evidence, remediation, and verification instructions needed to act on every finding.</p>
           <ul class="report-list">
             <li><strong>Overview and scope</strong><span>Target, included pages, crawl coverage, exclusions, methods selected, and methods actually completed.</span></li>
             <li><strong>Issues overview</strong><span>Grouped barriers, user impact, source layer, priority, expected fix, and page references linked directly to the supporting workbook rows.</span></li>
             <li><strong>Manual evaluation record</strong><span>WCAG 2.2 AA criteria, outcomes, rationale, and page-specific evidence remain additive across the report lifecycle.</span></li>
-            <li><strong>Markdown and Excel outputs</strong><span>Clickable source URLs and evidence links, a concise workbook without separate Owner Worklist or Decision History sheets, and a visible draft notice until review is complete.</span></li>
+            <li><strong>Filterable Excel workbook</strong><span>Summary, issues, page hotspots, page references, affected users, coverage, test tracking, and manual evidence—with clickable links and a visible draft notice until review is complete.</span></li>
             <li><strong>Rescan comparison</strong><span>New, resolved, and still-open evidence without mixing records from unrelated scan scopes.</span></li>
           </ul>
         </div>
