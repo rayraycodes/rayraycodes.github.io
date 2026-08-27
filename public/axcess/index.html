@@ -491,8 +491,8 @@
                 <span class="platform-tag">macOS · Apple silicon</span>
                 <h3>macOS desktop archive</h3>
                 <p>A ZIP build for Apple silicon Macs, with the same local service, bundled evidence tools, and packaged-runtime verification.</p>
-                <a class="button button-primary" data-build-link="axcess-macos-apple-silicon" href="https://github.com/rayraycodes/Axcess/actions/workflows/desktop-build.yml?query=branch%3Amain+is%3Asuccess">Open the latest macOS build</a>
-                <p class="build-meta" data-build-meta="axcess-macos-apple-silicon">Checking the latest successful pipeline…</p>
+                <a class="button button-primary" href="https://drive.google.com/file/d/1NncPWAXEB9bkP6npV1M5sP256FyTB1aZ/view?usp=sharing" target="_blank" rel="noopener noreferrer">Download the macOS preview</a>
+                <p class="build-meta">Hosted on Google Drive.</p>
               </article>
             </div>
 
@@ -507,11 +507,11 @@
             <aside class="install-note" aria-labelledby="install-title">
               <h3 id="install-title">How to get a preview build</h3>
               <ol>
-                <li>Choose your platform to open the newest successful GitHub Actions run.</li>
-                <li>Sign in to GitHub if prompted, then find <strong>Artifacts</strong> on the run summary.</li>
-                <li>Download <strong>axcess-windows-x64</strong> or <strong>axcess-macos-apple-silicon</strong>, extract the ZIP, and open the installer or application archive.</li>
+                <li>Choose the preview build for your platform.</li>
+                <li>For Windows, sign in to GitHub if prompted and download <strong>axcess-windows-x64</strong> from <strong>Artifacts</strong>.</li>
+                <li>For macOS, use the Google Drive link to download the preview ZIP, then extract and open the application archive.</li>
               </ol>
-              <p>Actions artifacts are temporary; this page automatically follows the newest successful build when an older artifact expires.</p>
+              <p>Windows Actions artifacts are temporary, so this page automatically follows the newest successful build. The macOS preview is hosted on Google Drive.</p>
             </aside>
             <div class="desktop-actions">
               <a class="button button-secondary" href="https://github.com/rayraycodes/Axcess/blob/main/docs/desktop-app.md">Read desktop documentation</a>
@@ -655,8 +655,7 @@
       const buildStatus = document.querySelector('#desktop-build-status span');
       const pipelineLink = document.querySelector('#desktop-pipeline-link');
       const expectedArtifacts = [
-        'axcess-windows-x64',
-        'axcess-macos-apple-silicon'
+        'axcess-windows-x64'
       ];
 
       const formatBytes = (bytes) => {
