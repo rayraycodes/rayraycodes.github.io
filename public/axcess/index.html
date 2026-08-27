@@ -268,6 +268,9 @@
     .install-note h3 { color: var(--navy-2); }
     .install-note ol { margin: .75rem 0 0; padding-left: 1.25rem; }
     .install-note li + li { margin-top: .5rem; }
+    .install-note details { margin-top: 1.25rem; padding-top: 1.25rem; border-top: 1px solid #a57b00; }
+    .install-note summary { cursor: pointer; color: var(--navy-2); font-weight: 800; }
+    .install-note details p { margin-bottom: 0; }
 
     .workflow { counter-reset: workflow; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1rem; margin: 2rem 0 0; padding: 0; list-style: none; }
     .workflow li {
@@ -512,6 +515,20 @@
                 <li>Download <strong>axcess-windows-x64</strong> or <strong>axcess-macos-apple-silicon</strong>, extract the ZIP, and open the installer or application archive.</li>
               </ol>
               <p>Actions artifacts are temporary; this page automatically follows the newest successful build when an older artifact expires.</p>
+              <details>
+                <summary>macOS: open the unsigned preview</summary>
+                <ol>
+                  <li>Download and extract the macOS artifact until <strong>Axcess.app</strong> is visible.</li>
+                  <li>Double-click <strong>Axcess.app</strong>. If macOS blocks it, click <strong>Done</strong>.</li>
+                  <li>Choose <strong>Apple menu → System Settings → Privacy &amp; Security</strong>.</li>
+                  <li>Scroll to <strong>Security</strong>, find the message that Axcess was blocked, and click <strong>Open Anyway</strong>. This option is available for about one hour after the blocked launch.</li>
+                  <li>Authenticate with your Mac password or Touch ID.</li>
+                  <li>Click <strong>Open</strong> in the final confirmation dialog.</li>
+                  <li>Keep the Axcess Desktop window open while using it. Closing the window stops its private local service.</li>
+                </ol>
+                <p><strong>Security note:</strong> Only override Gatekeeper if you trust the downloaded file.</p>
+                <p><a href="https://support.apple.com/guide/mac-help/open-a-mac-app-from-an-unknown-developer-mh40616/mac" target="_blank" rel="noopener noreferrer">Read Apple’s guidance for opening an app from an unknown developer.</a></p>
+              </details>
             </aside>
             <div class="desktop-actions">
               <a class="button button-secondary" href="https://github.com/rayraycodes/Axcess/blob/main/docs/desktop-app.md">Read desktop documentation</a>
