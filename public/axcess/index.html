@@ -18,7 +18,7 @@
     "@type": "SoftwareApplication",
     "name": "Axcess",
     "applicationCategory": "DeveloperApplication",
-    "operatingSystem": "macOS, Linux",
+    "operatingSystem": "macOS (Apple silicon), Windows (x64)",
     "description": "A local-first accessibility expert workbench for collecting evidence, reviewing issues, planning remediation, and verifying fixes.",
     "url": "https://reganmaharjan.com.np/axcess/",
     "codeRepository": "https://github.com/rayraycodes/Axcess",
@@ -203,6 +203,61 @@
     .desktop-actions .button-primary { background: var(--navy); color: var(--white); }
     .desktop-actions .button-primary:hover { background: var(--navy-2); }
     .desktop-actions .button-secondary { border-color: var(--navy); color: var(--navy); }
+    .build-status {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: .45rem .75rem;
+      margin: 1rem 0 0;
+      color: var(--muted);
+      font-size: .9rem;
+    }
+    .build-status strong { color: var(--ink); }
+    .build-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+    .build-card {
+      display: flex;
+      min-width: 0;
+      flex-direction: column;
+      padding: 1.2rem;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: var(--soft);
+    }
+    .platform-tag {
+      display: inline-flex;
+      width: fit-content;
+      margin-bottom: .6rem;
+      padding: .2rem .55rem;
+      border-radius: 999px;
+      background: var(--navy);
+      color: var(--white);
+      font-size: .75rem;
+      font-weight: 800;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+    }
+    .build-card p { margin: 0 0 1rem; color: var(--muted); }
+    .build-card .button { width: fit-content; margin-top: auto; }
+    .build-meta { margin: .7rem 0 0 !important; font-size: .82rem; }
+    .desktop-details {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+    .desktop-detail {
+      padding: 1rem;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: var(--white);
+    }
+    .desktop-detail h3 { font-size: 1rem; }
+    .desktop-detail p { margin: 0; color: var(--muted); font-size: .9rem; }
     .install-note {
       padding: 1.25rem;
       border: 2px solid #a57b00;
@@ -314,13 +369,14 @@
       .primary-nav { width: 100%; overflow-x: auto; }
       .primary-nav ul { width: max-content; }
       .hero-grid, .report-grid, .desktop-panel { grid-template-columns: 1fr; }
+      .desktop-details { grid-template-columns: 1fr; }
       .workflow { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     }
     @media (max-width: 620px) {
       .wrap { width: min(100% - 1.5rem, 1120px); }
       body { font-size: 16px; }
       .hero { padding-top: 3.4rem; }
-      .workflow, .modes, .features, .method-grid { grid-template-columns: 1fr; }
+      .workflow, .modes, .features, .method-grid, .build-grid { grid-template-columns: 1fr; }
       .workflow li { min-height: 0; }
       .workflow li::before { margin-bottom: 1rem; }
       .issue-example dl { grid-template-columns: 1fr; gap: .15rem; }
@@ -419,24 +475,55 @@
       <div class="wrap">
         <div class="desktop-panel">
           <div>
-            <p class="eyebrow">Experimental macOS build</p>
-            <h2 id="desktop-title">Try Axcess as a desktop app</h2>
-            <p class="section-intro">Download the current desktop preview from Google Drive. It packages the local Axcess service and workbench into one app so you can start an audit without separately launching the web server.</p>
-            <div class="desktop-actions">
-              <a class="button button-primary" href="https://drive.google.com/file/d/1VPfy__RTQaWjmq-PXr-l9qKN-46EJ-mR/view?usp=sharing">Download the macOS preview</a>
-              <a class="button button-secondary" href="mailto:imregan@umich.edu?subject=Axcess%20desktop%20preview%20feedback">Email feedback to Regan</a>
+            <p class="eyebrow">Desktop preview · Windows and macOS</p>
+            <h2 id="desktop-title">The local workbench, packaged as one application</h2>
+            <p class="section-intro">Axcess Desktop starts its private FastAPI service on an unused loopback port and opens the same React review interface in a sandboxed Electron window. Python, Node.js, Chromium, Alfa, and Tesseract are included, while scan evidence stays in your operating system’s application-data folder.</p>
+
+            <div class="build-grid" aria-label="Current Axcess desktop builds">
+              <article class="build-card">
+                <span class="platform-tag">Windows x64</span>
+                <h3>Windows desktop installer</h3>
+                <p>A Squirrel installer for 64-bit Windows, including the verified browser, accessibility engines, backend, and English OCR runtime.</p>
+                <a class="button button-primary" data-build-link="axcess-windows-x64" href="https://github.com/rayraycodes/Axcess/actions/workflows/desktop-build.yml?query=branch%3Amain+is%3Asuccess">Open the latest Windows build</a>
+                <p class="build-meta" data-build-meta="axcess-windows-x64">Checking the latest successful pipeline…</p>
+              </article>
+              <article class="build-card">
+                <span class="platform-tag">macOS · Apple silicon</span>
+                <h3>macOS desktop archive</h3>
+                <p>A ZIP build for Apple silicon Macs, with the same local service, bundled evidence tools, and packaged-runtime verification.</p>
+                <a class="button button-primary" data-build-link="axcess-macos-apple-silicon" href="https://github.com/rayraycodes/Axcess/actions/workflows/desktop-build.yml?query=branch%3Amain+is%3Asuccess">Open the latest macOS build</a>
+                <p class="build-meta" data-build-meta="axcess-macos-apple-silicon">Checking the latest successful pipeline…</p>
+              </article>
             </div>
-            <p class="callout"><strong>Preview software:</strong> this build is for evaluation and feedback. It is not yet notarized by Apple, so macOS may prevent it from opening the first time.</p>
+
+            <p class="build-status" id="desktop-build-status" role="status" aria-live="polite">
+              <strong>Build source:</strong>
+              <span>Checking GitHub Actions for the newest successful desktop pipeline.</span>
+              <a id="desktop-pipeline-link" href="https://github.com/rayraycodes/Axcess/actions/workflows/desktop-build.yml?query=branch%3Amain+is%3Asuccess">View desktop build history</a>
+            </p>
+            <p class="callout"><strong>Preview software:</strong> these automated builds are unsigned. Windows SmartScreen or macOS Gatekeeper may warn before opening them. Use them for evaluation and feedback, not as a signed institutional release.</p>
           </div>
-          <aside class="install-note" aria-labelledby="install-title">
-            <h3 id="install-title">If macOS says “Axcess Not Opened”</h3>
-            <ol>
-              <li>Try to open Axcess once, then dismiss the warning.</li>
-              <li>Open <strong>System Settings → Privacy &amp; Security</strong>.</li>
-              <li>In the Security section, choose <strong>Open Anyway</strong> for Axcess and confirm only if you trust this download.</li>
-            </ol>
-            <p><a href="https://support.apple.com/en-la/102445">Read Apple’s official instructions for safely opening an unnotarized app</a>.</p>
-          </aside>
+          <div>
+            <aside class="install-note" aria-labelledby="install-title">
+              <h3 id="install-title">How to get a preview build</h3>
+              <ol>
+                <li>Choose your platform to open the newest successful GitHub Actions run.</li>
+                <li>Sign in to GitHub if prompted, then find <strong>Artifacts</strong> on the run summary.</li>
+                <li>Download <strong>axcess-windows-x64</strong> or <strong>axcess-macos-apple-silicon</strong>, extract the ZIP, and open the installer or application archive.</li>
+              </ol>
+              <p>Actions artifacts are temporary; this page automatically follows the newest successful build when an older artifact expires.</p>
+            </aside>
+            <div class="desktop-actions">
+              <a class="button button-secondary" href="https://github.com/rayraycodes/Axcess/blob/main/docs/desktop-app.md">Read desktop documentation</a>
+              <a class="button button-secondary" href="mailto:imregan@umich.edu?subject=Axcess%20desktop%20preview%20feedback">Email feedback</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="desktop-details" aria-label="Desktop application details">
+          <article class="desktop-detail"><h3>Private local service</h3><p>The app binds to loopback only, chooses an available port, and stops its backend when the desktop window closes.</p></article>
+          <article class="desktop-detail"><h3>Local evidence storage</h3><p>Reports, the SQLite database, screenshots, and blobs stay under the operating system’s Axcess application-data directory.</p></article>
+          <article class="desktop-detail"><h3>Optional local AI</h3><p>Ollama and its models are not silently installed. Model-assisted checks remain optional and use a separately configured local service.</p></article>
         </div>
       </div>
     </section>
@@ -507,12 +594,12 @@
         <div>
           <p class="eyebrow">Structured handoff</p>
           <h2 id="reports-title">A report that preserves the evaluation context</h2>
-          <p class="section-intro">The export is not a prettier issue dump. It carries the scope, method, limitations, expert decisions, remediation ownership, and verification instructions needed to interpret the findings.</p>
+          <p class="section-intro">The export is not a prettier issue dump. It carries the scope, methods, limitations, user impact, linked evidence, and verification instructions needed to interpret the findings.</p>
           <ul class="report-list">
             <li><strong>Overview and scope</strong><span>Target, included pages, crawl coverage, exclusions, methods selected, and methods actually completed.</span></li>
-            <li><strong>Issue and owner worklists</strong><span>Grouped barriers, exact linked locations, source layer, priority, expected fix, owner, and verification steps.</span></li>
+            <li><strong>Issues overview</strong><span>Grouped barriers, user impact, source layer, priority, expected fix, and page references linked directly to the supporting workbook rows.</span></li>
             <li><strong>Manual evaluation record</strong><span>WCAG 2.2 AA criteria, outcomes, rationale, and page-specific evidence remain additive across the report lifecycle.</span></li>
-            <li><strong>Markdown and Excel outputs</strong><span>Clickable source URLs and evidence links, filterable workbook sheets, and a visible draft notice until review is complete.</span></li>
+            <li><strong>Markdown and Excel outputs</strong><span>Clickable source URLs and evidence links, a concise workbook without separate Owner Worklist or Decision History sheets, and a visible draft notice until review is complete.</span></li>
             <li><strong>Rescan comparison</strong><span>New, resolved, and still-open evidence without mixing records from unrelated scan scopes.</span></li>
           </ul>
         </div>
@@ -540,7 +627,7 @@
           <article class="feature"><h3>Lower-noise behavioral leads</h3><p>The keyboard-trap probe requires repeated, bidirectional evidence and suppresses ordinary focus wrapping, small cycles, modal containment, and opaque focus contexts. A lead still requires manual confirmation.</p></article>
           <article class="feature"><h3>Draft and final mean different things</h3><p>A draft can preserve unresolved evidence. A final handoff requires explicit expert disposition of actionable groups, while confirmed open barriers remain visible in the remediation worklist.</p></article>
           <article class="feature"><h3>Local model use is optional</h3><p>Browser rules and probes work without a model. OCR and Ollama-powered review can be skipped; method coverage clearly states what did and did not run.</p></article>
-          <article class="feature"><h3>Desktop and web workflows</h3><p>The web application is the primary expert workbench. An experimental Electron package brings the local service and interface together for a simpler desktop launch.</p></article>
+          <article class="feature"><h3>Desktop and web workflows</h3><p>The web application remains the expert workbench. Verified Windows x64 and Apple silicon Electron builds package that interface with its private local service and required scan runtimes.</p></article>
         </div>
         <p class="callout"><strong>Important limitation:</strong> Axcess supports an evaluation; it does not certify legal compliance or prove whole-site WCAG conformance. Manual testing with assistive technologies and experienced judgment remains necessary.</p>
       </div>
@@ -559,5 +646,93 @@
       </nav>
     </div>
   </footer>
+  <script>
+    (() => {
+      const repository = 'rayraycodes/Axcess';
+      const workflowFile = 'desktop-build.yml';
+      const workflowUrl = `https://github.com/${repository}/actions/workflows/${workflowFile}?query=branch%3Amain+is%3Asuccess`;
+      const apiBase = `https://api.github.com/repos/${repository}/actions`;
+      const buildStatus = document.querySelector('#desktop-build-status span');
+      const pipelineLink = document.querySelector('#desktop-pipeline-link');
+      const expectedArtifacts = [
+        'axcess-windows-x64',
+        'axcess-macos-apple-silicon'
+      ];
+
+      const formatBytes = (bytes) => {
+        if (!Number.isFinite(bytes) || bytes <= 0) return 'Size unavailable';
+        const units = ['B', 'KB', 'MB', 'GB'];
+        const unitIndex = Math.min(Math.floor(Math.log(bytes) / Math.log(1024)), units.length - 1);
+        return `${(bytes / (1024 ** unitIndex)).toFixed(unitIndex >= 3 ? 1 : 0)} ${units[unitIndex]}`;
+      };
+
+      const formatDate = (value) => {
+        const date = new Date(value);
+        if (Number.isNaN(date.getTime())) return null;
+        return new Intl.DateTimeFormat(undefined, {
+          dateStyle: 'medium',
+          timeStyle: 'short'
+        }).format(date);
+      };
+
+      const useWorkflowFallback = (message) => {
+        buildStatus.textContent = message;
+        pipelineLink.href = workflowUrl;
+        pipelineLink.textContent = 'View desktop build history';
+        for (const name of expectedArtifacts) {
+          const link = document.querySelector(`[data-build-link="${name}"]`);
+          const meta = document.querySelector(`[data-build-meta="${name}"]`);
+          link.href = workflowUrl;
+          meta.textContent = 'Open the workflow to find the newest available artifact.';
+        }
+      };
+
+      const refreshBuildLinks = async () => {
+        try {
+          const runsResponse = await fetch(
+            `${apiBase}/workflows/${workflowFile}/runs?branch=main&status=success&per_page=1`
+          );
+          if (!runsResponse.ok) throw new Error(`GitHub runs request returned ${runsResponse.status}`);
+          const runsPayload = await runsResponse.json();
+          const run = runsPayload.workflow_runs && runsPayload.workflow_runs[0];
+          if (!run || !Number.isSafeInteger(run.id)) throw new Error('No successful desktop run was returned');
+
+          const runUrl = `https://github.com/${repository}/actions/runs/${run.id}`;
+          const artifactsResponse = await fetch(`${apiBase}/runs/${run.id}/artifacts?per_page=20`);
+          if (!artifactsResponse.ok) throw new Error(`GitHub artifacts request returned ${artifactsResponse.status}`);
+          const artifactsPayload = await artifactsResponse.json();
+          const artifacts = Array.isArray(artifactsPayload.artifacts) ? artifactsPayload.artifacts : [];
+
+          for (const name of expectedArtifacts) {
+            const link = document.querySelector(`[data-build-link="${name}"]`);
+            const meta = document.querySelector(`[data-build-meta="${name}"]`);
+            const artifact = artifacts.find((candidate) => candidate.name === name && !candidate.expired);
+            link.href = runUrl;
+            link.target = '_blank';
+            link.rel = 'noopener noreferrer';
+            if (artifact) {
+              const expires = formatDate(artifact.expires_at);
+              meta.textContent = `${formatBytes(artifact.size_in_bytes)} ZIP${expires ? ` · available through ${expires}` : ''}`;
+            } else {
+              meta.textContent = 'This run no longer has an available artifact; check the build history for a newer run.';
+            }
+          }
+
+          const completed = formatDate(run.updated_at || run.created_at);
+          const shortSha = typeof run.head_sha === 'string' ? run.head_sha.slice(0, 7) : 'unknown commit';
+          buildStatus.textContent = `Latest verified pipeline: run #${run.run_number}, commit ${shortSha}${completed ? `, completed ${completed}` : ''}.`;
+          pipelineLink.href = runUrl;
+          pipelineLink.textContent = `Open pipeline #${run.run_number}`;
+          pipelineLink.target = '_blank';
+          pipelineLink.rel = 'noopener noreferrer';
+        } catch (error) {
+          console.warn('Could not refresh Axcess desktop build links.', error);
+          useWorkflowFallback('Live build details are temporarily unavailable. The desktop build history remains available.');
+        }
+      };
+
+      refreshBuildLinks();
+    })();
+  </script>
 </body>
 </html>
