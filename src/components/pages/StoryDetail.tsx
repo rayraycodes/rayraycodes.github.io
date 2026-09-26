@@ -175,8 +175,8 @@ export function StoryDetail() {
 
         {/* Story Content */}
         <motion.article
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
+          initial={{ y: 20 }}
+          animate={{ y: 0 }}
           className="space-y-8"
         >
           {/* Header */}
@@ -199,8 +199,8 @@ export function StoryDetail() {
               {selectedStory.content.images.map((image, idx) => (
                 <motion.div
                   key={idx}
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  animate={{ opacity: 1, scale: 1 }}
+                  initial={{ scale: 0.95 }}
+                  animate={{ scale: 1 }}
                   transition={{ delay: 0.2 + idx * 0.1 }}
                   className="w-full"
                 >
@@ -261,8 +261,8 @@ export function StoryDetail() {
           <section className="py-16 lg:py-24 mt-16 border-t">
             <div className="max-w-7xl mx-auto px-6 lg:px-12">
               <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                initial={{ y: 30 }}
+                whileInView={{ y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8 }}
                 className="mb-12"
@@ -285,8 +285,8 @@ export function StoryDetail() {
                       className="group"
                     >
                       <motion.div
-                        initial={{ opacity: 0, y: 30 }}
-                        whileInView={{ opacity: 1, y: 0 }}
+                        initial={{ y: 30 }}
+                        whileInView={{ y: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.6, delay: index * 0.1 }}
                         className="cursor-pointer"
@@ -333,7 +333,7 @@ export function StoryDetail() {
 
                           {/* Content */}
                           <div className="p-6 space-y-3">
-                            <p className="text-muted-foreground line-clamp-3">
+                            <p className="text-muted-foreground">
                               {story.excerpt}
                             </p>
                             <div className="flex items-center gap-2 text-sm text-muted-foreground pt-2">
@@ -353,8 +353,8 @@ export function StoryDetail() {
         <section className="py-16 lg:py-24 bg-gradient-to-b from-background to-blue-50/20">
           <div className="max-w-4xl mx-auto px-6 lg:px-12 text-center">
             <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ y: 30 }}
+              whileInView={{ y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
             >

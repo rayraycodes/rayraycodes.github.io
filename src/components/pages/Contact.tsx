@@ -44,8 +44,8 @@ export function Contact() {
       <section className="py-16 lg:py-24 bg-gradient-to-b from-background to-blue-50/20">
         <div className="max-w-7xl mx-auto px-6 lg:px-12">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
+            initial={{ y: 30 }}
+            animate={{ y: 0 }}
             transition={{ duration: 0.8 }}
             className="text-center"
           >
@@ -65,8 +65,8 @@ export function Contact() {
           <div className="grid lg:grid-cols-2 gap-12">
             {/* Contact Form */}
             <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              animate={{ opacity: 1, x: 0 }}
+              initial={{ x: -30 }}
+              animate={{ x: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
             >
               <div className="surface-elevated rounded-2xl p-8">
@@ -121,8 +121,8 @@ export function Contact() {
 
             {/* Social Links & Info */}
             <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              animate={{ opacity: 1, x: 0 }}
+              initial={{ x: 30 }}
+              animate={{ x: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
               className="space-y-8"
             >
@@ -140,8 +140,8 @@ export function Contact() {
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label={`${link.label} (opens in new window)`}
-                      initial={{ opacity: 0, x: 30 }}
-                      animate={{ opacity: 1, x: 0 }}
+                      initial={{ x: 30 }}
+                      animate={{ x: 0 }}
                       transition={{ duration: 0.6, delay: 0.6 + index * 0.1 }}
                       whileHover={{ x: 4 }}
                       className="flex items-center gap-4 p-4 surface-elevated rounded-xl transition-all duration-300 hover:shadow-md group"
@@ -178,8 +178,8 @@ export function Contact() {
       <section className="py-16 lg:py-24 bg-gradient-to-b from-background to-blue-50/20">
         <div className="max-w-4xl mx-auto px-6 lg:px-12 text-center">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ y: 30 }}
+            whileInView={{ y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >

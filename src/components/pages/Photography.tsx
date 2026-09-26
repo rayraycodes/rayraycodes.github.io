@@ -137,12 +137,13 @@ const PhotoCard = memo(function PhotoCard({ photo, onOpen, index }: PhotoCardPro
           <div className="absolute inset-0 bg-gradient-to-br from-gray-200 via-gray-300 to-gray-200 animate-pulse" />
         )}
         
-        {/* Actual image */}
+        {/* Actual image. The button's aria-label already names the photo,
+            so the thumbnail is decorative and would otherwise repeat it. */}
         {isInView && !imgError && (
         <img
             ref={imgRef}
           src={getImageUrl(photo.src)}
-          alt={photo.alt}
+          alt=""
             className={`w-full h-full object-cover transition-all duration-500 ease-out group-hover:scale-110 ${
               isLoaded ? 'opacity-100' : 'opacity-0'
             }`}
@@ -163,7 +164,7 @@ const PhotoCard = memo(function PhotoCard({ photo, onOpen, index }: PhotoCardPro
           />
           {/* Text container with additional dark background for better contrast */}
           <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/90 via-black/70 to-black/40">
-            <h3 className="text-white text-sm font-medium truncate drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">{photo.title}</h3>
+            <span aria-hidden="true" className="block text-white text-sm font-medium truncate drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">{photo.title}</span>
           </div>
         </div>
       </button>
@@ -491,9 +492,11 @@ export function Photography() {
 
   return (
     <div className="min-h-screen bg-gray-50" ref={contentRef} data-content-wrapper="true">
-      <main className="max-w-7xl mx-auto px-6 lg:px-12 pt-12 lg:pt-16 pb-32 lg:pb-40">
+      {/* Not a <main>: App already wraps every route in #main-content */}
+      <div className="max-w-7xl mx-auto px-6 lg:px-12 pt-12 lg:pt-16 pb-32 lg:pb-40">
         {/* Welcome Message */}
         <div className="mb-8 text-center">
+          <h1 className="text-3xl lg:text-4xl tracking-tight mb-6">Photography</h1>
           <p className="text-lg md:text-xl text-gray-700 mb-2">
             Hi there! 👋 Yes, I photograph things. Sometimes they turn out okay.
           </p>
@@ -521,14 +524,14 @@ export function Photography() {
           isOpen={isDialogOpen}
           onClose={handleCloseDialog}
         />
-      </main>
+      </div>
 
       {/* Connect CTA Section */}
       <section className="py-16 lg:py-24 bg-gradient-to-b from-background to-blue-50/20">
         <div className="max-w-4xl mx-auto px-6 lg:px-12 text-center">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ y: 30 }}
+            whileInView={{ y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >

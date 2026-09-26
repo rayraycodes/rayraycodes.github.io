@@ -9,8 +9,8 @@ export function About() {
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-12 pt-6 sm:pt-8 lg:pt-12 pb-16 sm:pb-24 lg:pb-32">
         {/* Main Content */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
+          initial={{ y: 20 }}
+          animate={{ y: 0 }}
           transition={{ duration: 0.6, delay: 0.1 }}
           className="prose prose-lg max-w-none"
         >
@@ -19,9 +19,9 @@ export function About() {
             <p className="text-lg md:text-xl text-gray-700 leading-relaxed">
               You and I are not that different, but different, thank you for being here to learn that different perhaps..?
             </p>
-            <p className="text-2xl md:text-3xl font-normal text-gray-900 leading-relaxed">
+            <h1 className="text-2xl md:text-3xl font-normal text-gray-900 leading-relaxed">
               Hi, I'm Regan 👋
-            </p>
+            </h1>
             <p className="text-lg md:text-xl text-gray-700 leading-relaxed">
               Some of my friends call me Dragon, some call me Ray and some call me ray of sunshine 😉
             </p>

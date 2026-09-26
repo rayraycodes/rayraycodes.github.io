@@ -217,11 +217,11 @@ export function StoriesOfAdventure() {
   // hex avoids depending on Tailwind generating dynamic bg-{theme}-600 classes.
   const dateBadgeColors: Record<string, string> = {
     blue: '#2563eb',
-    green: '#16a34a',
+    green: '#15803d',
     purple: '#9333ea',
     indigo: '#4f46e5',
-    teal: '#0d9488',
-    orange: '#ea580c',
+    teal: '#0f766e',
+    orange: '#c2410c',
     red: '#dc2626',
   };
 
@@ -231,8 +231,8 @@ export function StoriesOfAdventure() {
       <section className="pb-20 lg:pb-24 bg-gradient-to-b from-background to-blue-50/20">
         <div className="max-w-7xl mx-auto px-6 lg:px-12">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
+            initial={{ y: 30 }}
+            animate={{ y: 0 }}
             transition={{ duration: 0.8 }}
             className="text-center mb-16"
           >
@@ -285,8 +285,8 @@ export function StoriesOfAdventure() {
                 className="group"
               >
                 <motion.div
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={{ opacity: 1, y: 0 }}
+                  initial={{ y: 30 }}
+                  animate={{ y: 0 }}
                   transition={{ duration: 0.6, delay: index * 0.1 }}
                   className="cursor-pointer"
                 >
@@ -324,18 +324,18 @@ export function StoriesOfAdventure() {
                         pointerEvents: 'none',
                       }}
                     >
-                      <h3
+                      <h2
                         className="text-xl font-semibold tracking-tight text-white"
                         style={{ textShadow: '0 1px 3px rgba(0,0,0,0.6)' }}
                       >
                         {story.thumbnailTitle || story.title}
-                      </h3>
+                      </h2>
                     </div>
                   </div>
 
                   {/* Content */}
                   <div className="p-6 space-y-3">
-                    <p className="text-muted-foreground line-clamp-3">
+                    <p className="text-muted-foreground">
                       {story.excerpt}
                     </p>
                     <div className="flex items-center gap-2 text-sm text-muted-foreground pt-2">
