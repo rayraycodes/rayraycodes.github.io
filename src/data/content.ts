@@ -429,7 +429,7 @@ const contentData = {
         "impact": "Turns automated evidence into a transparent, expert-reviewed remediation workflow",
         "links": {
           "live": "https://reganmaharjan.com.np/axcess/",
-          "github": "https://github.com/rayraycodes/Axcess"
+          "github": "https://github.com/lsa-mis/axcess"
         }
       },
       {
