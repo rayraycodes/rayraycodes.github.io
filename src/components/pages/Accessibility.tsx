@@ -33,8 +33,8 @@ export function Accessibility() {
       <section className="py-16 lg:py-24 bg-gradient-to-b from-blue-50/30 via-white to-white">
         <div className="max-w-7xl mx-auto px-6 lg:px-12">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
+            initial={{ y: 30 }}
+            animate={{ y: 0 }}
             transition={{ duration: 0.8 }}
             className="text-center"
           >
@@ -52,8 +52,8 @@ export function Accessibility() {
       <section className="py-16 lg:py-24">
         <div className="max-w-7xl mx-auto px-6 lg:px-12">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ y: 30 }}
+            whileInView={{ y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
             className="text-center mb-12"
@@ -70,8 +70,8 @@ export function Accessibility() {
             {principles.map((principle, index) => (
               <motion.div
                 key={principle.title}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                initial={{ y: 30 }}
+                whileInView={{ y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 whileHover={{ y: -4 }}
@@ -90,8 +90,8 @@ export function Accessibility() {
       <section className="py-16 lg:py-24 bg-gradient-to-b from-background to-blue-50/20">
         <div className="max-w-7xl mx-auto px-6 lg:px-12">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ y: 30 }}
+            whileInView={{ y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
             className="text-center mb-12"
@@ -108,8 +108,8 @@ export function Accessibility() {
             {wcag.categories.map((category, index) => (
               <motion.div
                 key={category.category}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                initial={{ y: 30 }}
+                whileInView={{ y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 className="surface-elevated rounded-2xl p-6"
@@ -133,8 +133,8 @@ export function Accessibility() {
       <section className="py-16 lg:py-24">
         <div className="max-w-7xl mx-auto px-6 lg:px-12">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ y: 30 }}
+            whileInView={{ y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
             className="text-center mb-12"
@@ -151,8 +151,8 @@ export function Accessibility() {
             {tools.items.map((tool, index) => (
               <motion.div
                 key={tool.name}
-                initial={{ opacity: 0, x: index % 2 === 0 ? -30 : 30 }}
-                whileInView={{ opacity: 1, x: 0 }}
+                initial={{ x: index % 2 === 0 ? -30 : 30 }}
+                whileInView={{ x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 className="surface-elevated rounded-2xl p-8"
@@ -177,8 +177,8 @@ export function Accessibility() {
       <section className="py-16 lg:py-24 bg-gradient-to-b from-background to-blue-50/20">
         <div className="max-w-7xl mx-auto px-6 lg:px-12">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ y: 30 }}
+            whileInView={{ y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
             className="text-center mb-12"
@@ -195,8 +195,8 @@ export function Accessibility() {
             {transformation.items.map((item, index) => (
               <motion.div
                 key={item.before}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                initial={{ y: 30 }}
+                whileInView={{ y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 className="surface-elevated rounded-2xl p-6 lg:p-8"
@@ -227,8 +227,8 @@ export function Accessibility() {
         <div className="max-w-7xl mx-auto px-6 lg:px-12">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={{ x: -30 }}
+              whileInView={{ x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
             >
@@ -250,8 +250,8 @@ export function Accessibility() {
             </motion.div>
 
             <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={{ x: 30 }}
+              whileInView={{ x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
               className="surface-elevated rounded-2xl p-8"
@@ -270,8 +270,8 @@ export function Accessibility() {
       <section className="py-16 lg:py-24 bg-gradient-to-b from-background to-blue-50/20">
         <div className="max-w-7xl mx-auto px-6 lg:px-12">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ y: 30 }}
+            whileInView={{ y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
             className="text-center mb-12"
@@ -285,8 +285,8 @@ export function Accessibility() {
             {impact.stats.map((stat, index) => (
               <motion.div
                 key={stat.label}
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
+                initial={{ scale: 0.9 }}
+                whileInView={{ scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 className="surface-elevated rounded-2xl p-8 text-center"
@@ -305,8 +305,8 @@ export function Accessibility() {
       <section className="py-16 lg:py-24 bg-gradient-to-b from-background to-blue-50/20">
         <div className="max-w-4xl mx-auto px-6 lg:px-12 text-center">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ y: 30 }}
+            whileInView={{ y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >

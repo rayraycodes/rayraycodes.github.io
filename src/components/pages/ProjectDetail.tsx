@@ -133,7 +133,7 @@ export function ProjectDetail() {
           {/* Content */}
           <div className="p-8 lg:p-12">
             <div className="text-sm text-blue-600 mb-2">{selectedProject.category}</div>
-            <h2 className="text-4xl tracking-tight mb-4">{selectedProject.title}</h2>
+            <h1 className="text-4xl tracking-tight mb-4">{selectedProject.title}</h1>
             <p className="text-xl text-muted-foreground mb-4">{selectedProject.description}</p>
 
             {/* Long Description */}
@@ -211,29 +211,29 @@ export function ProjectDetail() {
 
             <div className="space-y-6 mb-8">
               <div>
-                <h3 className="text-xl mb-2">{labels.problem}</h3>
+                <h2 className="text-xl mb-2">{labels.problem}</h2>
                 <p className="text-muted-foreground">{selectedProject.problem}</p>
               </div>
 
               <div>
-                <h3 className="text-xl mb-2">{labels.approach}</h3>
+                <h2 className="text-xl mb-2">{labels.approach}</h2>
                 <p className="text-muted-foreground">{selectedProject.approach}</p>
               </div>
 
               <div>
-                <h3 className="text-xl mb-2">{labels.solution}</h3>
+                <h2 className="text-xl mb-2">{labels.solution}</h2>
                 <p className="text-muted-foreground">{selectedProject.solution}</p>
               </div>
 
               <div>
-                <h3 className="text-xl mb-2">{labels.result}</h3>
+                <h2 className="text-xl mb-2">{labels.result}</h2>
                 <p className="text-muted-foreground">{selectedProject.result}</p>
               </div>
             </div>
 
             {/* Metrics */}
             <div className="mb-8">
-              <h3 className="text-xl mb-4">{labels.keyMetrics}</h3>
+              <h2 className="text-xl mb-4">{labels.keyMetrics}</h2>
               <div className="grid md:grid-cols-3 gap-4">
                 {selectedProject.metrics.map((metric) => (
                   <div key={metric} className="bg-blue-50 rounded-xl p-4 text-center">
@@ -245,7 +245,7 @@ export function ProjectDetail() {
 
             {/* Tags */}
             <div className="mb-8">
-              <h3 className="text-xl mb-4">{labels.technologies}</h3>
+              <h2 className="text-xl mb-4">{labels.technologies}</h2>
               <div className="flex flex-wrap gap-2">
                 {selectedProject.tags.map((tag) => (
                   <Badge key={tag} variant="secondary" className="px-4 py-2">
@@ -270,8 +270,8 @@ export function ProjectDetail() {
       <section className="py-16 lg:py-24 bg-gradient-to-b from-background to-blue-50/20 mt-16">
         <div className="max-w-4xl mx-auto px-6 lg:px-12 text-center">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ y: 30 }}
+            whileInView={{ y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >

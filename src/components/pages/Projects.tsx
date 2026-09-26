@@ -96,8 +96,8 @@ export function Projects() {
       <section className="pt-16 lg:pt-24 pb-20 lg:pb-24 bg-gradient-to-b from-background to-blue-50/20">
         <div className="max-w-7xl mx-auto px-6 lg:px-12">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
+            initial={{ y: 30 }}
+            animate={{ y: 0 }}
             transition={{ duration: 0.8 }}
             className="text-center mb-16"
           >
@@ -139,8 +139,8 @@ export function Projects() {
                 className="block"
               >
                 <motion.div
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
+                  initial={{ y: 30 }}
+                  whileInView={{ y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: index * 0.05 }}
                   whileHover={{ y: -8 }}
@@ -158,8 +158,8 @@ export function Projects() {
                   {/* Project Info */}
                   <div className="p-6">
                     <div className="text-xs text-blue-600 mb-2">{project.category}</div>
-                    <h3 className="text-xl mb-2">{project.title}</h3>
-                    <p className="text-muted-foreground mb-4 line-clamp-2">{project.description}</p>
+                    <h2 className="text-xl mb-2">{project.title}</h2>
+                    <p className="text-muted-foreground mb-4">{project.description}</p>
                     
                     <div className="mb-4">
                       <div className="text-sm mb-2">{labels.impact}</div>
@@ -192,8 +192,8 @@ export function Projects() {
       <section className="py-16 lg:py-24 bg-gradient-to-b from-background to-blue-50/20">
         <div className="max-w-4xl mx-auto px-6 lg:px-12 text-center">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ y: 30 }}
+            whileInView={{ y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
